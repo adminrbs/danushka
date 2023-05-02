@@ -9,6 +9,7 @@ class District extends Model
 {
 
     use HasFactory;
+    protected $primarykey = "district_id";
 
-   
+
 }

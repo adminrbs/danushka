@@ -31,12 +31,60 @@
                         <div class="card">
                             <div class="card-header" id="headingDesignation">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#collapseBank" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
-                                        <i class="ti-settings mr-2"></i> Bank
+                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#district" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
+                                        <i class="ti-settings mr-2"></i> District
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapseBank" class="collapse" aria-labelledby="headingDesignation" data-parent="#accordionExample">
+                            <div id="district" class="collapse" aria-labelledby="headingDesignation" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div>
+
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+
+                                    </div>
+                                    <div class="table-responsive">
+                                        <!-- Required for Responsive -->
+                                        <table class="table table-striped table-responsive-stack">
+                                            <thead>
+                                                <tr>
+                                                    <th class="id">ID#</th>
+                                                    <th>Name</th>
+                                                    <th class="edit edit_bank">Edit</th>
+                                                    <th class="disable disable_bank">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tblbank">
+                                               {{--<tr>
+                                                    <td>0001</td>
+                                                    <td>BOC</td>
+                                                    <td><button type="button" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                                                    <td>
+                                                        <label class="form-check form-switch">
+                                                            <input type="checkbox" class="form-check-input" name="switch_single" required>
+                                                        </label>
+                                                    </td>
+                                                </tr>--}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="card">
+                            <div class="card-header" id="headingDesignation">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#town" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
+                                        <i class="ti-settings mr-2"></i> Town
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="town" class="collapse" aria-labelledby="headingDesignation" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div>
 
@@ -114,22 +162,7 @@
                         </div>
                     </div>
 
-                   <div class="my-2">
-                        <label for="email">Town</label>
-                        <input type="text" name="town" id="txtTown" class="form-control"
-                           >
-                    </div>
 
-                   <div class="my-2">
-                        <label for="phone">Group</label>
-                        <input type="tel" name="group" id="txtGroup" class="form-control"
-                           >
-                    </div>
-
-                    <div class="my-2">
-                        <label for="post">Grade</label>
-                        <input type="text" name="grade" id="txtGrade" class="form-control">
-                    </div>
                 </div>
 
 

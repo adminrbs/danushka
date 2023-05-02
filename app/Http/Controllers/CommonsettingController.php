@@ -21,25 +21,21 @@ class CommonsettingController extends Controller
     }
 
 
-    public function saveCommonsetting(Request $request) {
+    public function saveDistric(Request $request) {
         try {
-            $townName = $request->get('txtTown');
-            $groupName = $request->get('txtGroup');
-            $gradeName = $request->get('txtGrade');
+
             $commonSetting = new District();
             $commonSetting->district_name = $request->get('txtDistrict');
-            $this->group($groupName);
-            $this->grade($gradeName);
 
             if ($commonSetting->save()) {
-                $this->town($commonSetting->id,$townName);
+
                 return response()->json(['status' => true]);
             } else {
                 Log::error('Error saving common setting: ' . print_r($commonSetting->getErrors(), true));
                 return response()->json(['status' => false]);
             }
         } catch (Exception $ex) {
-
+            return response()->json(['error' => $ex]);
         }
     }
 

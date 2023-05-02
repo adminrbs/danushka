@@ -39,7 +39,7 @@ function allData() {
 
                 data = data + "<td>"
 
-                data = data + "<input type='checkbox' class='form-check-input' name='switch_single' required>"
+                data = data + '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" required></label>'
 
 
                 data = data + "</td>"
@@ -68,16 +68,14 @@ allData();
 function saveCommonsetting(){
 
     formData.append('txtDistrict', $('#txtDistrict').val());
-    formData.append('txtTown', $('#txtTown').val());
-    formData.append('txtGroup', $('#txtGroup').val());
-    formData.append('txtGrade', $('#txtGrade').val());
+
 
     console.log(formData);
 
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: '/saveCommonsetting',
+        url: '/saveDistric',
         data: formData,
         processData: false,
         contentType: false,

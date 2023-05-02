@@ -90,5 +90,5 @@ Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::
 
 Route::get('/commonSetting', [App\Http\Controllers\CommonsettingController::class, 'index']);
 Route::get('/commonall', [App\Http\Controllers\CommonsettingController::class,'allData']);
-Route::post('/saveCommonsetting', [App\Http\Controllers\CommonsettingController::class, 'saveCommonsetting']);
+Route::post('/saveDistric', [App\Http\Controllers\CommonsettingController::class, 'saveDistric']);
 
