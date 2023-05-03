@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Customer_group extends Model
 {
     use HasFactory;
+    protected $table = "customer_groups";
+    protected $primaryKey= "customer_group_id ";
+
+
+
+
 }

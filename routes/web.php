@@ -89,6 +89,38 @@ Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::
 
 
 Route::get('/commonSetting', [App\Http\Controllers\CommonsettingController::class, 'index']);
-Route::get('/commonall', [App\Http\Controllers\CommonsettingController::class,'allData']);
-Route::post('/saveDistric', [App\Http\Controllers\CommonsettingController::class, 'saveDistric']);
+
+
+
+//..district
+Route::get('/districtData', [App\Http\Controllers\CommonsettingController::class,'districtData']);
+Route::post('/saveDistrict', [App\Http\Controllers\CommonsettingController::class, 'saveDistrict']);
+Route::get('/districtEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'districtEdite']);
+Route::post('/districtUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtUpdate']);
+Route::get('/search', [App\Http\Controllers\CommonsettingController::class,'searchDistrict']);
+
+
+//..Town
+Route::get('/twonAlldata', [App\Http\Controllers\CommonsettingController::class,'twonAlldata']);
+Route::post('/saveTown', [App\Http\Controllers\CommonsettingController::class, 'saveTown']);
+Route::get('/townEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'townEdite']);
+Route::post('/townUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'townUpdate']);
+
+
+
+//..Group
+Route::get('/groupAlldata', [App\Http\Controllers\CommonsettingController::class,'groupAlldata']);
+Route::post('/saveGroup', [App\Http\Controllers\CommonsettingController::class, 'saveGroup']);
+Route::get('/groupEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'groupEdite']);
+Route::post('/groupUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'groupUpdate']);
+
+
+
+//..Grade
+Route::get('/gradeAlldata', [App\Http\Controllers\CommonsettingController::class,'gradeAlldata']);
+Route::post('/savegrade', [App\Http\Controllers\CommonsettingController::class, 'savegrade']);
+Route::get('/gradeEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'gradeEdite']);
+Route::post('/gradeUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'gradeUpdate']);
+
+
 

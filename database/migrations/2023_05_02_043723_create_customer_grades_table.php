@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('customer_grades', function (Blueprint $table) {
             $table->id('customer_grade_id');
             $table->string('grade',100);
+            $table->integer('status_id')->default("0");
             $table->timestamps();
         });
     }

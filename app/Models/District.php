@@ -9,7 +9,13 @@ class District extends Model
 {
 
     use HasFactory;
-    protected $primarykey = "district_id";
+    protected $table = "districts";
+    protected $primaryKey = "district_id";
+    protected $fillable = [
+        'district_name',
+        'status_id',
+    ];
+
 
 
 }

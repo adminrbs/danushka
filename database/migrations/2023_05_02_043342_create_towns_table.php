@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('town_id');
             $table->integer('district_id');
             $table->string('town_name',100);
+            $table->integer('status_id')->default("0");
             $table->timestamps();
         });
     }
