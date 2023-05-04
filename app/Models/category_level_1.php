@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Town extends Model
+class category_level_1 extends Model
 {
     use HasFactory;
-    protected $table = "towns";
-    protected $primaryKey = "town_id";
-
+    protected $primaryKey = "category_level_1_id ";
     protected $fillable = [
-        'district_id',
-        'town_name',
+        'category_level_1',
         'status_id',
     ];
 }

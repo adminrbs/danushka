@@ -145,7 +145,7 @@
                     <div class="row">
                         <div class="col-lg">
                             <label for="fname">Grade</label>
-                            <input type="text" name="grade" id="txtgrade" class="form-control validate" required>
+                            <input type="text" name="grade" id="txtgrade" class="form-control validate txtgrede" required>
                         </div>
                     </div>
 

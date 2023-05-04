@@ -97,15 +97,22 @@ Route::get('/districtData', [App\Http\Controllers\CommonsettingController::class
 Route::post('/saveDistrict', [App\Http\Controllers\CommonsettingController::class, 'saveDistrict']);
 Route::get('/districtEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'districtEdite']);
 Route::post('/districtUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtUpdate']);
-Route::get('/search', [App\Http\Controllers\CommonsettingController::class,'searchDistrict']);
+Route::post('/updateDistrictStatus/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtStatus']);
+//Route::get('/getDistrictStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'getDistrictStatus']);
+Route::get('/dist_search', [App\Http\Controllers\CommonsettingController::class,'dist_search']);
+
+Route::get('/save_town_status', [App\Http\Controllers\CommonsettingController::class,'save_town_status']);
+
 
 
 //..Town
 Route::get('/twonAlldata', [App\Http\Controllers\CommonsettingController::class,'twonAlldata']);
 Route::post('/saveTown', [App\Http\Controllers\CommonsettingController::class, 'saveTown']);
 Route::get('/townEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'townEdite']);
-Route::post('/townUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'townUpdate']);
-
+Route::post('/townUpdate/{district_id}', [App\Http\Controllers\CommonsettingController::class, 'townUpdate']);
+Route::get('/town_search', [App\Http\Controllers\CommonsettingController::class,'town_search']);
+Route::post('/townUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'townUpdateStatus']);
+Route::get('/updateStatusTown/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusTown']);
 
 
 //..Group
@@ -113,7 +120,9 @@ Route::get('/groupAlldata', [App\Http\Controllers\CommonsettingController::class
 Route::post('/saveGroup', [App\Http\Controllers\CommonsettingController::class, 'saveGroup']);
 Route::get('/groupEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'groupEdite']);
 Route::post('/groupUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'groupUpdate']);
-
+Route::get('/group_search', [App\Http\Controllers\CommonsettingController::class,'group_search']);
+Route::post('/groupUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'groupUpdateStatus']);
+Route::get('/updateStatusGroup/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGroup']);
 
 
 //..Grade
@@ -121,6 +130,10 @@ Route::get('/gradeAlldata', [App\Http\Controllers\CommonsettingController::class
 Route::post('/savegrade', [App\Http\Controllers\CommonsettingController::class, 'savegrade']);
 Route::get('/gradeEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'gradeEdite']);
 Route::post('/gradeUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'gradeUpdate']);
+Route::get('/grade_search', [App\Http\Controllers\CommonsettingController::class,'grade_search']);
+Route::post('/gradeUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'gradeUpdateStatus']);
+Route::get('/updateStatusGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGrade']);
+
 
 
 

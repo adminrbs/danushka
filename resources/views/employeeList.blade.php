@@ -23,7 +23,7 @@
             <h5 class="mb-0">Customer List</h5>
         </div>
 
-        <table class="table datatable-fixed-both" id="employeeListTable">
+        <table class="table datatbothable-fixed-" id="employeeListTable">
             <thead>
                 <tr>
                     <th>ID</th>

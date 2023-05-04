@@ -1,6 +1,132 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+
+       //...District Search...
+
+       $('#distSearch').on('keyup',function(){
+        $value=$(this).val();
+
+        if($value){
+            $('#tableDistrict').hide();
+            $('.districtSer').show();
+
+        }
+        else{
+            $('#tableDistrict').show();
+            $('.districtSer').hide();
+        }
+
+        $.ajax({
+
+            type:'get',
+            url:'/dist_search',
+            data:{'search':$value},
+
+            success:function(data){
+                console.log(data);
+                $('#content3').html(data);
+            }
+        });
+        //alert($value);
+    });
+
+
+
+
+       //...Town Search...
+
+       $('#townSearch').on('keyup',function(){
+        $value=$(this).val();
+
+        if($value){
+            $('#tbodyTown').hide();
+            $('.townSer').show();
+
+        }
+        else{
+            $('#tbodyTown').show();
+            $('.townSer').hide();
+        }
+
+        $.ajax({
+
+            type:'get',
+            url:'/town_search',
+            data:{'search':$value},
+
+            success:function(data){
+                console.log(data);
+                $('#content2').html(data);
+            }
+        });
+        //alert($value);
+    });
+
+
+
+    //...group Search...
+
+    $('#groupSearch').on('keyup',function(){
+        $value=$(this).val();
+
+        if($value){
+            $('#tbodyGrouo').hide();
+            $('.groupSer').show();
+
+        }
+        else{
+            $('#tbodyGrouo').show();
+            $('.groupSer').hide();
+        }
+
+        $.ajax({
+
+            type:'get',
+            url:'/group_search',
+            data:{'search':$value},
+
+            success:function(data){
+                console.log(data);
+                $('#content1').html(data);
+            }
+        });
+        //alert($value);
+    });
+
+
+
+//............grade search
+ $('#gradeSearch').on('keyup',function(){
+    $value=$(this).val();
+
+    if($value){
+        $('#tabalGroup').hide();
+        $('.searhdata').show();
+
+    }
+    else{
+        $('#tabalGroup').show();
+        $('.searhdata').hide();
+    }
+
+    $.ajax({
+
+        type:'get',
+        url:'/grade_search',
+        data:{'search':$value},
+
+        success:function(data){
+            console.log(data);
+            $('#content').html(data);
+        }
+    });
+    //alert($value);
+});
+
+
+
+
     $('#btnSaveDistric').on('click', function (e) {
         e.preventDefault();
 
@@ -8,9 +134,18 @@ $(document).ready(function () {
         if (!$(this).valid) {
             return;
         }
-        $('#btnSaveDistric').show();
-        $('#btnUpdateDistrict').hide();
+
         saveDistric();
+    });
+    $('#btnUpdateDistrict').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        updateDistrict();
     });
     $('#btnUpdateDistrict').on('click', function (e) {
         e.preventDefault();
@@ -25,7 +160,6 @@ $(document).ready(function () {
 
 
 
-
     //...Town
 
 
@@ -36,8 +170,7 @@ $(document).ready(function () {
         if (!$(this).valid) {
             return;
         }
-        $('#btnSaveTown').show();
-    $('#btnUpdateTown').hide();
+
         saveTown();
     });
 
@@ -63,8 +196,6 @@ $(document).ready(function () {
         if (!$(this).valid) {
             return;
         }
-        $('#btnSaveGroup').show();
-        $('#btnUpdateGroup').hide();
 
         saveGroup();
     });
@@ -90,8 +221,7 @@ $(document).ready(function () {
         if (!$(this).valid) {
             return;
         }
-        $('#btnSavegrade').show();
-        $('#btnUpdateGrade').hide();
+
         saveGrade();
     });
 
@@ -124,7 +254,55 @@ $(document).ready(function () {
 
 
 
+
+
+
+    var district_id = $('#cbxDistricrStatus').data('district-id');
+    console.log(district_id);
+    $.ajax({
+        url: '/getDistrictStatus/'+district_id,
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if (response.status == 'true') {
+                $('#cbxDistricrStatus').prop('checked', response.status_id == 1);
+            } else {
+                $('#cbxDistricrStatus').prop('checked', response.status_id == 0);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+
+
+
+
 });
+
+
+function cbxStatus(district_id) {
+    var status = $('#cbxDistricrStatus').is(':checked') ? 1 : 0;
+
+
+    $.ajax({
+        url: '/updateDistrictStatus/'+district_id,
+        type: 'POST',
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+            'status': status
+        },
+        success: function (response) {
+         console.log("data save");
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+
+
 
 $(document).on('click', '.editDistrict', function (e) {
     e.preventDefault();
@@ -146,6 +324,9 @@ $(document).on('click', '.editDistrict', function (e) {
         }
     });
 });
+
+
+
 
 function updateDistrict(){
     var id = $('#id').val();
@@ -181,19 +362,7 @@ function updateDistrict(){
 }
 
 
-function cbxStatus($district_id) {
 
-    var cbxStatus = $('#cbxStatus').val();
-
-    if (cbxStatus == 1) {
-        alert(cbxStatus)
-    } else if (cbxStatus == null) {
-        alert("cbxStatus")
-    }
-
-
-
-}
 
 
 function allData() {
@@ -204,6 +373,11 @@ function allData() {
 
         success: function (data) {
             $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if(value.status_id){
+                    isChecked = "checked";
+                }
 
                 data = data + "<tr>"
 
@@ -217,9 +391,7 @@ function allData() {
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus(' + value.district_id + ')" required></label>'
-
-
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDistricrStatus" value="1" onclick="cbxStatus(' + value.district_id + ')" required data-district-id="1" '+isChecked+'></label>'
 
                 data = data + "</td>"
 
@@ -237,7 +409,6 @@ function allData() {
 
 }
 allData();
-
 
 
 
@@ -291,27 +462,30 @@ function saveDistric() {
 
 
 
-
-
 //############################.....Town.....#######################################################
 
 
-/*
-
-function cbxStatus($district_id){
-
-    var cbxStatus = $('#cbxStatus').val();
-
-   if(cbxStatus == 1){
-  alert(cbxStatus)
-   }else if(cbxStatus == null){
-    alert("cbxStatus")
-   }
+function cbxTownStatus(town_id) {
+var status = $('#cbxTownStatus').is(':checked') ? 1 : 0;
 
 
-
+$.ajax({
+    url: '/townUpdateStatus/'+town_id,
+    type: 'POST',
+    data: {
+        '_token': $('meta[name="csrf-token"]').attr('content'),
+        'status': status
+    },
+    success: function (response) {
+     console.log("data save");
+    },
+    error: function (xhr, status, error) {
+        console.log(xhr.responseText);
+    }
+});
 }
-*/
+
+
 
 
 function allDataTown() {
@@ -322,6 +496,11 @@ function allDataTown() {
 
         success: function (data) {
             $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if(value.status_id){
+                    isChecked = "checked";
+                }
 
                 data = data + "<tr>"
 
@@ -336,7 +515,7 @@ function allDataTown() {
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus(' + value.town_id + ')" required></label>'
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + value.town_id + ')" required  '+ isChecked +'></label>'
 
 
 
@@ -433,12 +612,14 @@ function updateTown(){
     formData.append('cmbDistrict', $('#cmbDistrict').val());
     formData.append('txtTown', $('#txtTown').val());
 
+
+
     console.log(formData);
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
         url: '/townUpdate/'+id,
-        data: formData,
+        data:formData,
         processData: false,
         contentType: false,
         cache: false,
@@ -469,38 +650,27 @@ function updateTown(){
 //############################...Group.......#######################################################
 
 
-/*
-$(document).on('click', '.editDistrict', function(e) {
-    e.preventDefault();
-    let district_id = $(this).attr('id');
-    $.ajax({
-        url: '/districdata',
-        method: 'get',
-        data: {
-            district_id: district_id,
-            _token: '{{ csrf_token() }}'
-        },
-        success: function(response) {
-           $("#txtDistrict").val(response.district_name);
 
-        }
-    });
-});
-
-function cbxStatus($district_id){
-
-    var cbxStatus = $('#cbxStatus').val();
-
-   if(cbxStatus == 1){
-  alert(cbxStatus)
-   }else if(cbxStatus == null){
-    alert("cbxStatus")
-   }
+    function cbxGroupStatus(customer_group_id) {
+        var status = $('#cbxGroupStatus').is(':checked') ? 1 : 0;
 
 
+        $.ajax({
+            url: '/groupUpdateStatus/'+customer_group_id,
+            type: 'POST',
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'status': status
+            },
+            success: function (response) {
+             console.log("data save");
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
 
-}
-*/
 
 
 function allDataGroup() {
@@ -511,6 +681,11 @@ function allDataGroup() {
 
         success: function (data) {
             $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if(value.status_id){
+                    isChecked = "checked";
+                }
 
                 data = data + "<tr>"
 
@@ -524,7 +699,7 @@ function allDataGroup() {
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus(' + value.customer_group_id + ')" required></label>'
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' + value.customer_group_id + ')" required '+isChecked+'></label>'
 
 
 
@@ -605,10 +780,7 @@ function saveGroup() {
     $.ajax({
         url: '/groupEdite/'+customer_group_id,
         method: 'get',
-        data: {
-            //id: id,
-            _token: '{{ csrf_token() }}'
-        },
+
         success: function(response) {
             $('#btnSaveGroup').hide();
             $('#btnUpdateGroup').show();
@@ -619,6 +791,10 @@ function saveGroup() {
         }
     });
 });
+
+
+
+
 
 function updateGroup(){
     var id = $('#id').val();
@@ -659,22 +835,44 @@ function updateGroup(){
 //############################...Grade.......#######################################################
 
 
-/*
+var district_id = $('#cbxGradeStatus').attr('data-district-id');
+    $.ajax({
+        url: '/updateStatusGrade/'+district_id,
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if (response.status == 'true') {
+                $('#cbxGradeStatus').prop('checked', response.status_id == 1);
+            } else {
+                $('#cbxGradeStatus').prop('checked', response.status_id == 0);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
 
-function cbxStatus($district_id){
-
-    var cbxStatus = $('#cbxStatus').val();
-
-   if(cbxStatus == 1){
-  alert(cbxStatus)
-   }else if(cbxStatus == null){
-    alert("cbxStatus")
-   }
 
 
+    function cbxGradeStatus(customer_grade_id) {
+        var status = $('#cbxGradeStatus').is(':checked') ? 1 : 0;
 
-}
-*/
+
+        $.ajax({
+            url: '/gradeUpdateStatus/'+customer_grade_id,
+            type: 'POST',
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'status': status
+            },
+            success: function (response) {
+             console.log("data save");
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
 
 
 function allDataGrade() {
@@ -686,19 +884,24 @@ function allDataGrade() {
         success: function (data) {
             $.each(data, function (key, value) {
 
+                var isChecked = "";
+                if(value.status_id){
+                    isChecked = "checked";
+                }
+
                 data = data + "<tr>"
 
                 data = data + "<td>" + value.customer_grade_id   + "</td>"
                 data = data + "<td>" + value.grade + "</td>"
 
                 data = data + "<td>"
-                data = data + '<a href="#"  type="button" class="btn btn-primary  editGrade" id="' + value.customer_grade_id + '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+                data = data + '<a href="#"  type="button" class="btn btn-primary  editGrade" id="' + value.customer_grade_id + '" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
 
                 data = data + "</td>"
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus(' + value.customer_grade_id + ')" required></label>'
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus(' + value.customer_grade_id + ')" required '+isChecked+'></label>'
 
 
 
@@ -770,20 +973,20 @@ function saveGrade() {
 
    $(document).on('click', '.editGrade', function(e) {
     e.preventDefault();
-    let id = $(this).attr('id');
+    let customer_grade_id  = $(this).attr('id');
     $.ajax({
-        url: '/gradeEdite',
+        url: '/gradeEdite/'+customer_grade_id,
         method: 'get',
         data: {
-            id: id,
+            //id: id,
             _token: '{{ csrf_token() }}'
         },
         success: function(response) {
             $('#btnSavegrade').hide();
-            $('#btnUpdategrade').show();
-            var grade = response.grade;
-            $('#id').val(grade.customer_grade_id);
-            $("#txtgrade").val(grade.grade);
+            $('#btnUpdateGrade').show();
+
+            $('#id').val(response.customer_grade_id );
+            $("#txtgrade").val(response.grade);
 
 
         }
@@ -814,8 +1017,8 @@ function updateGrade(){
         },
         success: function (response) {
 
-            allDataGroup();
-            $('#modalGroup').modal('hide');
+            allDataGrade();
+            $('#modalGrade').modal('hide');
 
             console.log(data);
         }, error: function (error) {
@@ -823,3 +1026,4 @@ function updateGrade(){
         }
     });
 }
+
