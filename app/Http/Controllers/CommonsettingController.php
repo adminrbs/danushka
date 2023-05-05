@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\category_level_1;
+use App\Models\category_level_2;
 use App\Models\District;
 use App\Models\Town;
 use App\Models\Customer_group;
@@ -14,7 +16,9 @@ class CommonsettingController extends Controller
 
     public function index(){
         $data = District::all();
-        return view('common_setting')->with('data',$data);
+        $level1= category_level_1::all();
+        $level2 = category_level_2::all();
+        return view('common_setting',)->with('data',$data)->with('level2',$level2)->with('level1',$level1);
     }
 
     public function districtData(){
@@ -78,27 +82,27 @@ class CommonsettingController extends Controller
 
      public function dist_search(Request $request){
         $output="";
-        $group = District::where('district_id','Like','%'.$request->search.'%')
+        $districts = District::where('district_id','Like','%'.$request->search.'%')
                                 ->orWhere('district_name','Like','%'.$request->search.'%')
                                 ->get();
 
 
-        foreach($group as $group){
+        foreach($districts as $district){
 
-            $isChecked="";
-            if($district->status_id){
-                $isChecked = 'checked';
+            $status = "";
+            if($district->status_id == 1){
+                $status = "checked";
             }
 
             $output.=
 
             '<tr>
-            <td>'.$group->district_id .' </td>
-            <td>'.$group->district_name.' </td>
+            <td>'.$district->district_id .' </td>
+            <td>'.$district->district_name.' </td>
 
-            <td> '.' <a href=""  type="button" class="btn btn-primary  editDistrict" id="' . $group->district_id  . '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
+            <td> '.' <a href=""  type="button" class="btn btn-primary  editDistrict" id="' . $district->district_id  . '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
 
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus('. $group->district_id  . ')" required '.$isChecked.'></label>  '.'</td>
+            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus('. $district->district_id  . ')" required  '.$status.'></label>  '.'</td>
             </tr>';
         }
         return response($output);
@@ -117,7 +121,7 @@ class CommonsettingController extends Controller
 public function twonAlldata(){
     $data = DB::table('towns')
             ->join('districts', 'towns.district_id', '=', 'districts.district_id')
-            ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name')
+            ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name','towns.status_id')
             ->orderBy('districts.district_id', 'DESC')
             ->distinct()
             ->get();
@@ -182,6 +186,10 @@ public function twonAlldata(){
 
         foreach($group as $group){
             $district = $data->where('town_id', $group->town_id)->first();
+             $status = "";
+            if($group->status_id == 1){
+                $status = "checked";
+            }
             $output.=
             '<tr>
             <td>'.$group->town_id .' </td>
@@ -189,7 +197,7 @@ public function twonAlldata(){
             <td>'.$district->district_name.' </td>
             <td> '.' <a href="#"  type="button" class="btn btn-primary  editTwon" id="'. $group->town_id  . '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>  '.'</td>
 
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus('. $group->town_id  . ')" required></label>  '.'</td>
+            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus('. $group->town_id  . ')" required '.$status.'></label>  '.'</td>
             </tr>';
         }
         return response($output);
@@ -272,13 +280,17 @@ public function groupAlldata(){
 
 
         foreach($group as $group){
+            $status = "";
+            if($group->status_id == 1){
+                $status = "checked";
+            }
             $output.=
             '<tr>
             <td>'.$group->customer_group_id.' </td>
             <td>'.$group->group.' </td>
             <td> '.' <a href="#"  type="button" class="btn btn-primary  editGroup" id="' . $group->customer_group_id .'" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
 
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single"  id="cbxGroupStatus" value="1" onclick="cbxGroupStatus('. $group->customer_group_id . ')" required></label>  '.'</td>
+            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single"  id="cbxGroupStatus" value="1" onclick="cbxGroupStatus('. $group->customer_group_id . ')" required '.$status.'></label>  '.'</td>
             </tr>';
         }
         return response($output);
@@ -370,13 +382,17 @@ public function gradeAlldata(){
 
 
         foreach($grade as $grade){
+            $status = "";
+            if($grade->status_id == 1){
+                $status = "checked";
+            }
             $output.=
             '<tr>
             <td>'.$grade->customer_grade_id.' </td>
             <td>'.$grade->grade.' </td>
             <td> '.' <a href="#"  type="button" class="btn btn-primary  editGrade" id="' . $grade->customer_grade_id .'" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
 
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus('. $grade->customer_grade_id . ')" required></label>  '.'</td>
+            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus('. $grade->customer_grade_id . ')" required '.$status.'></label>  '.'</td>
             </tr>';
         }
         return response($output);

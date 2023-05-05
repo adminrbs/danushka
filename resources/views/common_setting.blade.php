@@ -321,7 +321,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="content" class="searhdata"></tbody>
+                                                <tbody id="contentl1" class="catLevel1"></tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="content" class="searhdata"></tbody>
+                                                <tbody id="contentl2" class="catLevel2"></tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -445,7 +445,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="content" class="searhdata"></tbody>
+                                                <tbody id="contentl3" class="catLevel3"></tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -467,8 +467,9 @@
     </div>
     <!-- /content area -->
 
-    @include('commonsettinModal')
+
     @include('categoryLevelModal')
+    @include('commonsettinModal')
 
 @endsection
 @section('center-scripts')

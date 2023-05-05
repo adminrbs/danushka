@@ -255,29 +255,6 @@ $(document).ready(function () {
 
 
 
-
-
-    var district_id = $('#cbxDistricrStatus').data('district-id');
-    console.log(district_id);
-    $.ajax({
-        url: '/getDistrictStatus/'+district_id,
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            if (response.status == 'true') {
-                $('#cbxDistricrStatus').prop('checked', response.status_id == 1);
-            } else {
-                $('#cbxDistricrStatus').prop('checked', response.status_id == 0);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-        }
-    });
-
-
-
-
 });
 
 
@@ -498,7 +475,7 @@ function allDataTown() {
             $.each(data, function (key, value) {
 
                 var isChecked = "";
-                if(value.status_id){
+                if(value.status_id == 1){
                     isChecked = "checked";
                 }
 
@@ -876,6 +853,7 @@ var district_id = $('#cbxGradeStatus').attr('data-district-id');
 
 
 function allDataGrade() {
+
     $.ajax({
         type: "get",
         dataType: 'json',
@@ -1026,4 +1004,5 @@ function updateGrade(){
         }
     });
 }
+
 

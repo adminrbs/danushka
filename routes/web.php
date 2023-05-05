@@ -4,6 +4,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LimitlessController;
+use App\Http\Controllers\CategoryLevelController;
 use App\Models\User;
 use App\Notifications\UserNotification;
 
@@ -98,7 +99,7 @@ Route::post('/saveDistrict', [App\Http\Controllers\CommonsettingController::clas
 Route::get('/districtEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'districtEdite']);
 Route::post('/districtUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtUpdate']);
 Route::post('/updateDistrictStatus/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtStatus']);
-//Route::get('/getDistrictStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'getDistrictStatus']);
+
 Route::get('/dist_search', [App\Http\Controllers\CommonsettingController::class,'dist_search']);
 
 Route::get('/save_town_status', [App\Http\Controllers\CommonsettingController::class,'save_town_status']);
@@ -135,5 +136,29 @@ Route::post('/gradeUpdateStatus/{id}', [App\Http\Controllers\CommonsettingContro
 Route::get('/updateStatusGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGrade']);
 
 
+////////////////////////// Category lavel ///////////
+
+// level 1
+Route::get('/categoryLevelData', [CategoryLevelController::class,'categoryLevel1Data']);
+Route::post('/saveCategoryLevel1', [CategoryLevelController::class,'saveCategoryLevel1']);
+Route::get('/categorylevel1Edite/{id}', [CategoryLevelController::class,'categorylevel1Edite']);
+Route::post('/txtCategorylevel1Update/{id}', [CategoryLevelController::class, 'txtCategorylevel1Update']);
+Route::post('/updateCatLevel1tStatus/{id}', [CategoryLevelController::class, 'catLevel1tStatus']);
+Route::get('/catLevel1_search', [CategoryLevelController::class,'categoryLevel1search']);
+
+// Level 2
+Route::get('/categoryLevel2Data', [CategoryLevelController::class,'categoryLevel2Data']);
+Route::post('/saveCategoryLevel2', [CategoryLevelController::class,'saveCategoryLevel2']);
+Route::get('/categorylevel2Edite/{id}', [CategoryLevelController::class,'categorylevel2Edite']);
+Route::post('/txtCategorylevel2Update/{id}', [CategoryLevelController::class, 'txtCategorylevel2Update']);
+Route::post('/updateCatLevel2tStatus/{id}', [CategoryLevelController::class, 'catLevel2tStatus']);
+Route::get('/catLevel2_search', [CategoryLevelController::class,'categoryLevel2search']);
 
 
+// Level 3
+Route::get('/categoryLevel3Data', [CategoryLevelController::class,'categoryLevel3Data']);
+Route::post('/saveCategoryLevel3', [CategoryLevelController::class,'saveCategoryLevel3']);
+Route::get('/categorylevel3Edite/{id}', [CategoryLevelController::class,'categorylevel3Edite']);
+Route::post('/Categorylevel3Update/{id}', [CategoryLevelController::class, 'Categorylevel3Update']);
+Route::post('/updateCatLevel3tStatus/{id}', [CategoryLevelController::class, 'catLevel3tStatus']);
+Route::get('/catLevel3_search', [CategoryLevelController::class,'categoryLevel3search']);

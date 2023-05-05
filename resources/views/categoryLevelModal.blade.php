@@ -25,7 +25,7 @@
         </div>
         <div class="modal-footer">
             <input type="hidden" id="id">
-          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" id="btnSaveCategorylevel1" class="btn btn-primary btnSaveCategorylevel1">Save</button>
           <button type="submit" id="btnUpdateCategorylevel1" class="btn btn-primary categorylevel1">Update</button>
         </div>
@@ -51,6 +51,15 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
+                            <label for="fname">Category level 1</label>
+                            <select class="form-select" aria-label="Default select example" id="cmbLeve1">
+                                @foreach ($level1 as $level1 )
+                                <option value="{{ $level1->category_level_1_id   }}">{{ $level1->category_level_1}}</option>
+                                @endforeach
+
+
+                              </select>
+
                             <label for="fname">Category level 2</label>
                             <input type="text" name="district" id="txtCategorylevel2" class="form-control validate" required>
                         </div>
@@ -90,8 +99,17 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
+                            <label for="fname">Category level 2 id</label>
+                            <select class="form-select" aria-label="Default select example" id="cmbLeve2">
+                                @foreach ($level2 as $level2 )
+                                <option value="{{ $level2->category_level_2_id   }}">{{ $level2->category_level_2}}</option>
+                                @endforeach
+
+
+                              </select>
                             <label for="fname">Category level 3</label>
                             <input type="text" name="district" id="txtCategorylevel3" class="form-control validate" required>
+
                         </div>
                     </div>
 
