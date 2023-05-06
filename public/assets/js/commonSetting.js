@@ -368,6 +368,12 @@ function allData() {
 
                 data = data + "<td>"
 
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete(' + value.district_id + ')">'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
                 data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDistricrStatus" value="1" onclick="cbxStatus(' + value.district_id + ')" required data-district-id="1" '+isChecked+'></label>'
 
                 data = data + "</td>"
@@ -438,6 +444,27 @@ function saveDistric() {
 }
 
 
+function btndistrictDelete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deleteDistrict/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                allData();
+
+            }
+        });
+
+    }
+}
+
+
+
 
 //############################.....Town.....#######################################################
 
@@ -487,6 +514,12 @@ function allDataTown() {
 
                 data = data + "<td>"
                 data = data + '<a href="#"  type="button" class="btn btn-primary  editTwon" id="' + value.town_id + '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' + value.town_id + ')">'
 
                 data = data + "</td>"
 
@@ -622,6 +655,24 @@ function updateTown(){
 
 
 
+function btnTownDelete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deleteTown/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                allDataTown();
+
+            }
+        });
+
+    }
+}
 
 
 //############################...Group.......#######################################################
@@ -671,6 +722,12 @@ function allDataGroup() {
 
                 data = data + "<td>"
                 data = data + '<a href="#"  type="button" class="btn btn-primary  editGroup" id="' + value.customer_group_id + '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete(' + value.customer_group_id + ')">'
 
                 data = data + "</td>"
 
@@ -808,6 +865,25 @@ function updateGroup(){
 
 
 
+function btnGroupDelete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deleteGroup/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                allDataGroup();
+
+            }
+        });
+
+    }
+}
+
 
 //############################...Grade.......#######################################################
 
@@ -874,6 +950,12 @@ function allDataGrade() {
 
                 data = data + "<td>"
                 data = data + '<a href="#"  type="button" class="btn btn-primary  editGrade" id="' + value.customer_grade_id + '" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' + value.customer_grade_id + ')">'
 
                 data = data + "</td>"
 
@@ -1006,3 +1088,22 @@ function updateGrade(){
 }
 
 
+
+function btnGradeDelete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deleteGrade/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                allDataGrade();
+
+            }
+        });
+
+    }
+}

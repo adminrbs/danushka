@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('category_level_3s', function (Blueprint $table) {
-            $table->id('category_level_3_id');
-            $table->integer('category_level_2_id');
+        Schema::create('item_category_level_3s', function (Blueprint $table) {
+            $table->id('Item_category_level_3_id');
+            $table->integer('Item_category_level_2_id');
             $table->string('category_level_3',100);
-            $table->integer('status_id')->default("0");
+            $table->integer('status_id')->default("1");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_level_3s');
+        Schema::dropIfExists('item_category_level_3s');
     }
 };

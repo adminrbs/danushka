@@ -103,7 +103,7 @@ Route::post('/updateDistrictStatus/{id}', [App\Http\Controllers\CommonsettingCon
 Route::get('/dist_search', [App\Http\Controllers\CommonsettingController::class,'dist_search']);
 
 Route::get('/save_town_status', [App\Http\Controllers\CommonsettingController::class,'save_town_status']);
-
+Route::delete('/deleteDistrict/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteDistrict']);
 
 
 //..Town
@@ -114,7 +114,7 @@ Route::post('/townUpdate/{district_id}', [App\Http\Controllers\CommonsettingCont
 Route::get('/town_search', [App\Http\Controllers\CommonsettingController::class,'town_search']);
 Route::post('/townUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'townUpdateStatus']);
 Route::get('/updateStatusTown/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusTown']);
-
+Route::delete('/deleteTown/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteTown']);
 
 //..Group
 Route::get('/groupAlldata', [App\Http\Controllers\CommonsettingController::class,'groupAlldata']);
@@ -124,7 +124,7 @@ Route::post('/groupUpdate/{id}', [App\Http\Controllers\CommonsettingController::
 Route::get('/group_search', [App\Http\Controllers\CommonsettingController::class,'group_search']);
 Route::post('/groupUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'groupUpdateStatus']);
 Route::get('/updateStatusGroup/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGroup']);
-
+Route::delete('/deleteGroup/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteGroup']);
 
 //..Grade
 Route::get('/gradeAlldata', [App\Http\Controllers\CommonsettingController::class,'gradeAlldata']);
@@ -134,7 +134,7 @@ Route::post('/gradeUpdate/{id}', [App\Http\Controllers\CommonsettingController::
 Route::get('/grade_search', [App\Http\Controllers\CommonsettingController::class,'grade_search']);
 Route::post('/gradeUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'gradeUpdateStatus']);
 Route::get('/updateStatusGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGrade']);
-
+Route::delete('/deleteGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteGrade']);
 
 ////////////////////////// Category lavel ///////////
 
@@ -145,6 +145,7 @@ Route::get('/categorylevel1Edite/{id}', [CategoryLevelController::class,'categor
 Route::post('/txtCategorylevel1Update/{id}', [CategoryLevelController::class, 'txtCategorylevel1Update']);
 Route::post('/updateCatLevel1tStatus/{id}', [CategoryLevelController::class, 'catLevel1tStatus']);
 Route::get('/catLevel1_search', [CategoryLevelController::class,'categoryLevel1search']);
+Route::delete('/deletelevel1/{id}', [CategoryLevelController::class,'deletelevel1']);
 
 // Level 2
 Route::get('/categoryLevel2Data', [CategoryLevelController::class,'categoryLevel2Data']);
@@ -153,7 +154,7 @@ Route::get('/categorylevel2Edite/{id}', [CategoryLevelController::class,'categor
 Route::post('/txtCategorylevel2Update/{id}', [CategoryLevelController::class, 'txtCategorylevel2Update']);
 Route::post('/updateCatLevel2tStatus/{id}', [CategoryLevelController::class, 'catLevel2tStatus']);
 Route::get('/catLevel2_search', [CategoryLevelController::class,'categoryLevel2search']);
-
+Route::delete('/deletelevel2/{id}', [CategoryLevelController::class,'deletelevel2']);
 
 // Level 3
 Route::get('/categoryLevel3Data', [CategoryLevelController::class,'categoryLevel3Data']);
@@ -162,3 +163,27 @@ Route::get('/categorylevel3Edite/{id}', [CategoryLevelController::class,'categor
 Route::post('/Categorylevel3Update/{id}', [CategoryLevelController::class, 'Categorylevel3Update']);
 Route::post('/updateCatLevel3tStatus/{id}', [CategoryLevelController::class, 'catLevel3tStatus']);
 Route::get('/catLevel3_search', [CategoryLevelController::class,'categoryLevel3search']);
+Route::delete('/deletelevel3/{id}', [CategoryLevelController::class,'deletelevel3']);
+
+// Distination
+
+Route::post('/saveDesgination', [CategoryLevelController::class,'saveDesgination']);
+Route::get('/disginationData', [CategoryLevelController::class,'disginationData']);
+Route::get('/desginationEdite/{id}', [CategoryLevelController::class,'desginationEdite']);
+Route::post('/desginationtUpdate/{id}', [CategoryLevelController::class, 'desginationtUpdate']);
+Route::post('/updateDesginationStatus/{id}', [CategoryLevelController::class, 'updateDesginationStatus']);
+Route::get('/desginathionsearch', [CategoryLevelController::class,'desginathionsearch']);
+Route::delete('/deletedesgination/{id}', [CategoryLevelController::class,'deletedesgination']);
+
+
+//  Employee Status
+
+Route::post('/empSaveStatus', [CategoryLevelController::class,'empSaveStatus']);
+Route::get('/empStatusData', [CategoryLevelController::class,'empStatusData']);
+Route::get('/empStatusEdite/{id}', [CategoryLevelController::class,'empStatusEdite']);
+Route::post('/empStatusUpdate/{id}', [CategoryLevelController::class, 'empStatusUpdate']);
+Route::post('/updateempStatus/{id}', [CategoryLevelController::class, 'updateempStatus']);
+Route::get('/empStatussearch', [CategoryLevelController::class,'empStatussearch']);
+Route::delete('/deleteempStatus/{id}', [CategoryLevelController::class,'deleteempStatus']);
+
+

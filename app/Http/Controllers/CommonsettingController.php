@@ -101,7 +101,7 @@ class CommonsettingController extends Controller
             <td>'.$district->district_name.' </td>
 
             <td> '.' <a href=""  type="button" class="btn btn-primary  editDistrict" id="' . $district->district_id  . '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-
+<td> <input type="button"  class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete('  . $district->district_id  .')"></td>
             <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus('. $district->district_id  . ')" required  '.$status.'></label>  '.'</td>
             </tr>';
         }
@@ -114,7 +114,11 @@ class CommonsettingController extends Controller
 
 
     }
-
+    public function deleteDistrict($id){
+        $district = District::find($id);
+            $district->delete();
+        return response()->json(['success'=>'Record has been Delete']);
+    }
 ///#####################....Town......################################
 
 
@@ -196,7 +200,7 @@ public function twonAlldata(){
             <td>'.$group->town_name.' </td>
             <td>'.$district->district_name.' </td>
             <td> '.' <a href="#"  type="button" class="btn btn-primary  editTwon" id="'. $group->town_id  . '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>  '.'</td>
-
+<td><input type="button"  class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' . $group->town_id  . ')"></td>
             <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus('. $group->town_id  . ')" required '.$status.'></label>  '.'</td>
             </tr>';
         }
@@ -220,7 +224,11 @@ public function twonAlldata(){
 
     }
 
-
+    public function deleteTown($id){
+        $district = Town::find($id);
+            $district->delete();
+        return response()->json(['success'=>'Record has been Delete']);
+    }
 
 
 
@@ -289,7 +297,7 @@ public function groupAlldata(){
             <td>'.$group->customer_group_id.' </td>
             <td>'.$group->group.' </td>
             <td> '.' <a href="#"  type="button" class="btn btn-primary  editGroup" id="' . $group->customer_group_id .'" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
-
+<td> <input type="button"  class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete('  . $group->customer_group_id .')"></td>
             <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single"  id="cbxGroupStatus" value="1" onclick="cbxGroupStatus('. $group->customer_group_id . ')" required '.$status.'></label>  '.'</td>
             </tr>';
         }
@@ -321,7 +329,11 @@ public function groupAlldata(){
 
     }
 
-
+    public function deleteGroup($id){
+        $district = Customer_group::find($id);
+            $district->delete();
+        return response()->json(['success'=>'Record has been Delete']);
+    }
 
 
 
@@ -391,7 +403,7 @@ public function gradeAlldata(){
             <td>'.$grade->customer_grade_id.' </td>
             <td>'.$grade->grade.' </td>
             <td> '.' <a href="#"  type="button" class="btn btn-primary  editGrade" id="' . $grade->customer_grade_id .'" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
-
+<td><input type="button"  class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' . $grade->customer_grade_id .')"></td>
             <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus('. $grade->customer_grade_id . ')" required '.$status.'></label>  '.'</td>
             </tr>';
         }
@@ -422,7 +434,11 @@ public function gradeUpdateStatus(Request $request,$id){
 
 
 }
-
+public function deleteGrade($id){
+    $district = Customer_grade::find($id);
+        $district->delete();
+    return response()->json(['success'=>'Record has been Delete']);
+}
 
 
 

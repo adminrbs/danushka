@@ -68,12 +68,12 @@ $(document).ready(function () {
 
         if($value){
             $('#tabalCategoryLevel3').hide();
-            $('.catLevel1').show();
+            $('#contentl3').show();
 
         }
         else{
             $('#tabalCategoryLevel3').show();
-            $('.catLevel3').hide();
+            $('#contentl3').hide();
         }
 
         $.ajax({
@@ -185,6 +185,132 @@ $(document).ready(function () {
     $('#btnUpdateCategorylevel3').hide();
 
 
+    //##.......Distination..........
+
+
+    $('#btnSaveDesgination').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        saveDesgination();
+    });
+
+    //...Distination Update
+
+    $('#btnUpdateDesgination').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        updateDesgination();
+    });
+
+    $('#btnSaveDesgination').show();
+    $('#btnUpdateDesgination').hide();
+
+    //..search
+
+
+    $('#desginationSearch').on('keyup',function(){
+        $value=$(this).val();
+
+        if($value){
+            $('#tabalDesgination').hide();
+            $('.desgination').show();
+
+        }
+        else{
+            $('#tabalDesgination').show();
+            $('#contentDesgination').hide();
+        }
+
+        $.ajax({
+
+            type:'get',
+            url:'/desginathionsearch',
+            data:{'search':$value},
+
+            success:function(data){
+                console.log(data);
+                $('#contentDesgination').html(data);
+            }
+        });
+        //alert($value);
+    });
+
+
+
+     //##.......Status..........
+
+
+
+    $('#btnSaveStatus').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        saveStatus();
+    });
+
+    //...level 1 Update
+
+    $('#btnUpdateStatus').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        updateStatus();
+    });
+
+
+    $('#status1Search').on('keyup',function(){
+        $value=$(this).val();
+
+        if($value){
+            $('#tabalStatus1').hide();
+            $('.status1').show();
+
+        }
+        else{
+            $('#tabalStatus1').show();
+            $('#contentStatus').hide();
+        }
+
+        $.ajax({
+
+            type:'get',
+            url:'/empStatussearch',
+            data:{'search':$value},
+
+            success:function(data){
+                console.log(data);
+                $('#contentStatus').html(data);
+            }
+        });
+        //alert($value);
+    });
+
+
+    $('#btnSaveStatus').show();
+    $('#btnUpdateStatus').hide();
+
+
+
+
+
 });
 
 //...Category load Data
@@ -207,17 +333,23 @@ function Category1AllData() {
 
                 data = data + "<tr>"
 
-                data = data + "<td>" + value.category_level_1_id  + "</td>"
+                data = data + "<td>" + value.item_category_level_1_id  + "</td>"
                 data = data + "<td>" + value.category_level_1 + "</td>"
 
                 data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel1" id="' + value.category_level_1_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel1" id="' + value.item_category_level_1_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
 
                 data = data + "</td>"
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' + value.category_level_1_id + ')" required '+isChecked+'></label>'
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + value.item_category_level_1_id + ')">'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' + value.item_category_level_1_id + ')" required '+isChecked+'></label>'
 
                 data = data + "</td>"
 
@@ -298,7 +430,7 @@ function saveCategoryLevel1(){
             $('#btnSaveCategorylevel1').hide();
             $('#btnUpdateCategorylevel1').show();
 
-            $('#id').val(response.category_level_1_id  );
+            $('#id').val(response.item_category_level_1_id  );
             $("#txtCategorylevel1").val(response.category_level_1);
 
 
@@ -345,6 +477,26 @@ function updateCategory1(){
 }
 
 
+function btnCategorylevel1Delete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deletelevel1/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                Category1AllData();
+
+            }
+        });
+
+    }
+}
+
+
 //##############################....Category Level 2.......######################################
 
 
@@ -366,18 +518,24 @@ function Category2AllData() {
 
                 data = data + "<tr>"
 
-                data = data + "<td>" + value.category_level_2_id   + "</td>"
+                data = data + "<td>" + value.Item_category_level_2_id   + "</td>"
                 data = data + "<td>" + value.category_level_1 + "</td>"
                 data = data + "<td>" + value.category_level_2 + "</td>"
 
                 data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel2" id="' + value.category_level_2_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel2" id="' + value.Item_category_level_2_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
 
                 data = data + "</td>"
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + value.category_level_2_id + ')" required '+isChecked+'></label>'
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + value.Item_category_level_2_id + ')">'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + value.Item_category_level_2_id + ')" required '+isChecked+'></label>'
 
                 data = data + "</td>"
 
@@ -403,6 +561,7 @@ function saveCategoryLevel2(){
 
     formData.append('cmbLeve1', $('#cmbLeve1').val());
     formData.append('txtCategorylevel2', $('#txtCategorylevel2').val());
+
 
     console.log(formData);
 
@@ -459,8 +618,8 @@ function saveCategoryLevel2(){
             $('#btnSaveCategorylevel2').hide();
             $('#btnUpdateCategorylevel2').show();
 
-            $('#id').val(response.category_level_2_id  );
-            $("#cmbLeve1").val(response.category_level_1_id);
+            $('#id').val(response.Item_category_level_2_id  );
+            $("#cmbLeve1").val(response.Item_category_level_1_id);
             $("#txtCategorylevel2").val(response.category_level_2);
 
 
@@ -507,6 +666,27 @@ function updateCategory2(){
     });
 }
 
+
+function btnCategorylevel2Delete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deletelevel2/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                Category2AllData();
+
+            }
+        });
+
+    }
+}
+
+
 //############## Level 3   ###############################
 
 
@@ -530,20 +710,28 @@ function Category3AllData() {
 
                 data = data + "<tr>"
 
-                data = data + "<td>" + value.category_level_3_id    + "</td>"
+                data = data + "<td>" + value.Item_category_level_3_id    + "</td>"
                 data = data + "<td>" + value.category_level_2 + "</td>"
                 data = data + "<td>" + value.category_level_3 + "</td>"
 
                 data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel3" id="' + value.category_level_3_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel3" id="' + value.Item_category_level_3_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
 
                 data = data + "</td>"
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + value.category_level_3_id + ')" required '+isChecked+'></label>'
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + value.Item_category_level_3_id + ')">'
 
                 data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + value.Item_category_level_3_id + ')" required '+isChecked+'></label>'
+
+                data = data + "</td>"
+
+
 
                 data = data + "</tr>"
 
@@ -623,8 +811,8 @@ function saveCategoryLevel3(){
             $('#btnSaveCategorylevel3').hide();
             $('#btnUpdateCategorylevel3').show();
 
-            $('#id').val(response.category_level_3_id);
-            $("#cmbLeve2").val(response.category_level_2_id);
+            $('#id').val(response.Item_category_level_3_id);
+            $("#cmbLeve2").val(response.Item_category_level_2_id);
             $("#txtCategorylevel3").val(response.category_level_3);
 
 
@@ -677,12 +865,12 @@ function updateCategory3(){
 //status update  Level 1
 
 
-function cbxCategorylevel1Status(category_level_1_id) {
+function cbxCategorylevel1Status(item_category_level_1_id) {
     var status = $('#cbxCategorylevel1').is(':checked') ? 1 : 0;
 
 
     $.ajax({
-        url: '/updateCatLevel1tStatus/'+category_level_1_id,
+        url: '/updateCatLevel1tStatus/'+item_category_level_1_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
@@ -702,12 +890,12 @@ function cbxCategorylevel1Status(category_level_1_id) {
 //status update  Level 2
 
 
-function cbxCategorylevel2Status(category_level_2_id) {
+function cbxCategorylevel2Status(Item_category_level_2_id) {
     var status = $('#cbxCategorylevel2').is(':checked') ? 1 : 0;
 
 
     $.ajax({
-        url: '/updateCatLevel2tStatus/'+category_level_2_id,
+        url: '/updateCatLevel2tStatus/'+Item_category_level_2_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
@@ -727,12 +915,12 @@ function cbxCategorylevel2Status(category_level_2_id) {
 //status update  Level 3
 
 
-function cbxCategorylevel3Status(category_level_3_id) {
+function cbxCategorylevel3Status(Item_category_level_3_id) {
     var status = $('#cbxCategorylevel3').is(':checked') ? 1 : 0;
 
 
     $.ajax({
-        url: '/updateCatLevel3tStatus/'+category_level_3_id,
+        url: '/updateCatLevel3tStatus/'+Item_category_level_3_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
@@ -746,3 +934,460 @@ function cbxCategorylevel3Status(category_level_3_id) {
         }
     });
 }
+
+//...............delete......
+
+
+
+function btnCategorylevel3Delete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deletelevel3/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                Category3AllData();
+
+            }
+        });
+
+    }
+}
+
+//#####################..Disgination...........
+
+// all data
+
+function allDesgination() {
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/disginationData",
+
+        success: function (data) {
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if(value.status_id){
+                    isChecked = "checked";
+                }
+
+                data = data + "<tr>"
+
+                data = data + "<td>" + value.employee_designation_id  + "</td>"
+                data = data + "<td>" + value.employee_designation + "</td>"
+
+                data = data + "<td>"
+                data = data + '<a href=""  type="button" class="btn btn-primary  editDesgination" id="' + value.employee_designation_id + '" data-bs-toggle="modal" data-bs-target="#modelDesgination"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' + value.employee_designation_id + ')">'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' + value.employee_designation_id + ')" required  '+isChecked+'></label>'
+
+                data = data + "</td>"
+
+                data = data + "</tr>"
+
+
+            })
+
+            $('#tabalDesgination').html(data);
+
+
+        }
+
+    });
+
+}
+allDesgination();
+
+
+//....save Disgination
+
+function saveDesgination(){
+
+    formData.append('txtDesgination', $('#txtDesgination').val());
+
+
+    console.log(formData);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/saveDesgination',
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 800000,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        timeout: 800000,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+
+            $('#modelDesgination').modal('hide');
+            allDesgination();
+           console.log(response);
+
+
+        },
+        error: function (error) {
+            console.log(error);
+
+        },
+        complete: function () {
+
+        }
+
+    });
+
+}
+//edite desgination
+
+
+
+$(document).on('click', '.editDesgination', function (e) {
+
+    e.preventDefault();
+    let employee_designation_id = $(this).attr('id');
+
+    $.ajax({
+        url: '/desginationEdite/'+employee_designation_id,
+        method: 'get',
+        data: {
+
+            _token: '{{ csrf_token() }}'
+        },
+        success: function (response) {
+            console.log(response);
+            $('#btnSaveDesgination').hide();
+            $('#btnUpdateDesgination').show();
+
+            $('#id').val(response.employee_designation_id   );
+            $("#txtDesgination").val(response.employee_designation);
+
+        }
+    });
+});
+
+
+// Update desgination
+
+
+
+function updateDesgination(){
+    var id = $('#id').val();
+    formData.append('txtDesgination', $('#txtDesgination').val());
+
+    console.log(formData);
+    $.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        url: '/desginationtUpdate/'+id,
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 800000,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        timeout: 800000,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+
+            $('#modelDesgination').modal('hide');
+            allDesgination();
+
+            console.log(data);
+        }, error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+
+//desgination status
+
+
+function cbxDesgination(employee_designation_id) {
+    var status = $('#cbxDesginationStatus').is(':checked') ? 1 : 0;
+
+
+    $.ajax({
+        url: '/updateDesginationStatus/'+employee_designation_id,
+        type: 'POST',
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+            'status': status
+        },
+        success: function (response) {
+         console.log("data save");
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+// desgination Delete
+
+
+
+function btnDesginationDelete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deletedesgination/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                allDesgination();
+
+
+            }
+        });
+
+    }
+}
+
+
+
+
+
+//#####################..Employee Status...........
+
+// all data
+
+function allempStatus() {
+
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/empStatusData",
+
+        success: function (data) {
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if(value.status_id){
+                    isChecked = "checked";
+                }
+
+                data = data + "<tr>"
+
+                data = data + "<td>" + value.employee_status_id  + "</td>"
+                data = data + "<td>" + value.employee_status + "</td>"
+
+                data = data + "<td>"
+                data = data + '<a href=""  type="button" class="btn btn-primary  editEmpStatus" id="' + value.employee_status_id + '" data-bs-toggle="modal" data-bs-target="#modelStatus1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' + value.employee_status_id + ')">'
+
+                data = data + "</td>"
+
+                data = data + "<td>"
+
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' + value.employee_status_id + ')" required  '+isChecked+'></label>'
+
+                data = data + "</td>"
+
+                data = data + "</tr>"
+
+
+            })
+
+            $('#tabalStatus1').html(data);
+
+
+        }
+
+    });
+
+}
+allempStatus();
+
+
+//....save Disgination
+
+function saveStatus(){
+
+    formData.append('txtStatus', $('#txtStatus').val());
+
+
+    console.log(formData);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/empSaveStatus',
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 800000,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        timeout: 800000,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+
+            $('#modelStatus1').modal('hide');
+            allempStatus();
+           console.log(response);
+
+
+        },
+        error: function (error) {
+            console.log(error);
+
+        },
+        complete: function () {
+
+        }
+
+    });
+
+}
+//edite desgination
+
+
+
+$(document).on('click', '.editEmpStatus', function (e) {
+
+    e.preventDefault();
+    let employee_status_id  = $(this).attr('id');
+
+    $.ajax({
+        url: '/empStatusEdite/'+employee_status_id ,
+        method: 'get',
+        data: {
+
+            _token: '{{ csrf_token() }}'
+        },
+        success: function (response) {
+            console.log(response);
+            $('#btnSaveStatus').hide();
+            $('#btnUpdateStatus').show();
+
+            $('#id').val(response.employee_status_id    );
+            $("#txtStatus").val(response.employee_status);
+
+        }
+    });
+});
+
+
+// Update desgination
+
+
+
+function updateStatus(){
+    var id = $('#id').val();
+    formData.append('txtStatus', $('#txtStatus').val());
+
+    console.log(formData);
+    $.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        url: '/empStatusUpdate/'+id,
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 800000,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        timeout: 800000,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+
+            $('#modelStatus1').modal('hide');
+            allempStatus();
+
+            console.log(data);
+        }, error: function (error) {
+            console.log(error);
+        }
+    });
+}
+
+
+//desgination status
+
+
+function cbxEmpStatus(employee_status_id) {
+    var status = $('#cbxEmpStatus').is(':checked') ? 1 : 0;
+
+
+    $.ajax({
+        url: '/updateempStatus/'+employee_status_id,
+        type: 'POST',
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+            'status': status
+        },
+        success: function (response) {
+         console.log("data save");
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+// desgination Delete
+
+
+
+function btnEmpStatusDelete(id) {
+
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deleteempStatus/" + id,
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                allempStatus();
+
+
+            }
+        });
+
+    }
+}
+

@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customer_groups', function (Blueprint $table) {
-            $table->id('customer_group_id');
-            $table->string('group',100);
+        Schema::create('item_category_level_1s', function (Blueprint $table) {
+            $table->id('item_category_level_1_id');
+            $table->string('category_level_1',100);
             $table->integer('status_id')->default("1");
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_groups');
+        Schema::dropIfExists('item_category_level_1s');
     }
 };

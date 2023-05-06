@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Category level 1</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Item Category Level 1 </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -13,8 +13,9 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
-                            <label for="fname">Category level 1</label>
-                            <input type="text" name="district" id="txtCategorylevel1" class="form-control validate" required>
+                            <label for="fname">Item Category Level 1 <span
+                                class="text-danger">*</span></label>
+                            <input type="text" name="district" id="txtCategorylevel1" class="form-control" required>
                         </div>
                     </div>
 
@@ -41,7 +42,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Category level 2</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Item Category Level  2</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -51,17 +52,19 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
-                            <label for="fname">Category level 1</label>
+                            <label for="fname">Item Category level 1<span
+                                class="text-danger">*</span></label>
                             <select class="form-select" aria-label="Default select example" id="cmbLeve1">
                                 @foreach ($level1 as $level1 )
-                                <option value="{{ $level1->category_level_1_id   }}">{{ $level1->category_level_1}}</option>
+                                <option value="{{ $level1->item_category_level_1_id   }}">{{ $level1->category_level_1}}</option>
                                 @endforeach
 
 
                               </select>
 
-                            <label for="fname">Category level 2</label>
-                            <input type="text" name="district" id="txtCategorylevel2" class="form-control validate" required>
+                            <label for="fname">Item Category Level  2<span
+                                class="text-danger">*</span></label>
+                            <input type="text" name="district" id="txtCategorylevel2" class="form-control validate"  required>
                         </div>
                     </div>
 
@@ -89,7 +92,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Category level 3</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Item Category Level 3</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -99,16 +102,18 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
-                            <label for="fname">Category level 2 id</label>
+                            <label for="fname">Item Category level 2<span
+                                class="text-danger">*</span></label>
                             <select class="form-select" aria-label="Default select example" id="cmbLeve2">
                                 @foreach ($level2 as $level2 )
-                                <option value="{{ $level2->category_level_2_id   }}">{{ $level2->category_level_2}}</option>
+                                <option value="{{ $level2->Item_category_level_2_id   }}">{{ $level2->category_level_2}}</option>
                                 @endforeach
 
 
                               </select>
-                            <label for="fname">Category level 3</label>
-                            <input type="text" name="district" id="txtCategorylevel3" class="form-control validate" required>
+                            <label for="fname">Item Category Level 3<span
+                                class="text-danger">*</span></label>
+                            <input type="text" name="district" id="txtCategorylevel3" class="form-control validate"  required>
 
                         </div>
                     </div>
@@ -129,3 +134,92 @@
     </div>
   </div>
   <!-- Modal -->
+
+
+
+
+
+  <!-- Modal Distination-->
+<div class="modal fade" id="modelDesgination" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Desgination</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+                <div class="modal-body p-4 bg-light">
+                    <form id="" class="form-validate-jquery">
+                    <div class="row">
+                        <div class="col-lg">
+
+                            <label for="fname">Desgination<span
+                                class="text-danger">*</span></label>
+                            <input type="text" name="desgination" id="txtDesgination" class="form-control validate"  required>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <input type="hidden" id="id">
+          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" id="btnSaveDesgination" class="btn btn-primary btnSaveCategorylevel3">Save</button>
+          <button type="submit" id="btnUpdateDesgination" class="btn btn-primary categorylevel3">Update</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+
+
+
+
+
+  <!-- Modal Status -->
+<div class="modal fade" id="modelStatus1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+                <div class="modal-body p-4 bg-light">
+                    <form id="" class="form-validate-jquery">
+                    <div class="row">
+                        <div class="col-lg">
+
+                            <label for="fname">Status<span
+                                class="text-danger">*</span></label>
+                            <input type="text" name="status" id="txtStatus" class="form-control validate"  required>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <input type="hidden" id="id">
+          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" id="btnSaveStatus" class="btn btn-primary btnSaveCategorylevel3">Save</button>
+          <button type="submit" id="btnUpdateStatus" class="btn btn-primary categorylevel3">Update</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>

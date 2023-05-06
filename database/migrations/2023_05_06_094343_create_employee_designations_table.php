@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('category_level_1s', function (Blueprint $table) {
-            $table->id('category_level_1_id');
-            $table->string('category_level_1',100);
-            $table->integer('status_id')->default("0");
+        Schema::create('employee_designations', function (Blueprint $table) {
+            $table->id('employee_designation_id');
+            $table->string('employee_designation');
+            $table->boolean('locked')->default(true);
+            $table->integer('status_id')->default("1");
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_level_1s');
+        Schema::dropIfExists('employee_designations');
     }
 };

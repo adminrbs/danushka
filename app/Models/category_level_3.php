@@ -9,11 +9,11 @@ class category_level_3 extends Model
 {
     use HasFactory;
 
-    protected $table = "category_level_3s";
-    protected $primaryKey= "category_level_3_id";
+    protected $table = "item_category_level_3s";
+    protected $primaryKey= "Item_category_level_3_id";
 
     protected $fillable = [
-        'category_level_2_id',
+        'Item_category_level_2_id',
         'category_level_3',
         'status_id',
     ];

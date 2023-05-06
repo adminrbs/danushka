@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->id('district_id');
             $table->string('district_name',100);
-            $table->integer('status_id')->default("0");
+            $table->integer('status_id')->default("1");
             $table->timestamps();
         });
     }

@@ -65,6 +65,7 @@
                                                         <th class="id">ID#</th>
                                                         <th>Name</th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -123,6 +124,7 @@
                                                         <th>Town Name</th>
                                                         <th>District Name</th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -179,6 +181,7 @@
                                                         <th class="id">ID#</th>
                                                         <th>Name</th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -245,6 +248,7 @@
                                                         <th class="id">ID</th>
                                                         <th>Grade</th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -281,7 +285,7 @@
                                         <button class="btn btn-link" data-bs-toggle="collapse" href="#categoryLevel1"
                                             role="button" aria-expanded="false" aria-controls="collapseExample"
                                             onclick="">
-                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Category level 1
+                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Item Category Level 1
                                         </button>
                                     </h5>
                                 </div>
@@ -311,8 +315,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="id">ID</th>
-                                                        <th>Category level 1</th>
+                                                        <th>Item Category Level 1 </th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -341,7 +346,7 @@
                                         <button class="btn btn-link" data-bs-toggle="collapse" href="#categoryLevel2"
                                             role="button" aria-expanded="false" aria-controls="collapseExample"
                                             onclick="">
-                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Category level 2
+                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Item Category Level  2
                                         </button>
                                     </h5>
                                 </div>
@@ -371,9 +376,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="id">ID</th>
-                                                        <th>Category level 1</th>
-                                                        <th>Category level 2</th>
+                                                        <th>Item Category level 1</th>
+                                                        <th>Item Category Level  2</th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -394,7 +400,7 @@
 
 
 
-                            {{-- .........category_level_2.......... --}}
+                            {{-- .........category_level_3.......... --}}
 
 
 
@@ -404,7 +410,7 @@
                                         <button class="btn btn-link" data-bs-toggle="collapse" href="#categoryLevel3"
                                             role="button" aria-expanded="false" aria-controls="collapseExample"
                                             onclick="">
-                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Category level 3
+                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Item Category Level 3
                                         </button>
                                     </h5>
                                 </div>
@@ -434,9 +440,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="id">ID</th>
-                                                        <th>Category level 2</th>
-                                                        <th>Category level 3</th>
+                                                        <th>Item Category level 2</th>
+                                                        <th>Item Category Level 3</th>
                                                         <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
                                                         <th class="disable disable_bank">Status</th>
                                                     </tr>
                                                 </thead>
@@ -452,6 +459,136 @@
                                 </div>
 
                             </div>
+
+
+
+
+                            {{-- ........Desgination.......... --}}
+
+
+
+                            <div class="card">
+                                <div class="card-header" id="headingDesignation">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-bs-toggle="collapse" href="#desgination"
+                                            role="button" aria-expanded="false" aria-controls="collapseExample"
+                                            onclick="">
+                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Desgination
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="desgination" class="collapse" aria-labelledby="headingDesignation"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div>
+
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modelDesgination">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                            <div class="search" style="margin-left: 80%">
+
+                                                <input type="search" name="search" id="desginationSearch"
+                                                    class="form-control" placeholder="Search">
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div class="table-responsive">
+                                            <!-- Required for Responsive -->
+                                            <table id="desginationTable"
+                                                class="table table-striped table-responsive-stack datatbothable-fixed-">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="id">ID</th>
+                                                        <th>Desgination</th>
+                                                        <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
+                                                        <th class="disable disable_bank">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabalDesgination">
+
+
+
+                                                </tbody>
+                                                <tbody id="contentDesgination" class="desgination"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            {{-- .........Status.......... --}}
+
+
+
+                            <div class="card">
+                                <div class="card-header" id="headingDesignation">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-bs-toggle="collapse" href="#status1M"
+                                            role="button" aria-expanded="false" aria-controls="collapseExample"
+                                            onclick="">
+                                            <i class="bi bi-gear" style="margin-right: 5px"></i> Status
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="status1M" class="collapse" aria-labelledby="headingDesignation"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div>
+
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modelStatus1">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                            <div class="search" style="margin-left: 80%">
+
+                                                <input type="search" name="search" id="status1Search"
+                                                    class="form-control" placeholder="Search">
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div class="table-responsive">
+                                            <!-- Required for Responsive -->
+                                            <table id="status1Table"
+                                                class="table table-striped table-responsive-stack datatbothable-fixed-">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="id">ID</th>
+                                                        <th>Status</th>
+
+                                                        <th class="edit edit_bank">Edit</th>
+                                                        <th class="edit edit_bank btn-danger">Delete</th>
+                                                        <th class="disable disable_bank">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabalStatus1">
+
+
+
+                                                </tbody>
+                                                <tbody id="contentStatus" class="status1"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
 
 
 

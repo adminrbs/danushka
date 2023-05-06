@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class category_level_1 extends Model
+class employee_Status extends Model
 {
     use HasFactory;
-    protected $table = "item_category_level_1s";
-    protected $primaryKey = "item_category_level_1_id";
+
+    protected $primaryKey = "employee_status_id";
+    protected $table = "employee__statuses";
+
     protected $fillable = [
-        'category_level_1',
+        'employee_status',
+        'locked',
         'status_id',
     ];
 }

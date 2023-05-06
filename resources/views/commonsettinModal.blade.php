@@ -13,7 +13,8 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
-                            <label for="fname">District</label>
+                            <label for="fname">District<span
+                                class="text-danger">*</span></label>
                             <input type="text" name="district" id="txtDistrict" class="form-control validate" required>
                         </div>
                     </div>
@@ -63,7 +64,8 @@
                               </select>
                         </div>
                         <div class="col-lg">
-                            <label for="fname">Town</label>
+                            <label for="fname">Town<span
+                                class="text-danger">*</span></label>
                             <input type="text" name="Town" id="txtTown" class="form-control validate" required>
 
                         </div>
@@ -104,7 +106,8 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
-                            <label for="fname">Group</label>
+                            <label for="fname">Group<span
+                                class="text-danger">*</span></label>
                             <input type="text" name="group" id="txtGroup" class="form-control validate" required>
 
                         </div>
@@ -144,7 +147,8 @@
                     <form id="" class="form-validate-jquery">
                     <div class="row">
                         <div class="col-lg">
-                            <label for="fname">Grade</label>
+                            <label for="fname">Grade <span
+                                class="text-danger">*</span></label>
                             <input type="text" name="grade" id="txtgrade" class="form-control validate txtgrede" required>
                         </div>
                     </div>
@@ -170,9 +174,9 @@
 
 
 
+  <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
 
 
 
 
 
-  
