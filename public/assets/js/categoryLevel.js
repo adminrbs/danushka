@@ -376,7 +376,10 @@ function saveCategoryLevel1(){
     formData.append('txtCategorylevel1', $('#txtCategorylevel1').val());
 
     console.log(formData);
-
+    if (formData.txtCategorylevel1 == '') {
+        //alert('Please enter item category level 1');
+        return false;
+    }
 
     $.ajax({
         type: "POST",
@@ -563,7 +566,10 @@ function saveCategoryLevel2(){
     formData.append('cmbLeve1', $('#cmbLeve1').val());
     formData.append('txtCategorylevel2', $('#txtCategorylevel2').val());
 
-    $('#txtCategoryleve21Error').addClass('d-none');
+    if (formData.cmbLeve1 == '' && formData.txtCategorylevel2=='') {
+        alert('Please enter item category level 1');
+        return false;
+    }
 
 
     console.log(formData);
@@ -769,7 +775,10 @@ function saveCategoryLevel3(){
     formData.append('txtCategorylevel3', $('#txtCategorylevel3').val());
 
     console.log(formData);
-
+    if (formData.cmbLeve2 == '' && formData.txtCategorylevel3=='') {
+        alert('Please enter item category level 1');
+        return false;
+    }
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
@@ -1032,7 +1041,10 @@ function saveDesgination(){
 
     formData.append('txtDesgination', $('#txtDesgination').val());
 
-
+    if (formData.txtDesgination == '') {
+        alert('Please enter item category level 1');
+        return false;
+    }
     console.log(formData);
 
     $.ajax({
@@ -1251,7 +1263,10 @@ function saveStatus(){
 
     formData.append('txtStatus', $('#txtStatus').val());
 
-
+    if (formData.txtStatus == '') {
+        alert('Please enter item category level 1');
+        return false;
+    }
     console.log(formData);
 
     $.ajax({

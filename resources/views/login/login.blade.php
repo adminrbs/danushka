@@ -48,7 +48,7 @@
                 <div>
                     <h3>Login Form </h3>
                 </div>
-                <form class="">
+                <form class="" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder=" Email" value="" id="txtEmail" required />
                     </div>

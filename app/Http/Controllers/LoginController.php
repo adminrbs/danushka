@@ -64,13 +64,13 @@ class LoginController extends Controller
 
 
     // ...
-
-   //public function logout()
-   //{
-   //    Auth::logout();
-
-   //    return redirect('/submitForm');
-   //}
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return response()->json(['message' => 'Logout successful']);
+    }
 }
 
 

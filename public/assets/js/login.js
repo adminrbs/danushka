@@ -4,15 +4,17 @@ $(document).ready(function () {
     $('#btnLogout').click(function (event) {
         event.preventDefault();
         // Make a POST request to the logout route using jQuery AJAX
+
+
         $.ajax({
             url: '/logout',
-            method: 'POST',
+            method:'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (data) {
                 // Redirect the user to the login page
-                window.location.href = '/submitForm';
+                location.href = '/Login_Page';
             },
             error: function (error) {
                 console.log(error);

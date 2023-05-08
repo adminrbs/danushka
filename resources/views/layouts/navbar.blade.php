@@ -427,9 +427,9 @@
                         <i class="ph-gear me-2"></i>
                         Account settings
                     </a>
-                    <a class="dropdown-item" >
-                        <i class="ph-sign-out me-2" id="btnLogout"></i> Logout
-                    </a>
+                    <button class="dropdown-item" id="btnLogout">
+                        <i class="ph-sign-out me-2" ></i> Logout
+                    </button>
 
                 </div>
             </li>
@@ -437,3 +437,4 @@
     </div>
 </div>
 <!-- /main navbar -->
+<script src="assets/js/login.js"></script>

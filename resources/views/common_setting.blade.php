@@ -607,7 +607,7 @@
     @include('commonsettinModal')
     @include('categoryLevelModal')
 
-    
+
 
 
 

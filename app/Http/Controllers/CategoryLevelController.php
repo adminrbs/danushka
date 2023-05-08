@@ -25,6 +25,11 @@ class CategoryLevelController extends Controller
 
     //...........save data.....
     public function saveCategoryLevel1(Request $request){
+
+        $validatedData = $request->validate([
+            'txtCategorylevel1' => 'required',
+        ]);
+
         try {
 
             $categoryLevel1= new category_level_1();
@@ -125,6 +130,11 @@ public function categoryLevel2Data(){
 
 //...........save data.....
 public function saveCategoryLevel2(Request $request){
+
+    $validatedData = $request->validate([
+        'cmbLeve1' => 'required',
+        'txtCategorylevel2' => 'required',
+    ]);
     try {
 
         $categoryLevel2= new category_level_2();
@@ -233,6 +243,10 @@ public function categoryLevel3Data(){
 
 //...........save data.....
 public function saveCategoryLevel3(Request $request){
+    $validatedData = $request->validate([
+        'txtCategorylevel3' => 'required',
+        'cmbLeve2' => 'required',
+    ]);
     try {
 
         $categoryLevel3= new category_level_3();
@@ -345,6 +359,10 @@ public function categoryLevel3search(Request $request){
     //..add disginstion.
 
     public function saveDesgination(Request $request){
+        $validatedData = $request->validate([
+            'txtDesgination' => 'required',
+
+        ]);
 
         try {
 
@@ -457,7 +475,10 @@ public function categoryLevel3search(Request $request){
     //..add disginstion.
 
     public function empSaveStatus(Request $request){
+        $validatedData = $request->validate([
+            'txtStatus' => 'required',
 
+        ]);
         try {
 
             $designation= new employee_Status();
