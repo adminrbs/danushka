@@ -8,6 +8,8 @@ use App\Models\category_level_3;
 use App\Models\employee_designation;
 use App\Models\employee_Status;
 use Dotenv\Exception\ValidationException;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use Exception;
 
@@ -165,7 +167,7 @@ public function txtCategorylevel2Update(Request $request,$id){
     $level1->status_id = $request->status;
     $level1->save();
 
-    return response()->json('District status updated successfully');
+    return response()->json(' status updated successfully');
 }
 
 
@@ -277,7 +279,7 @@ public function Categorylevel3Update(Request $request,$id){
     $level1->status_id = $request->status;
     $level1->save();
 
-    return response()->json('District status updated successfully');
+    return response()->json(' status updated successfully');
 }
 
 
@@ -546,7 +548,6 @@ public function categoryLevel3search(Request $request){
             $level1->delete();
         return response()->json(['success'=>'Record has been Delete']);
     }
-
 
 
 

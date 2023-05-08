@@ -71,7 +71,7 @@ class CommonsettingController extends Controller
             $district->status_id = $request->status;
             $district->save();
 
-            return response()->json('District status updated successfully');
+            return response()->json(' status updated successfully');
 
 
         }
@@ -219,7 +219,7 @@ public function twonAlldata(){
         $town->status_id = $request->status;
         $town->save();
 
-        return response()->json('District status updated successfully');
+        return response()->json(' status updated successfully');
 
 
     }
@@ -430,7 +430,7 @@ public function gradeUpdateStatus(Request $request,$id){
     $grade->status_id = $request->status;
     $grade->save();
 
-    return response()->json('District status updated successfully');
+    return response()->json(' status updated successfully');
 
 
 }

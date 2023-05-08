@@ -5,6 +5,7 @@ use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LimitlessController;
 use App\Http\Controllers\CategoryLevelController;
+use App\Http\Controllers\LoginController;
 use App\Models\User;
 use App\Notifications\UserNotification;
 
@@ -89,7 +90,7 @@ Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::
 //.......common_setting..........
 
 
-Route::get('/commonSetting', [App\Http\Controllers\CommonsettingController::class, 'index']);
+Route::get('/commonSetting', [App\Http\Controllers\CommonsettingController::class, 'index'])->middleware('is.logged');
 
 
 
@@ -104,6 +105,8 @@ Route::get('/dist_search', [App\Http\Controllers\CommonsettingController::class,
 
 Route::get('/save_town_status', [App\Http\Controllers\CommonsettingController::class,'save_town_status']);
 Route::delete('/deleteDistrict/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteDistrict']);
+
+
 
 
 //..Town
@@ -187,3 +190,11 @@ Route::get('/empStatussearch', [CategoryLevelController::class,'empStatussearch'
 Route::delete('/deleteempStatus/{id}', [CategoryLevelController::class,'deleteempStatus']);
 
 
+//Login Page
+Route::get('/Login_Page', function () {
+    return view('login.login');
+});
+
+Route::post('/submitForm', [LoginController::class,'loginForm']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

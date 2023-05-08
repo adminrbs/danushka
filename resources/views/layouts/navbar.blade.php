@@ -401,7 +401,7 @@
                         <img src="{{ URL::asset('images/user.jpg') }}" class="w-32px h-32px rounded-pill" alt="">
                         <span class="status-indicator bg-success"></span>
                     </div>
-                    <span class="d-none d-lg-inline-block mx-lg-2">Rapidventure</span>
+                    <span class="d-none d-lg-inline-block mx-lg-2">{{Auth::user()->name}}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end">
@@ -427,14 +427,10 @@
                         <i class="ph-gear me-2"></i>
                         Account settings
                     </a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        <i class="ph-sign-out me-2"></i> {{ __('Logout') }}
+                    <a class="dropdown-item" >
+                        <i class="ph-sign-out me-2" id="btnLogout"></i> Logout
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
                 </div>
             </li>
         </ul>

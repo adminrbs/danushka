@@ -377,6 +377,7 @@ function saveCategoryLevel1(){
 
     console.log(formData);
 
+
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
@@ -562,6 +563,8 @@ function saveCategoryLevel2(){
     formData.append('cmbLeve1', $('#cmbLeve1').val());
     formData.append('txtCategorylevel2', $('#txtCategorylevel2').val());
 
+    $('#txtCategoryleve21Error').addClass('d-none');
+
 
     console.log(formData);
 
@@ -590,6 +593,15 @@ function saveCategoryLevel2(){
         },
         error: function (error) {
             console.log(error);
+
+            var errors= data.responseJSON;
+            if($.isEmptyObject(errors) == false) {
+                $.each(errors.errors,function(key,value){
+                    var ErrorID = '#' + key + 'Error';
+                    $(ErrorID).removeClass("d-none");
+                    $(ErrorID).text(value)
+                })
+            }
 
         },
         complete: function () {

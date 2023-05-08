@@ -149,7 +149,7 @@
                         <div class="col-lg">
                             <label for="fname">Grade <span
                                 class="text-danger">*</span></label>
-                            <input type="text" name="grade" id="txtgrade" class="form-control validate txtgrede" required>
+                            <input type="text" name="grade" id="txtgrade" class="form-control  txtgrede validate" required>
                         </div>
                     </div>
 
@@ -174,7 +174,7 @@
 
 
 
-  <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+
 
 
 

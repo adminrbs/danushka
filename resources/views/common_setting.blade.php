@@ -604,9 +604,12 @@
     </div>
     <!-- /content area -->
 
-
-    @include('categoryLevelModal')
     @include('commonsettinModal')
+    @include('categoryLevelModal')
+
+    
+
+
 
 @endsection
 @section('center-scripts')
@@ -620,6 +623,7 @@
 
 @endsection
 @section('scripts')
+
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
     <script src="{{ URL::asset('assets/js/commonSetting.js') }}"></script>
     <script src="{{ URL::asset('assets/js/categoryLevel.js') }}"></script>

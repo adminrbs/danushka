@@ -132,6 +132,7 @@ $(document).ready(function () {
 
         // check if the input is valid using a 'valid' property
         if (!$(this).valid) {
+            alert("asd");
             return;
         }
 
@@ -142,6 +143,7 @@ $(document).ready(function () {
 
         // check if the input is valid using a 'valid' property
         if (!$(this).valid) {
+
             return;
         }
 
