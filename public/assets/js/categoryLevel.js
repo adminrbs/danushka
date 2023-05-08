@@ -405,6 +405,7 @@ function saveCategoryLevel1(){
 
         },
         error: function (error) {
+            $('.category1').text('This field is required.');
             console.log(error);
 
         },
@@ -487,6 +488,9 @@ function btnCategorylevel1Delete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deletelevel1/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },
@@ -598,16 +602,10 @@ function saveCategoryLevel2(){
 
         },
         error: function (error) {
+            $('.category2').text('This field is required.');
             console.log(error);
 
-            var errors= data.responseJSON;
-            if($.isEmptyObject(errors) == false) {
-                $.each(errors.errors,function(key,value){
-                    var ErrorID = '#' + key + 'Error';
-                    $(ErrorID).removeClass("d-none");
-                    $(ErrorID).text(value)
-                })
-            }
+
 
         },
         complete: function () {
@@ -691,6 +689,9 @@ function btnCategorylevel2Delete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deletelevel2/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },
@@ -776,7 +777,7 @@ function saveCategoryLevel3(){
 
     console.log(formData);
     if (formData.cmbLeve2 == '' && formData.txtCategorylevel3=='') {
-        alert('Please enter item category level 1');
+       // alert('Please enter item category level 1');
         return false;
     }
     $.ajax({
@@ -803,6 +804,7 @@ function saveCategoryLevel3(){
 
         },
         error: function (error) {
+            $('.category3').text('This field is required.');
             console.log(error);
 
         },
@@ -966,6 +968,9 @@ function btnCategorylevel3Delete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deletelevel3/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },
@@ -1042,7 +1047,7 @@ function saveDesgination(){
     formData.append('txtDesgination', $('#txtDesgination').val());
 
     if (formData.txtDesgination == '') {
-        alert('Please enter item category level 1');
+        //alert('Please enter item category level 1');
         return false;
     }
     console.log(formData);
@@ -1072,7 +1077,9 @@ function saveDesgination(){
 
         },
         error: function (error) {
+            $('.desgination').text('This field is required.');
             console.log(error);
+
 
         },
         complete: function () {
@@ -1182,6 +1189,9 @@ function btnDesginationDelete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deletedesgination/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },
@@ -1264,7 +1274,7 @@ function saveStatus(){
     formData.append('txtStatus', $('#txtStatus').val());
 
     if (formData.txtStatus == '') {
-        alert('Please enter item category level 1');
+        $('.status').text('Please enter item category level 1');
         return false;
     }
     console.log(formData);
@@ -1294,7 +1304,9 @@ function saveStatus(){
 
         },
         error: function (error) {
+            $('.status').text('This field is required.');
             console.log(error);
+
 
         },
         complete: function () {
@@ -1404,6 +1416,9 @@ function btnEmpStatusDelete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deleteempStatus/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },

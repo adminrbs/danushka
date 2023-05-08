@@ -16,6 +16,7 @@
                             <label for="fname">District<span
                                 class="text-danger">*</span></label>
                             <input type="text" name="district" id="txtDistrict" class="form-control validate" required>
+                            <span class="text-danger district"></span>
                         </div>
                     </div>
 
@@ -67,6 +68,7 @@
                             <label for="fname">Town<span
                                 class="text-danger">*</span></label>
                             <input type="text" name="Town" id="txtTown" class="form-control validate" required>
+                            <span class="text-danger town1"></span>
 
                         </div>
 
@@ -109,7 +111,7 @@
                             <label for="fname">Group<span
                                 class="text-danger">*</span></label>
                             <input type="text" name="group" id="txtGroup" class="form-control validate" required>
-
+                            <span class="text-danger group1"></span>
                         </div>
                     </div>
 
@@ -150,6 +152,7 @@
                             <label for="fname">Grade <span
                                 class="text-danger">*</span></label>
                             <input type="text" name="grade" id="txtgrade" class="form-control  txtgrede validate" required>
+                            <span class="text-danger grade1"></span>
                         </div>
                     </div>
 

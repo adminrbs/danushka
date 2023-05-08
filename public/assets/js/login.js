@@ -63,11 +63,15 @@ $.ajax({
 
            if(response.status == 200){
             location.href='/commonSetting'
+           }else{
+            $('#erroeMsg').text('Incorrect Email or password.');
            }
 
 
         },
         error: function (error) {
+            $('#erroeMsg').text('Incorrect Email or password.');
+
             console.log(error);
 
         },

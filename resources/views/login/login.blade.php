@@ -58,6 +58,7 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btnSubmit" value="" id="submitform">LOG IN</button>
                     </div>
+                    <span class="text-danger" id="erroeMsg"></span>
                     <div class="form-group mt-5">
                         <p class="text-muted text-center">Version 2023.01.0010</p>
                     </div>

@@ -406,7 +406,10 @@ function saveDistric() {
 
     formData.append('txtDistrict', $('#txtDistrict').val());
 
-
+    if (formData.txtDistrict == '') {
+        //alert('Please enter item category level 1');
+        return false;
+    }
 
     console.log(formData);
 
@@ -434,6 +437,7 @@ function saveDistric() {
 
         },
         error: function (error) {
+           // $('.district').text(error.responseJSON.message);
             console.log(error);
 
         },
@@ -452,8 +456,13 @@ function btndistrictDelete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deleteDistrict/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
-                _token: $("input[name=_token]").val()
+                _token: $("input[name=_token]").val(),
+
+
             },
 
             success: function(response) {
@@ -555,6 +564,10 @@ function saveTown() {
     formData.append('txtTown', $('#txtTown').val());
     formData.append('cmbDistrict', $('#cmbDistrict').val());
 
+    if (formData.txtTown == '' && formData.cmbDistrict) {
+        //alert('Please enter item category level 1');
+        return false;
+    }
 
 
     console.log(formData);
@@ -583,6 +596,7 @@ function saveTown() {
 
         },
         error: function (error) {
+            $('.town1').text('This field is required.');
             console.log(error);
 
         },
@@ -663,6 +677,9 @@ function btnTownDelete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deleteTown/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },
@@ -769,7 +786,10 @@ function saveGroup() {
     formData.append('txtGroup', $('#txtGroup').val());
 
 
-
+    if (formData.txtGroup == '') {
+        //alert('Please enter item category level 1');
+        return false;
+    }
 
     console.log(formData);
 
@@ -797,6 +817,7 @@ function saveGroup() {
 
         },
         error: function (error) {
+            $('.group1').text('This field is required.');
             console.log(error);
 
         },
@@ -873,6 +894,9 @@ function btnGroupDelete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deleteGroup/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 _token: $("input[name=_token]").val()
             },
@@ -994,7 +1018,10 @@ function saveGrade() {
 
 
 
-
+    if (formData.txtgrade == '') {
+        //alert('Please enter item category level 1');
+        return false;
+    }
     console.log(formData);
 
     $.ajax({
@@ -1021,6 +1048,7 @@ function saveGrade() {
 
         },
         error: function (error) {
+            $('.grade1').text('This field is required.');
             console.log(error);
 
         },
@@ -1097,8 +1125,12 @@ function btnGradeDelete(id) {
         $.ajax({
             type: 'DELETE',
             url: "/deleteGrade/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
-                _token: $("input[name=_token]").val()
+                _token: $("input[name=_token]").val(),
+               
             },
 
             success: function(response) {

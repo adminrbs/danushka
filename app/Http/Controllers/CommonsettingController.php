@@ -29,6 +29,11 @@ class CommonsettingController extends Controller
 
 
     public function saveDistrict(Request $request) {
+
+        $validatedData = $request->validate([
+            'txtDistrict' => 'required',
+
+        ]);
         try {
 
             $commonSetting = new District();
@@ -134,6 +139,12 @@ public function twonAlldata(){
 
 
     public function saveTown(Request $request) {
+
+        $validatedData = $request->validate([
+            'txtTown' => 'required',
+            'cmbDistrict' => 'required',
+
+        ]);
         try {
 
             $towndata = new Town();
@@ -243,6 +254,11 @@ public function groupAlldata(){
 
 
     public function saveGroup(Request $request) {
+        $validatedData = $request->validate([
+            'txtGroup' => 'required',
+
+
+        ]);
         try {
 
             $towndata = new Customer_group();
@@ -349,6 +365,11 @@ public function gradeAlldata(){
 
 
     public function savegrade(Request $request) {
+        $validatedData = $request->validate([
+            'txtgrade' => 'required',
+
+
+        ]);
         try {
 
             $towndata = new Customer_grade();
