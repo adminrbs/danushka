@@ -16,7 +16,7 @@
                                 <label for="fname">Item Category Level 1 <span class="text-danger">*</span></label>
                                 <input type="text" name="categoryLevel1" id="txtCategorylevel1" class="form-control"
                                     required>
-                                    <span class="text-danger category1"></span>
+                                    <span class="text-danger font-weight-bold category1"></span>
                             </div>
                         </div>
 
@@ -68,7 +68,7 @@
                                 <label for="fname">Item Category Level 2<span class="text-danger">*</span></label>
                                 <input type="text" name="categoryLevel2" id="txtCategorylevel2"
                                     class="form-control validate" required>
-                                    <span class="text-danger category2"></span>
+                                    <span class="text-danger font-weight-bold category2"></span>
                             </div>
                         </div>
 
@@ -120,7 +120,7 @@
                                 <label for="fname">Item Category Level 3<span class="text-danger">*</span></label>
                                 <input type="text" name="categoryLevel3" id="txtCategorylevel3"
                                     class="form-control validate" required>
-                                    <span class="text-danger category3"></span>
+                                    <span class="text-danger font-weight-bold category3"></span>
 
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                                 <label for="fname">Desgination<span class="text-danger">*</span></label>
                                 <input type="text" name="desgination" id="txtDesgination"
                                     class="form-control validate" required>
-                                    <span class="text-danger desgination"></span>
+                                    <span class="text-danger font-weight-bold desgination"></span>
 
                             </div>
                         </div>
@@ -217,7 +217,7 @@
                                 <label for="fname">Status<span class="text-danger">*</span></label>
                                 <input type="text" name="status" id="txtStatus" class="form-control validate"
                                     required>
-                                    <span class="text-danger status"></span>
+                                    <span class="text-danger font-weight-bold status"></span>
                             </div>
                         </div>
 

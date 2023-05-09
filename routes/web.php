@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LimitlessController;
 use App\Http\Controllers\CategoryLevelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Suply_groupController;
 use App\Models\User;
 use App\Notifications\UserNotification;
 
@@ -198,3 +199,18 @@ Route::get('/Login_Page', function () {
 Route::post('/submitForm', [LoginController::class,'loginForm']);
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+//Suply Group
+Route::get('/suply_group', function () {
+    return view('suply_group');
+});
+Route::get('/suplyGroupAllData', [Suply_groupController::class,'suplyGroupAllData']);
+Route::post('/saveSuplyGroup', [Suply_groupController::class,'saveSuplyGroup']);
+Route::get('/suplyGroupEdite/{id}', [Suply_groupController::class,'suplyGroupEdite']);
+Route::post('/supltGroupUpdate/{id}', [Suply_groupController::class, 'supltGroupUpdate']);
+Route::post('/SuplyGroupStatus/{id}', [Suply_groupController::class, 'suplyGroupStatus']);
+Route::get('/suplyGroupsearch', [Suply_groupController::class,'suplyGroupsearch']);
+Route::delete('/deleteSuplygroup/{id}', [Suply_groupController::class,'deleteSuplygroup']);
+

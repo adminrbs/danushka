@@ -428,7 +428,7 @@
                         Account settings
                     </a>
                     <button class="dropdown-item" id="btnLogout">
-                        <i class="ph-sign-out me-2" ></i> Logout
+                        <i class="ph-sign-out me-2"  ></i> Logout
                     </button>
 
                 </div>
