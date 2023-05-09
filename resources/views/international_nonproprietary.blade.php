@@ -47,7 +47,7 @@
 
                     </div>
                     <div class="table-responsive">
-                        <!-- Required for Responsive -->
+                        <!--Required for Responsive-->
                         <table id="status1Table"
                             class="table table-striped table-responsive-stack datatbothable-fixed-">
                             <thead>

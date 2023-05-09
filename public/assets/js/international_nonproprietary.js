@@ -226,13 +226,13 @@ function updateNonproprietary(){
     });
 }
 
-
+// Delete
 function btnNonproprietaryDelete(id) {
 
     if (confirm("Do you want to delete this record?")) {
         $.ajax({
             type: 'DELETE',
-            url: "/deleteNonproprietary/" + id,
+            url: "/deleteNonproprietary/"+id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

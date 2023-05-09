@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class International_nonproprietaryController extends Controller
 {
-     //all data
+     //.....all data...........
 
      public function nonproprietaryAllData(){
 
@@ -44,7 +44,7 @@ class International_nonproprietaryController extends Controller
         }
     }
 
-    //edit
+    //....edit....
 
     public function nonproprietaryEdite(Request $request,$id){
         $item_altenative = item_altenative_name::find($id);
@@ -62,7 +62,7 @@ class International_nonproprietaryController extends Controller
     }
 
 
-    //Delete
+    //......Delete........
 
     public function deleteNonproprietary($id){
 
@@ -72,7 +72,7 @@ class International_nonproprietaryController extends Controller
 
     }
 
-    //Status Save
+    //.......Status Save.........
 
     public function nonproprietaryStatus(Request $request,$id){
         $item_altenative = item_altenative_name::findOrFail($id);
@@ -82,7 +82,7 @@ class International_nonproprietaryController extends Controller
         return response()->json(' status updated successfully');
     }
 
-    // Search
+    // .......Search........
 
 
     public function nonproprietarysearch(Request $request){
