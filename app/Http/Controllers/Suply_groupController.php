@@ -96,7 +96,7 @@ class Suply_groupController extends Controller
         foreach($supplygroup as $supplygroup){
 
             $status = "";
-            if($supplygroup->supplygroup == 1){
+            if($supplygroup->status_id == 1){
                 $status = "checked";
             }
 
@@ -106,9 +106,9 @@ class Suply_groupController extends Controller
             <td>'.$supplygroup->supply_group_id  .' </td>
             <td>'.$supplygroup->supply_group.' </td>
 
-            <td> '.' <a href=""  type="button" class="btn btn-primary  categorylevel1" id="' .$supplygroup->supply_group_id  . '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-            <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete('.$supplygroup->supply_group_id  . ')"> '.' </td>
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus('  .$supplygroup->supply_group_id  .')" required  '.$status.'></label>  '.'</td>
+            <td> '.'<a href=""  type="button" class="btn btn-primary  suplyGroup" id="'.$supplygroup->supply_group_id.  '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
+            <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' .$supplygroup->supply_group_id. ')"> '.' </td>
+            <td> '.'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus('  .$supplygroup->supply_group_id.  ')" required '.$status.'> '.'</td>
             </tr>';
         }
         return response($output);

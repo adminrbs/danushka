@@ -3,35 +3,35 @@ $(document).ready(function () {
 
     //Search Group
 
-    $('#suplyGroupSearch').on('keyup',function(){
+    $('#nonproprietarySearch').on('keyup',function(){
         $value=$(this).val();
 
         if($value){
-            $('#tableSuplyGroup').hide();
-            $('#contentSuply').show();
+            $('#tableNonproprietary').hide();
+            $('#contentNonproprietary').show();
 
         }
         else{
-            $('#tableSuplyGroup').show();
-            $('#contentSuply').hide();
+            $('#tableNonproprietary').show();
+            $('#contentNonproprietary').hide();
         }
 
         $.ajax({
 
             type:'get',
-            url:'/suplyGroupsearch',
+            url:'/nonproprietarysearch',
             data:{'search':$value},
 
             success:function(data){
                 console.log(data);
-                $('#contentSuply').html(data);
+                $('#contentNonproprietary').html(data);
             }
         });
         //alert($value);
     });
 
 
-    $('#btnSupplygroup').on('click', function (e) {
+    $('#btnNonproprietary').on('click', function (e) {
         e.preventDefault();
 
         // check if the input is valid using a 'valid' property
@@ -39,10 +39,10 @@ $(document).ready(function () {
             return;
         }
 
-        saveSuplyGroup();
+        saveNonproprietary();
     });
 
-    $('#btnUpdateSupplygroup').on('click', function (e) {
+    $('#btnUpdateNonproprietary').on('click', function (e) {
         e.preventDefault();
 
         // check if the input is valid using a 'valid' property
@@ -50,22 +50,22 @@ $(document).ready(function () {
             return;
         }
 
-        updateSuplyGroup();
+        updateNonproprietary();
     });
-    $('#btnSupplygroup').show();
-    $('#btnUpdateSupplygroup').hide();
+    $('#btnNonproprietary').show();
+    $('#btnUpdateNonproprietary').hide();
 
 });
 
 
 //...Suply Group Data
 
-function suplyGroupAllData() {
+function nonproprietaryAllData() {
 
     $.ajax({
         type: "get",
         dataType: 'json',
-        url:"/suplyGroupAllData",
+        url:"/nonproprietaryAllData",
 
         success: function (data) {
 
@@ -78,23 +78,23 @@ function suplyGroupAllData() {
 
                 data = data + "<tr>"
 
-                data = data + "<td>" + value.supply_group_id   + "</td>"
-                data = data + "<td>" + value.supply_group + "</td>"
+                data = data + "<td>" + value.item_altenative_name_id    + "</td>"
+                data = data + "<td>" + value.item_altenative_name + "</td>"
 
                 data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  suplyGroup" id="' + value.supply_group_id + '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
+                data = data + '<a href=""  type="button" class="btn btn-primary  nonproprietaryupdate" id="' + value.item_altenative_name_id  + '" data-bs-toggle="modal" data-bs-target="#modalNonproprietary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
 
                 data = data + "</td>"
 
                 data = data + "<td>"
 
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' + value.supply_group_id + ')">'
+                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnNonproprietaryDelete(' + value.item_altenative_name_id  + ')">'
 
                 data = data + "</td>"
 
                 data = data + "<td>"
 
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus(' + value.supply_group_id + ')" required '+isChecked+'></label>'
+                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus(' + value.item_altenative_name_id  + ')" required '+isChecked+'></label>'
 
                 data = data + "</td>"
 
@@ -103,27 +103,27 @@ function suplyGroupAllData() {
 
             })
 
-            $('#tableSuplyGroup').html(data);
+            $('#tableNonproprietary').html(data);
 
         }
 
     });
 
 }
-suplyGroupAllData();
+nonproprietaryAllData();
 
 
 
 
 
-//.....suply Group Save.....
+//.....Nonproprietary Save.....
 
-function saveSuplyGroup(){
+function saveNonproprietary(){
 
-    formData.append('txtSupplygroup', $('#txtSupplygroup').val());
+    formData.append('txtNonproprietary', $('#txtNonproprietary').val());
 
     console.log(formData);
-    if (formData.txtSupplygroup == '') {
+    if (formData.txtNonproprietary == '') {
         //alert('Please enter item category level 1');
         return false;
     }
@@ -131,7 +131,7 @@ function saveSuplyGroup(){
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: '/saveSuplyGroup',
+        url: '/saveNonproprietary',
         data: formData,
         processData: false,
         contentType: false,
@@ -145,14 +145,14 @@ function saveSuplyGroup(){
 
         },
         success: function (response) {
-            suplyGroupAllData();
-            $('#modalSuplyGroup').modal('hide');
+            nonproprietaryAllData();
+            $('#modalNonproprietary').modal('hide');
            console.log(response);
 
 
         },
         error: function (error) {
-           
+            $('.category1').text('This field is required.');
             console.log(error);
 
         },
@@ -167,23 +167,23 @@ function saveSuplyGroup(){
 //edit suply group
 
 
-$(document).on('click', '.suplyGroup', function(e) {
+$(document).on('click', '.nonproprietaryupdate', function(e) {
     e.preventDefault();
-    let supply_group_id  = $(this).attr('id');
+    let item_altenative_name_id  = $(this).attr('id');
     $.ajax({
-        url: '/suplyGroupEdite/'+supply_group_id,
+        url: '/nonproprietaryEdite/'+item_altenative_name_id,
         method: 'get',
         data: {
             //id: id,
             _token: '{{ csrf_token() }}'
         },
         success: function(response) {
-            $('#btnSupplygroup').hide();
-            $('#btnUpdateSupplygroup').show();
+            $('#btnNonproprietary').hide();
+            $('#btnUpdateNonproprietary').show();
 
 
-            $('#id').val(response.supply_group_id );
-            $("#txtSupplygroup").val(response.supply_group);
+            $('#id').val(response.item_altenative_name_id  );
+            $("#txtNonproprietary").val(response.item_altenative_name);
 
 
         }
@@ -192,16 +192,16 @@ $(document).on('click', '.suplyGroup', function(e) {
 
 // suply Group Update
 
-function updateSuplyGroup(){
+function updateNonproprietary(){
 
     var id = $('#id').val();
-    formData.append('txtSupplygroup', $('#txtSupplygroup').val());
+    formData.append('txtNonproprietary', $('#txtNonproprietary').val());
 
     console.log(formData);
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/supltGroupUpdate/'+id,
+        url: '/nonproprietaryUpdate/'+id,
         data: formData,
         processData: false,
         contentType: false,
@@ -216,8 +216,8 @@ function updateSuplyGroup(){
         },
         success: function (response) {
 
-            suplyGroupAllData();
-            $('#modalSuplyGroup').modal('hide');
+            nonproprietaryAllData();
+            $('#modalNonproprietary').modal('hide');
 
 
         }, error: function (error) {
@@ -227,12 +227,12 @@ function updateSuplyGroup(){
 }
 
 
-function btnSuplyGroupDelete(id) {
+function btnNonproprietaryDelete(id) {
 
     if (confirm("Do you want to delete this record?")) {
         $.ajax({
             type: 'DELETE',
-            url: "/deleteSuplygroup/" + id,
+            url: "/deleteNonproprietary/" + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -241,7 +241,7 @@ function btnSuplyGroupDelete(id) {
             },
 
             success: function(response) {
-                suplyGroupAllData();
+                nonproprietaryAllData();
 
             }
         });
@@ -252,12 +252,12 @@ function btnSuplyGroupDelete(id) {
 // Status Save
 
 
-function cbxSuplyGroupStatus(supply_group_id) {
-    var status = $('#cbxSuplyGroup').is(':checked') ? 1 : 0;
+function cbxNonproprietaryStatus(item_altenative_name_id) {
+    var status = $('#cbxNonproprietary').is(':checked') ? 1 : 0;
 
 
     $.ajax({
-        url: '/suplyGroupStatus/'+supply_group_id,
+        url: '/nonproprietaryStatus/'+item_altenative_name_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
@@ -271,4 +271,5 @@ function cbxSuplyGroupStatus(supply_group_id) {
         }
     });
 }
+
 

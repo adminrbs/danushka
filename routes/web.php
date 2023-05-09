@@ -7,6 +7,7 @@ use App\Http\Controllers\LimitlessController;
 use App\Http\Controllers\CategoryLevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Suply_groupController;
+use App\Http\Controllers\International_nonproprietaryController;
 use App\Models\User;
 use App\Notifications\UserNotification;
 
@@ -210,7 +211,22 @@ Route::get('/suplyGroupAllData', [Suply_groupController::class,'suplyGroupAllDat
 Route::post('/saveSuplyGroup', [Suply_groupController::class,'saveSuplyGroup']);
 Route::get('/suplyGroupEdite/{id}', [Suply_groupController::class,'suplyGroupEdite']);
 Route::post('/supltGroupUpdate/{id}', [Suply_groupController::class, 'supltGroupUpdate']);
-Route::post('/SuplyGroupStatus/{id}', [Suply_groupController::class, 'suplyGroupStatus']);
+Route::post('/suplyGroupStatus/{id}', [Suply_groupController::class, 'suplyGroupStatus']);
 Route::get('/suplyGroupsearch', [Suply_groupController::class,'suplyGroupsearch']);
 Route::delete('/deleteSuplygroup/{id}', [Suply_groupController::class,'deleteSuplygroup']);
+
+
+
+//Suply Group
+Route::get('/international_nonproprietary', function () {
+    return view('international_nonproprietary');
+});
+Route::get('/nonproprietaryAllData', [International_nonproprietaryController::class,'nonproprietaryAllData']);
+Route::post('/saveNonproprietary', [International_nonproprietaryController::class,'nonproprietaryGroup']);
+Route::get('/nonproprietaryEdite/{id}', [International_nonproprietaryController::class,'nonproprietaryEdite']);
+Route::post('/nonproprietaryUpdate/{id}', [International_nonproprietaryController::class, 'nonproprietaryUpdate']);
+Route::post('/nonproprietaryStatus/{id}', [International_nonproprietaryController::class, 'nonproprietaryStatus']);
+Route::get('/nonproprietarysearch', [International_nonproprietaryController::class,'nonproprietarysearch']);
+Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryController::class,'deleteNonproprietary']);
+
 
