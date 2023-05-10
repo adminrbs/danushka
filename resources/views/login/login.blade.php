@@ -5,72 +5,69 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="assets/css/login.css">
     <title>Document</title>
 </head>
-<style>
-    body {
-        background-image: url('assets/images/backgrounds/boxed_bg_retina.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-
-    .login-container {
-        width: 100vh;
-        margin: 2%;
-        background-color: white;
-    }
-
-
-    .login-form {
-        margin-top: 30vh;
-
-    }
-
-    .image {
-        background-image: url('assets/images/demo/images/blog2.jpg');
-        background-size: cover;
-        height: 100vh;
-    }
-
-    .btnSubmit {
-        width: 100%;
-        padding: 1.5%;
-        border: none;
-        cursor: pointer;
-    }
-</style>
 
 <body>
-    <div class="container login-container">
-        <div class="row">
-            <div class="col-md-6 login-form">
-                <div>
-                    <h3>Login Form </h3>
-                </div>
-                <form class="" method="POST">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder=" Email" value="" id="txtEmail" required />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password " value="" id="txtPassword" required/>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btnSubmit" value="" id="submitform">LOG IN</button>
-                    </div>
-                    <span class="text-danger font-weight-bold" id="erroeMsg"></span>
-                    <div class="form-group mt-5">
-                        <p class="text-muted text-center">Version 2023.01.0010</p>
-                    </div>
-                </form>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">PraRoz</h2>
             </div>
-            <div class="col-md-6 image">
 
+            <div class="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">SERVICE</a></li>
+                    <li><a href="#">DESIGN</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
             </div>
+
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+
+        </div>
+        <div class="content">
+            <h1>Web Design & <br><span>Development</span> <br>Course</h1>
+            <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sunt neque
+                 expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus
+                <br> a quae totam ipsa illum minus laudantium?</p>
+
+                <button class="cn"><a href="#">JOIN US</a></button>
+
+                <div class="form">
+
+                    <h2>Login Here</h2>
+                    <input id="txtEmail" type="email" name="email" placeholder="Enter Email Here">
+                    <input id="txtPassword" type="password" name="" placeholder="Enter Password Here">
+                    <span id="erroeMsg" class="text-danger font-weight-bold text-sm spanError"></span>
+                    <button id="submitform"  type="submit" class="btnn"><a href="#">Login</a></button>
+
+                    <p class="link">Don't have an account<br>
+                    <a href="#">Sign up </a> here</a></p>
+                    <p class="liw">Log in with</p>
+
+                    <div class="icons">
+                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-google"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
+                    </div>
+
+                </div>
+                    </div>
+                </div>
         </div>
     </div>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <link href="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
     <script src="{{ URL::asset('assets/js/jquery/jquery.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -84,3 +81,7 @@
 </body>
 
 </html>
+
+
+
+

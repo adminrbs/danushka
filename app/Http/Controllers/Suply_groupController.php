@@ -115,5 +115,7 @@ class Suply_groupController extends Controller
 
     }
 
-
+    public function close(Request $request){
+        return response()->json(['status' => 'success', 'message' => 'Request processed successfully']);
+    }
 }

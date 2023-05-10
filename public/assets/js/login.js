@@ -38,7 +38,6 @@ $(document).ready(function () {
 
 function submit(){
 
-
     formData.append('txtEmail', $('#txtEmail').val());
     formData.append('txtPassword', $('#txtPassword').val());
 

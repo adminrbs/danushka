@@ -27,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="btnClose1" class="btn btn-secondary" >Close</button>
                 <button type="submit" id="btnSaveCategorylevel1"
                     class="btn btn-primary btnSaveCategorylevel1">Save</button>
                 <button type="submit" id="btnUpdateCategorylevel1"
@@ -79,7 +79,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="btnClose2" class="btn btn-secondary" >Close</button>
                 <button type="submit" id="btnSaveCategorylevel2"
                     class="btn btn-primary btnSaveCategorylevel2">Save</button>
                 <button type="submit" id="btnUpdateCategorylevel2"
@@ -132,8 +132,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="close" id="btnClose" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="btnClose3" class="btn btn-secondary" >Close</button>
                 <button type="submit" id="btnSaveCategorylevel3"
                     class="btn btn-primary btnSaveCategorylevel3">Save</button>
                 <button type="submit" id="btnUpdateCategorylevel3"
@@ -181,8 +180,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="close" id="btnClose" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="btnClose4" class="btn btn-secondary" >Close</button>
                 <button type="submit" id="btnSaveDesgination"
                     class="btn btn-primary btnSaveCategorylevel3">Save</button>
                 <button type="submit" id="btnUpdateDesgination"
@@ -228,8 +226,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="close" id="btnClose" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="btnClose5" class="btn btn-secondary" >Close</button>
                 <button type="submit" id="btnSaveStatus" class="btn btn-primary btnSaveCategorylevel3">Save</button>
                 <button type="submit" id="btnUpdateStatus" class="btn btn-primary categorylevel3">Update</button>
             </div>

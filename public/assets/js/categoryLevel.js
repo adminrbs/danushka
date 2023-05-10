@@ -1,6 +1,124 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+    ///////////////////////////close//////////
+
+// close
+
+$("#btnClose1").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelcategoryLevel").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+$("#btnClose2").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelcategoryLeve2").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+$("#btnClose3").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelcategoryLeve3").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+$("#btnClose4").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelDesgination").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+
+
+$("#btnClose5").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelStatus1").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+
+    /////////////////////////////////////////////
     //......category Level 1 Search
 
     $('#categoryLevel1Search').on('keyup',function(){

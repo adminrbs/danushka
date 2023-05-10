@@ -73,6 +73,8 @@ Route::post('/CustomerController/saveCustomer',[CustomerController::class,'saveC
 Route::post('/FormController/saveCustomer',[FormController::class,'saveCustomer']);
 
 
+//Model Close
+Route::post('/close', [International_nonproprietaryController::class, 'close']);
 //...............................Employeee............
 
 Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index']);
@@ -228,5 +230,6 @@ Route::post('/nonproprietaryUpdate/{id}', [International_nonproprietaryControlle
 Route::post('/nonproprietaryStatus/{id}', [International_nonproprietaryController::class, 'nonproprietaryStatus']);
 Route::get('/nonproprietarysearch', [International_nonproprietaryController::class,'nonproprietarysearch']);
 Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryController::class,'deleteNonproprietary']);
+
 
 

@@ -23,7 +23,7 @@
             <div class="card-header" id="headingDesignation">
                 <h5 class="mb-0">
 
-                        <i class="bi bi-gear" style="margin-right: 5px"></i>International nonproprietary name (INN)
+                        <i class="bi bi-gear text-primary" style="margin-right: 5px"></i>International nonproprietary name (INN)
 
                 </h5>
             </div>
@@ -39,7 +39,7 @@
                         <div class="search" style="margin-left: 80%">
 
                             <input type="search" name="search" id="nonproprietarySearch"
-                                class="form-control" placeholder="Search">
+                                class="form-control" placeholder="search">
                         </div>
 
 
@@ -113,7 +113,8 @@
       </div>
       <div class="modal-footer">
           <input type="hidden" id="id">
-        <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        <button type="submit" id="btnCloseupdate" class="btn btn-secondary">Close</button>
         <button type="submit" id="btnNonproprietary" class="btn btn-primary ">Save</button>
         <button type="submit" id="btnUpdateNonproprietary" class="btn btn-primary updategroup">Update</button>
       </div>

@@ -1,6 +1,31 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+    // close
+
+    $("#btnCloseupdate").on("click", function(e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
+        $.ajax({
+          type: "POST",
+          url: '/close',
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+          data: formData,
+          success: function(response) {
+            $("#modalNonproprietary").modal("hide"); // This will close the modal
+            var urlWithoutQuery = window.location.href.split('?')[0];
+        },
+          error: function(xhr, status, error) {
+
+          }
+        });
+      });
+
+
+
     //Search Group
 
     $('#nonproprietarySearch').on('keyup',function(){
@@ -54,6 +79,8 @@ $(document).ready(function () {
     });
     $('#btnNonproprietary').show();
     $('#btnUpdateNonproprietary').hide();
+
+
 
 });
 
@@ -271,5 +298,4 @@ function cbxNonproprietaryStatus(item_altenative_name_id) {
         }
     });
 }
-
 

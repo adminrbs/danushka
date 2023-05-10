@@ -1,6 +1,27 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+    $("#btnCloseupdate").on("click", function(e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
+        $.ajax({
+          type: "POST",
+          url: '/close',
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+          data: formData,
+          success: function(response) {
+            $("#modalSuplyGroup").modal("hide"); // This will close the modal
+            var urlWithoutQuery = window.location.href.split('?')[0];
+        },
+          error: function(xhr, status, error) {
+
+          }
+        });
+      });
+
     //Search Group
 
     $('#suplyGroupSearch').on('keyup',function(){
@@ -54,6 +75,7 @@ $(document).ready(function () {
     });
     $('#btnSupplygroup').show();
     $('#btnUpdateSupplygroup').hide();
+
 
 });
 
@@ -152,7 +174,7 @@ function saveSuplyGroup(){
 
         },
         error: function (error) {
-           
+
             console.log(error);
 
         },

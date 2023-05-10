@@ -2,6 +2,109 @@ var formData = new FormData();
 $(document).ready(function () {
 
 
+
+    ///////////////////////////close//////////
+
+// close
+
+$("#btnCloseDistrict").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelDistric").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+$("#btnCloseTown").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modelTown").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+$("#btnCloseGroup").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modalGroup").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+$("#btnCloseGrade").on("click", function(e) {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+    var formData = $("form").serialize();
+    $.ajax({
+      type: "POST",
+      url: '/close',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+      data: formData,
+      success: function(response) {
+        $("#modalGrade").modal("hide"); // This will close the modal
+        var urlWithoutQuery = window.location.href.split('?')[0];
+    },
+      error: function(xhr, status, error) {
+
+      }
+    });
+  });
+
+
+
+
+
+    /////////////////////////////////////////////
+
+
+
+
+
+
        //...District Search...
 
        $('#distSearch').on('keyup',function(){
@@ -1130,7 +1233,7 @@ function btnGradeDelete(id) {
             },
             data: {
                 _token: $("input[name=_token]").val(),
-               
+
             },
 
             success: function(response) {

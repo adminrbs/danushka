@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
             <input type="hidden" id="id">
-          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" id="btnCloseDistrict" class="btn btn-secondary">Close</button>
           <button type="submit" id="btnSaveDistric" class="btn btn-primary btnSaveDistric">Save</button>
           <button type="submit" id="btnUpdateDistrict" class="btn btn-primary updateDistrict">Update</button>
         </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="modal-footer">
             <input type="hidden" id="id">
-          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" id="btnCloseTown" class="btn btn-secondary">Close</button>
           <button type="submit" id="btnSaveTown" class="btn btn-primary ">Save</button>
           <button type="submit" id="btnUpdateTown" class="btn btn-primary updateTown">Update</button>
         </div>
@@ -122,7 +122,7 @@
         </div>
         <div class="modal-footer">
             <input type="hidden" id="id">
-          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" id="btnCloseGroup" class="btn btn-secondary">Close</button>
           <button type="submit" id="btnSaveGroup" class="btn btn-primary ">Save</button>
           <button type="submit" id="btnUpdateGroup" class="btn btn-primary updategroup">Update</button>
         </div>
@@ -163,7 +163,7 @@
         </div>
         <div class="modal-footer">
              <input type="hidden" id="id">
-          <button type="close" id="btnClose" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="submit" id="btnCloseGrade" class="btn btn-secondary">Close</button>
           <button type="submit" id="btnSavegrade" class="btn btn-primary ">Save</button>
           <button type="submit" id="btnUpdateGrade" class="btn btn-primary updateGrade">Update</button>
         </div>

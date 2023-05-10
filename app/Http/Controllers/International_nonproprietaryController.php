@@ -113,6 +113,9 @@ class International_nonproprietaryController extends Controller
         }
         return response($output);
 
-    }
+    }     
+      public function close(Request $request){
+          return response()->json(['status' => 'success', 'message' => 'Request processed successfully']);
+      }
 
 }
