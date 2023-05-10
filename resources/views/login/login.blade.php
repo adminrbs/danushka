@@ -12,24 +12,7 @@
 <body>
     <div class="main">
         <div class="navbar">
-            <div class="icon">
-                <h2 class="logo">PraRoz</h2>
-            </div>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">SERVICE</a></li>
-                    <li><a href="#">DESIGN</a></li>
-                    <li><a href="#">CONTACT</a></li>
-                </ul>
-            </div>
-
-            <div class="search">
-                <input class="srch" type="search" name="" placeholder="Type To text">
-                <a href="#"> <button class="btn">Search</button></a>
-            </div>
 
         </div>
         <div class="content">
@@ -46,19 +29,9 @@
                     <input id="txtEmail" type="email" name="email" placeholder="Enter Email Here">
                     <input id="txtPassword" type="password" name="" placeholder="Enter Password Here">
                     <span id="erroeMsg" class="text-danger font-weight-bold text-sm spanError"></span>
-                    <button id="submitform"  type="submit" class="btnn"><a href="#">Login</a></button>
+                    <button id="submitform"  type="submit" class="btnn btn btn-primary"><a href="#">Login</a></button>
 
-                    <p class="link">Don't have an account<br>
-                    <a href="#">Sign up </a> here</a></p>
-                    <p class="liw">Log in with</p>
 
-                    <div class="icons">
-                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-google"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
-                    </div>
 
                 </div>
                     </div>

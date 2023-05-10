@@ -3,14 +3,11 @@
     padding: 0;
 }
 
-body {
-    background-image: url("public/assets/images/backgrounds/1.jpg");
-    background-size: cover;
-  }
+
 
 .main{
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url('assets/images/backgrounds/1.jpg');
+    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url("/assets/images/backgrounds/1.jpg");
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -28,15 +25,7 @@ body {
     height: 70px;
 }
 
-.logo{
-    color: #ff7200;
-    font-size: 35px;
-    font-family: Arial;
-    padding-left: 20px;
-    float: left;
-    padding-top: 10px;
-    margin-top: 5px
-}
+
 
 .menu{
     width: 400px;
@@ -44,61 +33,16 @@ body {
     height: 70px;
 }
 
-ul{
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-ul li{
-    list-style: none;
-    margin-left: 62px;
-    margin-top: 27px;
-    font-size: 14px;
-}
 
-ul li a{
-    text-decoration: none;
-    color: #fff;
-    font-family: Arial;
-    font-weight: bold;
-    transition: 0.4s ease-in-out;
-}
-
-ul li a:hover{
-    color: #ff7200;
-}
-
-.search{
-    width: 330px;
-    float: left;
-    margin-left: 270px;
-}
-
-.srch{
-    font-family: 'Times New Roman';
-    width: 200px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid #ff7200;
-    margin-top: 13px;
-    color: #fff;
-    border-right: none;
-    font-size: 16px;
-    float: left;
-    padding: 10px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-}
 
 .btn{
     width: 100px;
     height: 40px;
-    background: #ff7200;
-    border: 2px solid #ff7200;
+    background: #007bff;
+    border: 2px solid #007bff;
     margin-top: 13px;
-    color: #fff;
+    color: #007bff;
     font-size: 15px;
     border-bottom-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -106,7 +50,7 @@ ul li a:hover{
     cursor: pointer;
 }
 .btn:hover{
-    color: #000;
+    color: #fcfafa;
 }
 
 .btn:focus{
@@ -144,7 +88,7 @@ ul li a:hover{
 .content .cn{
     width: 160px;
     height: 40px;
-    background: #ff7200;
+    background: #007bff;
     border: none;
     margin-bottom: 10px;
     margin-left: 20px;
@@ -157,16 +101,16 @@ ul li a:hover{
 
 .content .cn a{
     text-decoration: none;
-    color: #000;
+    color: #ffffff;
     transition: .3s ease;
 }
 
 .cn:hover{
-    background-color: #fff;
+    background-color: #007bff;
 }
 
 .content span{
-    color: #ff7200;
+    color: #007bff;
     font-size: 65px
 }
 
@@ -186,7 +130,7 @@ ul li a:hover{
     width: 220px;
     font-family: sans-serif;
     text-align: center;
-    color: #ff7200;
+    color: #007bff;
     font-size: 22px;
     background-color: #fff;
     border-radius: 10px;
@@ -198,7 +142,7 @@ ul li a:hover{
     width: 240px;
     height: 35px;
     background: transparent;
-    border-bottom: 1px solid #ff7200;
+    border-bottom: 1px solid #007bff;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -214,33 +158,35 @@ ul li a:hover{
 }
 
 ::placeholder{
-    color: #fff;
+    color: #fefeff;
     font-family: Arial;
 }
 
 .btnn{
     width: 240px;
     height: 40px;
-    background: #ff7200;
+
     border: none;
     margin-top: 30px;
     font-size: 18px;
     border-radius: 10px;
     cursor: pointer;
-    color: #fff;
     transition: 0.4s ease;
 }
+
 .btnn:hover{
-    background: #fff;
-    color: #ff7200;
+    background: #007bff;
+    color: #001aff;
 }
+
 .btnn a{
     text-decoration: none;
-    color: #000;
+    color: #fffbfb;
     font-weight: bold;
 }
 .form .spanError{
     font-size: 14px;
+    color: red;
 }
 .form .link{
     font-family: Arial, Helvetica, sans-serif;
@@ -250,7 +196,7 @@ ul li a:hover{
 }
 .form .link a{
     text-decoration: none;
-    color: #ff7200;
+    color: #001aff;
 }
 .liw{
     padding-top: 15px;
@@ -269,11 +215,8 @@ ul li a:hover{
     transition: 0.3s ease;
 }
 .icons ion-icon:hover{
-    color: #ff7200;
+    color: #001aff;
 }
-
-
-
 
 
 
@@ -286,59 +229,6 @@ ul li a:hover{
         width: 100%;
 
         height: 130vh;
-    }
-
-    .navbar{
-        bottom: 50px;
-        width: 200px;
-    height: 75px;
-    margin: auto;
-    }
-
-    .logo{
-        font-size: 35px;
-        padding-top: 0;
-        margin: auto;
-        margin-top: 20px;
-    }
-
-    .menu{
-        bottom: 50px;
-        width: 100px;
-        float: left;
-        height: 70px;
-        margin: auto;
-    }
-
-    ul{
-
-        width: 100px;
-        margin-left: auto;
-        display: flex;
-        margin-bottom: 20px;
-    }
-
-    ul li{
-        width: 100px;
-        margin-left: auto;
-        margin-left: 30px;
-        font-size: 12px;
-    }
-
-    .search{
-        width: 440px;
-        margin-left: auto;
-        display: block;
-        margin-bottom: 20px;
-
-    }
-
-    .srch{
-        width: 200px;
-        margin-left: auto;
-        height: 40px;
-        font-size: 14px;
-        margin-top: 10px;
     }
 
     .btn{
@@ -397,37 +287,6 @@ ul li a:hover{
 
 
 @media (min-width: 800px) and (max-width: 990px) {
-
-    .search{
-        margin-top: -20px;
-          width: 330px;
-          float: left;
-          margin-left: 280px;
-      }
-
-      .srch{
-
-          width: 200px;
-          height: 40px;
-          margin-top: 13px;
-
-      }
-
-.logo{
-
-    font-size: 30px;
-
-}
-
-
- ul li{
-     float: right;
-     list-style: none;
-     margin-left: -10px;
-     padding-left: 47px;
-     margin-bottom: 20px;
-     font-size: 12px;
- }
 
  .content h1{
     font-size: 20px;
