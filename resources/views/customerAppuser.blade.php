@@ -20,14 +20,10 @@
     <!-- Content area -->
     <div class="content">
         <div class="card">
-            <div class="card-header" id="headingDesignation">
-                <h5 class="mb-0">
-
-                        <i class="bi bi-gear text-primary" style="margin-right: 5px"></i>Customer Name
-
-                </h5>
+            <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+                <h5 class="mb-0">Customer App</h5>
+                <div class="d-inline-flex ms-auto"></div>
             </div>
-
 
                 <div class="card-body">
                     <div>
@@ -104,18 +100,18 @@
                       <div class="col-lg">
                         <div class="row mb-1">
                             <div class="mb-3 row mb">
-                                <label class="col-form-label col-md-2 mb-0">Customer Name <span class="text-danger">*</span></label>
-                                <div class="col-md-4">
-                                    <select class="form-control  form-control-sm select" data-placeholder="Select Here...." required id="cmbcustomerApp">
-                                        <optgroup label="Mountain Time Zone">
-                                            <option value="" disabled selected></option>
+                                <label class="col-form-label col-md-6 mb-0">Customer Name <span class="text-danger">*</span></label>
+                                <div class="col-md-12">
+                                    <select id="cmbcustomerApp" class="form-control  form-control-sm select" data-placeholder="Select Here...." required >
+
+
                                             @foreach ($data as $data)
                                             <option value="{{ $data->customer_id  }}">
                                                 {{ $data->customer_name}}</option>
-                                        @endforeach
+                                            @endforeach
 
 
-                                        </optgroup>
+
 
                                     </select>
                                 </div>

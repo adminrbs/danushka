@@ -64,7 +64,7 @@ const DatatableFixedColumns = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data": "employee_id " },
+                { "data": "employee_id" },
                 { "data": "employee_name" },
                 { "data": "action" },
 
@@ -136,7 +136,7 @@ function getCustomerDetails() {
             var data = [];
             for (var i = 0; i < dt.length; i++) {
                 data.push({
-                    "employee_id ": dt[i].employee_id  ,
+                    "employee_id": dt[i].employee_id,
                     "employee_name": dt[i].employee_name,
                     "action":'<button class="btn btn-primary" onclick="edit(' + dt[i].employee_id + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&#160<button class="btn btn-success" onclick="view(' + dt[i].employee_id + ')"><i class="fa fa-eye" aria-hidden="true"></i></button>&#160<button class="btn btn-danger" onclick="deleteEmployee(' + dt[i].employee_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
                 });

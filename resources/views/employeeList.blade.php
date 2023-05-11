@@ -18,12 +18,13 @@
 <div class="content">
 
     <!-- Multiple fixed columns -->
-    <div class="card mt-2">
-        <div class="card-header">
-            <h5 class="mb-0">Customer List</h5>
+    <div class="card">
+        <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+            <h5 class="mb-0">Employee List</h5>
+            <div class="d-inline-flex ms-auto"></div>
         </div>
 
-        <table class="table datatbothable-fixed-" id="employeeListTable">
+        <table class="table datatbothable-fixed" id="employeeListTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -31,7 +32,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
 
             </tbody>
         </table>

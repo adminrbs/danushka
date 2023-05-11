@@ -239,9 +239,9 @@ Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryControl
 Route::get('/customer_Appuser', [customerAppuseController::class,'index']);
 Route::get('/customeruserApp', [customerAppuseController::class,'customeruserApp']);
 Route::post('/saveCustomeerUserapp', [customerAppuseController::class,'savecustomerUserApp']);
-/*Route::get('/nonproprietaryEdite/{id}', [International_nonproprietaryController::class,'nonproprietaryEdite']);
-Route::post('/nonproprietaryUpdate/{id}', [International_nonproprietaryController::class, 'nonproprietaryUpdate']);
-Route::post('/nonproprietaryStatus/{id}', [International_nonproprietaryController::class, 'nonproprietaryStatus']);
-Route::get('/nonproprietarysearch', [International_nonproprietaryController::class,'nonproprietarysearch']);
-Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryController::class,'deleteNonproprietary']);
-*/
+Route::get('/customerEdit/{id}', [customerAppuseController::class,'customerEdit']);
+Route::post('/customerAppUpdate/{id}', [customerAppuseController::class, 'customerAppUpdate']);
+Route::get('/customerAppSearch', [customerAppuseController::class, 'customerAppsearch']);
+Route::post('/customerAppStatus/{id}', [customerAppuseController::class,'customerAppStatus']);
+Route::delete('/deletecustomerApp/{id}', [customerAppuseController::class,'deletecustomerApp']);
+
