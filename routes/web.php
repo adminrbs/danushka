@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryLevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Suply_groupController;
 use App\Http\Controllers\International_nonproprietaryController;
+use App\Http\Controllers\customerAppuseController;
 use App\Models\User;
 use App\Notifications\UserNotification;
 
@@ -232,4 +233,15 @@ Route::get('/nonproprietarysearch', [International_nonproprietaryController::cla
 Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryController::class,'deleteNonproprietary']);
 
 
+//customer Appuser
 
+
+Route::get('/customer_Appuser', [customerAppuseController::class,'index']);
+Route::get('/customeruserApp', [customerAppuseController::class,'customeruserApp']);
+Route::post('/saveCustomeerUserapp', [customerAppuseController::class,'savecustomerUserApp']);
+/*Route::get('/nonproprietaryEdite/{id}', [International_nonproprietaryController::class,'nonproprietaryEdite']);
+Route::post('/nonproprietaryUpdate/{id}', [International_nonproprietaryController::class, 'nonproprietaryUpdate']);
+Route::post('/nonproprietaryStatus/{id}', [International_nonproprietaryController::class, 'nonproprietaryStatus']);
+Route::get('/nonproprietarysearch', [International_nonproprietaryController::class,'nonproprietarysearch']);
+Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryController::class,'deleteNonproprietary']);
+*/

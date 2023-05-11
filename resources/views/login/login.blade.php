@@ -29,7 +29,7 @@
                     <input id="txtEmail" type="email" name="email" placeholder="Enter Email Here">
                     <input id="txtPassword" type="password" name="" placeholder="Enter Password Here">
                     <span id="erroeMsg" class="text-danger font-weight-bold text-sm spanError"></span>
-                    <button id="submitform"  type="submit" class="btnn btn btn-primary"><a href="#">Login</a></button>
+                    <button id="submitform"  type="submit" class="btnn btn-primary"><a href="#">Login</a></button>
 
 
 

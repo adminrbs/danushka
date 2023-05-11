@@ -19,7 +19,8 @@
     <!-- Dashboard content -->
     <div class="row">
         <div class="col-xl-12 mt-2">
-                <div class="card-header d-flex align-items-center">
+            <div class="card">
+                <div  class="card-header bg-dark text d-flex align-items-center" style="color: white;">
                     <h5 class="mb-0">Customer</h5>
                     <div class="d-inline-flex ms-auto"></div>
                 </div>
@@ -383,7 +384,7 @@
                     <!-- end of form -->
 
                 </div>
-
+</div>
             </div>
 
         </div>
