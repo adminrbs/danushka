@@ -19,14 +19,11 @@
 
     <!-- Content area -->
     <div class="content">
-        <div class="card">
-            <div class="card-header" id="headingDesignation">
-                <h5 class="mb-0">
-
-                        <i class="bi bi-gear text-primary" style="margin-right: 5px"></i> Supply group
-
-                </h5>
-            </div>
+         <div class="card">
+        <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+            <h5 class="mb-0">Supply group</h5>
+            <div class="d-inline-flex ms-auto"></div>
+        </div>
 
 
                 <div class="card-body">

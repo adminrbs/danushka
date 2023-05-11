@@ -20,12 +20,9 @@
     <!-- Content area -->
     <div class="content">
         <div class="card">
-            <div class="card-header" id="headingDesignation">
-                <h5 class="mb-0">
-
-                        <i class="bi bi-gear text-primary" style="margin-right: 5px"></i>International nonproprietary name (INN)
-
-                </h5>
+            <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+                <h5 class="mb-0">International nonproprietary name (INN)</h5>
+                <div class="d-inline-flex ms-auto"></div>
             </div>
 
 
