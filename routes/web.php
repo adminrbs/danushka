@@ -244,4 +244,5 @@ Route::post('/customerAppUpdate/{id}', [customerAppuseController::class, 'custom
 Route::get('/customerAppSearch', [customerAppuseController::class, 'customerAppsearch']);
 Route::post('/customerAppStatus/{id}', [customerAppuseController::class,'customerAppStatus']);
 Route::delete('/deletecustomerApp/{id}', [customerAppuseController::class,'deletecustomerApp']);
+Route::get('/customername', [customerAppuseController::class, 'customername']);
 

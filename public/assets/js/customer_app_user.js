@@ -2,7 +2,7 @@ var formData = new FormData();
 $(document).ready(function () {
 
     // Default initialization
-    $('.select').select2();
+    $('.select2').select2();
     // End of Default initialization
     ///////////////////////////close//////////
 
@@ -188,7 +188,7 @@ function saveCustomeerUserapp() {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
             console.log(response);
-
+            resetForm();
 
         },
         error: function (error) {
@@ -273,6 +273,7 @@ function updateCustomeerUserapp() {
             $('#modalCustomerApp').modal('hide');
 
 
+
         }, error: function (error) {
             console.log(error);
         }
@@ -325,3 +326,36 @@ function cbxCustomerappStatus(customer_app_user_id) {
     });
 }
 
+
+
+
+function customeername() {
+
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/customername",
+
+        success: function (data) {
+
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if (value.status_id) {
+                    isChecked = "checked";
+                }
+
+
+                data = data + "<option value="+ value.customer_id  + ">" + value.customer_name + "</option>"
+
+
+            })
+
+            $('#cmbcustomerApp').html(data);
+
+        }
+
+    });
+
+}
+customeername();

@@ -24,11 +24,11 @@
             <div class="d-inline-flex ms-auto"></div>
         </div>
 
-        <table class="table datatbothable-fixed" id="employeeListTable">
+        <table class="table datatable-fixed-both" id="employeeListTable">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Customer Name</th>
+                    <th>Employee Name</th>
                     <th>Action</th>
                 </tr>
             </thead>

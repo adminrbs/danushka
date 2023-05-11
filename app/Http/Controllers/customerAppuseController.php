@@ -23,7 +23,7 @@ class customerAppuseController extends Controller
 
         $data = $users = DB::table('customer_app_users')
         ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
-        ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password')
+        ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password','customer_app_users.status_id')
         ->orderBy('customers.customer_id', 'DESC')
         ->distinct()
         ->get();
@@ -95,7 +95,7 @@ public function customerAppsearch(Request $request){
 
     $data = $users = DB::table('customer_app_users')
     ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
-    ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password')
+    ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password','customer_app_users.status_id')
     ->orderBy('customers.customer_id', 'DESC')
     ->distinct()
     ->get();
@@ -137,4 +137,10 @@ public function customerAppsearch(Request $request){
 
         return response()->json(' status updated successfully');
     }
+
+    public function customername(){
+        $data = Customer::all();
+        return response()->json($data);
+    }
+
 }

@@ -8,20 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class employee extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'employee_name',
-        'office_mobile',
-        'Office_email',
-        'persional_mobile',
-        'persional_fixed',
-        'persional_email',
-        'address',
-        'desgination_id',
-        'report_to',
-        'date_of_joined',
-        'date_of_resign',
-        'status_id',
-    ];
     protected $primaryKey =  "employee_id";
 
     protected static $logOnlyDirty = true;
@@ -37,4 +23,19 @@ class employee extends Model
         ->logOnly(['*']);
         // Chain fluent methods for configuration options
     }
+    protected $fillable = [
+        'employee_name',
+        'office_mobile',
+        'Office_email',
+        'persional_mobile',
+        'persional_fixed',
+        'persional_email',
+        'address',
+        'desgination_id',
+        'report_to',
+        'date_of_joined',
+        'date_of_resign',
+        'status_id',
+    ];
+
 }

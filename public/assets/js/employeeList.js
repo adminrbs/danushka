@@ -124,6 +124,7 @@ function view(id) {
 
 
 function getCustomerDetails() {
+
     $.ajax({
         type: "GET",
         url: "/getEmployeeDetails",
@@ -133,13 +134,14 @@ function getCustomerDetails() {
         success: function (response) {
             var dt = response.data;
 
+
             var data = [];
             for (var i = 0; i < dt.length; i++) {
-                data.push({
-                    "employee_id": dt[i].employee_id,
-                    "employee_name": dt[i].employee_name,
-                    "action":'<button class="btn btn-primary" onclick="edit(' + dt[i].employee_id + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&#160<button class="btn btn-success" onclick="view(' + dt[i].employee_id + ')"><i class="fa fa-eye" aria-hidden="true"></i></button>&#160<button class="btn btn-danger" onclick="deleteEmployee(' + dt[i].employee_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                });
+               data.push({
+                   "employee_id": dt[i].employee_id,
+                   "employee_name": dt[i].employee_name,
+                   "action":'<button class="btn btn-primary" onclick="edit(' + dt[i].employee_id + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&#160<button class="btn btn-success" onclick="view(' + dt[i].employee_id + ')"><i class="fa fa-eye" aria-hidden="true"></i></button>&#160<button class="btn btn-danger" onclick="deleteEmployee(' + dt[i].employee_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+               });
             }
 
 
