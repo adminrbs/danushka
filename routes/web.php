@@ -221,8 +221,8 @@ Route::delete('/deleteSuplygroup/{id}', [Suply_groupController::class,'deleteSup
 
 
 //nonproprietary
-Route::get('/international_nonproprietary', function () {
-    return view('international_nonproprietary');
+Route::get('/item_altenative_name', function () {
+    return view('item_altenative_name');
 });
 Route::get('/nonproprietaryAllData', [International_nonproprietaryController::class,'nonproprietaryAllData']);
 Route::post('/saveNonproprietary', [International_nonproprietaryController::class,'nonproprietaryGroup']);

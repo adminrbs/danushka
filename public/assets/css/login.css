@@ -90,7 +90,7 @@
     height: 40px;
     background: #007bff;
     border: none;
-    margin-bottom: 10px;
+    margin-top: 70px;
     margin-left: 20px;
     font-size: 18px;
     border-radius: 10px;
@@ -111,7 +111,7 @@
 
 .content span{
     color: #007bff;
-    font-size: 65px
+    font-size: 75px
 }
 
 .form{
@@ -246,7 +246,7 @@
     }
 
     .content h1{
-        font-size: 24px;
+        font-size: 50px;
         margin-top: 5%;
         margin-bottom: 30px;
         text-align: left;
@@ -261,7 +261,8 @@
         width: 120px;
         height: 30px;
         font-size: 18px;
-        margin: 30px 0 0;
+        margin: 30px 20px 0;
+        margin-top: ;
     }
 
     .form{
@@ -289,7 +290,7 @@
 @media (min-width: 800px) and (max-width: 990px) {
 
  .content h1{
-    font-size: 20px;
+    font-size: 50px;
     margin-top: 5%;
     margin-bottom: 30px;
     text-align: left;
@@ -306,6 +307,7 @@
     height: 30px;
     font-size: 18px;
     margin: 20px 20px 0;
+    margin-top: 60px;
 
 }
 .form{
@@ -407,7 +409,7 @@ ul li{
     }
 
     .content h1{
-        font-size: 22px;
+        font-size: 50px;
         margin-top: 5%;
         margin-bottom: 30px;
         text-align: left;
@@ -423,7 +425,8 @@ ul li{
         width: 120px;
         height: 30px;
         font-size: 18px;
-        margin: 30px 0 0;
+        margin: 20px 30px 0;
+        margin-top: 60px;
     }
 
     .form{

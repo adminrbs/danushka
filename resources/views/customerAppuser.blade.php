@@ -102,7 +102,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Customer Name</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Customer App</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -191,7 +191,7 @@
 
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
     <script src="{{ URL::asset('assets/js/customer_app_user.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/form.js') }}"></script>
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 

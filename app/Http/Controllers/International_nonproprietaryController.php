@@ -108,12 +108,12 @@ class International_nonproprietaryController extends Controller
 
             <td> '.'<a href=""  type="button" class="btn btn-primary  nonproprietaryupdate" id="'.$item_altenative->item_altenative_name_id  .'" data-bs-toggle="modal" data-bs-target="#modalNonproprietary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
             <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnNonproprietaryDelete('.$item_altenative->item_altenative_name_id  . ')"> '.' </td>
-            <td> '.'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus('.$item_altenative->item_altenative_name_id  . ')" required '.$status.'></label>'.'</td>
+            <td> '.'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus('.$item_altenative->item_altenative_name_id. ')" required '.$status.'></label>'.'</td>
             </tr>';
         }
         return response($output);
 
-    }     
+    }
       public function close(Request $request){
           return response()->json(['status' => 'success', 'message' => 'Request processed successfully']);
       }

@@ -16,11 +16,8 @@
 
         </div>
         <div class="content">
-            <h1>Web Design & <br><span>Development</span> <br>Course</h1>
-            <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Sunt neque
-                 expedita atque eveniet <br> quis nesciunt. Quos nulla vero consequuntur, fugit nemo ad delectus
-                <br> a quae totam ipsa illum minus laudantium?</p>
-
+            <h1>Welcome <br><span>ERP</span> <br></h1>
+           
                 <button class="cn"><a href="#">JOIN US</a></button>
 
                 <div class="form">
