@@ -128,13 +128,18 @@ class CommonsettingController extends Controller
 
 
 public function twonAlldata(){
-    $data = DB::table('towns')
+    /* $data = DB::table('towns')
             ->join('districts', 'towns.district_id', '=', 'districts.district_id')
             ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name','towns.status_id')
             ->orderBy('districts.district_id', 'DESC')
             ->distinct()
             ->get();
-    return response()->json($data);
+    return response()->json($data); */
+
+
+    $query = "SELECT towns.*,districts.district_name FROM towns INNER JOIN districts ON towns.district_id = districts.district_id ";
+    $data = DB::select($query);
+    return response()->json($data); 
 }
 
 

@@ -12,7 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Exception;
-
+use Illuminate\Support\Facades\Log;
 
 class CategoryLevelController extends Controller
 {
@@ -118,12 +118,16 @@ class CategoryLevelController extends Controller
 
 public function categoryLevel2Data(){
 
-    $data = DB::table('item_category_level_2s')
+/*     $data = DB::table('item_category_level_2s')
             ->join('item_category_level_1s', 'item_category_level_2s.Item_category_level_1_id', '=', 'item_category_level_1s.item_category_level_1_id')
             ->select('item_category_level_2s.Item_category_level_2_id', 'item_category_level_2s.category_level_2', 'item_category_level_1s.category_level_1', 'item_category_level_2s.status_id')
             ->orderBy('item_category_level_1s.item_category_level_1_id', 'DESC')
             ->distinct()
             ->get();
+    return response()->json($data); */
+
+    $query = "SELECT item_category_level_1s.*, item_category_level_2s.category_level_2 FROM item_category_level_1s INNER JOIN item_category_level_2s ON item_category_level_1s.item_category_level_1_id = item_category_level_2s.Item_category_level_1_id";
+    $data = DB::select($query);
     return response()->json($data);
 
 }
