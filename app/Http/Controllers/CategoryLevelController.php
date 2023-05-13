@@ -115,6 +115,10 @@ class CategoryLevelController extends Controller
 
 
 //#################   Level 2 ##########
+public function loadCategory2(){
+    $data = category_level_1::orderBy('item_category_level_1_id','DESC' )->get();
+return response()->json( $data );
+}
 
 public function categoryLevel2Data(){
 
@@ -126,7 +130,7 @@ public function categoryLevel2Data(){
             ->get();
     return response()->json($data); */
 
-    $query = "SELECT item_category_level_1s.*, item_category_level_2s.category_level_2 FROM item_category_level_1s INNER JOIN item_category_level_2s ON item_category_level_1s.item_category_level_1_id = item_category_level_2s.Item_category_level_1_id";
+    $query = "SELECT item_category_level_1s.*, item_category_level_2s.category_level_2,item_category_level_2s.Item_category_level_2_id,item_category_level_2s.status_id  FROM item_category_level_1s INNER JOIN item_category_level_2s ON item_category_level_1s.item_category_level_1_id = item_category_level_2s.Item_category_level_1_id";
     $data = DB::select($query);
     return response()->json($data);
 
@@ -233,6 +237,10 @@ public function deletelevel2($id){
 
 
 //#################   Level 3 ##########
+public function loadCaegory3(){
+    $data = category_level_2::orderBy('Item_category_level_2_id','DESC' )->get();
+return response()->json( $data );
+}
 
 public function categoryLevel3Data(){
 
@@ -553,12 +561,12 @@ public function categoryLevel3search(Request $request){
             <td>'.$level1->employee_status_id.' </td>
             <td>'.$level1->employee_status.' </td>
 
-            <td> '.' <a href=""  type="button" class="btn btn-primary  editDesgination" id="' .$level1->employee_status_id . '" data-bs-toggle="modal" data-bs-target="#modelDesgination"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
+            <td> '.'<a href=""  type="button" class="btn btn-primary  editEmpStatus" id="'  .$level1->employee_status_id . '" data-bs-toggle="modal" data-bs-target="#modelStatus1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
 
 
-            <td> '.' <input type="button"  class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' .$level1->employee_status_id . ')"> '.'</td>
+            <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete('  .$level1->employee_status_id . ')"> '.'</td>
 
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' .$level1->employee_status_id . ')" required '.$status.'></label>  '.'</td>
+            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' .$level1->employee_status_id .  ')" required  '.$status.'></label>  '.'</td>
 
             </tr>';
         }

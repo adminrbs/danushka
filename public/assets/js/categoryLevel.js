@@ -1,6 +1,58 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+    $('#btnCategory1').on('click', function () {
+        $('#btnSaveCategorylevel1').show();
+        $('#btnUpdateCategorylevel1').hide();
+        $('#id').val('');
+        $("#txtCategorylevel1").val('');
+        $("#categoryLevel1Search").val('');
+
+
+    });
+
+    $('#btnCategory2').on('click', function () {
+        $('#btnSaveCategorylevel2').show();
+        $('#btnUpdateCategorylevel2').hide();
+        $('#id').val('');
+        $("#cmbLeve1").val('');
+        $("#txtCategorylevel2").val('');
+
+
+    });
+
+
+    $('#btnCategory3').on('click', function () {
+        $('#btnSaveCategorylevel3').show();
+            $('#btnUpdateCategorylevel3').hide();
+            $('#id').val('');
+            $("#cmbLeve2").val('');
+
+
+
+
+    });
+
+
+    $('#btnDesgination').on('click', function () {
+        $('#btnSaveDesgination').show();
+        $('#btnUpdateDesgination').hide();
+        $('#id').val('');
+        $("#txtDesgination").val('');
+
+
+
+    });
+    $('#btnStatuss').on('click', function () {
+        $('#btnSaveStatus').show();
+            $('#btnUpdateStatus').hide();
+            $("#status1Search").val('');
+            $('#id').val('');
+
+
+
+    });
+
     ///////////////////////////close//////////
 
 // close
@@ -124,15 +176,7 @@ $("#btnClose5").on("click", function(e) {
     $('#categoryLevel1Search').on('keyup',function(){
         $value=$(this).val();
 
-        if($value){
-            $('#tabalCategoryLevel1').hide();
-            $('.catLevel1').show();
 
-        }
-        else{
-            $('#tabalCategoryLevel1').show();
-            $('.catLevel1').hide();
-        }
 
         $.ajax({
 
@@ -142,7 +186,8 @@ $("#btnClose5").on("click", function(e) {
 
             success:function(data){
                 console.log(data);
-                $('#contentl1').html(data);
+                $('#tabalCategoryLevel1').empty();
+                $('#tabalCategoryLevel1').html(data);
             }
         });
         //alert($value);
@@ -153,16 +198,6 @@ $("#btnClose5").on("click", function(e) {
      $('#categoryLevel2Search').on('keyup',function(){
         $value=$(this).val();
 
-        if($value){
-            $('#tabalCategoryLevel2').hide();
-            $('.catLevel2').show();
-
-        }
-        else{
-            $('#tabalCategoryLevel2').show();
-            $('.catLevel2').hide();
-        }
-
         $.ajax({
 
             type:'get',
@@ -171,7 +206,10 @@ $("#btnClose5").on("click", function(e) {
 
             success:function(data){
                 console.log(data);
-                $('#contentl2').html(data);
+                $('#tabalCategoryLevel2').empty();
+                $('#tabalCategoryLevel2').html(data);
+
+
             }
         });
         //alert($value);
@@ -184,15 +222,6 @@ $("#btnClose5").on("click", function(e) {
      $('#categoryLevel3Search').on('keyup',function(){
         $value=$(this).val();
 
-        if($value){
-            $('#tabalCategoryLevel3').hide();
-            $('#contentl3').show();
-
-        }
-        else{
-            $('#tabalCategoryLevel3').show();
-            $('#contentl3').hide();
-        }
 
         $.ajax({
 
@@ -202,7 +231,8 @@ $("#btnClose5").on("click", function(e) {
 
             success:function(data){
                 console.log(data);
-                $('#contentl3').html(data);
+                $('#tabalCategoryLevel3').empty();
+                $('#tabalCategoryLevel3').html(data);
             }
         });
         //alert($value);
@@ -339,15 +369,6 @@ $("#btnClose5").on("click", function(e) {
     $('#desginationSearch').on('keyup',function(){
         $value=$(this).val();
 
-        if($value){
-            $('#tabalDesgination').hide();
-            $('.desgination').show();
-
-        }
-        else{
-            $('#tabalDesgination').show();
-            $('#contentDesgination').hide();
-        }
 
         $.ajax({
 
@@ -357,7 +378,8 @@ $("#btnClose5").on("click", function(e) {
 
             success:function(data){
                 console.log(data);
-                $('#contentDesgination').html(data);
+                $('#tabalDesgination').empty();
+                $('#tabalDesgination').html(data);
             }
         });
         //alert($value);
@@ -397,16 +419,6 @@ $("#btnClose5").on("click", function(e) {
     $('#status1Search').on('keyup',function(){
         $value=$(this).val();
 
-        if($value){
-            $('#tabalStatus1').hide();
-            $('.status1').show();
-
-        }
-        else{
-            $('#tabalStatus1').show();
-            $('#contentStatus').hide();
-        }
-
         $.ajax({
 
             type:'get',
@@ -415,7 +427,8 @@ $("#btnClose5").on("click", function(e) {
 
             success:function(data){
                 console.log(data);
-                $('#contentStatus').html(data);
+                $('#tabalStatus1').empty();
+                $('#tabalStatus1').html(data);
             }
         });
         //alert($value);
@@ -518,6 +531,7 @@ function saveCategoryLevel1(){
         success: function (response) {
             Category1AllData();
             $('#modelcategoryLevel').modal('hide');
+            $("#categoryLevel3Search").val('');
            console.log(response);
 
 
@@ -591,6 +605,7 @@ function updateCategory1(){
 
             Category1AllData();
             $('#modelcategoryLevel').modal('hide');
+            $('#categoryLevel1Search').val('');
 
 
         }, error: function (error) {
@@ -614,6 +629,7 @@ function btnCategorylevel1Delete(id) {
             },
 
             success: function(response) {
+                $('#categoryLevel1Search').val('');
                 Category1AllData();
 
             }
@@ -624,6 +640,24 @@ function btnCategorylevel1Delete(id) {
 
 
 //##############################....Category Level 2.......######################################
+
+function loadcategory2(){
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/loadcategory2",
+
+        success: function (data) {
+            $('#cmbLeve1').empty();
+            $.each(data, function (key, value) {
+                $('#cmbLeve1').append('<option value="'+value.item_category_level_1_id +'">'+value.category_level_1+'</option>');
+            })
+
+
+        }
+
+    });
+}
 
 
 function Category2AllData() {
@@ -715,6 +749,7 @@ function saveCategoryLevel2(){
         success: function (response) {
             Category2AllData();
             $('#modelcategoryLeve2').modal('hide');
+            $("#categoryLevel2Search").val('');
            console.log(response);
 
 
@@ -791,6 +826,7 @@ function updateCategory2(){
         success: function (response) {
 
             Category2AllData();
+            $('#categoryLevel2Search').val('');
             $('#modelcategoryLeve2').modal('hide');
 
 
@@ -816,6 +852,7 @@ function btnCategorylevel2Delete(id) {
 
             success: function(response) {
                 Category2AllData();
+                $('#categoryLevel2Search').val('');
 
             }
         });
@@ -827,6 +864,23 @@ function btnCategorylevel2Delete(id) {
 //############## Level 3   ###############################
 
 
+function loadcategory3(){
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/loadcategory3",
+
+        success: function (data) {
+            $('#cmbLeve2').empty();
+            $.each(data, function (key, value) {
+                $('#cmbLeve2').append('<option value="'+value.Item_category_level_2_id  +'">'+value.category_level_2+'</option>');
+            })
+
+
+        }
+
+    });
+}
 
 
 function Category3AllData() {
@@ -863,6 +917,7 @@ function Category3AllData() {
                 data = data + "</td>"
 
                 data = data + "<td>"
+
 
                 data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + value.Item_category_level_3_id + ')" required '+isChecked+'></label>'
 
@@ -917,6 +972,7 @@ function saveCategoryLevel3(){
         success: function (response) {
             Category3AllData();
             $('#modelcategoryLeve3').modal('hide');
+            $("#txtCategorylevel3").val('');
            console.log(response);
 
 
@@ -992,6 +1048,7 @@ function updateCategory3(){
         success: function (response) {
 
             Category3AllData();
+            $('#categoryLevel3Search').val('');
             $('#modelcategoryLeve3').modal('hide');
 
 
@@ -1095,6 +1152,7 @@ function btnCategorylevel3Delete(id) {
 
             success: function(response) {
                 Category3AllData();
+                $('#categoryLevel3Search').val('');
 
             }
         });
@@ -1189,6 +1247,7 @@ function saveDesgination(){
         success: function (response) {
 
             $('#modelDesgination').modal('hide');
+            $("#desginationSearch").val('');
             allDesgination();
            console.log(response);
 
@@ -1265,6 +1324,7 @@ function updateDesgination(){
 
             $('#modelDesgination').modal('hide');
             allDesgination();
+            $('#desginationSearch').val('');
 
             console.log(data);
         }, error: function (error) {
@@ -1316,6 +1376,7 @@ function btnDesginationDelete(id) {
 
             success: function(response) {
                 allDesgination();
+                $('#desginationSearch').val('');
 
 
             }
@@ -1416,6 +1477,7 @@ function saveStatus(){
         success: function (response) {
 
             $('#modelStatus1').modal('hide');
+            $("#txtStatus").val('');
             allempStatus();
            console.log(response);
 
@@ -1455,7 +1517,7 @@ $(document).on('click', '.editEmpStatus', function (e) {
             $('#btnSaveStatus').hide();
             $('#btnUpdateStatus').show();
 
-            $('#id').val(response.employee_status_id    );
+            $('#id').val(response.employee_status_id );
             $("#txtStatus").val(response.employee_status);
 
         }
@@ -1492,6 +1554,7 @@ function updateStatus(){
 
             $('#modelStatus1').modal('hide');
             allempStatus();
+            $('#status1Search').val('');
 
             console.log(data);
         }, error: function (error) {
@@ -1543,7 +1606,7 @@ function btnEmpStatusDelete(id) {
 
             success: function(response) {
                 allempStatus();
-
+                $('#status1Search').val('');
 
             }
         });

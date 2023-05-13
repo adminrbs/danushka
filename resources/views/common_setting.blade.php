@@ -47,14 +47,14 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button id="btnDistrict" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modelDistric">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="mr-3" style="margin-left: 80%">
 
-                                                <input type="search" name="distsearch" id="distSearch"
-                                                    class="form-control mr-5" placeholder="Search">
+                                                <input type="text" name="distsearch" id="distSearch"
+                                                    class="form-control mr-sm-2" placeholder="Search">
                                             </div>
                                         </div>
                                         <div class="table-responsive">
@@ -81,7 +81,7 @@
                                                     </td>
                                                 </tr> --}}
                                                 </tbody>
-                                                <tbody id="content3" class="districtSer"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -104,13 +104,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modelTown">
+                                            <button id="btnTown" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modelTown" onclick="loadDistrict()">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="townsearch" id="townSearch" class="form-control"
+                                                <input type="text" name="townsearch" id="townSearch" class="form-control"
                                                     placeholder="Search">
                                             </div>
 
@@ -140,7 +140,7 @@
                                                     </td>
                                                 </tr> --}}
                                                 </tbody>
-                                                <tbody id="content2" class="townSer"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -162,13 +162,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button id="btnGroup" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modalGroup">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="groupsearch" id="groupSearch"
+                                                <input type="text" name="groupsearch" id="groupSearch"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -197,7 +197,7 @@
                                                     </td>
                                                 </tr> --}}
                                                 </tbody>
-                                                <tbody id="content1" class="groupSer"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -225,13 +225,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button id="btnGrade" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modalGrade">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="search" id="gradeSearch"
+                                                <input type="text" name="search" id="gradeSearch"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -264,7 +264,7 @@
                                                     </td>
                                                 </tr> --}}
                                                 </tbody>
-                                                <tbody id="content" class="searhdata"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -294,13 +294,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button id="btnCategory1" type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modelcategoryLevel">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="search" id="categoryLevel1Search"
+                                                <input type="text" name="search" id="categoryLevel1Search"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -326,7 +326,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="contentl1" class="catLevel1"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -355,13 +355,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modelcategoryLeve2">
+                                            <button id="btnCategory2"  type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modelcategoryLeve2"  onclick="loadcategory2()">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="search" id="categoryLevel2Search"
+                                                <input type="text" name="search" id="categoryLevel2Search"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -388,7 +388,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="contentl2" class="catLevel2"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -419,13 +419,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modelcategoryLeve3">
+                                            <button id="btnCategory3"  type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modelcategoryLeve3" onclick="loadcategory3()">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="search" id="categoryLevel3Search"
+                                                <input type="text" name="search" id="categoryLevel3Search"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -452,7 +452,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="contentl3" class="catLevel3"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -482,13 +482,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button id="btnDesgination"  type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modelDesgination">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="search" id="desginationSearch"
+                                                <input type="text" name="search" id="desginationSearch"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -514,7 +514,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="contentDesgination" class="desgination"></tbody>
+
                                             </table>
                                         </div>
                                     </div>
@@ -545,13 +545,13 @@
                                     <div class="card-body">
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            <button id="btnStatuss"  type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modelStatus1">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                             <div class="search" style="margin-left: 80%">
 
-                                                <input type="search" name="search" id="status1Search"
+                                                <input type="text" name="search" id="status1Search"
                                                     class="form-control" placeholder="Search">
                                             </div>
 
@@ -578,7 +578,7 @@
 
 
                                                 </tbody>
-                                                <tbody id="contentStatus" class="status1"></tbody>
+
                                             </table>
                                         </div>
                                     </div>

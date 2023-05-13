@@ -29,13 +29,13 @@
                 <div class="card-body">
                     <div>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button id="btnSuplyGroup" type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modalSuplyGroup">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
                         <div class="search" style="margin-left: 80%">
 
-                            <input type="search" name="search" id="suplyGroupSearch"
+                            <input type="text" name="search" id="suplyGroupSearch"
                                 class="form-control" placeholder="Search">
                         </div>
 
@@ -61,7 +61,7 @@
 
 
                             </tbody>
-                            <tbody id="contentSuply" class="suplyGr"></tbody>
+
                         </table>
                     </div>
                 </div>

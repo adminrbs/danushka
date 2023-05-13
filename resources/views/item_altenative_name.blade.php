@@ -29,13 +29,13 @@
                 <div class="card-body">
                     <div>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button id="btnitemaltenativ" type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modalNonproprietary">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
                         <div class="search" style="margin-left: 80%">
 
-                            <input type="search" name="search" id="nonproprietarySearch"
+                            <input type="text" name="search" id="nonproprietarySearch"
                                 class="form-control" placeholder="search">
                         </div>
 
@@ -61,7 +61,7 @@
 
 
                             </tbody>
-                            <tbody id="contentNonproprietary" class="nonproprietary"></tbody>
+
                         </table>
                     </div>
                 </div>
