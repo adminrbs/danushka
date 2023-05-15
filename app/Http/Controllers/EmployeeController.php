@@ -105,9 +105,7 @@ class EmployeeController extends Controller
             'status_id'=>$request->cmbStatus,
             'note' => $request->txtNote,
 
-            'name' => $request->txtName,
-            'titel'=>$request->titel,
-            'institute'=>$request->institute,
+           
         ]);
         return response()->json($employee);
 

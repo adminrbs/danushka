@@ -264,7 +264,7 @@
 
                                                     <div>
                                                         <div class="form-outline mb-4">
-                                                            <textarea class="form-control" id="txtNote" rows="4"></textarea>
+                                                            <textarea class="form-control validate" id="txtNote" rows="4" required></textarea>
 
                                                           </div>
                                                     </div>
