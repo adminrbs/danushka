@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('#btnCustomApp').on('click', function () {
         $('#btncustomeruserApp').show();
         $('#btnUpdatecustomeruserApp').hide();
+        $('#passName').html("Password<span class='text-danger'>*</span>");
         $('#id').val('');
         $("#cmbcustomerApp").val('');
         $("#txtEmailcustomer").val('');
@@ -167,11 +168,12 @@ function saveCustomeerUserapp() {
     formData.append('txtMobilphonecustomer', $('#txtMobilphonecustomer').val());
     formData.append('txtPasswordcustomer', $('#txtPasswordcustomer').val());
 
+
+
     if (formData.txtEmailcustomer == '' && formData.txtMobilphonecustomer == '' && formData.txtPasswordcustomer == '') {
         //alert('Please enter item category level 1');
         return false;
     }
-
 
     console.log(formData);
 
@@ -235,10 +237,11 @@ $(document).on('click', '.customerEdit', function (e) {
 
 
             $('#id').val(response.customer_app_user_id);
-            $("#cmbcustomerApp").val(response.customer_id);
+            $("#cmbcustomerApp").val(response.customer_id).trigger('change');
             $("#txtEmailcustomer").val(response.email);
             $("#txtMobilphonecustomer").val(response.mobile);
-            $("#txtPasswordcustomer").val(CryptoJS.SHA256(response.password));
+            $("#txtPasswordcustomer").val("");
+            $('#passName').html("Update Password");
 
 
 
@@ -258,6 +261,7 @@ function updateCustomeerUserapp() {
     formData.append('txtMobilphonecustomer', $('#txtMobilphonecustomer').val());
     formData.append('txtPasswordcustomer', $('#txtPasswordcustomer').val());
 
+
     console.log(formData);
     $.ajax({
         type: 'POST',
@@ -276,6 +280,7 @@ function updateCustomeerUserapp() {
 
         },
         success: function (response) {
+            console.log(response);
 
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');

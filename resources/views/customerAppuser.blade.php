@@ -134,15 +134,15 @@
                                     </div>
                                     <label for="Email">Email<span class="text-danger">*</span></label>
                                     <input type="text" id="txtEmailcustomer" class="form-control validate" required>
-                                    <span class="text-danger font-weight-bold CustomerApp"></span>
+                                    <span class="text-danger font-weight-bold "></span>
 
                                     <label for="mobile">Mobile Phone<span class="text-danger">*</span></label>
                                     <input type="text" id="txtMobilphonecustomer" class="form-control validate" required>
-                                    <span class="text-danger font-weight-bold CustomerApp"></span>
+                                    <span class="text-danger font-weight-bold "></span>
 
-                                    <label for="password">Password<span class="text-danger">*</span></label>
+                                    <label id="passName" for="password">Password<span class="text-danger">*</span></label>
                                     <input type="password" id="txtPasswordcustomer" class="form-control validate" required>
-                                    <span class="text-danger font-weight-bold CustomerApp"></span>
+                                    <span class="text-danger font-weight-bold "></span>
                                 </div>
                             </div>
 
@@ -179,6 +179,7 @@
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/jquery/jquery.min.js') }}"></script>
     <!-- Theme JS files -->
+
 
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>

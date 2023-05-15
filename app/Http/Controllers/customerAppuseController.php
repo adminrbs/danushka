@@ -66,8 +66,6 @@ class customerAppuseController extends Controller
 public function customerEdit($id){
     $data = customer_app_user::find($id);
     return response()->json($data);
-
-    
 }
 
 public function customerAppUpdate(Request $request,$id){
@@ -76,7 +74,13 @@ public function customerAppUpdate(Request $request,$id){
     $customer->customer_id = $request->input('cmbcustomerApp');
     $customer->email = $request->input('txtEmailcustomer');
     $customer->mobile = $request->input('txtMobilphonecustomer');
-    $customer->password = Hash::make($request->input('txtPasswordcustomer'));
+
+    if($request->input('txtPasswordcustomer')){
+        $customer->password = Hash::make($request->input('txtPasswordcustomer'));
+
+
+    }
+
 
     $customer->update();
 
