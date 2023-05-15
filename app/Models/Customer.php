@@ -13,7 +13,7 @@ class Customer extends Model
 {
     use HasFactory, LogsActivity;
     protected $fillable = [
-        
+
 
     ];
     protected $primarykey = 'customer_id';
@@ -31,4 +31,5 @@ class Customer extends Model
             ->logOnly(['*']);
         // Chain fluent methods for configuration options
     }
+  
 }

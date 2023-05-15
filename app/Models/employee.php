@@ -36,6 +36,7 @@ class employee extends Model
         'date_of_joined',
         'date_of_resign',
         'status_id',
+        'note',
     ];
 
 }

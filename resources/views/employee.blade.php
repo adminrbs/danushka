@@ -39,6 +39,9 @@
                             <li class="nav-item rbs-nav-item">
                                 <a href="#settings" class="nav-link" aria-selected="false">Settings</a>
                             </li>
+                            <li class="nav-item rbs-nav-item">
+                                <a href="#note" class="nav-link" aria-selected="false">Note</a>
+                            </li>
 
 
                         </ul>
@@ -229,6 +232,41 @@
                                                             </optgroup>
 
                                                         </select>
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                 <!-- End of Setting tab -->
+
+                                 <div class="tab-pane fade" id="note">
+                                    <div class="row">
+
+                                        <div class="row">
+                                            <h1>Note</h1>
+
+                                            <div class="col-md-6 mb-4">
+                                                <div class="mb-1">
+
+                                                    <label class="col-form-label mb-0"><i
+                                                            class="fa fa-address-card-o fa-lg text-info"
+                                                            aria-hidden="true">&#160</i>Note<span
+                                                            class="text-danger">*</span></label>
+
+
+                                                    <div>
+                                                        <div class="form-outline mb-4">
+                                                            <textarea class="form-control" id="txtNote" rows="4"></textarea>
+
+                                                          </div>
                                                     </div>
 
 

@@ -37,6 +37,7 @@ class EmployeeController extends Controller
             $employee->date_of_joined = $request->get('txtDateofjoined');
             $employee->date_of_resign = $request->get('txtDateofresign');
             $employee->status_id = $request->get('cmbStatus');
+            $employee->note = $request->get('txtNote');
 
 
 
@@ -102,6 +103,7 @@ class EmployeeController extends Controller
             'date_of_joined' => $request->txtDateofjoined,
             'date_of_resign'=>$request->txtDateofresign,
             'status_id'=>$request->cmbStatus,
+            'note' => $request->txtNote,
 
             'name' => $request->txtName,
             'titel'=>$request->titel,

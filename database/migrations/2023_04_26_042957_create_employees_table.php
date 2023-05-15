@@ -27,6 +27,7 @@ return new class extends Migration
             $table->date('date_of_joined');
             $table->date('date_of_resign');
             $table->integer('status_id');
+            $table->tinyText('note');
             $table->timestamps();
 
 

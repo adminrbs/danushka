@@ -1,8 +1,23 @@
 var formData = new FormData();
 $(document).ready(function () {
+    $('#btnCustomApp').on('click', function () {
+        $('#btncustomeruserApp').show();
+        $('#btnUpdatecustomeruserApp').hide();
+        $('#id').val('');
+        $("#cmbcustomerApp").val('');
+        $("#txtEmailcustomer").val('');
+        $("#txtMobilphonecustomer").val('');
+        $("#txtPasswordcustomer").val('');
 
+
+
+
+    });
     // Default initialization
-    $('.select2').select2();
+    //$('.select').select2();
+    $(".select").select2({
+        dropdownParent: $("#modalCustomerApp")
+    });
     // End of Default initialization
     ///////////////////////////close//////////
 
@@ -64,16 +79,6 @@ $(document).ready(function () {
     $('#customerAppSearch').on('keyup',function(){
         $value=$(this).val();
 
-        if($value){
-            $('#tableCustomerApp').hide();
-            $('#contentCustomerApp').show();
-
-        }
-        else{
-            $('#tableCustomerApp').show();
-            $('#contentCustomerApp').hide();
-        }
-
         $.ajax({
 
             type:'get',
@@ -82,7 +87,8 @@ $(document).ready(function () {
 
             success:function(data){
                 console.log(data);
-                $('#contentCustomerApp').html(data);
+                $('#tableCustomerApp').empty();
+                $('#tableCustomerApp').html(data);
             }
         });
         //alert($value);
@@ -117,7 +123,8 @@ function customeerUserappAllData() {
                 data = data + "<td>" + value.customer_name + "</td>"
                 data = data + "<td>" + value.email + "</td>"
                 data = data + "<td>" + value.mobile + "</td>"
-                data = data + "<td>" + value.password + "</td>"
+
+
 
                 data = data + "<td>"
                 data = data + '<a href=""  type="button" class="btn btn-primary  customerEdit" id="' + value.customer_app_user_id + '" data-bs-toggle="modal" data-bs-target="#modalCustomerApp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
@@ -187,8 +194,9 @@ function saveCustomeerUserapp() {
         success: function (response) {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
+            $('#customerAppSearch').val('');
             console.log(response);
-            resetForm();
+
 
         },
         error: function (error) {
@@ -230,7 +238,7 @@ $(document).on('click', '.customerEdit', function (e) {
             $("#cmbcustomerApp").val(response.customer_id);
             $("#txtEmailcustomer").val(response.email);
             $("#txtMobilphonecustomer").val(response.mobile);
-            $("#txtPasswordcustomer").val(response.password);
+            $("#txtPasswordcustomer").val(CryptoJS.SHA256(response.password));
 
 
 
@@ -271,6 +279,7 @@ function updateCustomeerUserapp() {
 
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
+            $('#customerAppSearch').val('');
 
 
 
@@ -297,6 +306,8 @@ function btnCustommerAppDelete(id) {
 
             success: function(response) {
                 customeerUserappAllData();
+                $('#customerAppSearch').val('');
+
 
             }
         });
@@ -328,7 +339,7 @@ function cbxCustomerappStatus(customer_app_user_id) {
 
 
 
-
+/*
 function customeername() {
 
     $.ajax({
@@ -346,7 +357,7 @@ function customeername() {
                 }
 
 
-                data = data + "<option value="+ value.customer_id  + ">" + value.customer_name + "</option>"
+                data = data + "<option id='customeerUserappoption' value="+ value.customer_id  + ">" + value.customer_name + "</option>"
 
 
             })
@@ -358,4 +369,4 @@ function customeername() {
     });
 
 }
-customeername();
+customeername();*/

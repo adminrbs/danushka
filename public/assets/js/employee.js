@@ -71,6 +71,7 @@ function saveEmployee() {
     formData.append('txtDateofjoined', $('#txtDateofjoined').val());
     formData.append('txtDateofresign', $('#txtDateofresign').val());
     formData.append('cmbStatus', $('#cmbStatus').val());
+    formData.append('txtNote', $('#txtNote').val());
 
     console.log(formData);
 
@@ -143,6 +144,9 @@ function getEmployeedata(id) {
             $('#txtDateofjoined').val(employee.date_of_joined);
             $('#txtDateofresign').val(employee.date_of_resign);
             $('#cmbStatus').val(employee.status_id);
+            $('#txtNote').val(employee.note);
+
+
 
         },
         error: function (error) {
@@ -178,6 +182,7 @@ function getEmployeeupdate() {
     formData.append('txtDateofjoined', $('#txtDateofjoined').val());
     formData.append('txtDateofresign', $('#txtDateofresign').val());
     formData.append('cmbStatus', $('#cmbStatus').val());
+    formData.append('txtNote', $('#txtNote').val());
 
     console.log(formData);
     $.ajax({
@@ -239,6 +244,7 @@ function getEmployeeview(id){
             $('#txtDateofjoined').val(employee.date_of_joined);
             $('#txtDateofresign').val(employee.date_of_resign);
             $('#cmbStatus').val(employee.status_id);
+            $('#txtNote').val(employee.note);
 
         },
         error: function (error) {

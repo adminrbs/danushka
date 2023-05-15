@@ -66,6 +66,8 @@ class customerAppuseController extends Controller
 public function customerEdit($id){
     $data = customer_app_user::find($id);
     return response()->json($data);
+
+    
 }
 
 public function customerAppUpdate(Request $request,$id){
@@ -102,10 +104,16 @@ public function customerAppsearch(Request $request){
 
         $output="";
 
-        $customerApp = customer_app_user::where('customer_app_user_id','Like','%'.$request->search.'%')
-                                ->orWhere('email','Like','%'.$request->search.'%')
-                                ->orWhere('mobile','Like','%'.$request->search.'%')
-                                ->get();
+        $customerApp = DB::table('customer_app_users')
+        ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
+        ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password', 'customer_app_users.status_id')
+        ->where('customer_app_users.customer_app_user_id', 'LIKE', '%'.$request->search.'%')
+        ->orWhere('customer_app_users.email', 'LIKE', '%'.$request->search.'%')
+        ->orWhere('customer_app_users.mobile', 'LIKE', '%'.$request->search.'%')
+        ->orWhere('customers.customer_name', 'LIKE', '%'.$request->search.'%')
+        ->orderBy('customers.customer_id', 'DESC')
+        ->distinct()
+        ->get();
 
 
         foreach($customerApp as $customerApp){
@@ -121,7 +129,6 @@ public function customerAppsearch(Request $request){
                 <td>'.$category2->customer_name.' </td>
                 <td>' .$customerApp->email.'</td>
                 <td>' .$customerApp->mobile.'</td>
-                <td>' .$customerApp->password.'</td>
                 <td><a href=""  type="button" class="btn btn-primary  customerEdit" id="'.$customerApp->customer_app_user_id.'" data-bs-toggle="modal" data-bs-target="#modalCustomerApp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> </td>
                 <td><input type="button"  class="btn btn-danger" name="switch_single" id="btncustomerApp" value="Delete" onclick="btnCustommerAppDelete(' .$customerApp->customer_app_user_id. ')"> </td>
                 <td> <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' .$customerApp->customer_app_user_id.  ')" required '.$status.'></label>  </td>

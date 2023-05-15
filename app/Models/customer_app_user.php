@@ -19,4 +19,8 @@ class customer_app_user extends Model
         'password',
         'status_id',
     ];
+
+
+
+   
 }

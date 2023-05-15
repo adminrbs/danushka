@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div>
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCustomerApp">
+                    <button id="btnCustomApp" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCustomerApp">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
                     <div class="search" style="margin-left: 80%">
@@ -66,7 +66,7 @@
                                 <th>Customer Name</th>
                                 <th>Email</th>
                                 <th>Mobile Phone</th>
-                                <th>Password</th>
+
 
                                 <th class="edit edit_bank">Edit</th>
                                 <th class="edit edit_bank btn-danger">Delete</th>
@@ -77,7 +77,7 @@
 
 
                         </tbody>
-                        <tbody id="contentCustomerApp" class="customerApp"></tbody>
+
                     </table>
                 </div>
             </div>
@@ -117,10 +117,14 @@
                                             <label class="col-form-label col-md-6 mb-0">Customer Name <span
                                                     class="text-danger">*</span></label>
                                             <div class="col-md-12">
-                                                <select id="cmbcustomerApp" class="form-control  form-control-sm select2"
-                                                    data-placeholder="Select Here...." required>
 
-                                                    <option value="" disabled selected></option>
+                                                    <select class="form-select select" aria-label="Default select example" id="cmbcustomerApp" >
+
+                                                        @foreach ($data as $data)
+
+                                                        <option value="{{ $data->customer_id  }}">
+                                                            {{ $data->customer_name }}</option>
+                                                    @endforeach
 
 
 
@@ -175,6 +179,7 @@
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/jquery/jquery.min.js') }}"></script>
     <!-- Theme JS files -->
+
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
