@@ -10,7 +10,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
                                 <label for="fname">Item Category Level 1 <span class="text-danger">*</span></label>
@@ -52,7 +52,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
                                 <label for="fname">Item Category level 1<span class="text-danger">*</span></label>
@@ -105,7 +105,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
                                 <label for="fname">Item Category level 2<span class="text-danger">*</span></label>
@@ -161,7 +161,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
 
@@ -208,7 +208,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
 
@@ -235,4 +235,5 @@
     </div>
 </div>
 <!-- Modal -->
-<script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+
+

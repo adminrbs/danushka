@@ -93,7 +93,7 @@
 
 
               <div class="modal-body p-4 bg-light">
-                  <form id="" class="form-validate-jquery">
+                  <form id="" class="needs-validation" novalidate>
                   <div class="row">
                       <div class="col-lg">
                           <label for="fname">Supply group<span
@@ -140,7 +140,7 @@
 
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
   <script src="{{ URL::asset('assets/js/suply_group.js') }}"></script>
-
+  <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 

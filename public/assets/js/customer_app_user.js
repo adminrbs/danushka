@@ -118,6 +118,7 @@ function customeerUserappAllData() {
                     isChecked = "checked";
                 }
 
+
                 data = data + "<tr>"
 
                 data = data + "<td>" + value.customer_app_user_id + "</td>"
@@ -150,6 +151,8 @@ function customeerUserappAllData() {
             })
 
             $('#tableCustomerApp').html(data);
+
+          
 
         }
 

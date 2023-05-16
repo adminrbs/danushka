@@ -13,6 +13,7 @@
 @section('page-header')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
 @endsection
 
 @section('content')
@@ -47,7 +48,7 @@
                         </ul>
                         <!--enf of tabs -->
                         <!-- staring of form -->
-                        <form id="frmEmployee" class="form-validate-jquery">
+                        <form id="frmEmployee" class="needs-validation" novalidate>
 
                             <div class="tab-content">
                                 <!-- General tab -->
@@ -78,7 +79,7 @@
                                                             aria-hidden="true">&#160</i>Office mobile No <span
                                                             class="text-danger">*</span></label>
 
-                                                    <div>
+                                                    <div class="mt-1">
                                                         <input class="form-control form-control-sm validate" type="text"
                                                             id="txtOfficemobileno" name="numbers" required maxlength="15">
 
@@ -96,15 +97,15 @@
                                                             id="txtOfficeemail" name="txtOfficeemail" required>
 
                                                     </div>
-                                                    <label class="col-form-label mb-0"><i
+                                                    <label class="col-form-label mb-0 mt-1"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
                                                             aria-hidden="true">&#160</i>Persional mobile No <span
                                                             class="text-danger">*</span></label>
                                                     <div>
-                                                        <input class="form-control form-control-sm validate" type="text"
+                                                        <input class="form-control form-control-sm validate  mt-1" type="text"
                                                             id="txtPersionalmobile" name="numbers" required maxlength="15">
 
-                                                    </div>
+                                                    </div >
                                                 </div>
 
                                                 <div class="mb-1">
@@ -142,13 +143,13 @@
                                                             aria-hidden="true">&#160</i>Address<span
                                                             class="text-danger">*</span></label>
                                                     <div>
-                                                        <textarea class="form-control validate" id="txtAddress" rows="3" name="address" required></textarea>
+                                                        <input type="text" class="form-control validate" id="txtAddress" name="address" required>
                                                     </div>
 
                                                 </div>
                                                 <div class="mb-1">
 
-                                                    <label class="col-form-label mb-0 mt-1"><i
+                                                    <label class="col-form-label mb-0 "><i
                                                             class="fa fa-address-card-o fa-lg text-info"
                                                             aria-hidden="true">&#160</i>Designation <span
                                                             class="text-danger">*</span></label>
@@ -341,6 +342,7 @@
 @endsection
 @section('scripts')
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/customer.js') }}"></script>
     <script src="{{ URL::asset('assets/js/employee.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
+
 @endsection

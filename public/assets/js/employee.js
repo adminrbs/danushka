@@ -2,6 +2,11 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+    $('#tabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
     $('#btnSave').on('click',function (e) {
         e.preventDefault();
 

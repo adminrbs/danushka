@@ -10,7 +10,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
                             <label for="fname">District<span
@@ -52,7 +52,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
                             <label for="fname">District</label>
@@ -105,7 +105,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
                             <label for="fname">Group<span
@@ -146,7 +146,7 @@
 
 
                 <div class="modal-body p-4 bg-light">
-                    <form id="" class="form-validate-jquery">
+                    <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
                             <label for="fname">Grade <span

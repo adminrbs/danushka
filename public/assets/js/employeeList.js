@@ -68,7 +68,7 @@ const DatatableFixedColumns = function () {
                 { "data": "employee_name" },
                 { "data": "action" },
 
-            ],
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
         });
 
 

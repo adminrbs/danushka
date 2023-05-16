@@ -82,60 +82,52 @@ $(document).ready(function () {
 
 
 //...Suply Group Data
-
 function suplyGroupAllData() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
-        url:"/suplyGroupAllData",
-
+        url: "/suplyGroupAllData",
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1; // Index to track the row number
 
             $.each(data, function (key, value) {
-
                 var isChecked = "";
-                if(value.status_id){
+                if (value.status_id) {
                     isChecked = "checked";
                 }
 
-                data = data + "<tr>"
+                // Determine the CSS class for the row based on the index
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                data = data + "<td>" + value.supply_group_id   + "</td>"
-                data = data + "<td>" + value.supply_group + "</td>"
+                htmlData += '<tr class="' + rowClass + '">';
 
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  suplyGroup" id="' + value.supply_group_id + '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' + value.supply_group_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus(' + value.supply_group_id + ')" required '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
+                htmlData += '<td>' + value.supply_group_id + '</td>';
+                htmlData += '<td>' + value.supply_group + '</td>';
 
 
-            })
+                htmlData += '<td>';
+                htmlData += '<a href=""  type="button" class="btn btn-primary  suplyGroup" id="' + value.supply_group_id + '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += '</td>';
 
-            $('#tableSuplyGroup').html(data);
+                htmlData += '<td>';
+                htmlData += '<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' + value.supply_group_id + ')">';
+                htmlData += '</td>';
 
+                htmlData += '<td>';
+                htmlData += '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus(' + value.supply_group_id + ')" required ' + isChecked + '></label>';
+                htmlData += '</td>';
+                rowIndex++;
+                htmlData += '</tr>';
+
+            });
+
+            $('#tableSuplyGroup').html(htmlData);
         }
-
     });
-
 }
+
 suplyGroupAllData();
-
-
 
 
 
