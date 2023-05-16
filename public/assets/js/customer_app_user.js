@@ -103,62 +103,30 @@ $(document).ready(function () {
 
 
 function customeerUserappAllData() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
         url: "/customeruserApp",
-
         success: function (data) {
-
+            var html = ""; // Create an empty string to store the table HTML
             $.each(data, function (key, value) {
-
-                var isChecked = "";
-                if (value.status_id) {
-                    isChecked = "checked";
-                }
-
-
-                data = data + "<tr>"
-
-                data = data + "<td>" + value.customer_app_user_id + "</td>"
-                data = data + "<td>" + value.customer_name + "</td>"
-                data = data + "<td>" + value.email + "</td>"
-                data = data + "<td>" + value.mobile + "</td>"
-
-
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  customerEdit" id="' + value.customer_app_user_id + '" data-bs-toggle="modal" data-bs-target="#modalCustomerApp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btncustomerApp" value="Delete" onclick="btnCustommerAppDelete(' + value.customer_app_user_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' + value.customer_app_user_id + ')" required ' + isChecked + '></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tableCustomerApp').html(data);
-
-          
-
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = key % 2 === 0 ? "even-row" : "odd-row"; // Add rowClass to alternate row colors
+                html += '<tr class="' + rowClass + '">'; // Add rowClass to the table row
+                html += "<td>" + value.customer_app_user_id + "</td>";
+                html += "<td>" + value.customer_name + "</td>";
+                html += "<td>" + value.email + "</td>";
+                html += "<td>" + value.mobile + "</td>";
+                html += '<td><a href="" type="button" class="btn btn-primary customerEdit" id="' + value.customer_app_user_id + '" data-bs-toggle="modal" data-bs-target="#modalCustomerApp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
+                html += '<td><input type="button" class="btn btn-danger" name="switch_single" id="btncustomerApp" value="Delete" onclick="btnCustommerAppDelete(' + value.customer_app_user_id + ')"></td>';
+                html += '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' + value.customer_app_user_id + ')" required ' + isChecked + '></label></td>';
+                html += "</tr>";
+            });
+            $('#tableCustomerApp').html(html);
         }
-
     });
-
 }
+
 customeerUserappAllData();
 
 

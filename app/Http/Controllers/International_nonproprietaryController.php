@@ -15,8 +15,18 @@ class International_nonproprietaryController extends Controller
 
      public function nonproprietaryAllData(){
 
-        $data = item_altenative_name::all();
-        return response()->json( $data );
+        try {
+            $customerDteails = item_altenative_name::all();
+            if ($customerDteails) {
+                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+            } else {
+                return response()->json((['error' => 'Data is not loaded']));
+            }
+        } catch (Exception $ex) {
+            if ($ex instanceof ValidationException) {
+                return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+            }
+        }
     }
 
     //........Save......
@@ -82,40 +92,6 @@ class International_nonproprietaryController extends Controller
         return response()->json(' status updated successfully');
     }
 
-    // .......Search........
-
-
-    public function nonproprietarysearch(Request $request){
-
-        $output="";
-        $item_altenative = item_altenative_name::where('item_altenative_name_id','Like','%'.$request->search.'%')
-                                ->orWhere('item_altenative_name','Like','%'.$request->search.'%')
-                                ->get();
-
-
-        foreach($item_altenative as $item_altenative){
-
-            $status = "";
-            if($item_altenative->status_id  == 1){
-                $status = "checked";
-            }
-
-            $output.=
-
-            '<tr>
-            <td>'.$item_altenative->item_altenative_name_id  .' </td>
-            <td>'.$item_altenative->item_altenative_name.' </td>
-
-            <td> '.'<a href=""  type="button" class="btn btn-primary  nonproprietaryupdate" id="'.$item_altenative->item_altenative_name_id  .'" data-bs-toggle="modal" data-bs-target="#modalNonproprietary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
-            <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnNonproprietaryDelete('.$item_altenative->item_altenative_name_id  . ')"> '.' </td>
-            <td> '.'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus('.$item_altenative->item_altenative_name_id. ')" required '.$status.'></label>'.'</td>
-            </tr>';
-        }
-        return response($output);
-
-    }
-      public function close(Request $request){
-          return response()->json(['status' => 'success', 'message' => 'Request processed successfully']);
-      }
+  
 
 }

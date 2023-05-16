@@ -93,7 +93,7 @@
 
 
               <div class="modal-body p-4 bg-light">
-                  <form id="" class="needs-validation" novalidate>
+                  <form id="" class="form-validate-jquery">
                   <div class="row">
                       <div class="col-lg">
                           <label for="fname">Supply group<span

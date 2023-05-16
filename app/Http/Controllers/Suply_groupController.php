@@ -17,6 +17,7 @@ class Suply_groupController extends Controller
 
         $data = supply_group::all();
         return response()->json( $data );
+
     }
 
     //........Save......
@@ -85,35 +86,44 @@ class Suply_groupController extends Controller
     // Search
 
 
-    public function suplyGroupsearch(Request $request){
+    public function suplyGroupsearch(Request $request)
+    {
+        $output = "";
+        $rowIndex = 0; // Initialize rowIndex to start from 0
 
-        $output="";
-        $supplygroup = supply_group::where('supply_group_id','Like','%'.$request->search.'%')
-                                ->orWhere('supply_group','Like','%'.$request->search.'%')
-                                ->get();
+        $supplygroup = supply_group::where('supply_group_id', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('supply_group', 'LIKE', '%' . $request->search . '%')
+            ->get();
 
+        foreach ($supplygroup as $supplygroup) {
+            $status = $supplygroup->status_id == 1 ? 'checked' : '';
+            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
-        foreach($supplygroup as $supplygroup){
+            $output .= '
+                <tr class="' . $rowClass . '">
+                    <td>' . $supplygroup->supply_group_id . '</td>
+                    <td>' . $supplygroup->supply_group . '</td>
+                    <td>
+                        <a href="" type="button" class="btn btn-primary suplyGroup" id="' . $supplygroup->supply_group_id . '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' . $supplygroup->supply_group_id . ')">
+                    </td>
+                    <td>
+                        <label class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus(' . $supplygroup->supply_group_id . ')" required ' . $status . '>
+                        </label>
+                    </td>
+                </tr>';
 
-            $status = "";
-            if($supplygroup->status_id == 1){
-                $status = "checked";
-            }
-
-            $output.=
-
-            '<tr>
-            <td>'.$supplygroup->supply_group_id  .' </td>
-            <td>'.$supplygroup->supply_group.' </td>
-
-            <td> '.'<a href=""  type="button" class="btn btn-primary  suplyGroup" id="'.$supplygroup->supply_group_id.  '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-            <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' .$supplygroup->supply_group_id. ')"> '.' </td>
-            <td> '.'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus('  .$supplygroup->supply_group_id.  ')" required '.$status.'> '.'</td>
-            </tr>';
+            $rowIndex++; // Increment rowIndex for each iteration
         }
-        return response($output);
 
+        return response($output);
     }
+
 
     public function close(Request $request){
         return response()->json(['status' => 'success', 'message' => 'Request processed successfully']);

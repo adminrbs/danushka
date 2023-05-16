@@ -445,57 +445,40 @@ $("#btnClose5").on("click", function(e) {
 });
 
 //...Category load Data
-
 function Category1AllData() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
-        url:"/categoryLevelData",
-
+        url: "/categoryLevelData",
         success: function (data) {
-
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 0;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if(value.status_id){
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.item_category_level_1_id + "</td>";
+                htmlData += "<td>" + value.category_level_1 + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="" type="button" class="btn btn-primary categorylevel1" id="' + value.item_category_level_1_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + value.item_category_level_1_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' + value.item_category_level_1_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.item_category_level_1_id  + "</td>"
-                data = data + "<td>" + value.category_level_1 + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel1" id="' + value.item_category_level_1_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + value.item_category_level_1_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' + value.item_category_level_1_id + ')" required '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tabalCategoryLevel1').html(data);
-
+            $('#tabalCategoryLevel1').html(htmlData);
         }
-
     });
-
 }
+
 Category1AllData();
 
 
@@ -659,58 +642,41 @@ function loadcategory2(){
     });
 }
 
-
 function Category2AllData() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
-        url:"/categoryLevel2Data",
-
+        url: "/categoryLevel2Data",
         success: function (data) {
-
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if(value.status_id){
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.Item_category_level_2_id + "</td>";
+                htmlData += "<td>" + value.category_level_1 + "</td>";
+                htmlData += "<td>" + value.category_level_2 + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="" type="button" class="btn btn-primary categorylevel2" id="' + value.Item_category_level_2_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + value.Item_category_level_2_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + value.Item_category_level_2_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.Item_category_level_2_id   + "</td>"
-                data = data + "<td>" + value.category_level_1 + "</td>"
-                data = data + "<td>" + value.category_level_2 + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel2" id="' + value.Item_category_level_2_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + value.Item_category_level_2_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + value.Item_category_level_2_id + ')" required '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tabalCategoryLevel2').html(data);
-
+            $('#tabalCategoryLevel2').html(htmlData);
         }
-
     });
-
 }
+
 Category2AllData();
 
 
@@ -881,62 +847,41 @@ function loadcategory3(){
 
     });
 }
-
-
 function Category3AllData() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
-        url:"/categoryLevel3Data",
-
+        url: "/categoryLevel3Data",
         success: function (data) {
-
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if(value.status_id){
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.Item_category_level_3_id + "</td>";
+                htmlData += "<td>" + value.category_level_2 + "</td>";
+                htmlData += "<td>" + value.category_level_3 + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="" type="button" class="btn btn-primary categorylevel3" id="' + value.Item_category_level_3_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + value.Item_category_level_3_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + value.Item_category_level_3_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.Item_category_level_3_id    + "</td>"
-                data = data + "<td>" + value.category_level_2 + "</td>"
-                data = data + "<td>" + value.category_level_3 + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  categorylevel3" id="' + value.Item_category_level_3_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + value.Item_category_level_3_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + value.Item_category_level_3_id + ')" required '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tabalCategoryLevel3').html(data);
-
+            $('#tabalCategoryLevel3').html(htmlData);
         }
-
     });
-
 }
+
 Category3AllData();
 
 
@@ -1163,56 +1108,40 @@ function btnCategorylevel3Delete(id) {
 //#####################..Disgination...........
 
 // all data
-
 function allDesgination() {
     $.ajax({
         type: "get",
         dataType: 'json',
         url: "/disginationData",
-
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if(value.status_id){
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.employee_designation_id + "</td>";
+                htmlData += "<td>" + value.employee_designation + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="" type="button" class="btn btn-primary editDesgination" id="' + value.employee_designation_id + '" data-bs-toggle="modal" data-bs-target="#modelDesgination"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' + value.employee_designation_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' + value.employee_designation_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.employee_designation_id  + "</td>"
-                data = data + "<td>" + value.employee_designation + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  editDesgination" id="' + value.employee_designation_id + '" data-bs-toggle="modal" data-bs-target="#modelDesgination"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' + value.employee_designation_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' + value.employee_designation_id + ')" required  '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tabalDesgination').html(data);
-
-
+            $('#tabalDesgination').html(htmlData);
         }
-
     });
-
 }
+
 allDesgination();
 
 
@@ -1392,57 +1321,40 @@ function btnDesginationDelete(id) {
 //#####################..Employee Status...........
 
 // all data
-
 function allempStatus() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
         url: "/empStatusData",
-
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if(value.status_id){
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.employee_status_id + "</td>";
+                htmlData += "<td>" + value.employee_status + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="" type="button" class="btn btn-primary editEmpStatus" id="' + value.employee_status_id + '" data-bs-toggle="modal" data-bs-target="#modelStatus1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' + value.employee_status_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' + value.employee_status_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.employee_status_id  + "</td>"
-                data = data + "<td>" + value.employee_status + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  editEmpStatus" id="' + value.employee_status_id + '" data-bs-toggle="modal" data-bs-target="#modelStatus1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' + value.employee_status_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' + value.employee_status_id + ')" required  '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tabalStatus1').html(data);
-
-
+            $('#tabalStatus1').html(htmlData);
         }
-
     });
-
 }
+
 allempStatus();
 
 

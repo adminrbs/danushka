@@ -13,6 +13,7 @@ class item_altenative_name extends Model
     protected $primaryKey = "item_altenative_name_id";
 
     protected $fillable = [
+       
         'item_altenative_name',
 
     ];

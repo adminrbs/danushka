@@ -33,15 +33,10 @@
                             data-bs-target="#modalNonproprietary">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
-
-
-
-
-
                     </div>
                     <div class="table-responsive">
                         <!--Required for Responsive-->
-                        <table id="status1Table"
+                        <table id="itemAlternativTable"
                             class="table datatable-fixed-both">
                             <thead>
                                 <tr>
@@ -130,13 +125,15 @@
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+    <script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
+<script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>
 
 
 @endsection
 @section('scripts')
 
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
-  <script src="{{ URL::asset('assets/js/item_altenative_name.js') }}"></script>
+  <script src="{{ URL::asset('assets/js/item_altenative_name.js') }}?random=<?php echo uniqid(); ?>"></script>
   <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 

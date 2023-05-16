@@ -92,24 +92,20 @@ class CommonsettingController extends Controller
                                 ->get();
 
 
-        foreach($districts as $district){
+                                foreach ($districts as $index => $district) {
+                                    $status = $district->status_id == 1 ? 'checked' : '';
 
-            $status = "";
-            if($district->status_id == 1){
-                $status = "checked";
-            }
+                                    // Determine the CSS class for the row based on the index
+                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
 
-            $output.=
-
-            '<tr>
-            <td>'.$district->district_id .' </td>
-            <td>'.$district->district_name.' </td>
-
-            <td> '.' <a href=""  type="button" class="btn btn-primary  editDistrict" id="' . $district->district_id  . '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-<td> <input type="button"  class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete('  . $district->district_id  .')"></td>
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus('. $district->district_id  . ')" required  '.$status.'></label>  '.'</td>
-            </tr>';
-        }
+                                    $output .= '<tr class="' . $rowClass . '">';
+                                    $output .= '<td>' . $district->district_id . '</td>';
+                                    $output .= '<td>' . $district->district_name . '</td>';
+                                    $output .= '<td><a href="" type="button" class="btn btn-primary editDistrict" id="' . $district->district_id . '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
+                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete(' . $district->district_id . ')"></td>';
+                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus(' . $district->district_id . ')" required ' . $status . '></label></td>';
+                                    $output .= '</tr>';
+                                }
         return response($output);
 
     }
@@ -206,23 +202,22 @@ public function twonAlldata(){
                                 ->orWhere('town_name','Like','%'.$request->search.'%')
                                 ->get();
 
+                                foreach ($group as $index => $group) {
+                                    $district = $data->where('town_id', $group->town_id)->first();
+                                    $status = $group->status_id == 1 ? 'checked' : '';
 
-        foreach($group as $group){
-            $district = $data->where('town_id', $group->town_id)->first();
-             $status = "";
-            if($group->status_id == 1){
-                $status = "checked";
-            }
-            $output.=
-            '<tr>
-            <td>'.$group->town_id .' </td>
-            <td>'.$group->town_name.' </td>
-            <td>'.$district->district_name.' </td>
-            <td> '.' <a href="#"  type="button" class="btn btn-primary  editTwon" id="'. $group->town_id  . '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>  '.'</td>
-<td><input type="button"  class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' . $group->town_id  . ')"></td>
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus('. $group->town_id  . ')" required '.$status.'></label>  '.'</td>
-            </tr>';
-        }
+                                    // Determine the CSS class for the row based on the index
+                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
+
+                                    $output .= '<tr class="' . $rowClass . '">';
+                                    $output .= '<td>' . $group->town_id . '</td>';
+                                    $output .= '<td>' . $group->town_name . '</td>';
+                                    $output .= '<td>' . $district->district_name . '</td>';
+                                    $output .= '<td><a href="#" type="button" class="btn btn-primary editTwon" id="' . $group->town_id . '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
+                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' . $group->town_id . ')"></td>';
+                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' . $group->town_id . ')" required ' . $status . '></label></td>';
+                                    $output .= '</tr>';
+                                }
         return response($output);
 
     }
@@ -311,20 +306,20 @@ public function groupAlldata(){
                                 ->get();
 
 
-        foreach($group as $group){
-            $status = "";
-            if($group->status_id == 1){
-                $status = "checked";
-            }
-            $output.=
-            '<tr>
-            <td>'.$group->customer_group_id.' </td>
-            <td>'.$group->group.' </td>
-            <td> '.' <a href="#"  type="button" class="btn btn-primary  editGroup" id="' . $group->customer_group_id .'" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
-<td> <input type="button"  class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete('  . $group->customer_group_id .')"></td>
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single"  id="cbxGroupStatus" value="1" onclick="cbxGroupStatus('. $group->customer_group_id . ')" required '.$status.'></label>  '.'</td>
-            </tr>';
-        }
+                                foreach ($group as $index => $group) {
+                                    $status = $group->status_id == 1 ? 'checked' : '';
+
+                                    // Determine the CSS class for the row based on the index
+                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
+
+                                    $output .= '<tr class="' . $rowClass . '">';
+                                    $output .= '<td>' . $group->customer_group_id . '</td>';
+                                    $output .= '<td>' . $group->group . '</td>';
+                                    $output .= '<td><a href="#" type="button" class="btn btn-primary editGroup" id="' . $group->customer_group_id . '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
+                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete(' . $group->customer_group_id . ')"></td>';
+                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' . $group->customer_group_id . ')" required ' . $status . '></label></td>';
+                                    $output .= '</tr>';
+                                }
         return response($output);
 
     }
@@ -422,20 +417,20 @@ public function gradeAlldata(){
                                 ->get();
 
 
-        foreach($grade as $grade){
-            $status = "";
-            if($grade->status_id == 1){
-                $status = "checked";
-            }
-            $output.=
-            '<tr>
-            <td>'.$grade->customer_grade_id.' </td>
-            <td>'.$grade->grade.' </td>
-            <td> '.' <a href="#"  type="button" class="btn btn-primary  editGrade" id="' . $grade->customer_grade_id .'" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'.'</td>
-<td><input type="button"  class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' . $grade->customer_grade_id .')"></td>
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus('. $grade->customer_grade_id . ')" required '.$status.'></label>  '.'</td>
-            </tr>';
-        }
+                                foreach ($grade as $index => $grade) {
+                                    $status = $grade->status_id == 1 ? 'checked' : '';
+
+                                    // Determine the CSS class for the row based on the index
+                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
+
+                                    $output .= '<tr class="' . $rowClass . '">';
+                                    $output .= '<td>' . $grade->customer_grade_id . '</td>';
+                                    $output .= '<td>' . $grade->grade . '</td>';
+                                    $output .= '<td><a href="#" type="button" class="btn btn-primary editGrade" id="' . $grade->customer_grade_id . '" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
+                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' . $grade->customer_grade_id . ')"></td>';
+                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus(' . $grade->customer_grade_id . ')" required ' . $status . '></label></td>';
+                                    $output .= '</tr>';
+                                }
         return response($output);
 
     }

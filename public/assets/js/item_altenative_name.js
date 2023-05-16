@@ -1,7 +1,7 @@
 var formData = new FormData();
 $(document).ready(function () {
 
-/*
+
     $('#btnitemaltenativ').on('click', function () {
         $('#btnNonproprietary').show();
         $('#btnUpdateNonproprietary').hide();
@@ -37,27 +37,6 @@ $(document).ready(function () {
 
 
 
-    //Search Group
-
-    $('#nonproprietarySearch').on('keyup',function(){
-        $value=$(this).val();
-
-        $.ajax({
-
-            type:'get',
-            url:'/nonproprietarysearch',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tableNonproprietary').empty();
-                $('#tableNonproprietary').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-
     $('#btnNonproprietary').on('click', function (e) {
         e.preventDefault();
 
@@ -83,62 +62,53 @@ $(document).ready(function () {
     $('#btnUpdateNonproprietary').hide();
 
 
-*/
+
 });
 
 
-//...Suply Group Data
 
 function nonproprietaryAllData() {
 
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url:"/nonproprietaryAllData",
+        type: "GET",
+        url: "/nonproprietaryAllData",
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
 
-        success: function (data) {
-
-            $.each(data, function (key, value) {
-
-                var isChecked = "";
-                if(value.status_id){
-                    isChecked = "checked";
-                }
-
-                data = data + "<tr>"
-
-                data = data + "<td>" + value.item_altenative_name_id    + "</td>"
-                data = data + "<td>" + value.item_altenative_name + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  nonproprietaryupdate" id="' + value.item_altenative_name_id  + '" data-bs-toggle="modal" data-bs-target="#modalNonproprietary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnNonproprietaryDelete(' + value.item_altenative_name_id  + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus(' + value.item_altenative_name_id  + ')" required '+isChecked+'></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
+            var dt = response.data;
 
 
-            })
+            var data = [];
+            for (var i = 0; i < dt.length; i++) {
 
-            $('#tableNonproprietary').html(data);
+                var isChecked = dt[i].status_id ? "checked" : "";
 
-        }
+               data.push({
 
-    });
+                   "item_altenative_name_id": dt[i].item_altenative_name_id,
+                   "item_altenative_name": dt[i].item_altenative_name,
+                   "edit":'<button class="btn btn-primary nonproprietaryupdate" data-bs-toggle="modal" data-bs-target="#modalNonproprietary" id="' + dt[i].item_altenative_name_id  + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                   "delete":'&#160<button class="btn btn-danger" onclick="btnNonproprietaryDelete(' + dt[i].item_altenative_name_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                   "status":'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus('+ dt[i].item_altenative_name_id + ')" required '+isChecked+'></lable>',
+               });
+            }
 
+
+            var table = $('#itemAlternativTable').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
+    })
 }
+
+
 nonproprietaryAllData();
 
 
@@ -374,9 +344,13 @@ const DatatableFixedColumns = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data": "employee_id" },
-                { "data": "employee_name" },
-                { "data": "" },
+                { "data": "item_altenative_name_id"},
+                { "data": "item_altenative_name" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
         });

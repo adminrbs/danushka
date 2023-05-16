@@ -455,50 +455,35 @@ function allData() {
         type: "get",
         dataType: 'json',
         url: "/districtData",
-
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if (value.status_id) {
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.district_id + "</td>";
+                htmlData += "<td>" + value.district_name + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="" type="button" class="btn btn-primary editDistrict" id="' + value.district_id + '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete(' + value.district_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxDistricrStatus" value="1" onclick="cbxStatus(' + value.district_id + ')" required data-district-id="1" ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.district_id + "</td>"
-                data = data + "<td>" + value.district_name + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href=""  type="button" class="btn btn-primary  editDistrict" id="' + value.district_id + '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete(' + value.district_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDistricrStatus" value="1" onclick="cbxStatus(' + value.district_id + ')" required data-district-id="1" ' + isChecked + '></label>'
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tableDistrict').html(data);
-
-
+            $('#tableDistrict').html(htmlData);
         }
-
     });
-
 }
+
 allData();
 
 
@@ -629,7 +614,6 @@ function cbxTownStatus(town_id) {
 
 
 
-
 function allDataTown() {
     $.ajax({
         type: "get",
@@ -637,51 +621,36 @@ function allDataTown() {
         url: "/twonAlldata",
 
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
 
-                var isChecked = "";
-                if (value.status_id == 1) {
-                    isChecked = "checked";
-                }
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                data = data + "<tr>"
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.town_id + "</td>";
+                htmlData += "<td>" + value.town_name + "</td>";
+                htmlData += "<td>" + value.district_name + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="#" type="button" class="btn btn-primary editTwon" id="' + value.town_id + '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' + value.town_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + value.town_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<td>" + value.town_id + "</td>"
-                data = data + "<td>" + value.town_name + "</td>"
-                data = data + "<td>" + value.district_name + "</td>"
+                rowIndex++;
+            });
 
-                data = data + "<td>"
-                data = data + '<a href="#"  type="button" class="btn btn-primary  editTwon" id="' + value.town_id + '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' + value.town_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + value.town_id + ')" required  ' + isChecked + '></label>'
-
-
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tbodyTown').html(data);
-
-
+            $('#tbodyTown').html(htmlData);
         }
-
     });
-
 }
+
 allDataTown();
 
 //........save......
@@ -850,58 +819,40 @@ function cbxGroupStatus(customer_group_id) {
 }
 
 
-
 function allDataGroup() {
     $.ajax({
         type: "get",
         dataType: 'json',
         url: "/groupAlldata",
-
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if (value.status_id) {
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.customer_group_id + "</td>";
+                htmlData += "<td>" + value.group + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="#" type="button" class="btn btn-primary editGroup" id="' + value.customer_group_id + '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete(' + value.customer_group_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' + value.customer_group_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.customer_group_id + "</td>"
-                data = data + "<td>" + value.group + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href="#"  type="button" class="btn btn-primary  editGroup" id="' + value.customer_group_id + '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete(' + value.customer_group_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' + value.customer_group_id + ')" required ' + isChecked + '></label>'
-
-
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tbodyGrouo').html(data);
-
-
+            $('#tbodyGrouo').html(htmlData);
         }
-
     });
-
 }
+
 allDataGroup();
 
 
@@ -1087,59 +1038,40 @@ function cbxGradeStatus(customer_grade_id) {
     });
 }
 
-
 function allDataGrade() {
-
     $.ajax({
         type: "get",
         dataType: 'json',
         url: "/gradeAlldata",
-
         success: function (data) {
+            var htmlData = ""; // Variable to store the generated HTML markup
+            var rowIndex = 1;
             $.each(data, function (key, value) {
+                var isChecked = value.status_id ? "checked" : "";
+                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                var isChecked = "";
-                if (value.status_id) {
-                    isChecked = "checked";
-                }
+                htmlData += '<tr class="' + rowClass + '">';
+                htmlData += "<td>" + value.customer_grade_id + "</td>";
+                htmlData += "<td>" + value.grade + "</td>";
+                htmlData += "<td>";
+                htmlData += '<a href="#" type="button" class="btn btn-primary editGrade" id="' + value.customer_grade_id + '" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' + value.customer_grade_id + ')">';
+                htmlData += "</td>";
+                htmlData += "<td>";
+                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus(' + value.customer_grade_id + ')" required ' + isChecked + '></label>';
+                htmlData += "</td>";
+                htmlData += "</tr>";
 
-                data = data + "<tr>"
+                rowIndex++;
+            });
 
-                data = data + "<td>" + value.customer_grade_id + "</td>"
-                data = data + "<td>" + value.grade + "</td>"
-
-                data = data + "<td>"
-                data = data + '<a href="#"  type="button" class="btn btn-primary  editGrade" id="' + value.customer_grade_id + '" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<input type="button"  class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' + value.customer_grade_id + ')">'
-
-                data = data + "</td>"
-
-                data = data + "<td>"
-
-                data = data + '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus(' + value.customer_grade_id + ')" required ' + isChecked + '></label>'
-
-
-
-                data = data + "</td>"
-
-                data = data + "</tr>"
-
-
-            })
-
-            $('#tabalGroup').html(data);
-
-
+            $('#tabalGroup').html(htmlData);
         }
-
     });
-
 }
+
 allDataGrade();
 
 

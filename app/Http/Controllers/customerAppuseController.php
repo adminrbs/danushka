@@ -96,50 +96,62 @@ public function deletecustomerApp($id){
 }
 
 
-
-public function customerAppsearch(Request $request){
-
+public function customerAppsearch(Request $request)
+{
     $data = $users = DB::table('customer_app_users')
-    ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
-    ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password','customer_app_users.status_id')
-    ->orderBy('customers.customer_id', 'DESC')
-    ->distinct()
-    ->get();
-
-        $output="";
-
-        $customerApp = DB::table('customer_app_users')
         ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
         ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password', 'customer_app_users.status_id')
-        ->where('customer_app_users.customer_app_user_id', 'LIKE', '%'.$request->search.'%')
-        ->orWhere('customer_app_users.email', 'LIKE', '%'.$request->search.'%')
-        ->orWhere('customer_app_users.mobile', 'LIKE', '%'.$request->search.'%')
-        ->orWhere('customers.customer_name', 'LIKE', '%'.$request->search.'%')
         ->orderBy('customers.customer_id', 'DESC')
         ->distinct()
         ->get();
 
+    $output = "";
+    $rowIndex = 0; // Initialize rowIndex to start from 0
 
-        foreach($customerApp as $customerApp){
-            $category2 = $data->where('customer_app_user_id', $customerApp->customer_app_user_id)->first();
+    $customerApp = DB::table('customer_app_users')
+        ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
+        ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password', 'customer_app_users.status_id')
+        ->where('customer_app_users.customer_app_user_id', 'LIKE', '%' . $request->search . '%')
+        ->orWhere('customer_app_users.email', 'LIKE', '%' . $request->search . '%')
+        ->orWhere('customer_app_users.mobile', 'LIKE', '%' . $request->search . '%')
+        ->orWhere('customers.customer_name', 'LIKE', '%' . $request->search . '%')
+        ->orderBy('customers.customer_id', 'DESC')
+        ->distinct()
+        ->get();
 
-            $status = "";
-            if($customerApp->status_id == 1){
-                $status = "checked";
-            }
+    foreach ($customerApp as $customerApp) {
+        $category2 = $data->where('customer_app_user_id', $customerApp->customer_app_user_id)->first();
 
-            $output.= '<tr>
-                <td>'.$customerApp->customer_app_user_id.' </td>
-                <td>'.$category2->customer_name.' </td>
-                <td>' .$customerApp->email.'</td>
-                <td>' .$customerApp->mobile.'</td>
-                <td><a href=""  type="button" class="btn btn-primary  customerEdit" id="'.$customerApp->customer_app_user_id.'" data-bs-toggle="modal" data-bs-target="#modalCustomerApp"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> </td>
-                <td><input type="button"  class="btn btn-danger" name="switch_single" id="btncustomerApp" value="Delete" onclick="btnCustommerAppDelete(' .$customerApp->customer_app_user_id. ')"> </td>
-                <td> <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' .$customerApp->customer_app_user_id.  ')" required '.$status.'></label>  </td>
+        $status = $customerApp->status_id == 1 ? 'checked' : '';
+        $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
+
+        $output .= '
+            <tr class="' . $rowClass . '">
+                <td>' . $customerApp->customer_app_user_id . '</td>
+                <td>' . $category2->customer_name . '</td>
+                <td>' . $customerApp->email . '</td>
+                <td>' . $customerApp->mobile . '</td>
+                <td>
+                    <a href="" type="button" class="btn btn-primary customerEdit" id="' . $customerApp->customer_app_user_id . '" data-bs-toggle="modal" data-bs-target="#modalCustomerApp">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" name="switch_single" id="btncustomerApp" value="Delete" onclick="btnCustommerAppDelete(' . $customerApp->customer_app_user_id . ')">
+                </td>
+                <td>
+                    <label class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' . $customerApp->customer_app_user_id . ')" required ' . $status . '>
+                    </label>
+                </td>
             </tr>';
-        }
-        return response($output);
+
+        $rowIndex++; // Increment rowIndex for each iteration
     }
+
+    return response($output);
+}
+
 
     public function customerAppStatus(Request $request,$id){
         $item_altenative = customer_app_user::findOrFail($id);

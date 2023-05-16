@@ -102,8 +102,10 @@ function suplyGroupAllData() {
 
                 htmlData += '<tr class="' + rowClass + '">';
 
-                htmlData += '<td>' + value.supply_group_id + '</td>';
+                htmlData += '<td>' + value.supply_group_id  + '</td>';
                 htmlData += '<td>' + value.supply_group + '</td>';
+
+
 
 
                 htmlData += '<td>';

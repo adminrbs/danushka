@@ -76,36 +76,43 @@ class CategoryLevelController extends Controller
     }
 
     // category level 1 Search......
+    public function categoryLevel1search(Request $request)
+    {
+        $output = "";
+        $level1 = category_level_1::where('item_category_level_1_id', 'Like', '%' . $request->search . '%')
+                                  ->orWhere('category_level_1', 'Like', '%' . $request->search . '%')
+                                  ->get();
 
-    public function categoryLevel1search(Request $request){
+        $rowIndex = 0; // Initialize rowIndex to start from 0
 
-            $output="";
-            $level1 = category_level_1::where('item_category_level_1_id','Like','%'.$request->search.'%')
-                                    ->orWhere('category_level_1','Like','%'.$request->search.'%')
-                                    ->get();
+        foreach ($level1 as $level1) {
+            $status = $level1->status_id == 1 ? 'checked' : '';
+            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
-
-            foreach($level1 as $level1){
-
-                $status = "";
-                if($level1->status_id == 1){
-                    $status = "checked";
-                }
-
-                $output.=
-
-                '<tr>
-                <td>'.$level1->item_category_level_1_id .' </td>
-                <td>'.$level1->category_level_1.' </td>
-
-                <td> '.' <a href=""  type="button" class="btn btn-primary  categorylevel1" id="' .$level1->item_category_level_1_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-                <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete('.$level1->item_category_level_1_id . ')"> '.' </td>
-                <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status('  .$level1->item_category_level_1_id .')" required  '.$status.'></label>  '.'</td>
+            $output .= '
+                <tr class="' . $rowClass . '">
+                    <td>' . $level1->item_category_level_1_id . '</td>
+                    <td>' . $level1->category_level_1 . '</td>
+                    <td>
+                        <a href="" type="button" class="btn btn-primary categorylevel1" id="' . $level1->item_category_level_1_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' . $level1->item_category_level_1_id . ')">
+                    </td>
+                    <td>
+                        <label class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' . $level1->item_category_level_1_id . ')" required ' . $status . '>
+                        </label>
+                    </td>
                 </tr>';
-            }
-            return response($output);
 
+            $rowIndex++; // Increment rowIndex for each iteration
         }
+
+        return response($output);
+    }
 
         public function deletelevel1($id){
             $level1 = category_level_1::find($id);
@@ -180,18 +187,8 @@ public function txtCategorylevel2Update(Request $request,$id){
 
  // category Level 2 Status update
 
- public function catLevel2tStatus(Request $request,$id){
-    $level1 = category_level_2::findOrFail($id);
-    $level1->status_id = $request->status;
-    $level1->save();
-
-    return response()->json(' status updated successfully');
-}
-
-
-// category level 2 Search......
-public function categoryLevel2search(Request $request){
-
+ public function categoryLevel2search(Request $request)
+{
     $data = DB::table('item_category_level_2s')
             ->join('item_category_level_1s', 'item_category_level_2s.Item_category_level_1_id', '=', 'item_category_level_1s.item_category_level_1_id')
             ->select('item_category_level_2s.Item_category_level_2_id', 'item_category_level_2s.category_level_2', 'item_category_level_1s.category_level_1', 'item_category_level_2s.status_id')
@@ -199,33 +196,45 @@ public function categoryLevel2search(Request $request){
             ->distinct()
             ->get();
 
+    $output = "";
+    $rowIndex = 0; // Initialize rowIndex to start from 0
 
-    $output="";
+    $level2 = category_level_2::where('Item_category_level_2_id', 'Like', '%' . $request->search . '%')
+                              ->orWhere('category_level_2', 'Like', '%' . $request->search . '%')
+                              ->get();
 
-    $level2 = category_level_2::where('Item_category_level_2_id','Like','%'.$request->search.'%')
-                            ->orWhere('category_level_2','Like','%'.$request->search.'%')
-                            ->get();
-
-
-    foreach($level2 as $level2){
+    foreach ($level2 as $level2) {
         $category1 = $data->where('Item_category_level_2_id', $level2->Item_category_level_2_id)->first();
 
-        $status = "";
-        if($level2->status_id == 1){
-            $status = "checked";
-        }
+        $status = $level2->status_id == 1 ? 'checked' : '';
+        $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
-        $output.= '<tr>
-            <td>'.$level2->Item_category_level_2_id.' </td>
-            <td>'.$category1->category_level_1.' </td>
-            <td>' .$level2->category_level_2.'</td>
-            <td> <a href="" type="button" class="btn btn-primary categorylevel2" id="' .$level2->Item_category_level_2_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> </td>
-            <td> <input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete('.$level2->Item_category_level_2_id . ')"> </td>
-            <td> <label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status('.$level2->Item_category_level_2_id . ')" required '.$status.'></label>  </td>
-        </tr>';
+        $output .= '
+            <tr class="' . $rowClass . '">
+                <td>' . $level2->Item_category_level_2_id . '</td>
+                <td>' . $category1->category_level_1 . '</td>
+                <td>' . $level2->category_level_2 . '</td>
+                <td>
+                    <a href="" type="button" class="btn btn-primary categorylevel2" id="' . $level2->Item_category_level_2_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' . $level2->Item_category_level_2_id . ')">
+                </td>
+                <td>
+                    <label class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' . $level2->Item_category_level_2_id . ')" required ' . $status . '>
+                    </label>
+                </td>
+            </tr>';
+
+        $rowIndex++; // Increment rowIndex for each iteration
     }
+
     return response($output);
 }
+
 
 public function deletelevel2($id){
     $level2 = category_level_2::find($id);
@@ -310,42 +319,53 @@ public function Categorylevel3Update(Request $request,$id){
 
 
 
-// category level 3 Search......
-public function categoryLevel3search(Request $request){
-
+public function categoryLevel3search(Request $request)
+{
     $data = DB::table('item_category_level_3s')
-    ->join('item_category_level_2s', 'item_category_level_3s.Item_category_level_2_id', '=', 'item_category_level_2s.Item_category_level_2_id')
-    ->select('item_category_level_3s.Item_category_level_3_id', 'item_category_level_3s.category_level_3', 'item_category_level_2s.category_level_2', 'item_category_level_3s.status_id')
-    ->orderBy('item_category_level_3s.Item_category_level_3_id', 'DESC')
-    ->distinct()
-    ->get();
+            ->join('item_category_level_2s', 'item_category_level_3s.Item_category_level_2_id', '=', 'item_category_level_2s.Item_category_level_2_id')
+            ->select('item_category_level_3s.Item_category_level_3_id', 'item_category_level_3s.category_level_3', 'item_category_level_2s.category_level_2', 'item_category_level_3s.status_id')
+            ->orderBy('item_category_level_3s.Item_category_level_3_id', 'DESC')
+            ->distinct()
+            ->get();
 
-        $output="";
+    $output = "";
+    $rowIndex = 0; // Initialize rowIndex to start from 0
 
-        $level3 = category_level_3::where('Item_category_level_3_id','Like','%'.$request->search.'%')
-                                ->orWhere('category_level_3','Like','%'.$request->search.'%')
-                                ->get();
+    $level3 = category_level_3::where('Item_category_level_3_id', 'Like', '%' . $request->search . '%')
+                              ->orWhere('category_level_3', 'Like', '%' . $request->search . '%')
+                              ->get();
 
+    foreach ($level3 as $level3) {
+        $category2 = $data->where('Item_category_level_3_id', $level3->Item_category_level_3_id)->first();
 
-        foreach($level3 as $level3){
-            $category2 = $data->where('Item_category_level_3_id', $level3->Item_category_level_3_id)->first();
+        $status = $level3->status_id == 1 ? 'checked' : '';
+        $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
-            $status = "";
-            if($level3->status_id == 1){
-                $status = "checked";
-            }
-
-            $output.= '<tr>
-                <td>'.$level3->Item_category_level_3_id.' </td>
-                <td>'.$category2->category_level_2.' </td>
-                <td>' .$level3->category_level_3.'</td>
-                <td><a href=""  type="button" class="btn btn-primary  categorylevel3" id="'.$level3->Item_category_level_3_id.'" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> </td>
-                <td><input type="button"  class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' .$level3->Item_category_level_3_id. ')"> </td>
-                <td> <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status('.$level3->Item_category_level_3_id.')" required '.$status.'></label>  </td>
+        $output .= '
+            <tr class="' . $rowClass . '">
+                <td>' . $level3->Item_category_level_3_id . '</td>
+                <td>' . $category2->category_level_2 . '</td>
+                <td>' . $level3->category_level_3 . '</td>
+                <td>
+                    <a href="" type="button" class="btn btn-primary categorylevel3" id="' . $level3->Item_category_level_3_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' . $level3->Item_category_level_3_id . ')">
+                </td>
+                <td>
+                    <label class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' . $level3->Item_category_level_3_id . ')" required ' . $status . '>
+                    </label>
+                </td>
             </tr>';
-        }
-        return response($output);
+
+        $rowIndex++; // Increment rowIndex for each iteration
     }
+
+    return response($output);
+}
 
 
     public function deletelevel3($id){
@@ -424,39 +444,42 @@ public function categoryLevel3search(Request $request){
     }
 
     // desgination serch
+    public function desginathionsearch(Request $request)
+    {
+        $output = "";
+        $rowIndex = 0; // Initialize rowIndex to start from 0
 
-    public function desginathionsearch(Request $request){
+        $level1 = employee_designation::where('employee_designation_id', 'Like', '%' . $request->search . '%')
+                                    ->orWhere('employee_designation', 'Like', '%' . $request->search . '%')
+                                    ->get();
 
-        $output="";
-        $level1 = employee_designation::where('employee_designation_id','Like','%'.$request->search.'%')
-                                ->orWhere('employee_designation','Like','%'.$request->search.'%')
-                                ->get();
+        foreach ($level1 as $level1) {
+            $status = $level1->status_id == 1 ? 'checked' : '';
+            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
+            $output .= '
+                <tr class="' . $rowClass . '">
+                    <td>' . $level1->employee_designation_id . '</td>
+                    <td>' . $level1->employee_designation . '</td>
+                    <td>
+                        <a href="" type="button" class="btn btn-primary editDesgination" id="' . $level1->employee_designation_id . '" data-bs-toggle="modal" data-bs-target="#modelDesgination">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' . $level1->employee_designation_id . ')">
+                    </td>
+                    <td>
+                        <label class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' . $level1->employee_designation_id . ')" required ' . $status . '>
+                        </label>
+                    </td>
+                </tr>';
 
-        foreach($level1 as $level1){
-
-            $status = "";
-            if($level1->status_id == 1){
-                $status = "checked";
-            }
-
-            $output.=
-
-            '<tr>
-            <td>'.$level1->employee_designation_id .' </td>
-            <td>'.$level1->employee_designation.' </td>
-
-            <td> '.' <a href=""  type="button" class="btn btn-primary  editDesgination" id="' .$level1->employee_designation_id . '" data-bs-toggle="modal" data-bs-target="#modelDesgination"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-
-
-            <td> '.' <input type="button"  class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' .$level1->employee_designation_id . ')"> '.'</td>
-
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' .$level1->employee_designation_id . ')" required '.$status.'></label>  '.'</td>
-
-            </tr>';
+            $rowIndex++; // Increment rowIndex for each iteration
         }
-        return response($output);
 
+        return response($output);
     }
 
     // desgination Delete
@@ -540,38 +563,42 @@ public function categoryLevel3search(Request $request){
 
     // desgination serch
 
-    public function empStatussearch(Request $request){
+    public function empStatussearch(Request $request)
+    {
+        $output = "";
+        $rowIndex = 0; // Initialize rowIndex to start from 0
 
-        $output="";
-        $level1 = employee_Status::where('employee_status_id','Like','%'.$request->search.'%')
-                                ->orWhere('employee_status','Like','%'.$request->search.'%')
+        $level1 = employee_Status::where('employee_status_id', 'Like', '%' . $request->search . '%')
+                                ->orWhere('employee_status', 'Like', '%' . $request->search . '%')
                                 ->get();
 
+        foreach ($level1 as $level1) {
+            $status = $level1->status_id == 1 ? 'checked' : '';
+            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
-        foreach($level1 as $level1){
+            $output .= '
+                <tr class="' . $rowClass . '">
+                    <td>' . $level1->employee_status_id . '</td>
+                    <td>' . $level1->employee_status . '</td>
+                    <td>
+                        <a href="" type="button" class="btn btn-primary editEmpStatus" id="' . $level1->employee_status_id . '" data-bs-toggle="modal" data-bs-target="#modelStatus1">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' . $level1->employee_status_id . ')">
+                    </td>
+                    <td>
+                        <label class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' . $level1->employee_status_id . ')" required ' . $status . '>
+                        </label>
+                    </td>
+                </tr>';
 
-            $status = "";
-            if($level1->status_id == 1){
-                $status = "checked";
-            }
-
-            $output.=
-
-            '<tr>
-            <td>'.$level1->employee_status_id.' </td>
-            <td>'.$level1->employee_status.' </td>
-
-            <td> '.'<a href=""  type="button" class="btn btn-primary  editEmpStatus" id="'  .$level1->employee_status_id . '" data-bs-toggle="modal" data-bs-target="#modelStatus1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> '.'</td>
-
-
-            <td> '.'<input type="button"  class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete('  .$level1->employee_status_id . ')"> '.'</td>
-
-            <td> '.' <label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' .$level1->employee_status_id .  ')" required  '.$status.'></label>  '.'</td>
-
-            </tr>';
+            $rowIndex++; // Increment rowIndex for each iteration
         }
-        return response($output);
 
+        return response($output);
     }
 
     // desgination Delete
