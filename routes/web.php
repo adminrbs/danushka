@@ -147,7 +147,7 @@ Route::delete('/deleteGrade/{id}', [App\Http\Controllers\CommonsettingController
 ////////////////////////// Category lavel ///////////
 
 // level 1
-Route::get('/categoryLevelData', [CategoryLevelController::class,'categoryLevel1Data']);
+Route::get('/categoryLeveldata', [CategoryLevelController::class,'categoryLevel1Data']);
 Route::post('/saveCategoryLevel1', [CategoryLevelController::class,'saveCategoryLevel1']);
 Route::get('/categorylevel1Edite/{id}', [CategoryLevelController::class,'categorylevel1Edite']);
 Route::post('/txtCategorylevel1Update/{id}', [CategoryLevelController::class, 'txtCategorylevel1Update']);

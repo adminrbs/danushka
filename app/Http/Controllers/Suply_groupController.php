@@ -15,8 +15,18 @@ class Suply_groupController extends Controller
 
     public function suplyGroupAllData(){
 
-        $data = supply_group::all();
-        return response()->json( $data );
+        try {
+            $customerDteails = supply_group::all();
+            if ($customerDteails) {
+                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+            } else {
+                return response()->json((['error' => 'Data is not loaded']));
+            }
+        } catch (Exception $ex) {
+            if ($ex instanceof ValidationException) {
+                return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+            }
+        }
 
     }
 

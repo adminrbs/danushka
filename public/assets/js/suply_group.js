@@ -32,25 +32,6 @@ $(document).ready(function () {
         });
       });
 
-    //Search Group
-
-    $('#suplyGroupSearch').on('keyup',function(){
-        $value=$(this).val();
-
-        $.ajax({
-
-            type:'get',
-            url:'/suplyGroupsearch',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tableSuplyGroup').empty();
-                $('#tableSuplyGroup').html(data);
-            }
-        });
-        //alert($value);
-    });
 
 
     $('#btnSupplygroup').on('click', function (e) {
@@ -83,50 +64,47 @@ $(document).ready(function () {
 
 //...Suply Group Data
 function suplyGroupAllData() {
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
+        type: "GET",
         url: "/suplyGroupAllData",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1; // Index to track the row number
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
 
-            $.each(data, function (key, value) {
-                var isChecked = "";
-                if (value.status_id) {
-                    isChecked = "checked";
-                }
-
-                // Determine the CSS class for the row based on the index
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
-
-                htmlData += '<tr class="' + rowClass + '">';
-
-                htmlData += '<td>' + value.supply_group_id  + '</td>';
-                htmlData += '<td>' + value.supply_group + '</td>';
+            var dt = response.data;
+            console.log(dt);
 
 
+            var data = [];
+            for (var i = 0; i < dt.length; i++) {
+
+                var isChecked = dt[i].status_id ? "checked" : "";
+
+               data.push({
+
+                   "supply_group_id": dt[i].supply_group_id ,
+                   "supply_group": dt[i].supply_group,
+                   "edit":'<button class="btn btn-primary suplyGroup" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup" id="' + dt[i].supply_group_id  + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                   "delete":'&#160<button class="btn btn-danger" onclick="btnSuplyGroupDelete(' + dt[i].supply_group_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                   "status":'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus('+ dt[i].supply_group_id + ')" required '+isChecked+'></lable>',
+               });
+            }
 
 
-                htmlData += '<td>';
-                htmlData += '<a href=""  type="button" class="btn btn-primary  suplyGroup" id="' + value.supply_group_id + '" data-bs-toggle="modal" data-bs-target="#modalSuplyGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += '</td>';
+            var table = $('#suplyGroupTable').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
 
-                htmlData += '<td>';
-                htmlData += '<input type="button"  class="btn btn-danger" name="switch_single" id="" value="Delete" onclick="btnSuplyGroupDelete(' + value.supply_group_id + ')">';
-                htmlData += '</td>';
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
+    })
 
-                htmlData += '<td>';
-                htmlData += '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxSuplyGroup" value="1" onclick="cbxSuplyGroupStatus(' + value.supply_group_id + ')" required ' + isChecked + '></label>';
-                htmlData += '</td>';
-                rowIndex++;
-                htmlData += '</tr>';
 
-            });
-
-            $('#tableSuplyGroup').html(htmlData);
-        }
-    });
 }
 
 suplyGroupAllData();
@@ -290,4 +268,110 @@ function cbxSuplyGroupStatus(supply_group_id) {
         }
     });
 }
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+
+const DatatableFixedColumns = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width:200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data": "supply_group_id"},
+                { "data": "supply_group" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
+
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumns.init();
+});
 

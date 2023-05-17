@@ -19,8 +19,18 @@ class CategoryLevelController extends Controller
     //......loard data ...
     public function categoryLevel1Data(){
 
-        $data = category_level_1::all();
-        return response()->json( $data );
+        try {
+            $customerDteails = category_level_1::all();
+            if ($customerDteails) {
+                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+            } else {
+                return response()->json((['error' => 'Data is not loaded']));
+            }
+        } catch (Exception $ex) {
+            if ($ex instanceof ValidationException) {
+                return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+            }
+        }
     }
 
     //...........save data.....
@@ -69,7 +79,7 @@ class CategoryLevelController extends Controller
 
     public function catLevel1tStatus(Request $request,$id){
         $level1 = category_level_1::findOrFail($id);
-        $level1->status_id = $request->status;
+        $level1->is_active = $request->status;
         $level1->save();
 
         return response()->json(' status updated successfully');
@@ -86,7 +96,7 @@ class CategoryLevelController extends Controller
         $rowIndex = 0; // Initialize rowIndex to start from 0
 
         foreach ($level1 as $level1) {
-            $status = $level1->status_id == 1 ? 'checked' : '';
+            $status = $level1->is_active == 1 ? 'checked' : '';
             $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
             $output .= '
@@ -115,9 +125,15 @@ class CategoryLevelController extends Controller
     }
 
         public function deletelevel1($id){
+
             $level1 = category_level_1::find($id);
+            if($level1->item_category_level_1_id  == 1){
+                return response()->json(['error' => 'Record has been Not Delete']);
+            }else{
+
                 $level1->delete();
             return response()->json(['success'=>'Record has been Delete']);
+            }
         }
 
 
@@ -126,22 +142,29 @@ public function loadCategory2(){
     $data = category_level_1::orderBy('item_category_level_1_id','DESC' )->get();
 return response()->json( $data );
 }
-
-public function categoryLevel2Data(){
-
-/*     $data = DB::table('item_category_level_2s')
+public function categoryLevel2Data()
+{
+    try {
+        $customerDetails = DB::table('item_category_level_2s')
             ->join('item_category_level_1s', 'item_category_level_2s.Item_category_level_1_id', '=', 'item_category_level_1s.item_category_level_1_id')
-            ->select('item_category_level_2s.Item_category_level_2_id', 'item_category_level_2s.category_level_2', 'item_category_level_1s.category_level_1', 'item_category_level_2s.status_id')
+            ->select('item_category_level_2s.Item_category_level_2_id', 'item_category_level_2s.category_level_2', 'item_category_level_1s.category_level_1', 'item_category_level_2s.is_active')
             ->orderBy('item_category_level_1s.item_category_level_1_id', 'DESC')
             ->distinct()
             ->get();
-    return response()->json($data); */
 
-    $query = "SELECT item_category_level_1s.*, item_category_level_2s.category_level_2,item_category_level_2s.Item_category_level_2_id,item_category_level_2s.status_id  FROM item_category_level_1s INNER JOIN item_category_level_2s ON item_category_level_1s.item_category_level_1_id = item_category_level_2s.Item_category_level_1_id";
-    $data = DB::select($query);
-    return response()->json($data);
+        if ($customerDetails->isEmpty()) {
+            return response()->json(['error' => 'Data is not loaded']);
+        }
 
+        return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
+    } catch (\Exception $ex) {
+        // Log the error for debugging purposes
+        Log::error($ex);
+
+        return response()->json(['error' => 'An error occurred while loading data']);
+    }
 }
+
 
 //...........save data.....
 public function saveCategoryLevel2(Request $request){
@@ -187,60 +210,26 @@ public function txtCategorylevel2Update(Request $request,$id){
 
  // category Level 2 Status update
 
- public function categoryLevel2search(Request $request)
-{
-    $data = DB::table('item_category_level_2s')
-            ->join('item_category_level_1s', 'item_category_level_2s.Item_category_level_1_id', '=', 'item_category_level_1s.item_category_level_1_id')
-            ->select('item_category_level_2s.Item_category_level_2_id', 'item_category_level_2s.category_level_2', 'item_category_level_1s.category_level_1', 'item_category_level_2s.status_id')
-            ->orderBy('item_category_level_1s.item_category_level_1_id', 'DESC')
-            ->distinct()
-            ->get();
-
-    $output = "";
-    $rowIndex = 0; // Initialize rowIndex to start from 0
-
-    $level2 = category_level_2::where('Item_category_level_2_id', 'Like', '%' . $request->search . '%')
-                              ->orWhere('category_level_2', 'Like', '%' . $request->search . '%')
-                              ->get();
-
-    foreach ($level2 as $level2) {
-        $category1 = $data->where('Item_category_level_2_id', $level2->Item_category_level_2_id)->first();
-
-        $status = $level2->status_id == 1 ? 'checked' : '';
-        $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-
-        $output .= '
-            <tr class="' . $rowClass . '">
-                <td>' . $level2->Item_category_level_2_id . '</td>
-                <td>' . $category1->category_level_1 . '</td>
-                <td>' . $level2->category_level_2 . '</td>
-                <td>
-                    <a href="" type="button" class="btn btn-primary categorylevel2" id="' . $level2->Item_category_level_2_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td>
-                    <input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' . $level2->Item_category_level_2_id . ')">
-                </td>
-                <td>
-                    <label class="form-check form-switch">
-                        <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' . $level2->Item_category_level_2_id . ')" required ' . $status . '>
-                    </label>
-                </td>
-            </tr>';
-
-        $rowIndex++; // Increment rowIndex for each iteration
-    }
-
-    return response($output);
-}
-
 
 public function deletelevel2($id){
+
     $level2 = category_level_2::find($id);
+    if($level2->Item_category_level_2_id   == 1){
+        return response()->json(['error' => 'Record has been Not Delete']);
+    }else{
+
         $level2->delete();
     return response()->json(['success'=>'Record has been Delete']);
+    }
 }
+public function catLevel2tStatus(Request $request,$id){
+    $level1 = category_level_2::findOrFail($id);
+    $level1->is_active = $request->status;
+    $level1->save();
+
+    return response()->json(' status updated successfully');
+}
+
 
 
 
@@ -250,16 +239,27 @@ public function loadCaegory3(){
     $data = category_level_2::orderBy('Item_category_level_2_id','DESC' )->get();
 return response()->json( $data );
 }
+public function categoryLevel3Data()
+{
+    try {
+        $customerDetails = DB::table('item_category_level_3s')
+            ->join('item_category_level_2s', 'item_category_level_3s.Item_category_level_2_id', '=', 'item_category_level_2s.Item_category_level_2_id')
+            ->select('item_category_level_3s.Item_category_level_3_id', 'item_category_level_3s.category_level_3', 'item_category_level_2s.category_level_2', 'item_category_level_3s.is_active')
+            ->orderBy('item_category_level_3s.Item_category_level_3_id', 'DESC')
+            ->distinct()
+            ->get();
 
-public function categoryLevel3Data(){
+        if ($customerDetails->isEmpty()) {
+            return response()->json(['error' => 'Data is not loaded']);
+        }
 
-    $data = DB::table('item_category_level_3s')
-    ->join('item_category_level_2s', 'item_category_level_3s.Item_category_level_2_id', '=', 'item_category_level_2s.Item_category_level_2_id')
-    ->select('item_category_level_3s.Item_category_level_3_id', 'item_category_level_3s.category_level_3', 'item_category_level_2s.category_level_2', 'item_category_level_3s.status_id')
-    ->orderBy('item_category_level_3s.Item_category_level_3_id', 'DESC')
-    ->distinct()
-    ->get();
-    return response()->json( $data );
+        return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
+    } catch (\Exception $ex) {
+        // Log the error for debugging purposes
+        Log::error($ex);
+
+        return response()->json(['error' => 'An error occurred while loading data']);
+    }
 }
 
 //...........save data.....
@@ -292,6 +292,7 @@ public function saveCategoryLevel3(Request $request){
 //.....lavel1 Edite.......
 
 public function categorylevel3Edite($id){
+
     $data = category_level_3::find($id);
     return response()->json($data);
 }
@@ -311,7 +312,7 @@ public function Categorylevel3Update(Request $request,$id){
 
  public function catLevel3tStatus(Request $request,$id){
     $level1 = category_level_3::findOrFail($id);
-    $level1->status_id = $request->status;
+    $level1->is_active = $request->status;
     $level1->save();
 
     return response()->json(' status updated successfully');
@@ -319,59 +320,17 @@ public function Categorylevel3Update(Request $request,$id){
 
 
 
-public function categoryLevel3search(Request $request)
-{
-    $data = DB::table('item_category_level_3s')
-            ->join('item_category_level_2s', 'item_category_level_3s.Item_category_level_2_id', '=', 'item_category_level_2s.Item_category_level_2_id')
-            ->select('item_category_level_3s.Item_category_level_3_id', 'item_category_level_3s.category_level_3', 'item_category_level_2s.category_level_2', 'item_category_level_3s.status_id')
-            ->orderBy('item_category_level_3s.Item_category_level_3_id', 'DESC')
-            ->distinct()
-            ->get();
-
-    $output = "";
-    $rowIndex = 0; // Initialize rowIndex to start from 0
-
-    $level3 = category_level_3::where('Item_category_level_3_id', 'Like', '%' . $request->search . '%')
-                              ->orWhere('category_level_3', 'Like', '%' . $request->search . '%')
-                              ->get();
-
-    foreach ($level3 as $level3) {
-        $category2 = $data->where('Item_category_level_3_id', $level3->Item_category_level_3_id)->first();
-
-        $status = $level3->status_id == 1 ? 'checked' : '';
-        $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-
-        $output .= '
-            <tr class="' . $rowClass . '">
-                <td>' . $level3->Item_category_level_3_id . '</td>
-                <td>' . $category2->category_level_2 . '</td>
-                <td>' . $level3->category_level_3 . '</td>
-                <td>
-                    <a href="" type="button" class="btn btn-primary categorylevel3" id="' . $level3->Item_category_level_3_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
-                </td>
-                <td>
-                    <input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' . $level3->Item_category_level_3_id . ')">
-                </td>
-                <td>
-                    <label class="form-check form-switch">
-                        <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' . $level3->Item_category_level_3_id . ')" required ' . $status . '>
-                    </label>
-                </td>
-            </tr>';
-
-        $rowIndex++; // Increment rowIndex for each iteration
-    }
-
-    return response($output);
-}
-
 
     public function deletelevel3($id){
+
         $level3 = category_level_3::find($id);
+        if($level3->Item_category_level_3_id    == 1){
+            return response()->json(['error' => 'Record has been Not Delete']);
+        }else{
+
             $level3->delete();
         return response()->json(['success'=>'Record has been Delete']);
+        }
     }
 
 
@@ -382,8 +341,18 @@ public function categoryLevel3search(Request $request)
 
     public function disginationData(){
 
-        $data = employee_designation::all();
-        return response()->json( $data );
+        try {
+            $customerDteails = employee_designation::all();
+            if ($customerDteails) {
+                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+            } else {
+                return response()->json((['error' => 'Data is not loaded']));
+            }
+        } catch (Exception $ex) {
+            if ($ex instanceof ValidationException) {
+                return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+            }
+        }
     }
 
 
@@ -436,51 +405,13 @@ public function categoryLevel3search(Request $request)
     public function updateDesginationStatus(Request $request,$id){
 
         $level1 = employee_designation::findOrFail($id);
-        $level1->status_id = $request->status;
+        $level1->is_active = $request->status;
         $level1->save();
 
         return response()->json(' status updated successfully');
 
     }
 
-    // desgination serch
-    public function desginathionsearch(Request $request)
-    {
-        $output = "";
-        $rowIndex = 0; // Initialize rowIndex to start from 0
-
-        $level1 = employee_designation::where('employee_designation_id', 'Like', '%' . $request->search . '%')
-                                    ->orWhere('employee_designation', 'Like', '%' . $request->search . '%')
-                                    ->get();
-
-        foreach ($level1 as $level1) {
-            $status = $level1->status_id == 1 ? 'checked' : '';
-            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-
-            $output .= '
-                <tr class="' . $rowClass . '">
-                    <td>' . $level1->employee_designation_id . '</td>
-                    <td>' . $level1->employee_designation . '</td>
-                    <td>
-                        <a href="" type="button" class="btn btn-primary editDesgination" id="' . $level1->employee_designation_id . '" data-bs-toggle="modal" data-bs-target="#modelDesgination">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <input type="button" class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' . $level1->employee_designation_id . ')">
-                    </td>
-                    <td>
-                        <label class="form-check form-switch">
-                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' . $level1->employee_designation_id . ')" required ' . $status . '>
-                        </label>
-                    </td>
-                </tr>';
-
-            $rowIndex++; // Increment rowIndex for each iteration
-        }
-
-        return response($output);
-    }
 
     // desgination Delete
 
@@ -500,9 +431,18 @@ public function categoryLevel3search(Request $request)
     //..all disginstion.
 
     public function empStatusData(){
-
-        $data = employee_Status::all();
-        return response()->json( $data );
+        try {
+            $customerDteails = employee_Status::all();
+            if ($customerDteails) {
+                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+            } else {
+                return response()->json((['error' => 'Data is not loaded']));
+            }
+        } catch (Exception $ex) {
+            if ($ex instanceof ValidationException) {
+                return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+            }
+        }
     }
 
 
@@ -554,7 +494,7 @@ public function categoryLevel3search(Request $request)
     public function updateempStatus(Request $request,$id){
 
         $level1 = employee_Status::findOrFail($id);
-        $level1->status_id = $request->status;
+        $level1->is_active = $request->status;
         $level1->save();
 
         return response()->json(' status updated successfully');
@@ -573,7 +513,7 @@ public function categoryLevel3search(Request $request)
                                 ->get();
 
         foreach ($level1 as $level1) {
-            $status = $level1->status_id == 1 ? 'checked' : '';
+            $status = $level1->is_active == 1 ? 'checked' : '';
             $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
 
             $output .= '

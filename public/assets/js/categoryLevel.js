@@ -24,9 +24,9 @@ $(document).ready(function () {
 
     $('#btnCategory3').on('click', function () {
         $('#btnSaveCategorylevel3').show();
-            $('#btnUpdateCategorylevel3').hide();
-            $('#id').val('');
-            $("#cmbLeve2").val('');
+        $('#btnUpdateCategorylevel3').hide();
+        $('#id').val('');
+        $("#cmbLeve2").val('');
 
 
 
@@ -45,9 +45,9 @@ $(document).ready(function () {
     });
     $('#btnStatuss').on('click', function () {
         $('#btnSaveStatus').show();
-            $('#btnUpdateStatus').hide();
-            $("#status1Search").val('');
-            $('#id').val('');
+        $('#btnUpdateStatus').hide();
+        $("#status1Search").val('');
+        $('#id').val('');
 
 
 
@@ -55,188 +55,120 @@ $(document).ready(function () {
 
     ///////////////////////////close//////////
 
-// close
+    // close
 
-$("#btnClose1").on("click", function(e) {
-    // Prevent the default form submission behavior
-    e.preventDefault();
-    var formData = $("form").serialize();
-    $.ajax({
-      type: "POST",
-      url: '/close',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-      data: formData,
-      success: function(response) {
-        $("#modelcategoryLevel").modal("hide"); // This will close the modal
-        var urlWithoutQuery = window.location.href.split('?')[0];
-    },
-      error: function(xhr, status, error) {
-
-      }
-    });
-  });
-
-
-$("#btnClose2").on("click", function(e) {
-    // Prevent the default form submission behavior
-    e.preventDefault();
-    var formData = $("form").serialize();
-    $.ajax({
-      type: "POST",
-      url: '/close',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-      data: formData,
-      success: function(response) {
-        $("#modelcategoryLeve2").modal("hide"); // This will close the modal
-        var urlWithoutQuery = window.location.href.split('?')[0];
-    },
-      error: function(xhr, status, error) {
-
-      }
-    });
-  });
-
-
-$("#btnClose3").on("click", function(e) {
-    // Prevent the default form submission behavior
-    e.preventDefault();
-    var formData = $("form").serialize();
-    $.ajax({
-      type: "POST",
-      url: '/close',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-      data: formData,
-      success: function(response) {
-        $("#modelcategoryLeve3").modal("hide"); // This will close the modal
-        var urlWithoutQuery = window.location.href.split('?')[0];
-    },
-      error: function(xhr, status, error) {
-
-      }
-    });
-  });
-
-
-$("#btnClose4").on("click", function(e) {
-    // Prevent the default form submission behavior
-    e.preventDefault();
-    var formData = $("form").serialize();
-    $.ajax({
-      type: "POST",
-      url: '/close',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-      data: formData,
-      success: function(response) {
-        $("#modelDesgination").modal("hide"); // This will close the modal
-        var urlWithoutQuery = window.location.href.split('?')[0];
-    },
-      error: function(xhr, status, error) {
-
-      }
-    });
-  });
-
-
-
-
-$("#btnClose5").on("click", function(e) {
-    // Prevent the default form submission behavior
-    e.preventDefault();
-    var formData = $("form").serialize();
-    $.ajax({
-      type: "POST",
-      url: '/close',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-      data: formData,
-      success: function(response) {
-        $("#modelStatus1").modal("hide"); // This will close the modal
-        var urlWithoutQuery = window.location.href.split('?')[0];
-    },
-      error: function(xhr, status, error) {
-
-      }
-    });
-  });
-
-
-
-    /////////////////////////////////////////////
-    //......category Level 1 Search
-
-    $('#categoryLevel1Search').on('keyup',function(){
-        $value=$(this).val();
-
-
-
+    $("#btnClose1").on("click", function (e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
         $.ajax({
-
-            type:'get',
-            url:'/catLevel1_search',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tabalCategoryLevel1').empty();
-                $('#tabalCategoryLevel1').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-     //......category Level 2 Search
-
-     $('#categoryLevel2Search').on('keyup',function(){
-        $value=$(this).val();
-
-        $.ajax({
-
-            type:'get',
-            url:'/catLevel2_search',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tabalCategoryLevel2').empty();
-                $('#tabalCategoryLevel2').html(data);
-
+            type: "POST",
+            url: '/close',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                $("#modelcategoryLevel").modal("hide"); // This will close the modal
+                var urlWithoutQuery = window.location.href.split('?')[0];
+            },
+            error: function (xhr, status, error) {
 
             }
         });
-        //alert($value);
     });
 
 
-
-     //......category Level 3 Search
-
-     $('#categoryLevel3Search').on('keyup',function(){
-        $value=$(this).val();
-
-
+    $("#btnClose2").on("click", function (e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
         $.ajax({
+            type: "POST",
+            url: '/close',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                $("#modelcategoryLeve2").modal("hide"); // This will close the modal
+                var urlWithoutQuery = window.location.href.split('?')[0];
+            },
+            error: function (xhr, status, error) {
 
-            type:'get',
-            url:'/catLevel3_search',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tabalCategoryLevel3').empty();
-                $('#tabalCategoryLevel3').html(data);
             }
         });
-        //alert($value);
     });
+
+
+    $("#btnClose3").on("click", function (e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
+        $.ajax({
+            type: "POST",
+            url: '/close',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                $("#modelcategoryLeve3").modal("hide"); // This will close the modal
+                var urlWithoutQuery = window.location.href.split('?')[0];
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    });
+
+
+    $("#btnClose4").on("click", function (e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
+        $.ajax({
+            type: "POST",
+            url: '/close',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                $("#modelDesgination").modal("hide"); // This will close the modal
+                var urlWithoutQuery = window.location.href.split('?')[0];
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    });
+
+
+
+
+    $("#btnClose5").on("click", function (e) {
+        // Prevent the default form submission behavior
+        e.preventDefault();
+        var formData = $("form").serialize();
+        $.ajax({
+            type: "POST",
+            url: '/close',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                $("#modelStatus1").modal("hide"); // This will close the modal
+                var urlWithoutQuery = window.location.href.split('?')[0];
+            },
+            error: function (xhr, status, error) {
+
+            }
+        });
+    });
+
+
 
 
     $('#btnSaveCategorylevel1').on('click', function (e) {
@@ -363,31 +295,9 @@ $("#btnClose5").on("click", function(e) {
     $('#btnSaveDesgination').show();
     $('#btnUpdateDesgination').hide();
 
-    //..search
 
 
-    $('#desginationSearch').on('keyup',function(){
-        $value=$(this).val();
-
-
-        $.ajax({
-
-            type:'get',
-            url:'/desginathionsearch',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tabalDesgination').empty();
-                $('#tabalDesgination').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-
-
-     //##.......Status..........
+    //##.......Status..........
 
 
 
@@ -416,23 +326,7 @@ $("#btnClose5").on("click", function(e) {
     });
 
 
-    $('#status1Search').on('keyup',function(){
-        $value=$(this).val();
 
-        $.ajax({
-
-            type:'get',
-            url:'/empStatussearch',
-            data:{'search':$value},
-
-            success:function(data){
-                console.log(data);
-                $('#tabalStatus1').empty();
-                $('#tabalStatus1').html(data);
-            }
-        });
-        //alert($value);
-    });
 
 
     $('#btnSaveStatus').show();
@@ -444,48 +338,170 @@ $("#btnClose5").on("click", function(e) {
 
 });
 
+
+
+const DatatableFixedColumnsl = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-lsa').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width:200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data": "item_category_level_1_id"},
+                { "data": "category_level_1"},
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
+
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnsl.init();
+});
+
+
 //...Category load Data
 function Category1AllData() {
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/categoryLevelData",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 0;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        type: "GET",
+        url: '/categoryLeveldata',
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+            if (response.hasOwnProperty('data')) {
+                var dt = response.data;
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.item_category_level_1_id + "</td>";
-                htmlData += "<td>" + value.category_level_1 + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="" type="button" class="btn btn-primary categorylevel1" id="' + value.item_category_level_1_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + value.item_category_level_1_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' + value.item_category_level_1_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
+                var data = [];
 
-                rowIndex++;
-            });
+                for (var i = 0; i < dt.length; i++) {
+                    var isChecked = dt[i].is_active ? "checked" : "";
 
-            $('#tabalCategoryLevel1').html(htmlData);
-        }
+
+
+                    data.push({
+                        "item_category_level_1_id": dt[i].item_category_level_1_id,
+                        "category_level_1": dt[i].category_level_1,
+                        "edit": '<button class="btn btn-primary categorylevel1" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel"  id="' + dt[i].item_category_level_1_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger"  id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + dt[i].item_category_level_1_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single"id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' + dt[i].item_category_level_1_id + ')" required ' + isChecked + '></label>'
+                    });
+
+                }
+
+                var table = $('#categoryLevell').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+            } else if (response.hasOwnProperty('error')) {
+                console.log(response.error);
+            } else {
+                console.log('Invalid response format');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
     });
+
 }
 
 Category1AllData();
+
+function categorytabal1TableRefresh() {
+    var table = $('#categoryLevell').DataTable();
+    table.columns.adjust().draw();
+}
 
 
 
 //.....saveCategoryLevel1 Save.....
 
-function saveCategoryLevel1(){
+function saveCategoryLevel1() {
 
     formData.append('txtCategorylevel1', $('#txtCategorylevel1').val());
 
@@ -515,7 +531,7 @@ function saveCategoryLevel1(){
             Category1AllData();
             $('#modelcategoryLevel').modal('hide');
             $("#categoryLevel3Search").val('');
-           console.log(response);
+            console.log(response);
 
 
         },
@@ -534,23 +550,23 @@ function saveCategoryLevel1(){
 
 
 
- //.......edit......
+//.......edit......
 
- $(document).on('click', '.categorylevel1', function(e) {
+$(document).on('click', '.categorylevel1', function (e) {
     e.preventDefault();
-    let category_level_1_id  = $(this).attr('id');
+    let category_level_1_id = $(this).attr('id');
     $.ajax({
-        url: '/categorylevel1Edite/'+category_level_1_id,
+        url: '/categorylevel1Edite/' + category_level_1_id,
         method: 'get',
         data: {
             //id: id,
             _token: '{{ csrf_token() }}'
         },
-        success: function(response) {
+        success: function (response) {
             $('#btnSaveCategorylevel1').hide();
             $('#btnUpdateCategorylevel1').show();
 
-            $('#id').val(response.item_category_level_1_id  );
+            $('#id').val(response.item_category_level_1_id);
             $("#txtCategorylevel1").val(response.category_level_1);
 
 
@@ -562,7 +578,7 @@ function saveCategoryLevel1(){
 //....lavel1 Update
 
 
-function updateCategory1(){
+function updateCategory1() {
 
     var id = $('#id').val();
     formData.append('txtCategorylevel1', $('#txtCategorylevel1').val());
@@ -571,7 +587,7 @@ function updateCategory1(){
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/txtCategorylevel1Update/'+id,
+        url: '/txtCategorylevel1Update/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -611,7 +627,7 @@ function btnCategorylevel1Delete(id) {
                 _token: $("input[name=_token]").val()
             },
 
-            success: function(response) {
+            success: function (response) {
                 $('#categoryLevel1Search').val('');
                 Category1AllData();
 
@@ -624,7 +640,7 @@ function btnCategorylevel1Delete(id) {
 
 //##############################....Category Level 2.......######################################
 
-function loadcategory2(){
+function loadcategory2() {
     $.ajax({
         type: "get",
         dataType: 'json',
@@ -633,7 +649,7 @@ function loadcategory2(){
         success: function (data) {
             $('#cmbLeve1').empty();
             $.each(data, function (key, value) {
-                $('#cmbLeve1').append('<option value="'+value.item_category_level_1_id +'">'+value.category_level_1+'</option>');
+                $('#cmbLeve1').append('<option value="' + value.item_category_level_1_id + '">' + value.category_level_1 + '</option>');
             })
 
 
@@ -642,53 +658,172 @@ function loadcategory2(){
     });
 }
 
+///////////////////////////////////////////////////////////////////////
+
+
+
+const DatatableFixedColumnsll = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-bothll').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width:200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data":"Item_category_level_2_id"},
+                { "data":"Item_category_level_1_id" },
+                { "data":"category_level_2" },
+                { "data":"edit" },
+                { "data":"delete" },
+                { "data":"status" },
+
+
+
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnsll.init();
+});
+
+
+
 function Category2AllData() {
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/categoryLevel2Data",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        type: "GET",
+        url: '/categoryLevel2Data',
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+            if (response.hasOwnProperty('data')) {
+                var dt = response.data;
+                console.log(dt);
+                var data = [];
+                for (var i = 0; i < dt.length; i++) {
+                    var isChecked = dt[i].is_active ? "checked" : "";
+                    data.push({
+                        "Item_category_level_2_id": dt[i].Item_category_level_2_id,
+                        "Item_category_level_1_id": dt[i].category_level_1,
+                        "category_level_2": dt[i].category_level_2,
+                        "edit": '<button class="btn btn-primary categorylevel2" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2" id="' + dt[i].Item_category_level_2_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + dt[i].Item_category_level_2_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + dt[i].Item_category_level_2_id + ')" required ' + isChecked + '></label>'
+                    });
+                }
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.Item_category_level_2_id + "</td>";
-                htmlData += "<td>" + value.category_level_1 + "</td>";
-                htmlData += "<td>" + value.category_level_2 + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="" type="button" class="btn btn-primary categorylevel2" id="' + value.Item_category_level_2_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + value.Item_category_level_2_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + value.Item_category_level_2_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
-
-                rowIndex++;
-            });
-
-            $('#tabalCategoryLevel2').html(htmlData);
-        }
+                var table = $('#categoryLevel2Table').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+            } else if (response.hasOwnProperty('error')) {
+                console.log(response.error);
+            } else {
+                console.log('Invalid response format');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
     });
 }
 
 Category2AllData();
 
+function categorytabal2TableRefresh() {
+    var table = $('#categoryLevel2Table').DataTable();
+    table.columns.adjust().draw();
+}
+
 
 
 //.....saveCategoryLevel2 Save.....
 
-function saveCategoryLevel2(){
+function saveCategoryLevel2() {
 
     formData.append('cmbLeve1', $('#cmbLeve1').val());
     formData.append('txtCategorylevel2', $('#txtCategorylevel2').val());
 
-    if (formData.cmbLeve1 == '' && formData.txtCategorylevel2=='') {
+    if (formData.cmbLeve1 == '' && formData.txtCategorylevel2 == '') {
         alert('Please enter item category level 1');
         return false;
     }
@@ -716,7 +851,7 @@ function saveCategoryLevel2(){
             Category2AllData();
             $('#modelcategoryLeve2').modal('hide');
             $("#categoryLevel2Search").val('');
-           console.log(response);
+            console.log(response);
 
 
         },
@@ -737,23 +872,23 @@ function saveCategoryLevel2(){
 
 
 
- //.......edit......
+//.......edit......
 
- $(document).on('click', '.categorylevel2', function(e) {
+$(document).on('click', '.categorylevel2', function (e) {
     e.preventDefault();
-    let category_level_2_id  = $(this).attr('id');
+    let category_level_2_id = $(this).attr('id');
     $.ajax({
-        url: '/categorylevel2Edite/'+category_level_2_id,
+        url: '/categorylevel2Edite/' + category_level_2_id,
         method: 'get',
         data: {
             //id: id,
             _token: '{{ csrf_token() }}'
         },
-        success: function(response) {
+        success: function (response) {
             $('#btnSaveCategorylevel2').hide();
             $('#btnUpdateCategorylevel2').show();
 
-            $('#id').val(response.Item_category_level_2_id  );
+            $('#id').val(response.Item_category_level_2_id);
             $("#cmbLeve1").val(response.Item_category_level_1_id);
             $("#txtCategorylevel2").val(response.category_level_2);
 
@@ -766,7 +901,7 @@ function saveCategoryLevel2(){
 //....lavel2 Update
 
 
-function updateCategory2(){
+function updateCategory2() {
 
     var id = $('#id').val();
     formData.append('cmbLeve1', $('#cmbLeve1').val());
@@ -776,7 +911,7 @@ function updateCategory2(){
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/txtCategorylevel2Update/'+id,
+        url: '/txtCategorylevel2Update/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -816,7 +951,7 @@ function btnCategorylevel2Delete(id) {
                 _token: $("input[name=_token]").val()
             },
 
-            success: function(response) {
+            success: function (response) {
                 Category2AllData();
                 $('#categoryLevel2Search').val('');
 
@@ -830,7 +965,7 @@ function btnCategorylevel2Delete(id) {
 //############## Level 3   ###############################
 
 
-function loadcategory3(){
+function loadcategory3() {
     $.ajax({
         type: "get",
         dataType: 'json',
@@ -839,7 +974,7 @@ function loadcategory3(){
         success: function (data) {
             $('#cmbLeve2').empty();
             $.each(data, function (key, value) {
-                $('#cmbLeve2').append('<option value="'+value.Item_category_level_2_id  +'">'+value.category_level_2+'</option>');
+                $('#cmbLeve2').append('<option value="' + value.Item_category_level_2_id + '">' + value.category_level_2 + '</option>');
             })
 
 
@@ -847,55 +982,179 @@ function loadcategory3(){
 
     });
 }
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+
+const DatatableFixedColumnsls = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-l3').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width:200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data":"Item_category_level_3_id"},
+                { "data":"category_level_2" },
+                { "data":"category_level_3" },
+                { "data":"edit" },
+                { "data":"delete" },
+                { "data":"status" },
+
+
+
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnsls.init();
+});
+
+
+
 function Category3AllData() {
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/categoryLevel3Data",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        type: "GET",
+        url: '/categoryLevel3Data',
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+            if (response.hasOwnProperty('data')) {
+                var dt = response.data;
+                console.log(dt);
+                var data = [];
+                for (var i = 0; i < dt.length; i++) {
+                    var isChecked = dt[i].is_active ? "checked" : "";
+                    data.push({
+                        "Item_category_level_3_id": dt[i].Item_category_level_3_id,
+                        "category_level_2": dt[i].category_level_2,
+                        "category_level_3": dt[i].category_level_3,
+                        "edit": '<button class="btn btn-primary categorylevel3" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3" id="' + dt[i].Item_category_level_3_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + dt[i].Item_category_level_3_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + dt[i].Item_category_level_3_id + ')" required ' + isChecked + '></label>'
+                    });
+                }
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.Item_category_level_3_id + "</td>";
-                htmlData += "<td>" + value.category_level_2 + "</td>";
-                htmlData += "<td>" + value.category_level_3 + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="" type="button" class="btn btn-primary categorylevel3" id="' + value.Item_category_level_3_id + '" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + value.Item_category_level_3_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + value.Item_category_level_3_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
-
-                rowIndex++;
-            });
-
-            $('#tabalCategoryLevel3').html(htmlData);
-        }
+                var table = $('#tabalCategoryLevel3').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+            } else if (response.hasOwnProperty('error')) {
+                console.log(response.error);
+            } else {
+                console.log('Invalid response format');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
     });
+
 }
 
 Category3AllData();
 
+function categorytabal3TableRefresh() {
+    var table = $('#tabalCategoryLevel3').DataTable();
+    table.columns.adjust().draw();
+}
 
 
 //.....saveCategoryLevel3 Save.....
 
-function saveCategoryLevel3(){
+function saveCategoryLevel3() {
 
     formData.append('cmbLeve2', $('#cmbLeve2').val());
     formData.append('txtCategorylevel3', $('#txtCategorylevel3').val());
 
     console.log(formData);
-    if (formData.cmbLeve2 == '' && formData.txtCategorylevel3=='') {
-       // alert('Please enter item category level 1');
+    if (formData.cmbLeve2 == '' && formData.txtCategorylevel3 == '') {
+        // alert('Please enter item category level 1');
         return false;
     }
     $.ajax({
@@ -918,7 +1177,7 @@ function saveCategoryLevel3(){
             Category3AllData();
             $('#modelcategoryLeve3').modal('hide');
             $("#txtCategorylevel3").val('');
-           console.log(response);
+            console.log(response);
 
 
         },
@@ -937,19 +1196,19 @@ function saveCategoryLevel3(){
 
 
 
- //.......edit......
+//.......edit......
 
- $(document).on('click', '.categorylevel3', function(e) {
+$(document).on('click', '.categorylevel3', function (e) {
     e.preventDefault();
-    let category_level_3_id  = $(this).attr('id');
+    let category_level_3_id = $(this).attr('id');
     $.ajax({
-        url: '/categorylevel3Edite/'+category_level_3_id,
+        url: '/categorylevel3Edite/' + category_level_3_id,
         method: 'get',
         data: {
             //id: id,
             _token: '{{ csrf_token() }}'
         },
-        success: function(response) {
+        success: function (response) {
             $('#btnSaveCategorylevel3').hide();
             $('#btnUpdateCategorylevel3').show();
 
@@ -967,7 +1226,7 @@ function saveCategoryLevel3(){
 //....lavel3 Update
 
 
-function updateCategory3(){
+function updateCategory3() {
 
     var id = $('#id').val();
     formData.append('cmbLeve2', $('#cmbLeve2').val());
@@ -977,7 +1236,7 @@ function updateCategory3(){
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/Categorylevel3Update/'+id,
+        url: '/Categorylevel3Update/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -1013,14 +1272,14 @@ function cbxCategorylevel1Status(item_category_level_1_id) {
 
 
     $.ajax({
-        url: '/updateCatLevel1tStatus/'+item_category_level_1_id,
+        url: '/updateCatLevel1tStatus/' + item_category_level_1_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
-         console.log("data save");
+            console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -1038,14 +1297,14 @@ function cbxCategorylevel2Status(Item_category_level_2_id) {
 
 
     $.ajax({
-        url: '/updateCatLevel2tStatus/'+Item_category_level_2_id,
+        url: '/updateCatLevel2tStatus/'+ Item_category_level_2_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
-         console.log("data save");
+            console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -1063,14 +1322,14 @@ function cbxCategorylevel3Status(Item_category_level_3_id) {
 
 
     $.ajax({
-        url: '/updateCatLevel3tStatus/'+Item_category_level_3_id,
+        url: '/updateCatLevel3tStatus/' + Item_category_level_3_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
-         console.log("data save");
+            console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -1095,7 +1354,7 @@ function btnCategorylevel3Delete(id) {
                 _token: $("input[name=_token]").val()
             },
 
-            success: function(response) {
+            success: function (response) {
                 Category3AllData();
                 $('#categoryLevel3Search').val('');
 
@@ -1107,47 +1366,161 @@ function btnCategorylevel3Delete(id) {
 
 //#####################..Disgination...........
 
+const DatatableFixedColumnslsl = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-des').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width:200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data":"employee_designation_id "},
+                { "data":"employee_designation" },
+                { "data":"edit" },
+                { "data":"delete" },
+                { "data":"status" },
+
+
+
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnslsl.init();
+});
+
 // all data
 function allDesgination() {
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/disginationData",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        type: "GET",
+        url: '/disginationData',
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+            if (response.hasOwnProperty('data')) {
+                var dt = response.data;
+                console.log(dt);
+                var data = [];
+                for (var i = 0; i < dt.length; i++) {
+                    var isChecked = dt[i].is_active ? "checked" : "";
+                    data.push({
+                        "employee_designation_id ": dt[i].employee_designation_id ,
+                        "employee_designation": dt[i].employee_designation,
+                        "edit": '<button class="btn btn-primary editDesgination" data-bs-toggle="modal" data-bs-target="#modelDesgination" id="' + dt[i].employee_designation_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' + dt[i].employee_designation_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' + dt[i].employee_designation_id + ')" required ' + isChecked + '></label>'
+                    });
+                }
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.employee_designation_id + "</td>";
-                htmlData += "<td>" + value.employee_designation + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="" type="button" class="btn btn-primary editDesgination" id="' + value.employee_designation_id + '" data-bs-toggle="modal" data-bs-target="#modelDesgination"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' + value.employee_designation_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxDesginationStatus" value="1" onclick="cbxDesgination(' + value.employee_designation_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
-
-                rowIndex++;
-            });
-
-            $('#tabalDesgination').html(htmlData);
-        }
+                var table = $('#tabalDesgination').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+            } else if (response.hasOwnProperty('error')) {
+                console.log(response.error);
+            } else {
+                console.log('Invalid response format');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
     });
+
 }
 
 allDesgination();
 
+function desginationTableRefresh() {
+    var table = $('#tabalDesgination').DataTable();
+    table.columns.adjust().draw();
+}
+
 
 //....save Disgination
 
-function saveDesgination(){
+function saveDesgination() {
 
     formData.append('txtDesgination', $('#txtDesgination').val());
 
@@ -1178,7 +1551,7 @@ function saveDesgination(){
             $('#modelDesgination').modal('hide');
             $("#desginationSearch").val('');
             allDesgination();
-           console.log(response);
+            console.log(response);
 
 
         },
@@ -1205,7 +1578,7 @@ $(document).on('click', '.editDesgination', function (e) {
     let employee_designation_id = $(this).attr('id');
 
     $.ajax({
-        url: '/desginationEdite/'+employee_designation_id,
+        url: '/desginationEdite/' + employee_designation_id,
         method: 'get',
         data: {
 
@@ -1216,7 +1589,7 @@ $(document).on('click', '.editDesgination', function (e) {
             $('#btnSaveDesgination').hide();
             $('#btnUpdateDesgination').show();
 
-            $('#id').val(response.employee_designation_id   );
+            $('#id').val(response.employee_designation_id);
             $("#txtDesgination").val(response.employee_designation);
 
         }
@@ -1228,7 +1601,7 @@ $(document).on('click', '.editDesgination', function (e) {
 
 
 
-function updateDesgination(){
+function updateDesgination() {
     var id = $('#id').val();
     formData.append('txtDesgination', $('#txtDesgination').val());
 
@@ -1236,7 +1609,7 @@ function updateDesgination(){
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/desginationtUpdate/'+id,
+        url: '/desginationtUpdate/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -1271,14 +1644,14 @@ function cbxDesgination(employee_designation_id) {
 
 
     $.ajax({
-        url: '/updateDesginationStatus/'+employee_designation_id,
+        url: '/updateDesginationStatus/' + employee_designation_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
-         console.log("data save");
+            console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -1303,7 +1676,7 @@ function btnDesginationDelete(id) {
                 _token: $("input[name=_token]").val()
             },
 
-            success: function(response) {
+            success: function (response) {
                 allDesgination();
                 $('#desginationSearch').val('');
 
@@ -1320,47 +1693,159 @@ function btnDesginationDelete(id) {
 
 //#####################..Employee Status...........
 
+const DatatableFixedColumnslsll = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-st').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width:200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data":"employee_status_id"},
+                { "data":"employee_status" },
+                { "data":"edit" },
+                { "data":"delete" },
+                { "data":"status" },
+
+
+
+            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnslsll.init();
+});
+
 // all data
 function allempStatus() {
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/empStatusData",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        type: "GET",
+        url: '/empStatusData',
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+            if (response.hasOwnProperty('data')) {
+                var dt = response.data;
+                console.log(dt);
+                var data = [];
+                for (var i = 0; i < dt.length; i++) {
+                    var isChecked = dt[i].is_active ? "checked" : "";
+                    data.push({
+                        "employee_status_id": dt[i].employee_status_id,
+                        "employee_status": dt[i].employee_status,
+                        "edit": '<button class="btn btn-primary editEmpStatus" data-bs-toggle="modal" data-bs-target="#modelStatus1" id="' + dt[i].employee_status_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' + dt[i].employee_status_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' + dt[i].employee_status_id + ')" required ' + isChecked + '></label>'
+                    });
+                }
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.employee_status_id + "</td>";
-                htmlData += "<td>" + value.employee_status + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="" type="button" class="btn btn-primary editEmpStatus" id="' + value.employee_status_id + '" data-bs-toggle="modal" data-bs-target="#modelStatus1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' + value.employee_status_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' + value.employee_status_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
-
-                rowIndex++;
-            });
-
-            $('#tabalStatus1').html(htmlData);
-        }
+                var table = $('#tabalStatus1').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+            } else if (response.hasOwnProperty('error')) {
+                console.log(response.error);
+            } else {
+                console.log('Invalid response format');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
     });
+
 }
 
 allempStatus();
 
-
+function employeestatusTableRefresh() {
+    var table = $('#tabalStatus1').DataTable();
+    table.columns.adjust().draw();
+}
 //....save Disgination
 
-function saveStatus(){
+function saveStatus() {
 
     formData.append('txtStatus', $('#txtStatus').val());
 
@@ -1391,7 +1876,7 @@ function saveStatus(){
             $('#modelStatus1').modal('hide');
             $("#txtStatus").val('');
             allempStatus();
-           console.log(response);
+            console.log(response);
 
 
         },
@@ -1415,10 +1900,10 @@ function saveStatus(){
 $(document).on('click', '.editEmpStatus', function (e) {
 
     e.preventDefault();
-    let employee_status_id  = $(this).attr('id');
+    let employee_status_id = $(this).attr('id');
 
     $.ajax({
-        url: '/empStatusEdite/'+employee_status_id ,
+        url: '/empStatusEdite/' + employee_status_id,
         method: 'get',
         data: {
 
@@ -1429,7 +1914,7 @@ $(document).on('click', '.editEmpStatus', function (e) {
             $('#btnSaveStatus').hide();
             $('#btnUpdateStatus').show();
 
-            $('#id').val(response.employee_status_id );
+            $('#id').val(response.employee_status_id);
             $("#txtStatus").val(response.employee_status);
 
         }
@@ -1441,7 +1926,7 @@ $(document).on('click', '.editEmpStatus', function (e) {
 
 
 
-function updateStatus(){
+function updateStatus() {
     var id = $('#id').val();
     formData.append('txtStatus', $('#txtStatus').val());
 
@@ -1449,7 +1934,7 @@ function updateStatus(){
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/empStatusUpdate/'+id,
+        url: '/empStatusUpdate/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -1484,14 +1969,14 @@ function cbxEmpStatus(employee_status_id) {
 
 
     $.ajax({
-        url: '/updateempStatus/'+employee_status_id,
+        url: '/updateempStatus/' + employee_status_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
-         console.log("data save");
+            console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -1516,7 +2001,7 @@ function btnEmpStatusDelete(id) {
                 _token: $("input[name=_token]").val()
             },
 
-            success: function(response) {
+            success: function (response) {
                 allempStatus();
                 $('#status1Search').val('');
 
@@ -1525,4 +2010,14 @@ function btnEmpStatusDelete(id) {
 
     }
 }
+
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+
 

@@ -1,6 +1,10 @@
 
 var formData = new FormData();
 $(document).ready(function () {
+    $('#txtNote').on('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+      });
 
     $('#tabs a').click(function (e) {
         e.preventDefault();

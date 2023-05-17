@@ -31,12 +31,6 @@
                     <button id="btnCustomApp" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCustomerApp">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
-                    <div class="search" style="margin-left: 80%">
-
-                        <input type="search" name="search" id="customerAppSearch" class="form-control"
-                            placeholder="search">
-                    </div>
-
 
 
 
@@ -59,7 +53,7 @@
 
                 <div class="table-responsive">
                     <!--Required for Responsive-->
-                    <table id="customerAppTable" class="table table-striped table-responsive-stack datatbothable-fixed-">
+                    <table id="customerAppTable" class="datatable-fixed-both">
                         <thead>
                             <tr>
                                 <th class="id">ID</th>
@@ -73,7 +67,7 @@
                                 <th class="disable disable_bank">Status</th>
                             </tr>
                         </thead>
-                        <tbody id="tableCustomerApp">
+                        <tbody >
 
 
                         </tbody>
@@ -109,7 +103,7 @@
 
 
                     <div class="modal-body p-4 bg-light">
-                        <form id="" class="form-validate-jquery">
+                        <form id="" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-lg">
                                     <div class="row mb-1">
@@ -179,6 +173,9 @@
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/jquery/jquery.min.js') }}"></script>
     <!-- Theme JS files -->
+    <script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
+    <script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>
+
 
 
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
@@ -198,7 +195,7 @@
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
     <script src="{{ URL::asset('assets/js/customer_app_user.js') }}"></script>
 
-
+    <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 

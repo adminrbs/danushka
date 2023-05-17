@@ -237,3 +237,6 @@
 <!-- Modal -->
 
 
+
+<script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
+<script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>

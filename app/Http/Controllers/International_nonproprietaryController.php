@@ -92,6 +92,8 @@ class International_nonproprietaryController extends Controller
         return response()->json(' status updated successfully');
     }
 
-  
+  public function close(){
+    return response()->json(' close');
+  }
 
 }

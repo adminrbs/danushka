@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('employee_status_id');
             $table->string('employee_status');
             $table->boolean('locked')->default(true);
-            $table->integer('status_id')->default("1");
+            $table->boolean('is_active')->default("1");
             $table->timestamps();
         });
     }

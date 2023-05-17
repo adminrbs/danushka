@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('Item_category_level_3_id');
             $table->integer('Item_category_level_2_id');
             $table->string('category_level_3',100);
-            $table->integer('status_id')->default("1");
+            $table->boolean('is_active')->default("1");
             $table->timestamps();
         });
     }

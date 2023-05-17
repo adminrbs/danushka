@@ -133,104 +133,7 @@ $(document).ready(function () {
 
 
 
-    /////////////////////////////////////////////
-
-
-
-
-
-
-    //...District Search...
-
-    $('#distSearch').on('keyup', function () {
-        $value = $(this).val();
-
-
-        $.ajax({
-
-            type: 'get',
-            url: '/dist_search',
-            data: { 'search': $value },
-
-            success: function (data) {
-                console.log(data);
-                $('#tableDistrict').empty();
-                $('#tableDistrict').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-
-
-
-    //...Town Search...
-
-    $('#townSearch').on('keyup', function () {
-        $value = $(this).val();
-
-
-
-        $.ajax({
-
-            type: 'get',
-            url: '/town_search',
-            data: { 'search': $value },
-
-            success: function (data) {
-                console.log(data);
-                $('#tbodyTown').empty();
-                $('#tbodyTown').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-
-
-    //...group Search...
-
-    $('#groupSearch').on('keyup', function () {
-        $value = $(this).val();
-
-        $.ajax({
-
-            type: 'get',
-            url: '/group_search',
-            data: { 'search': $value },
-
-            success: function (data) {
-                console.log(data);
-                $('#tbodyGrouo').empty();
-                $('#tbodyGrouo').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-
-
-    //............grade search
-    $('#gradeSearch').on('keyup', function () {
-        $value = $(this).val();
-
-        $.ajax({
-
-            type: 'get',
-            url: '/grade_search',
-            data: { 'search': $value },
-
-            success: function (data) {
-                console.log(data);
-                $('#tabalGroup').empty();
-                $('#tabalGroup').html(data);
-            }
-        });
-        //alert($value);
-    });
-
-
-
+    ////////////////////////////////////////////
 
     $('#btnSaveDistric').on('click', function (e) {
         e.preventDefault();
@@ -448,43 +351,163 @@ function updateDistrict() {
 
 
 
+///////////////////////////////////////////////////////////////////////
+
+
+
+const DatatableFixedColumns = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width: 200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            autoWidth: false,
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data": "district_id" },
+                { "data": "district_name" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
+
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumns.init();
+});
+
+
+
 
 
 function allData() {
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
+        type: "GET",
         url: "/districtData",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.district_id + "</td>";
-                htmlData += "<td>" + value.district_name + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="" type="button" class="btn btn-primary editDistrict" id="' + value.district_id + '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete(' + value.district_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxDistricrStatus" value="1" onclick="cbxStatus(' + value.district_id + ')" required data-district-id="1" ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
+            var dt = response.data;
 
-                rowIndex++;
-            });
 
-            $('#tableDistrict').html(htmlData);
-        }
-    });
+            var data = [];
+            for (var i = 0; i < dt.length; i++) {
+
+                var isChecked = dt[i].is_active ? "checked" : "";
+
+                data.push({
+
+                    "district_id": dt[i].district_id,
+                    "district_name": dt[i].district_name,
+                    "edit": '<button class="btn btn-primary editDistrict" data-bs-toggle="modal" data-bs-target="#modelDistric" id="' + dt[i].district_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger"  id="btndistrict" onclick="btndistrictDelete(' + dt[i].district_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                    "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxDistricrStatus" value="1" onclick="cbxStatus(' + dt[i].district_id + ')" required ' + isChecked + '></lable>',
+                });
+            }
+
+
+            var table = $('#tableDistrict').DataTable();
+            table.clear();
+            table.rows.add(data).draw();
+
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
+    })
 }
 
 allData();
+
+function districtTableRefresh() {
+    var table = $('#tableDistrict').DataTable();
+    table.columns.adjust().draw();
+}
 
 
 
@@ -572,6 +595,115 @@ function btndistrictDelete(id) {
 
 //############################.....Town.....#######################################################
 
+
+
+const DatatableFixedColumnsTown = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-town').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width: 200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data": "town_id" },
+                { "data": "district_id" },
+                { "data": "town_name" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
+
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnsTown.init();
+});
+
+
+
+
+//////
 function loadDistrict() {
     $.ajax({
         type: "get",
@@ -615,43 +747,53 @@ function cbxTownStatus(town_id) {
 
 
 function allDataTown() {
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
+        type: "GET",
         url: "/twonAlldata",
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
 
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
+            var dt = response.data;
 
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.town_id + "</td>";
-                htmlData += "<td>" + value.town_name + "</td>";
-                htmlData += "<td>" + value.district_name + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="#" type="button" class="btn btn-primary editTwon" id="' + value.town_id + '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' + value.town_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + value.town_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
+            var data = [];
+            for (var i = 0; i < dt.length; i++) {
 
-                rowIndex++;
-            });
+                var isChecked = dt[i].is_active ? "checked" : "";
 
-            $('#tbodyTown').html(htmlData);
-        }
-    });
+                data.push({
+
+                    "town_id": dt[i].town_id,
+                    "district_id": dt[i].district_name,
+                    "town_name": dt[i].town_name,
+                    "edit": '<button class="btn btn-primary editTwon"data-bs-toggle="modal" data-bs-target="#modelTown" id="' + dt[i].town_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger"  id="btnTown" value="Delete" onclick="btnTownDelete(' + dt[i].town_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                    "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + dt[i].town_id + ')" required ' + isChecked + '></lable>',
+                });
+            }
+
+
+            var table = $('#tbodyTown').DataTable();
+            table.clear();
+            table.rows.add(data).draw();
+
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
+    })
+
 }
 
 allDataTown();
+function townTableRefresh() {
+    var table = $('#tbodyTown').DataTable();
+    table.columns.adjust().draw();
+}
 
 //........save......
 
@@ -818,43 +960,165 @@ function cbxGroupStatus(customer_group_id) {
     });
 }
 
+///////////////////////////////////////////////////////////////////////
+
+
+
+const DatatableFixedColumnsgroup = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
+        }
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-group').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width: 200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data": "customer_group_id" },
+                { "data": "group" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
+
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnsgroup.init();
+});
+
+
 
 function allDataGroup() {
+
+
     $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/groupAlldata",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
+        type: "GET",
+        url: '/groupAlldata',
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+            if (response.hasOwnProperty('data')) {
+                var dt = response.data;
+                console.log(dt);
+                var data = [];
+                for (var i = 0; i < dt.length; i++) {
+                    var isChecked = dt[i].is_active ? "checked" : "";
+                    data.push({
+                        "customer_group_id": dt[i].customer_group_id,
+                        "group": dt[i].group,
+                        "edit": '<button class="btn btn-primary editGroup" data-bs-toggle="modal" data-bs-target="#modalGroup"  id="' + dt[i].customer_group_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger"  id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + dt[i].customer_group_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' + dt[i].customer_group_id + ')" required ' + isChecked + '></label>'
+                    });
+                }
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.customer_group_id + "</td>";
-                htmlData += "<td>" + value.group + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="#" type="button" class="btn btn-primary editGroup" id="' + value.customer_group_id + '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete(' + value.customer_group_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' + value.customer_group_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
-
-                rowIndex++;
-            });
-
-            $('#tbodyGrouo').html(htmlData);
-        }
+                var table = $('#tbodyGroup').DataTable();
+                table.clear();
+                table.rows.add(data).draw();
+            } else if (response.hasOwnProperty('error')) {
+                console.log(response.error);
+            } else {
+                console.log('Invalid response format');
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
     });
+
+
+
+
 }
 
 allDataGroup();
 
+function groupTableRefresh() {
+    var table = $('#tbodyGroup').DataTable();
+    table.columns.adjust().draw();
+}
 
 
 
@@ -1006,9 +1270,9 @@ $.ajax({
     dataType: 'json',
     success: function (response) {
         if (response.status == 'true') {
-            $('#cbxGradeStatus').prop('checked', response.status_id == 1);
+            $('#cbxGradeStatus').prop('checked', response.is_active == 1);
         } else {
-            $('#cbxGradeStatus').prop('checked', response.status_id == 0);
+            $('#cbxGradeStatus').prop('checked', response.is_active == 0);
         }
     },
     error: function (xhr, status, error) {
@@ -1038,43 +1302,168 @@ function cbxGradeStatus(customer_grade_id) {
     });
 }
 
-function allDataGrade() {
-    $.ajax({
-        type: "get",
-        dataType: 'json',
-        url: "/gradeAlldata",
-        success: function (data) {
-            var htmlData = ""; // Variable to store the generated HTML markup
-            var rowIndex = 1;
-            $.each(data, function (key, value) {
-                var isChecked = value.status_id ? "checked" : "";
-                var rowClass = rowIndex % 2 === 0 ? "even-row" : "odd-row";
 
-                htmlData += '<tr class="' + rowClass + '">';
-                htmlData += "<td>" + value.customer_grade_id + "</td>";
-                htmlData += "<td>" + value.grade + "</td>";
-                htmlData += "<td>";
-                htmlData += '<a href="#" type="button" class="btn btn-primary editGrade" id="' + value.customer_grade_id + '" data-bs-toggle="modal" data-bs-target="#modalGrade"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<input type="button" class="btn btn-danger" name="switch_single" id="btnGrade" value="Delete" onclick="btnGradeDelete(' + value.customer_grade_id + ')">';
-                htmlData += "</td>";
-                htmlData += "<td>";
-                htmlData += '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus(' + value.customer_grade_id + ')" required ' + isChecked + '></label>';
-                htmlData += "</td>";
-                htmlData += "</tr>";
+///////////////////////////////////////////////////////////////////////
 
-                rowIndex++;
-            });
 
-            $('#tabalGroup').html(htmlData);
+
+const DatatableFixedColumnsgrade = function () {
+
+
+    //
+    // Setup module components
+    //
+
+    // Basic Datatable examples
+    const _componentDatatableFixedColumns = function () {
+        if (!$().DataTable) {
+            console.warn('Warning - datatables.min.js is not loaded.');
+            return;
         }
-    });
+
+        // Setting datatable defaults
+        $.extend($.fn.dataTable.defaults, {
+            columnDefs: [{
+                orderable: false,
+                width: 100,
+                targets: [2]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
+            language: {
+                search: '<span class="me-3">Filter:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span class="me-3">Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+
+        // Left and right fixed columns
+        $('.datatable-fixed-both-grade').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    targets: 2
+                },
+                {
+                    width: 200,
+                    targets: 0
+                },
+                {
+                    width: '100%',
+                    targets: 1
+                },
+                {
+                    width: 200,
+                    targets: [2]
+                },
+
+            ],
+            autoWidth: false,
+            scrollX: true,
+            scrollY: 350,
+            scrollCollapse: true,
+            fixedColumns: {
+                leftColumns: 0,
+                rightColumns: 1
+            },
+            "pageLength": 100,
+            "order": [],
+            "columns": [
+                { "data": "customer_grade_id" },
+                { "data": "grade" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
+
+
+
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        });
+
+
+        //
+        // Fixed column with complex headers
+        //
+
+    };
+
+
+    //
+    // Return objects assigned to module
+    //
+
+    return {
+        init: function () {
+            _componentDatatableFixedColumns();
+        }
+    }
+}();
+
+
+// Initialize module
+// ------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    DatatableFixedColumnsgrade.init();
+});
+
+
+
+function allDataGrade() {
+
+
+
+    $.ajax({
+        type: "GET",
+        url: "/gradeAlldata",
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+
+            var dt = response.data;
+
+
+            var data = [];
+            for (var i = 0; i < dt.length; i++) {
+
+                var isChecked = dt[i].is_active ? "checked" : "";
+
+
+                data.push({
+
+                    "customer_grade_id": dt[i].customer_grade_id,
+                    "grade": dt[i].grade,
+                    "edit": '<button class="btn btn-primary editGrade" data-bs-toggle="modal" data-bs-target="#modalGrade" id="' + dt[i].customer_grade_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger"   id="btnGrade" value="Delete" onclick="btnGradeDelete(' + dt[i].customer_grade_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                    "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxGradeStatus" value="1" onclick="cbxGradeStatus(' + dt[i].customer_grade_id + ')" required ' + isChecked + '></lable>',
+                });
+            }
+
+
+            var table = $('#tabalGrade').DataTable();
+            table.clear();
+            table.rows.add(data).draw();
+
+        },
+        error: function (error) {
+            console.log(error);
+
+        },
+        complete: function () { }
+    })
+
+
 }
 
 allDataGrade();
 
-
+function gradeTableRefresh() {
+    var table = $('#tabalGrade').DataTable();
+    table.columns.adjust().draw();
+}
 
 //........save......
 

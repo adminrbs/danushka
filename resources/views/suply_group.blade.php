@@ -33,11 +33,6 @@
                             data-bs-target="#modalSuplyGroup">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
-                        <div class="search" style="margin-left: 80%">
-
-                            <input type="text" name="search" id="suplyGroupSearch"
-                                class="form-control" placeholder="Search">
-                        </div>
 
 
 
@@ -45,8 +40,8 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Required for Responsive -->
-                        <table id="status1Table"
-                            class="table table-striped table-responsive-stack datatbothable-fixed-">
+                        <table id="suplyGroupTable"
+                            class="table datatable-fixed-both">
                             <thead>
                                 <tr>
                                     <th class="id">ID</th>
@@ -57,7 +52,7 @@
                                     <th class="disable disable_bank">Status</th>
                                 </tr>
                             </thead>
-                            <tbody id="tableSuplyGroup">
+                            <tbody >
 
 
                             </tbody>
@@ -93,7 +88,7 @@
 
 
               <div class="modal-body p-4 bg-light">
-                  <form id="" class="form-validate-jquery">
+                  <form id="" class="needs-validation" novalidate>
                   <div class="row">
                       <div class="col-lg">
                           <label for="fname">Supply group<span
@@ -133,6 +128,9 @@
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+    <script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
+    <script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>
+
 
 
 @endsection

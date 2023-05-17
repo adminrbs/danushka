@@ -18,19 +18,34 @@ class customerAppuseController extends Controller
         return view('customerAppuser',)->with('data',$data);
     }
 
-    public function customeruserApp(){
+    public function customeruserApp()
+{
+    try {
+        $customerDetails = DB::table('customer_app_users')
+            ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
+            ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password', 'customer_app_users.status_id')
+            ->orderBy('customers.customer_id', 'DESC')
+            ->distinct()
+            ->get();
 
-
-        $data = $users = DB::table('customer_app_users')
-        ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
-        ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password','customer_app_users.status_id')
-        ->orderBy('customers.customer_id', 'DESC')
-        ->distinct()
-        ->get();
-
-        return response()->json($data);
-
+        if ($customerDetails->isNotEmpty()) {
+            return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
+        } else {
+            return response()->json(['error' => 'Data is not loaded']);
+        }
+    } catch (Exception $ex) {
+        if ($ex instanceof ValidationException) {
+            return response()->json([
+                'ValidationException' => [
+                    'id' => collect($ex->errors())->keys()[0],
+                    'message' => $ex->errors()[collect($ex->errors())->keys()[0]]
+                ]
+            ]);
+        }
     }
+
+    return response()->json($data);
+}
 
 
     public function savecustomerUserApp(Request $request){

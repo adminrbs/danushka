@@ -23,8 +23,18 @@ class CommonsettingController extends Controller
 
     public function districtData(){
 
-        $data = District::orderBy('district_id','DESC' )->get();
-            return response()->json( $data );
+        try {
+            $customerDteails = District::all();
+            if ($customerDteails) {
+                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+            } else {
+                return response()->json((['error' => 'Data is not loaded']));
+            }
+        } catch (Exception $ex) {
+            if ($ex instanceof ValidationException) {
+                return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+            }
+        }
     }
 
 
@@ -73,7 +83,7 @@ class CommonsettingController extends Controller
 
         public function districtStatus(Request $request,$id){
             $district = District::findOrFail($id);
-            $district->status_id = $request->status;
+            $district->is_active = $request->status;
             $district->save();
 
             return response()->json(' status updated successfully');
@@ -83,33 +93,6 @@ class CommonsettingController extends Controller
 
 
 
-     //...........Search District.........
-
-     public function dist_search(Request $request){
-        $output="";
-        $districts = District::where('district_id','Like','%'.$request->search.'%')
-                                ->orWhere('district_name','Like','%'.$request->search.'%')
-                                ->get();
-
-
-                                foreach ($districts as $index => $district) {
-                                    $status = $district->status_id == 1 ? 'checked' : '';
-
-                                    // Determine the CSS class for the row based on the index
-                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
-
-                                    $output .= '<tr class="' . $rowClass . '">';
-                                    $output .= '<td>' . $district->district_id . '</td>';
-                                    $output .= '<td>' . $district->district_name . '</td>';
-                                    $output .= '<td><a href="" type="button" class="btn btn-primary editDistrict" id="' . $district->district_id . '" data-bs-toggle="modal" data-bs-target="#modelDistric"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
-                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btndistrict" value="Delete" onclick="btndistrictDelete(' . $district->district_id . ')"></td>';
-                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxStatus" value="1" onclick="cbxStatus(' . $district->district_id . ')" required ' . $status . '></label></td>';
-                                    $output .= '</tr>';
-                                }
-        return response($output);
-
-    }
-
     public function save_town_status(Request $request)
     {
 
@@ -117,8 +100,13 @@ class CommonsettingController extends Controller
     }
     public function deleteDistrict($id){
         $district = District::find($id);
+        if($district->district_id==1){
+            return response()->json(['error' => 'Record has been Not Delete']);
+        }else {
             $district->delete();
-        return response()->json(['success'=>'Record has been Delete']);
+            return response()->json(['success'=>'Record has been Delete']);
+        }
+
     }
 ///#####################....Town......################################
 
@@ -127,18 +115,34 @@ public function loadDistrict(){
 return response()->json( $data );
 }
 public function twonAlldata(){
-    /* $data = DB::table('towns')
-            ->join('districts', 'towns.district_id', '=', 'districts.district_id')
-            ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name','towns.status_id')
-            ->orderBy('districts.district_id', 'DESC')
-            ->distinct()
-            ->get();
-    return response()->json($data); */
 
 
-    $query = "SELECT towns.*,districts.district_name FROM towns INNER JOIN districts ON towns.district_id = districts.district_id ";
-    $data = DB::select($query);
+    try {
+        $customerDetails = DB::table('towns')
+        ->join('districts', 'towns.district_id', '=', 'districts.district_id')
+        ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name','towns.is_active')
+        ->orderBy('districts.district_id', 'DESC')
+        ->distinct()
+        ->get();
+
+        if ($customerDetails->isNotEmpty()) {
+            return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
+        } else {
+            return response()->json(['error' => 'Data is not loaded']);
+        }
+    } catch (Exception $ex) {
+        if ($ex instanceof ValidationException) {
+            return response()->json([
+                'ValidationException' => [
+                    'id' => collect($ex->errors())->keys()[0],
+                    'message' => $ex->errors()[collect($ex->errors())->keys()[0]]
+                ]
+            ]);
+        }
+    }
+
     return response()->json($data);
+
 }
 
 
@@ -187,41 +191,6 @@ public function twonAlldata(){
     }
 
 
-     //...........Search Grade.........
-
-     public function town_search(Request $request){
-        $output="";
-        $data = DB::table('towns')
-        ->join('districts', 'towns.district_id', '=', 'districts.district_id')
-        ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name')
-        ->orderBy('districts.district_id', 'DESC')
-        ->distinct()
-        ->get();
-        $group = Town::where('town_id','Like','%'.$request->search.'%')
-                                ->orWhere('district_id','Like','%'.$request->search.'%')
-                                ->orWhere('town_name','Like','%'.$request->search.'%')
-                                ->get();
-
-                                foreach ($group as $index => $group) {
-                                    $district = $data->where('town_id', $group->town_id)->first();
-                                    $status = $group->status_id == 1 ? 'checked' : '';
-
-                                    // Determine the CSS class for the row based on the index
-                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
-
-                                    $output .= '<tr class="' . $rowClass . '">';
-                                    $output .= '<td>' . $group->town_id . '</td>';
-                                    $output .= '<td>' . $group->town_name . '</td>';
-                                    $output .= '<td>' . $district->district_name . '</td>';
-                                    $output .= '<td><a href="#" type="button" class="btn btn-primary editTwon" id="' . $group->town_id . '" data-bs-toggle="modal" data-bs-target="#modelTown"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
-                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btnTown" value="Delete" onclick="btnTownDelete(' . $group->town_id . ')"></td>';
-                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' . $group->town_id . ')" required ' . $status . '></label></td>';
-                                    $output .= '</tr>';
-                                }
-        return response($output);
-
-    }
-
 
     /////////.....Status........
 
@@ -230,7 +199,7 @@ public function twonAlldata(){
 
     public function townUpdateStatus(Request $request,$id){
         $town = Town::findOrFail($id);
-        $town->status_id = $request->status;
+        $town->is_active = $request->status;
         $town->save();
 
         return response()->json(' status updated successfully');
@@ -240,8 +209,13 @@ public function twonAlldata(){
 
     public function deleteTown($id){
         $district = Town::find($id);
+        if($district->town_id == 1){
+            return response()->json(['error' => 'Record has been Not Delete']);
+        }else{
+
             $district->delete();
         return response()->json(['success'=>'Record has been Delete']);
+        }
     }
 
 
@@ -250,8 +224,18 @@ public function twonAlldata(){
 
 
 public function groupAlldata(){
-    $data = Customer_group::all();
-    return response()->json( $data );
+    try {
+        $customerDteails = Customer_group::all();
+        if ($customerDteails) {
+            return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+        } else {
+            return response()->json((['error' => 'Data is not loaded']));
+        }
+    } catch (Exception $ex) {
+        if ($ex instanceof ValidationException) {
+            return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+        }
+    }
 
 }
 
@@ -297,32 +281,6 @@ public function groupAlldata(){
     }
 
 
-    //...........Search Grade.........
-
-    public function group_search(Request $request){
-        $output="";
-        $group = Customer_group::where('customer_group_id','Like','%'.$request->search.'%')
-                                ->orWhere('group','Like','%'.$request->search.'%')
-                                ->get();
-
-
-                                foreach ($group as $index => $group) {
-                                    $status = $group->status_id == 1 ? 'checked' : '';
-
-                                    // Determine the CSS class for the row based on the index
-                                    $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
-
-                                    $output .= '<tr class="' . $rowClass . '">';
-                                    $output .= '<td>' . $group->customer_group_id . '</td>';
-                                    $output .= '<td>' . $group->group . '</td>';
-                                    $output .= '<td><a href="#" type="button" class="btn btn-primary editGroup" id="' . $group->customer_group_id . '" data-bs-toggle="modal" data-bs-target="#modalGroup"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
-                                    $output .= '<td><input type="button" class="btn btn-danger" name="switch_single" id="btnGroup" value="Delete" onclick="btnGroupDelete(' . $group->customer_group_id . ')"></td>';
-                                    $output .= '<td><label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' . $group->customer_group_id . ')" required ' . $status . '></label></td>';
-                                    $output .= '</tr>';
-                                }
-        return response($output);
-
-    }
  /////////.....Status........
 
     public function updateStatusGroup($customer_group_id)
@@ -340,7 +298,7 @@ public function groupAlldata(){
 
     public function groupUpdateStatus(Request $request,$id){
         $group = Customer_group::findOrFail($id);
-        $group->status_id = $request->status;
+        $group->is_active = $request->status;
         $group->save();
 
         return response()->json('District status updated successfully');
@@ -361,8 +319,18 @@ public function groupAlldata(){
 
 public function gradeAlldata(){
 
-    $data = Customer_grade::all();
-    return response()->json( $data );
+    try {
+        $customerDteails = Customer_grade::all();
+        if ($customerDteails) {
+            return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+        } else {
+            return response()->json((['error' => 'Data is not loaded']));
+        }
+    } catch (Exception $ex) {
+        if ($ex instanceof ValidationException) {
+            return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+        }
+    }
 
 }
 
@@ -418,7 +386,7 @@ public function gradeAlldata(){
 
 
                                 foreach ($grade as $index => $grade) {
-                                    $status = $grade->status_id == 1 ? 'checked' : '';
+                                    $status = $grade->is_active == 1 ? 'checked' : '';
 
                                     // Determine the CSS class for the row based on the index
                                     $rowClass = $index % 2 === 0 ? 'even-row' : 'odd-row';
@@ -451,7 +419,7 @@ public function gradeAlldata(){
 
 public function gradeUpdateStatus(Request $request,$id){
     $grade = Customer_grade::findOrFail($id);
-    $grade->status_id = $request->status;
+    $grade->is_active = $request->status;
     $grade->save();
 
     return response()->json(' status updated successfully');
