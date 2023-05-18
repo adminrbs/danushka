@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('employee__statuses', function (Blueprint $table) {
             $table->id('employee_status_id');
-            $table->string('employee_status');
-            $table->boolean('locked')->default(true);
+            $table->string('employee_status')->uniqid();
             $table->boolean('is_active')->default("1");
             $table->timestamps();
         });

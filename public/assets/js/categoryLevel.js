@@ -458,7 +458,7 @@ function Category1AllData() {
 
                 var data = [];
 
-                for (var i = 0; i < dt.length; i++) {
+                for (var i = 1; i < dt.length; i++) {
                     var isChecked = dt[i].is_active ? "checked" : "";
 
 
@@ -765,30 +765,31 @@ document.addEventListener('DOMContentLoaded', function () {
     DatatableFixedColumnsll.init();
 });
 
-
-
 function Category2AllData() {
     $.ajax({
         type: "GET",
         url: '/categoryLevel2Data',
         cache: false,
         timeout: 800000,
-        beforeSend: function () { },
+        beforeSend: function () {},
         success: function (response) {
             if (response.hasOwnProperty('data')) {
                 var dt = response.data;
                 console.log(dt);
+
                 var data = [];
                 for (var i = 0; i < dt.length; i++) {
-                    var isChecked = dt[i].is_active ? "checked" : "";
-                    data.push({
-                        "Item_category_level_2_id": dt[i].Item_category_level_2_id,
-                        "Item_category_level_1_id": dt[i].category_level_1,
-                        "category_level_2": dt[i].category_level_2,
-                        "edit": '<button class="btn btn-primary categorylevel2" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2" id="' + dt[i].Item_category_level_2_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                        "delete": '&#160<button class="btn btn-danger" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + dt[i].Item_category_level_2_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + dt[i].Item_category_level_2_id + ')" required ' + isChecked + '></label>'
-                    });
+                    if (dt[i].Item_category_level_2_id !== 1) {
+                        var isChecked = dt[i].is_active ? "checked" : "";
+                        data.push({
+                            "Item_category_level_2_id": dt[i].Item_category_level_2_id,
+                            "Item_category_level_1_id": dt[i].category_level_1,
+                            "category_level_2": dt[i].category_level_2,
+                            "edit": '<button class="btn btn-primary categorylevel2" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve2" id="' + dt[i].Item_category_level_2_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                            "delete": '&#160<button class="btn btn-danger" id="btnCategorylevel2" value="Delete" onclick="btnCategorylevel2Delete(' + dt[i].Item_category_level_2_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                            "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel2" value="1" onclick="cbxCategorylevel2Status(' + dt[i].Item_category_level_2_id + ')" required ' + isChecked + '></label>'
+                        });
+                    }
                 }
 
                 var table = $('#categoryLevel2Table').DataTable();
@@ -803,7 +804,7 @@ function Category2AllData() {
         error: function (error) {
             console.log(error);
         },
-        complete: function () { }
+        complete: function () {}
     });
 }
 
@@ -1108,9 +1109,12 @@ function Category3AllData() {
                 var dt = response.data;
                 console.log(dt);
                 var data = [];
+
+
                 for (var i = 0; i < dt.length; i++) {
-                    var isChecked = dt[i].is_active ? "checked" : "";
-                    data.push({
+                    if (dt[i].Item_category_level_3_id !== 1) {
+                        var isChecked = dt[i].is_active ? "checked" : "";
+                        data.push({
                         "Item_category_level_3_id": dt[i].Item_category_level_3_id,
                         "category_level_2": dt[i].category_level_2,
                         "category_level_3": dt[i].category_level_3,
@@ -1119,6 +1123,7 @@ function Category3AllData() {
                         "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + dt[i].Item_category_level_3_id + ')" required ' + isChecked + '></label>'
                     });
                 }
+            }
 
                 var table = $('#tabalCategoryLevel3').DataTable();
                 table.clear();
@@ -2015,6 +2020,49 @@ function btnEmpStatusDelete(id) {
 
 ///////////////////////////////////////////////////////////////////////
 
+
+
+
+function category2() {
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/category2",
+        success: function (data) {
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if (value.status_id) {
+                    isChecked = "checked";
+                }
+                data = data + "<option id='' value="+ value.item_category_level_1_id   + ">" + value.category_level_1 + "</option>"
+            })
+            $('#cmbLeve1').html(data);
+        }
+    });
+}
+category2()
+
+
+function category3() {
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/category3",
+        success: function (data) {
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if (value.status_id) {
+                    isChecked = "checked";
+                }
+                data = data + "<option id='' value="+ value.Item_category_level_2_id   + ">" + value.category_level_2 + "</option>"
+            })
+            $('#cmbLeve2').html(data);
+        }
+    });
+}
+category3()
 
 
 

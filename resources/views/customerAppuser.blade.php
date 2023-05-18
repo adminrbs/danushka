@@ -53,7 +53,7 @@
 
                 <div class="table-responsive">
                     <!--Required for Responsive-->
-                    <table id="customerAppTable" class="datatable-fixed-both">
+                    <table id="customerAppTable" class="datatable-fixed-both mt-3 table-striped">
                         <thead>
                             <tr>
                                 <th class="id">ID</th>
@@ -107,25 +107,13 @@
                             <div class="row">
                                 <div class="col-lg">
                                     <div class="row mb-1">
-                                        <div class="mb-3 row mb">
-                                            <label class="col-form-label col-md-6 mb-0">Customer Name <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="col-md-12">
 
-                                                    <select class="form-select select" aria-label="Default select example" id="cmbcustomerApp" >
+                                        <label for="txtcustomerName">Customer Name<span class="text-danger">*</span></label>
+                                        <input type="text" id="txtcustomerName" class="form-control validate" required>
+                                        <div id="customerList"></div>
 
-                                                        @foreach ($data as $data)
+                                    <span class="text-danger font-weight-bold "></span>
 
-                                                        <option value="{{ $data->customer_id  }}">
-                                                            {{ $data->customer_name }}</option>
-                                                    @endforeach
-
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <label for="Email">Email<span class="text-danger">*</span></label>
                                     <input type="text" id="txtEmailcustomer" class="form-control validate" required>
                                     <span class="text-danger font-weight-bold "></span>

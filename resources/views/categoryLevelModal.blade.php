@@ -57,10 +57,7 @@
                             <div class="col-lg">
                                 <label for="fname">Item Category level 1<span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" id="cmbLeve1">
-                                    @foreach ($level1 as $level1)
-                                        <option value="{{ $level1->item_category_level_1_id }}">
-                                            {{ $level1->category_level_1 }}</option>
-                                    @endforeach
+                                   
 
 
                                 </select>
@@ -110,10 +107,7 @@
                             <div class="col-lg">
                                 <label for="fname">Item Category level 2<span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" id="cmbLeve2">
-                                    @foreach ($level2 as $level2)
-                                        <option value="{{ $level2->Item_category_level_2_id }}">
-                                            {{ $level2->category_level_2 }}</option>
-                                    @endforeach
+
 
 
                                 </select>

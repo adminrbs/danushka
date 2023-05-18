@@ -18,6 +18,42 @@ class customerAppuseController extends Controller
         return view('customerAppuser',)->with('data',$data);
     }
 
+
+
+
+
+  /*  public function searchCustomers(Request $request)
+    {
+        $query = $request->get('query');
+
+        $customers = Customer::where('customer_name', 'like', '%'.$query.'%')->get();
+
+        $data = [];
+
+        foreach ($customers as $customer) {
+            $data[] = [
+                'id' => $customer->id,
+                'name' => $customer->name,
+
+            ];
+        }
+
+        return response()->json($data);
+    }
+*/
+public function autoComplete(Request $request){
+    $query = $request->input('query');
+
+    $customers = Customer::where('customer_name', 'LIKE', '%' . $query . '%')->limit(10)->get();
+
+
+    return response()->json($customers);
+}
+
+
+
+
+
     public function customeruserApp()
 {
     try {
@@ -44,7 +80,7 @@ class customerAppuseController extends Controller
         }
     }
 
-    return response()->json($data);
+
 }
 
 

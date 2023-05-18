@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('customer_app_users', function (Blueprint $table) {
             $table->id('customer_app_user_id');
             $table->integer('customer_id');
-            $table->Text('email',250);
-            $table->Text('mobile',50);
-            $table->Text('password',100);
+            $table->Text('email',250)->uniqid();
+            $table->Text('mobile',50)->uniqid();
+            $table->Text('password',100)->uniqid();
             $table->integer('status_id')->default("1");
             $table->timestamps();
         });

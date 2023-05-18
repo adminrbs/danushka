@@ -1,5 +1,55 @@
 var formData = new FormData();
 $(document).ready(function () {
+
+
+    $(document).ready(function () {
+        $('#txtcustomerName').on('input', function () {
+          var query = $(this).val();
+
+          if (query.length > 1) {
+            $.ajax({
+              url: '/autocomplete',
+              method: 'GET',
+              data: {
+                query: query
+              },
+              success: function (response) {
+                var html = '';
+
+                if (response.length > 0) {
+                  for (var i = 0; i < response.length; i++) {
+                    html += '<div class="customer-item">' + response[i].customer_name + '</div>';
+                  }
+                } else {
+                  html = '<div class="customer-item">No results found</div>';
+                }
+
+                $('#customerList').html(html);
+              }
+            });
+          } else {
+            $('#customerList').empty();
+          }
+        });
+
+        $(document).on('click', '.customer-item', function () {
+          var selectedCustomer = $(this).text();
+          $('#txtcustomerName').val(selectedCustomer);
+          $('#customerList').empty();
+        });
+      });
+
+
+
+
+
+
+
+
+
+
+
+
     $('#btnCustomApp').on('click', function () {
         $('#btncustomeruserApp').show();
         $('#btnUpdatecustomeruserApp').hide();
@@ -405,7 +455,7 @@ const DatatableFixedColumns = function () {
                 {
                     width: '100%',
                     targets: 1,
-                   
+
 
                 },
                 {
@@ -414,6 +464,7 @@ const DatatableFixedColumns = function () {
                 },
 
             ],
+
             scrollX: true,
             scrollY: 350,
             scrollCollapse: true,
@@ -463,3 +514,4 @@ const DatatableFixedColumns = function () {
 document.addEventListener('DOMContentLoaded', function () {
     DatatableFixedColumns.init();
 });
+//.............................Auto Complete.............

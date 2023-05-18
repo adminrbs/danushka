@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             DistrictSeeder::class,
-            TownSeeder::class,
            
+
         ]);
         // \App\Models\User::factory(10)->create();
 

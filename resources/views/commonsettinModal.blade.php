@@ -57,9 +57,7 @@
                         <div class="col-lg">
                             <label for="fname">District</label>
                             <select class="form-select" aria-label="Default select example" id="cmbDistrict">
-                                @foreach ($data as $data )
-                                <option value="{{ $data->district_id }}">{{ $data->district_name}}</option>
-                                @endforeach
+                               
 
 
                               </select>

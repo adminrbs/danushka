@@ -124,6 +124,8 @@ Route::post('/townUpdateStatus/{id}', [App\Http\Controllers\CommonsettingControl
 Route::get('/updateStatusTown/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusTown']);
 Route::delete('/deleteTown/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteTown']);
 Route::get('loadDistrict',[App\Http\Controllers\CommonsettingController::class,'loadDistrict']);
+
+Route::get('/towndistrict', [App\Http\Controllers\CommonsettingController::class, 'towndistrict']);
 //..Group
 Route::get('/groupAlldata', [App\Http\Controllers\CommonsettingController::class,'groupAlldata']);
 Route::post('/saveGroup', [App\Http\Controllers\CommonsettingController::class, 'saveGroup']);
@@ -155,6 +157,7 @@ Route::post('/updateCatLevel1tStatus/{id}', [CategoryLevelController::class, 'ca
 Route::get('/catLevel1_search', [CategoryLevelController::class,'categoryLevel1search']);
 Route::delete('/deletelevel1/{id}', [CategoryLevelController::class,'deletelevel1']);
 
+
 // Level 2
 Route::get('/categoryLevel2Data', [CategoryLevelController::class,'categoryLevel2Data']);
 Route::post('/saveCategoryLevel2', [CategoryLevelController::class,'saveCategoryLevel2']);
@@ -164,6 +167,8 @@ Route::post('/updateCatLevel2tStatus/{id}', [CategoryLevelController::class, 'ca
 Route::get('/catLevel2_search', [CategoryLevelController::class,'categoryLevel2search']);
 Route::delete('/deletelevel2/{id}', [CategoryLevelController::class,'deletelevel2']);
 Route::get('loadcategory2',[CategoryLevelController::class,'loadCategory2']);
+
+Route::get('/category2', [CategoryLevelController::class, 'category2']);
 // Level 3
 Route::get('/categoryLevel3Data', [CategoryLevelController::class,'categoryLevel3Data']);
 Route::post('/saveCategoryLevel3', [CategoryLevelController::class,'saveCategoryLevel3']);
@@ -174,6 +179,7 @@ Route::get('/catLevel3_search', [CategoryLevelController::class,'categoryLevel3s
 Route::delete('/deletelevel3/{id}', [CategoryLevelController::class,'deletelevel3']);
 Route::get('loadcategory3',[CategoryLevelController::class,'loadCaegory3']);
 
+Route::get('/category3', [CategoryLevelController::class, 'category3']);
 // Distination
 
 Route::post('/saveDesgination', [CategoryLevelController::class,'saveDesgination']);
@@ -247,3 +253,4 @@ Route::post('/customerAppStatus/{id}', [customerAppuseController::class,'custome
 Route::delete('/deletecustomerApp/{id}', [customerAppuseController::class,'deletecustomerApp']);
 Route::get('/customername', [customerAppuseController::class, 'customername']);
 
+Route::get('/autocomplete', [customerAppuseController::class, 'autoComplete']);

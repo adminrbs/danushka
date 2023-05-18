@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customer_grades', function (Blueprint $table) {
             $table->id('customer_grade_id');
-            $table->string('grade',100);
+            $table->string('grade',100)->uniqid();
             $table->boolean('is_active')->default("1");
             $table->timestamps();
         });

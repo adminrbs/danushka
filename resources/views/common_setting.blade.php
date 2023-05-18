@@ -57,7 +57,7 @@
 
                             <div class="table-responsive">
                                 <!-- Required for Responsive -->
-                                <table class="table   datatable-fixed-both" id="tableDistrict">
+                                <table class="table   datatable-fixed-both table-striped" id="tableDistrict">
                                     <thead>
                                         <tr>
                                             <th class="id">ID</th>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-town" id="tbodyTown">
+                                    <table class="table datatable-fixed-both-town table-striped" id="tbodyTown">
                                         <thead>
                                             <tr>
                                                 <th class="id">ID#</th>
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-group" id="tbodyGroup">
+                                    <table class="table datatable-fixed-both-group table-striped" id="tbodyGroup">
                                         <thead>
                                             <tr>
                                                 <th class="id">ID#</th>
@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-grade" id="tabalGrade">
+                                    <table class="table datatable-fixed-both-grade table-striped" id="tabalGrade">
 
                                         <thead>
                                             <tr>
@@ -282,7 +282,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-lsa" id="categoryLevell">
+                                    <table class="table datatable-fixed-both-lsa table-striped" id="categoryLevell">
 
                                         <thead>
                                             <tr>
@@ -336,7 +336,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table id="categoryLevel2Table" class="table datatable-fixed-bothll">
+                                    <table id="categoryLevel2Table" class="table datatable-fixed-bothll table-striped">
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>
@@ -395,7 +395,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-l3" id="tabalCategoryLevel3">
+                                    <table class="table datatable-fixed-both-l3 table-striped" id="tabalCategoryLevel3">
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>
@@ -450,7 +450,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-des" id="tabalDesgination">
+                                    <table class="table datatable-fixed-both-des table-striped" id="tabalDesgination">
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>
@@ -506,7 +506,7 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-st" id="tabalStatus1">
+                                    <table class="table datatable-fixed-both-st table-striped" id="tabalStatus1">
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>

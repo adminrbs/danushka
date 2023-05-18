@@ -1,6 +1,30 @@
 var formData = new FormData();
 $(document).ready(function () {
 
+
+        function townDistrict() {
+            $.ajax({
+                type: "get",
+                dataType: 'json',
+                url: "/towndistrict",
+                success: function (response) {
+                    var data = response.data;
+
+
+                    var options = '';
+                    $.each(data, function (key, value) {
+                        options += "<option value='" + value.district_id + "'>" + value.district_name + "</option>";
+                    });
+
+                    $('#cmbDistrict').html(options);
+                }
+            });
+        }
+
+        townDistrict();
+
+
+
     $('#btnDistrict').on('click', function () {
         $('#btnSaveDistric').show();
         $('#btnUpdateDistrict').hide();
@@ -475,7 +499,7 @@ function allData() {
 
 
             var data = [];
-            for (var i = 0; i < dt.length; i++) {
+            for (var i = 1; i < dt.length; i++) {
 
                 var isChecked = dt[i].is_active ? "checked" : "";
 
@@ -745,36 +769,31 @@ function cbxTownStatus(town_id) {
 }
 
 
-
 function allDataTown() {
-
     $.ajax({
         type: "GET",
         url: "/twonAlldata",
         cache: false,
         timeout: 800000,
-        beforeSend: function () { },
+        beforeSend: function () {},
         success: function (response) {
-
             var dt = response.data;
-
-
             var data = [];
+
             for (var i = 0; i < dt.length; i++) {
 
-                var isChecked = dt[i].is_active ? "checked" : "";
+                    var isChecked = dt[i].is_active ? "checked" : "";
 
-                data.push({
+                    data.push({
+                        "town_id": dt[i].town_id,
+                        "district_id": dt[i].district_name,
+                        "town_name": dt[i].town_name,
+                        "edit": '<button class="btn btn-primary editTwon" data-bs-toggle="modal" data-bs-target="#modelTown" id="' + dt[i].town_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger" id="btnTown" value="Delete" onclick="btnTownDelete(' + dt[i].town_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + dt[i].town_id + ')" required ' + isChecked + '></lable>',
+                    });
 
-                    "town_id": dt[i].town_id,
-                    "district_id": dt[i].district_name,
-                    "town_name": dt[i].town_name,
-                    "edit": '<button class="btn btn-primary editTwon"data-bs-toggle="modal" data-bs-target="#modelTown" id="' + dt[i].town_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                    "delete": '&#160<button class="btn btn-danger"  id="btnTown" value="Delete" onclick="btnTownDelete(' + dt[i].town_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                    "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + dt[i].town_id + ')" required ' + isChecked + '></lable>',
-                });
             }
-
 
             var table = $('#tbodyTown').DataTable();
             table.clear();
@@ -784,11 +803,9 @@ function allDataTown() {
         error: function (error) {
             console.log(error);
         },
-        complete: function () { }
+        complete: function () {}
     })
-
 }
-
 allDataTown();
 function townTableRefresh() {
     var table = $('#tbodyTown').DataTable();
@@ -1599,5 +1616,10 @@ function btnGradeDelete(id) {
 
     }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 

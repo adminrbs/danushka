@@ -15,10 +15,13 @@ class CommonsettingController extends Controller
 {
 
     public function index(){
-        $data = District::all();
+
+        $townDistrict = District::orderBy('district_id','asc')->get();
         $level1= category_level_1::all();
         $level2 = category_level_2::all();
-        return view('common_setting',)->with('data',$data)->with('level2',$level2)->with('level1',$level1);
+
+
+        return view('common_setting',)->with('townDistrict',$townDistrict)->with('level2',$level2)->with('level1',$level1);
     }
 
     public function districtData(){
@@ -111,9 +114,18 @@ class CommonsettingController extends Controller
 ///#####################....Town......################################
 
 public function loadDistrict(){
-    $data = District::orderBy('district_id','DESC' )->get();
+    $data = District::orderBy('district_id','ASC' )->get();
 return response()->json( $data );
 }
+
+public function towndistrict(){
+    $data = District::orderBy('district_id','ASC' )->get();
+    return response()->json( $data );
+
+}
+
+
+
 public function twonAlldata(){
 
 
@@ -141,7 +153,7 @@ public function twonAlldata(){
         }
     }
 
-    return response()->json($data);
+    return response()->json($customerDetails);
 
 }
 

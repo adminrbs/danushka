@@ -139,7 +139,7 @@ class CategoryLevelController extends Controller
 
 //#################   Level 2 ##########
 public function loadCategory2(){
-    $data = category_level_1::orderBy('item_category_level_1_id','DESC' )->get();
+    $data = category_level_1::orderBy('item_category_level_1_id','ASC' )->get();
 return response()->json( $data );
 }
 public function categoryLevel2Data()
@@ -236,7 +236,7 @@ public function catLevel2tStatus(Request $request,$id){
 
 //#################   Level 3 ##########
 public function loadCaegory3(){
-    $data = category_level_2::orderBy('Item_category_level_2_id','DESC' )->get();
+    $data = category_level_2::orderBy('Item_category_level_2_id','ASC' )->get();
 return response()->json( $data );
 }
 public function categoryLevel3Data()
@@ -549,6 +549,18 @@ public function Categorylevel3Update(Request $request,$id){
         return response()->json(['success'=>'Record has been Delete']);
     }
 
+
+
+    public function category2(){
+        $data = category_level_1::orderBy('item_category_level_1_id','ASC' )->get();
+        return response()->json($data);
+    }
+
+
+    public function category3(){
+        $data = category_level_2::orderBy('Item_category_level_2_id','ASC' )->get();
+        return response()->json($data);
+    }
 
 
 

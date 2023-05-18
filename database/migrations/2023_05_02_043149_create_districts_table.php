@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id('district_id');
-            $table->string('district_name',100);
+            $table->string('district_name',100)->uniqid();
             $table->boolean('is_active')->default("1");
             $table->timestamps();
         });

@@ -37,7 +37,7 @@
                     <div class="table-responsive">
                         <!--Required for Responsive-->
                         <table id="itemAlternativTable"
-                            class="table datatable-fixed-both">
+                            class="table datatable-fixed-both table-striped">
                             <thead>
                                 <tr>
                                     <th class="id">ID</th>
