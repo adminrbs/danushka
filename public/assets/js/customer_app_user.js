@@ -2,51 +2,6 @@ var formData = new FormData();
 $(document).ready(function () {
 
 
-    $(document).ready(function () {
-        $('#txtcustomerName').on('input', function () {
-          var query = $(this).val();
-
-          if (query.length > 1) {
-            $.ajax({
-              url: '/autocomplete',
-              method: 'GET',
-              data: {
-                query: query
-              },
-              success: function (response) {
-                var html = '';
-
-                if (response.length > 0) {
-                  for (var i = 0; i < response.length; i++) {
-                    html += '<div class="customer-item">' + response[i].customer_name + '</div>';
-                  }
-                } else {
-                  html = '<div class="customer-item">No results found</div>';
-                }
-
-                $('#customerList').html(html);
-              }
-            });
-          } else {
-            $('#customerList').empty();
-          }
-        });
-
-        $(document).on('click', '.customer-item', function () {
-          var selectedCustomer = $(this).text();
-          $('#txtcustomerName').val(selectedCustomer);
-          $('#customerList').empty();
-        });
-      });
-
-
-
-
-
-
-
-
-
 
 
 
@@ -367,7 +322,7 @@ function cbxCustomerappStatus(customer_app_user_id) {
 
 
 
-/*
+
 function customeername() {
 
     $.ajax({
@@ -385,7 +340,7 @@ function customeername() {
                 }
 
 
-                data = data + "<option id='customeerUserappoption' value="+ value.customer_id  + ">" + value.customer_name + "</option>"
+                data = data + "<option id='' value="+ value.customer_id  + ">" + value.customer_name + "</option>"
 
 
             })
@@ -397,7 +352,7 @@ function customeername() {
     });
 
 }
-customeername();*/
+customeername();
 
 
 
