@@ -3,7 +3,7 @@
 
 const DatatableFixedColumns = function () {
 
-
+    $('#frmEmployee').trigger("reset");
     //
     // Setup module components
     //
@@ -34,7 +34,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both').DataTable({
+        var table =  $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -69,7 +69,7 @@ const DatatableFixedColumns = function () {
                 { "data": "action" },
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -112,11 +112,13 @@ $(document).ready(function () {
 
 function edit(id) {
 
-    location.href = "/employee?id=" + id + "&action=edit";
+    url= "/employee?id=" + id + "&action=edit";
+    window.open(url,"_blank");
 }
 
 function view(id) {
-    location.href = "/employee?id=" + id + "&action=view";
+   url= "/employee?id=" + id + "&action=view";
+     window.open(url,"_blank");
 }
 
 
@@ -140,7 +142,7 @@ function getCustomerDetails() {
                data.push({
                    "employee_id": dt[i].employee_id,
                    "employee_name": dt[i].employee_name,
-                   "action":'<button class="btn btn-primary" onclick="edit(' + dt[i].employee_id + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&#160<button class="btn btn-success" onclick="view(' + dt[i].employee_id + ')"><i class="fa fa-eye" aria-hidden="true"></i></button>&#160<button class="btn btn-danger" onclick="deleteEmployee(' + dt[i].employee_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                   "action":'<button  class="btn btn-primary" onclick="edit(' + dt[i].employee_id + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&#160<button class="btn btn-success" onclick="view(' + dt[i].employee_id + ')"><i class="fa fa-eye" aria-hidden="true"></i></button>&#160<button class="btn btn-danger" onclick="_delete(' + dt[i].employee_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
                });
             }
 
@@ -159,49 +161,52 @@ function getCustomerDetails() {
 
 
 function _delete(id) {
-    bootbox.confirm({
-        title: 'Confirm dialog',
-        message: 'Are you sure want to delete this record?.',
-        buttons: {
-            confirm: {
-                label: 'Yes',
-                className: 'btn-primary'
-            },
-            cancel: {
-                label: 'Cancel',
-                className: 'btn-link'
-            }
+bootbox.confirm({
+    title: 'Delete confirmation',
+    message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+    buttons: {
+        confirm: {
+            label: '<i class="fa fa-check"></i>&nbsp;Yes',
+            className: 'btn-Danger'
         },
-        callback: function (result) {
-           console.log(result);
-           if(result){
-                deleteEmployee(id);
-           }else{
-
-           }
+        cancel: {
+            label: '<i class="fa fa-times"></i>&nbsp;No',
+            className: 'btn-info'
         }
-    });
+    },
+    callback: function (result) {
+       console.log(result);
+       if(result){
+        deleteEmployee(id);
+       }else{
+
+       }
+    }
+});
+$('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
 }
 
 function deleteEmployee(id) {
-    if (confirm("Do you want to delete this record?")) {
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteEmployee/' + id,
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteEmployee/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            success: function (data) {
-
-                console.log(data);
-                getCustomerDetails();
-
-
-            }
-        });
-    }
+        },success:function(response){
+            console.log(response);
+            getCustomerDetails()
+            showSuccessMessage('Deleted');
+        },error:function(xhr,status,error){
+            console.log(xhr.responseText);
+        }
+    });
 }
 
 

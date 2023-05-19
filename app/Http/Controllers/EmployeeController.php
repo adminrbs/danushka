@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\employee;
+use App\Models\employee_designation;
 use Dotenv\Exception\ValidationException;
 use Exception;
 class EmployeeController extends Controller
@@ -32,8 +33,8 @@ class EmployeeController extends Controller
             $employee->persional_fixed = $request->get('txtPersionalfixedno');
             $employee->persional_email = $request->get('txtPersionalemail');
             $employee->address = $request->get('txtAddress');
-            $employee->desgination_id = $request->get('txtDesignation');
-            $employee->report_to = $request->get('txtRepotno');
+            $employee->desgination_id = $request->get('cmbDesgination');
+            $employee->report_to = $request->get('cmbReport');
             $employee->date_of_joined = $request->get('txtDateofjoined');
             $employee->date_of_resign = $request->get('txtDateofresign');
             $employee->status_id = $request->get('cmbStatus');
@@ -97,15 +98,15 @@ class EmployeeController extends Controller
             'persional_email'=>$request->txtPersionalemail,
 
             'address' => $request->txtAddress,
-            'desgination_id'=>$request->txtDesignation,
-            'report_to'=>$request->txtRepotno,
+            'desgination_id'=>$request->cmbDesgination,
+            'report_to'=>$request->cmbReport,
 
             'date_of_joined' => $request->txtDateofjoined,
             'date_of_resign'=>$request->txtDateofresign,
             'status_id'=>$request->cmbStatus,
             'note' => $request->txtNote,
 
-           
+
         ]);
         return response()->json($employee);
 
@@ -141,5 +142,13 @@ class EmployeeController extends Controller
 
         }
 
+        public function empdesgnation(){
+            $data = employee_designation::all();
+            return response()->json($data);
+        }
 
+        public function empreport(){
+            $data = employee::all();
+            return response()->json($data);
+        }
 }

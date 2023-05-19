@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('supply_groups', function (Blueprint $table) {
             $table->id('supply_group_id');
-            $table->text('supply_group', 100)->uniqid();
+            $table->text('supply_group', 100);
             $table->integer('status_id')->default("1");
             $table->timestamps();
         });

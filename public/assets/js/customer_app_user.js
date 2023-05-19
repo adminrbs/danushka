@@ -53,34 +53,86 @@ $(document).ready(function () {
 
     // Customer user App
 
-    $('#btncustomeruserApp').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
-
-        saveCustomeerUserapp();
-    });
-
-    //...Customer user App Update
-
-    $('#btnUpdatecustomeruserApp').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
-
-        updateCustomeerUserapp();
-    });
-
+   
     $('#btncustomeruserApp').show();
     $('#btnUpdatecustomeruserApp').hide();
 
-//search
+    $('#btncustomeruserApp').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
+
+                    saveCustomeerUserapp();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+    });
+
+
+    $('#btnUpdatecustomeruserApp').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
+
+                    updateCustomeerUserapp();
+                    }
+
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+    });
+
 
 
 
@@ -175,12 +227,15 @@ function saveCustomeerUserapp() {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
             $('#customerAppSearch').val('');
+            showSuccessMessage('Save');
             console.log(response);
 
 
         },
         error: function (error) {
-            $('.category2').text('This field is required.');
+
+showErrorMessage('Error');
+$('#modalCustomerApp').modal('hide');
             console.log(error);
 
 
@@ -263,40 +318,70 @@ function updateCustomeerUserapp() {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
             $('#customerAppSearch').val('');
+            showSuccessMessage('Updated');
 
 
 
         }, error: function (error) {
+            showErrorMessage('Error');
+            $('#modalCustomerApp').modal('hide');
             console.log(error);
         }
     });
 }
 
-
-
 function btnCustommerAppDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteCustomApp(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteCustomApp(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deletecustomerApp/" + id,
+            url: '/deletecustomerApp/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function(response) {
+            },success:function(response){
+                console.log(response);
                 customeerUserappAllData();
                 $('#customerAppSearch').val('');
-
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
 
 
 
@@ -331,6 +416,7 @@ function customeername() {
         url: "/customername",
 
         success: function (data) {
+
 
             $.each(data, function (key, value) {
 
@@ -395,7 +481,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both').DataTable({
+        var table =  $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -441,7 +527,7 @@ const DatatableFixedColumns = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //

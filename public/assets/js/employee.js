@@ -11,7 +11,7 @@ $(document).ready(function () {
         $(this).tab('show');
     });
 
-    $('#btnSave').on('click',function (e) {
+    /*$('#btnSave').on('click',function (e) {
         e.preventDefault();
 
         // check if the input is valid using a 'valid' property
@@ -20,10 +20,10 @@ $(document).ready(function () {
         }
 
         saveEmployee();
-    });
+    });*/
 //..........update employee.....
 
-$('#btnupdate').on('click',function (e) {
+/*$('#btnupdate').on('click',function (e) {
     e.preventDefault();
 
     // check if the input is valid using a 'valid' property
@@ -32,7 +32,7 @@ $('#btnupdate').on('click',function (e) {
     }
 
     getEmployeeupdate();
-});
+});*/
 
     $('#btnReset').on('click', function () {
         resetForm();
@@ -63,7 +63,89 @@ $('#btnupdate').on('click',function (e) {
     $('#btnSave').show();
     $('#btnupdate').hide();
 
+    $('#btnSave').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
+
+                        saveEmployee();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+    });
+
+
+    $('#btnupdate').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
+
+                    getEmployeeupdate();
+                    }
+
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+    });
+
+
+
+
+
 });
+
+
 
 //........... employee save..........
 function saveEmployee() {
@@ -75,8 +157,8 @@ function saveEmployee() {
     formData.append('txtPersionalfixedno', $('#txtPersionalfixedno').val());
     formData.append('txtPersionalemail', $('#txtPersionalemail').val());
     formData.append('txtAddress', $('#txtAddress').val());
-    formData.append('txtDesignation', $('#txtDesignation').val());
-    formData.append('txtRepotno', $('#txtRepotno').val());
+    formData.append('cmbDesgination', $('#cmbDesgination').val());
+    formData.append('cmbReport', $('#cmbReport').val());
     formData.append('txtDateofjoined', $('#txtDateofjoined').val());
     formData.append('txtDateofresign', $('#txtDateofresign').val());
     formData.append('cmbStatus', $('#cmbStatus').val());
@@ -93,6 +175,7 @@ function saveEmployee() {
         contentType: false,
         cache: false,
         timeout: 800000,
+        async:false,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -105,12 +188,14 @@ function saveEmployee() {
             if (response.status) {
 
                 resetForm();
+                showSuccessMessage('Successfully saved');
 
             } else {
             }
 
         },
         error: function (error) {
+            showErrorMessage('Something went wrong');
             console.log(error);
 
         },
@@ -148,8 +233,8 @@ function getEmployeedata(id) {
             $('#txtPersionalfixedno').val(employee.persional_fixed);
             $('#txtPersionalemail').val(employee.persional_email);
             $('#txtAddress').val(employee.address);
-            $('#txtDesignation').val(employee.desgination_id);
-            $('#txtRepotno').val(employee.report_to);
+            $('#cmbDesgination').val(employee.desgination_id);
+            $('#cmbReport').val(employee.report_to);
             $('#txtDateofjoined').val(employee.date_of_joined);
             $('#txtDateofresign').val(employee.date_of_resign);
             $('#cmbStatus').val(employee.status_id);
@@ -186,8 +271,8 @@ function getEmployeeupdate() {
     formData.append('txtPersionalfixedno', $('#txtPersionalfixedno').val());
     formData.append('txtPersionalemail', $('#txtPersionalemail').val());
     formData.append('txtAddress', $('#txtAddress').val());
-    formData.append('txtDesignation', $('#txtDesignation').val());
-    formData.append('txtRepotno', $('#txtRepotno').val());
+    formData.append('cmbDesgination', $('#cmbDesgination').val());
+    formData.append('cmbReport', $('#cmbReport').val());
     formData.append('txtDateofjoined', $('#txtDateofjoined').val());
     formData.append('txtDateofresign', $('#txtDateofresign').val());
     formData.append('cmbStatus', $('#cmbStatus').val());
@@ -213,9 +298,11 @@ function getEmployeeupdate() {
         success: function (response) {
 
             window.location.href = '/employeeList';
+            showSuccessMessage('Updated');
 
             console.log(data);
         }, error: function (error) {
+            showErrorMessage('Error');
             console.log(error);
         }
     });
@@ -248,8 +335,8 @@ function getEmployeeview(id){
             $('#txtPersionalfixedno').val(employee.persional_fixed);
             $('#txtPersionalemail').val(employee.persional_email);
             $('#txtAddress').val(employee.address);
-            $('#txtDesignation').val(employee.desgination_id);
-            $('#txtRepotno').val(employee.report_to);
+            $('#cmbDesgination').val(employee.desgination_id);
+            $('#cmbReport').val(employee.report_to);
             $('#txtDateofjoined').val(employee.date_of_joined);
             $('#txtDateofresign').val(employee.date_of_resign);
             $('#cmbStatus').val(employee.status_id);
@@ -272,6 +359,98 @@ function resetForm() {
     $('#frmEmployee').trigger('reset');
 }
 
+function btnCustommerAppDelete(id) {
 
+    if (confirm("Do you want to delete this record?")) {
+        $.ajax({
+            type: 'DELETE',
+            url: "/deletecustomerApp/" + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                _token: $("input[name=_token]").val()
+            },
+
+            success: function(response) {
+                customeerUserappAllData();
+                $('#customerAppSearch').val('');
+
+
+            }
+        });
+
+    }
+}
+
+
+
+
+//..................combo box loard...................
+
+function empdesgnation() {
+
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/empdesgnation",
+
+        success: function (data) {
+
+
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if (value.status_id) {
+                    isChecked = "checked";
+                }
+
+
+                data = data + "<option id='' value="+ value.employee_designation_id  + ">" + value.employee_designation + "</option>"
+
+
+            })
+
+            $('#cmbDesgination').html(data);
+
+        }
+
+    });
+
+}
+empdesgnation();
+
+
+function empreport() {
+
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/empreport",
+
+        success: function (data) {
+
+
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if (value.status_id) {
+                    isChecked = "checked";
+                }
+
+
+                data = data + "<option id='' value="+ value.employee_id    + ">" + value.employee_name + "</option>"
+
+
+            })
+
+            $('#cmbReport').html(data);
+
+        }
+
+    });
+
+}
+empreport();
 
 

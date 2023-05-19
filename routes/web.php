@@ -92,6 +92,9 @@ Route::get('/getEmployeeview/{id}',[App\Http\Controllers\EmployeeController::cla
 Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeDelete']);
 
 
+Route::get('/empdesgnation',[App\Http\Controllers\EmployeeController::class,'empdesgnation']);
+Route::get('/empreport',[App\Http\Controllers\EmployeeController::class,'empreport']);
+
 //.......common_setting..........
 
 

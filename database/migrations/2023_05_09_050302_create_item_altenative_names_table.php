@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('item_altenative_names', function (Blueprint $table) {
             $table->id('item_altenative_name_id');
-            $table->Text('item_altenative_name',200)->uniqid();
+            $table->Text('item_altenative_name',200);
             $table->integer('status_id')->default("1");
             $table->timestamps();
         });

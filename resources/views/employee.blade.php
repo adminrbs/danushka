@@ -76,8 +76,7 @@
 
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Office mobile No <span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Office mobile No </label>
 
                                                     <div class="mt-1">
                                                         <input class="form-control form-control-sm validate" type="text"
@@ -89,8 +88,7 @@
 
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Office email <span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Office email </label>
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="email"
@@ -99,21 +97,20 @@
                                                     </div>
                                                     <label class="col-form-label mb-0 mt-1"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Persional mobile No <span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Persional mobile No </label>
                                                     <div>
                                                         <input class="form-control form-control-sm validate  mt-1" type="text"
                                                             id="txtPersionalmobile" name="numbers" required maxlength="15">
 
                                                     </div >
+
                                                 </div>
 
                                                 <div class="mb-1">
 
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Persional fixed No <span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Persional fixed No </label>
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="text"
@@ -122,8 +119,7 @@
                                                     </div>
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Persional email<span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Persional email</label>
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="email"
@@ -140,8 +136,7 @@
 
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Address<span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Address</label>
                                                     <div>
                                                         <input type="text" class="form-control validate" id="txtAddress" name="address" required>
                                                     </div>
@@ -155,9 +150,12 @@
                                                             class="text-danger">*</span></label>
 
                                                     <div>
-                                                        <input class="form-control form-control-sm validate" type="text"
-                                                            id="txtDesignation" name="numbers" required>
+                                                        <div>
+                                                            <select class="form-select" id="cmbDesgination">
 
+                                                            </select>
+
+                                                        </div>
                                                     </div>
 
                                                     <label class="col-form-label mb-0 mt-1"><i
@@ -165,17 +163,16 @@
                                                             aria-hidden="true">&#160</i>Report to<span
                                                             class="text-danger">*</span></label>
                                                     <div>
-                                                        <input class="form-control form-control-sm validate"
-                                                            type="text" id="txtRepotno" name="numbers" required>
+                                                        <select class="form-select" id="cmbReport">
 
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="mb-1">
 
                                                     <label class="col-form-label mb-0 mt-1"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Date of Joined <span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Date of Joined </label>
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate"
@@ -186,8 +183,7 @@
 
                                                     <label class="col-form-label mb-0 mt-1"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Date of resign <span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Date of resign </label>
                                                     <div>
                                                         <input class="form-control form-control-sm validate "
                                                             type="date" id="txtDateofresign" name="dateofresign"
@@ -259,8 +255,7 @@
 
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Note<span
-                                                            class="text-danger">*</span></label>
+                                                            aria-hidden="true">&#160</i>Note</label>
 
 
                                                     <div>
@@ -287,7 +282,7 @@
                                 <div class="col-md-4 mb-2">
                                     <input type="hidden" id="id">
                                     <button type="submit" id="btnupdate" class="btn btn-primary form-btn btn-sm">Update</button>
-                                    <button type="submit" id="btnSave" class="btn btn-primary form-btn btn-sm">Save</button>
+                                    <button type="submit" id="btnSave"  class="btn btn-primary form-btn btn-sm">Save</button>
                                     <button type="button" id="btnReset" class="btn btn-warning form-btn btn-sm">Reset</button>
                                 </div>
                             </div>
@@ -334,6 +329,13 @@
     <script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
     <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
+    <script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
+
+
+
+
+
+
 
 
 
@@ -343,6 +345,8 @@
 @section('scripts')
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
     <script src="{{ URL::asset('assets/js/employee.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/employeeList.js') }}"></script>
+
     <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
 
 @endsection

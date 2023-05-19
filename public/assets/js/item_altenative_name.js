@@ -37,29 +37,87 @@ $(document).ready(function () {
 
 
 
-    $('#btnNonproprietary').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
-
-        saveNonproprietary();
-    });
-
-    $('#btnUpdateNonproprietary').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
-
-        updateNonproprietary();
-    });
     $('#btnNonproprietary').show();
     $('#btnUpdateNonproprietary').hide();
+
+    $('#btnNonproprietary').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
+
+                    saveNonproprietary();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+    });
+
+
+    $('#btnUpdateNonproprietary').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
+
+                    updateNonproprietary();
+                    }
+
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+    });
+
+
+
 
 
 
@@ -147,12 +205,14 @@ function saveNonproprietary(){
             nonproprietaryAllData();
             $('#modalNonproprietary').modal('hide');
             $("#nonproprietarySearch").val('');
+            showSuccessMessage('Save');
            console.log(response);
 
 
         },
         error: function (error) {
-            $('.category1').text('This field is required.');
+showErrorMessage('Error');
+$('#modalNonproprietary').modal('hide');
             console.log(error);
 
         },
@@ -219,38 +279,73 @@ function updateNonproprietary(){
             nonproprietaryAllData();
             $('#modalNonproprietary').modal('hide');
             $('#nonproprietarySearch').val('');
+            showSuccessMessage('Updated');
 
 
         }, error: function (error) {
             console.log(error);
+            showErrorMessage('Error');
+            $('#modalNonproprietary').modal('hide');
         }
     });
 }
 
 // Delete
+
 function btnNonproprietaryDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteItem(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteItem(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteNonproprietary/"+id,
+            url: '/deleteNonproprietary/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function(response) {
+            },success:function(response){
+                console.log(response);
                 nonproprietaryAllData();
                 $('#nonproprietarySearch').val('');
-
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
+
+
 
 // Status Save
 
@@ -314,7 +409,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both').DataTable({
+        var table =  $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -353,7 +448,7 @@ const DatatableFixedColumns = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //

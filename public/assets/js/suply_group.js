@@ -34,29 +34,85 @@ $(document).ready(function () {
 
 
 
-    $('#btnSupplygroup').on('click', function (e) {
-        e.preventDefault();
+    $('#btnSupplygroup').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+                    saveSuplyGroup();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
 
-        saveSuplyGroup();
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
 
-    $('#btnUpdateSupplygroup').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+    $('#btnUpdateSupplygroup').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        updateSuplyGroup();
+                    updateSuplyGroup();
+                    }
+
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
-    $('#btnSupplygroup').show();
-    $('#btnUpdateSupplygroup').hide();
+
+
+
+
 
 
 });
@@ -143,12 +199,14 @@ function saveSuplyGroup(){
             suplyGroupAllData();
             $('#modalSuplyGroup').modal('hide');
             $("#suplyGroupSearch").val('');
+            showSuccessMessage('Save');
            console.log(response);
 
 
         },
         error: function (error) {
-
+showErrorMessage('Error');
+$('#modalSuplyGroup').modal('hide');
             console.log(error);
 
         },
@@ -215,36 +273,69 @@ function updateSuplyGroup(){
             suplyGroupAllData();
             $('#modalSuplyGroup').modal('hide');
             $('#suplyGroupSearch').val('');
+            showSuccessMessage('Updated')
 
         }, error: function (error) {
             console.log(error);
+            showErrorMessage('Error')
+            $('#modalSuplyGroup').modal('hide');
         }
     });
 }
 
-
 function btnSuplyGroupDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteGroup(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteGroup(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteSuplygroup/" + id,
+            url: '/deleteSuplygroup/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function(response) {
-                suplyGroupAllData();
+            },success:function(response){
+                console.log(response);
+                  suplyGroupAllData();
                 $('#suplyGroupSearch').val('');
-
+                showSuccessMessage('Deleted')
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
+
 
 // Status Save
 
@@ -270,7 +361,7 @@ function cbxSuplyGroupStatus(supply_group_id) {
 }
 
 
-///////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 
 
 
@@ -307,7 +398,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both').DataTable({
+        var table =  $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -346,7 +437,7 @@ const DatatableFixedColumns = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //

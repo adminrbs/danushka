@@ -159,117 +159,323 @@ $(document).ready(function () {
 
     ////////////////////////////////////////////
 
-    $('#btnSaveDistric').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            alert("asd");
-            return;
+$('#btnSaveDistric').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                saveDistric();
+                }
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        saveDistric();
-    });
-    $('#btnUpdateDistrict').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-
-            return;
-        }
-
-        updateDistrict();
-    });
-    $('#btnUpdateDistrict').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
-
-        updateDistrict();
     });
 
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
 
+
+});
+
+
+$('#btnUpdateDistrict').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                updateDistrict();
+                }
+
+
+
+
+
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
+        }
+    });
+
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
     //...Town
 
 
-    $('#btnSaveTown').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+$('#btnSaveTown').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                saveTown();
+                }
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        saveTown();
     });
 
-    $('#btnUpdateTown').on('click', function (e) {
-        e.preventDefault();
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+
+
+});
+
+
+$('#btnUpdateTown').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                updateTown();
+                }
+
+
+
+
+
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        updateTown();
     });
+
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
 
 
     //...Group
 
 
-    $('#btnSaveGroup').on('click', function (e) {
-        e.preventDefault();
+$('#btnSaveGroup').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+                saveGroup();
+                }
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        saveGroup();
     });
-    $('#btnUpdateGroup').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
+
+
+$('#btnUpdateGroup').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                updateGroup();
+                }
+
+
+
+
+
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        updateGroup();
     });
+
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
+
+
 
 
     //...Grade
 
+$('#btnSavegrade').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
 
-    $('#btnSavegrade').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+                saveGrade();
+                }
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        saveGrade();
     });
 
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
-    $('#btnUpdateGrade').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+
+});
+
+
+$('#btnUpdateGrade').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                updateGrade();
+                }
+
+
+
+
+
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        updateGrade();
     });
+
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
+
 
 
 
@@ -366,8 +572,11 @@ function updateDistrict() {
             allData();
             $('#modelDistric').modal('hide');
             $('#distSearch').val('');
+            showSuccessMessage('save');
             console.log(data);
         }, error: function (error) {
+            showErrorMessage('Error')
+            $('#modelDistric').modal('hide');
             console.log(error);
         }
     });
@@ -412,7 +621,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both').DataTable({
+        var table =  $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -452,7 +661,7 @@ const DatatableFixedColumns = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -573,11 +782,16 @@ function saveDistric() {
             $('#modelDistric').modal('hide');
             $("#distSearch").val('');
 
+            showSuccessMessage('save');
+
 
         },
         error: function (error) {
             // $('.district').text(error.responseJSON.message);
             console.log(error);
+            $('#modelDistric').modal('hide');
+            showErrorMessage('Error');
+
 
         },
         complete: function () {
@@ -588,31 +802,58 @@ function saveDistric() {
 
 }
 
-
 function btndistrictDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteDistrict(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteDistrict(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteDistrict/" + id,
+            url: '/deleteDistrict/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val(),
+            beforeSend: function () {
 
-
-            },
-
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 allData();
                 $('#distSearch').val('');
-
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
+
 
 
 
@@ -654,7 +895,8 @@ const DatatableFixedColumnsTown = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-town').DataTable({
+
+            var table =  $('.datatable-fixed-both-town').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -695,7 +937,7 @@ const DatatableFixedColumnsTown = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -848,11 +1090,15 @@ function saveTown() {
             allDataTown();
             $('#modelTown').modal('hide');
             $("#townSearch").val('');
+            showSuccessMessage('save');
+
 
 
         },
         error: function (error) {
-            $('.town1').text('This field is required.');
+
+showErrorMessage('Error');
+$('#modelTown').modal('hide');
 
             console.log(error);
 
@@ -919,38 +1165,72 @@ function updateTown() {
             allDataTown();
             $('#modelTown').modal('hide');
             $('#townSearch').val('');
+            showSuccessMessage('Updated');
 
             console.log(data);
         }, error: function (error) {
             console.log(error);
+
+showErrorMessage('Error');
+$('#modelTown').modal('hide');
         }
     });
 }
 
 
 
+
 function btnTownDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteTown(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteTown(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteTown/" + id,
+            url: '/deleteTown/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 allDataTown();
                 $('#townSearch').val('');
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
 
 
 //############################...Group.......#######################################################
@@ -1014,7 +1294,8 @@ const DatatableFixedColumnsgroup = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-group').DataTable({
+
+            var table =  $('.datatable-fixed-both-group').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1054,7 +1335,7 @@ const DatatableFixedColumnsgroup = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -1105,7 +1386,7 @@ function allDataGroup() {
                         "customer_group_id": dt[i].customer_group_id,
                         "group": dt[i].group,
                         "edit": '<button class="btn btn-primary editGroup" data-bs-toggle="modal" data-bs-target="#modalGroup"  id="' + dt[i].customer_group_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                        "delete": '&#160<button class="btn btn-danger"  id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' + dt[i].customer_group_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                        "delete": '&#160<button class="btn btn-danger"  id="btnCategorylevel1" value="Delete" onclick="btnGroupDelete(' + dt[i].customer_group_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
                         "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxGroupStatus" value="1" onclick="cbxGroupStatus(' + dt[i].customer_group_id + ')" required ' + isChecked + '></label>'
                     });
                 }
@@ -1177,11 +1458,13 @@ function saveGroup() {
             allDataGroup();
             $('#modalGroup').modal('hide');
             $("#groupSearch").val('');
+            showSuccessMessage('save');
 
 
         },
         error: function (error) {
-            $('.group1').text('This field is required.');
+showErrorMessage('Error');
+$('#modalGroup').modal('hide');
             console.log(error);
 
         },
@@ -1243,38 +1526,71 @@ function updateGroup() {
             allDataGroup();
             $('#modalGroup').modal('hide');
             $('#groupSearch').val('');
+            showSuccessMessage('updated');
 
             console.log(data);
         }, error: function (error) {
+            showErrorMessage('Error');
+            $('#modalGroup').modal('hide');
             console.log(error);
         }
     });
 }
 
 
-
 function btnGroupDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteGroup(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteGroup(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteGroup/" + id,
+            url: '/deleteGroup/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 allDataGroup();
                 $('#groupSearch').val('');
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
+
 
 
 //############################...Grade.......#######################################################
@@ -1357,7 +1673,8 @@ const DatatableFixedColumnsgrade = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-grade').DataTable({
+
+            var table =  $('.datatable-fixed-both-grade').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1397,7 +1714,7 @@ const DatatableFixedColumnsgrade = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -1517,11 +1834,14 @@ function saveGrade() {
             allDataGrade();
             $('#modalGrade').modal('hide');
             $("#gradeSearch").val('');
+            showSuccessMessage('save');
 
 
         },
         error: function (error) {
-            $('.grade1').text('This field is required.');
+
+showErrorMessage('Error');
+$('#modalGrade').modal('hide');
             console.log(error);
 
         },
@@ -1583,39 +1903,73 @@ function updateGrade() {
             allDataGrade();
             $('#modalGrade').modal('hide');
             $('#gradeSearch').val('');
+            showSuccessMessage('updated');
 
             console.log(data);
         }, error: function (error) {
+            showErrorMessage('Error');
+            $('#modalGrade').modal('hide');
             console.log(error);
         }
     });
 }
 
 
-
 function btnGradeDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteGrade(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteGrade(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteGrade/" + id,
+            url: '/deleteGrade/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val(),
+            beforeSend: function () {
 
-            },
-
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 allDataGrade();
                 $('#gradeSearch').val('');
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 

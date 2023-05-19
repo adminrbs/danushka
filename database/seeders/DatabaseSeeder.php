@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            DistrictSeeder::class,
-           
+            CustomSetting::class,
+
 
         ]);
         // \App\Models\User::factory(10)->create();

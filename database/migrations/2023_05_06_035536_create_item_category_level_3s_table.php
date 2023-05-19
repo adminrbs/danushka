@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('item_category_level_3s', function (Blueprint $table) {
             $table->id('Item_category_level_3_id');
             $table->integer('Item_category_level_2_id');
-            $table->string('category_level_3',100)->uniqid();
+            $table->string('category_level_3',100);
             $table->boolean('is_active')->default("1");
             $table->timestamps();
         });

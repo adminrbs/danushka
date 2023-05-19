@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('employee_designations', function (Blueprint $table) {
             $table->id('employee_designation_id');
-            $table->string('employee_designation')->uniqid();
+            $table->string('employee_designation');
             $table->boolean('is_active')->default("1");
+            $table->boolean('locked')->default(false);
             $table->timestamps();
         });
     }

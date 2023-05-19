@@ -171,29 +171,83 @@ $(document).ready(function () {
 
 
 
-    $('#btnSaveCategorylevel1').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+    $('#btnSaveCategorylevel1').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        saveCategoryLevel1();
+                    saveCategoryLevel1();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
 
-    //...level 1 Update
 
-    $('#btnUpdateCategorylevel1').on('click', function (e) {
-        e.preventDefault();
+    $('#btnUpdateCategorylevel1').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+                    updateCategory1();
+                    }
 
-        updateCategory1();
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
+
 
     $('#btnSaveCategorylevel1').show();
     $('#btnUpdateCategorylevel1').hide();
@@ -204,29 +258,82 @@ $(document).ready(function () {
 
 
 
-    $('#btnSaveCategorylevel2').on('click', function (e) {
-        e.preventDefault();
+$('#btnSaveCategorylevel2').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+                saveCategoryLevel2();
+                }
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        saveCategoryLevel2();
     });
 
-    //...level 1 Update
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
-    $('#btnUpdateCategorylevel2').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+
+});
+
+
+$('#btnUpdateCategorylevel2').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                updateCategory2();
+                }
+
+
+
+
+
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        updateCategory2();
     });
+
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
+
 
     $('#btnSaveCategorylevel2').show();
     $('#btnUpdateCategorylevel2').hide();
@@ -237,29 +344,82 @@ $(document).ready(function () {
 
 
 
-    $('#btnSaveCategorylevel3').on('click', function (e) {
-        e.preventDefault();
+    $('#btnSaveCategorylevel3').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+                    saveCategoryLevel3();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
 
-        saveCategoryLevel3();
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
 
-    //...level 1 Update
 
-    $('#btnUpdateCategorylevel3').on('click', function (e) {
-        e.preventDefault();
+    $('#btnUpdateCategorylevel3').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+                    updateCategory3();
+                    }
 
-        updateCategory3();
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
+
 
     $('#btnSaveCategorylevel3').show();
     $('#btnUpdateCategorylevel3').hide();
@@ -268,29 +428,82 @@ $(document).ready(function () {
     //##.......Distination..........
 
 
-    $('#btnSaveDesgination').on('click', function (e) {
-        e.preventDefault();
+    $('#btnSaveDesgination').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+                    saveDesgination();
+                    }
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
 
-        saveDesgination();
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
 
-    //...Distination Update
 
-    $('#btnUpdateDesgination').on('click', function (e) {
-        e.preventDefault();
+    $('#btnUpdateDesgination').on('click', function (event) {
+        bootbox.confirm({
+            title: 'Save confirmation',
+            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+            buttons: {
+                confirm: {
+                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                    className: 'btn-warning'
+                },
+                cancel: {
+                    label: '<i class="fa fa-times"></i>&nbsp;No',
+                    className: 'btn-link'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result) {
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
-        }
+                    updateDesgination();
+                    }
 
-        updateDesgination();
+
+
+
+
+            },
+            onShow: function () {
+                $('#question-icon').addClass('swipe-question');
+            },
+            onHide: function () {
+                $('#question-icon').removeClass('swipe-question');
+            }
+        });
+
+        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
     });
+
 
     $('#btnSaveDesgination').show();
     $('#btnUpdateDesgination').hide();
@@ -300,31 +513,81 @@ $(document).ready(function () {
     //##.......Status..........
 
 
+$('#btnSaveStatus').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
 
-    $('#btnSaveStatus').on('click', function (e) {
-        e.preventDefault();
-
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+                saveStatus();
+                }
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        saveStatus();
     });
 
-    //...level 1 Update
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
-    $('#btnUpdateStatus').on('click', function (e) {
-        e.preventDefault();
 
-        // check if the input is valid using a 'valid' property
-        if (!$(this).valid) {
-            return;
+
+});
+
+
+$('#btnUpdateStatus').on('click', function (event) {
+    bootbox.confirm({
+        title: 'Save confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-warning'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-link'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+
+                updateStatus();
+                }
+
+
+
+
+
+        },
+        onShow: function () {
+            $('#question-icon').addClass('swipe-question');
+        },
+        onHide: function () {
+            $('#question-icon').removeClass('swipe-question');
         }
-
-        updateStatus();
     });
 
+    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+
+
+
+});
 
 
 
@@ -373,7 +636,8 @@ const DatatableFixedColumnsl = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-lsa').DataTable({
+
+            var table =  $('.datatable-fixed-both-lsa').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -413,7 +677,7 @@ const DatatableFixedColumnsl = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -531,12 +795,15 @@ function saveCategoryLevel1() {
             Category1AllData();
             $('#modelcategoryLevel').modal('hide');
             $("#categoryLevel3Search").val('');
+            showSuccessMessage('Save');
             console.log(response);
 
 
         },
         error: function (error) {
-            $('.category1').text('This field is required.');
+showErrorMessage('Error');
+$('#modelcategoryLevel').modal('hide');
+
             console.log(error);
 
         },
@@ -605,9 +872,12 @@ function updateCategory1() {
             Category1AllData();
             $('#modelcategoryLevel').modal('hide');
             $('#categoryLevel1Search').val('');
+            showSuccessMessage('Updated');
 
 
         }, error: function (error) {
+            showErrorMessage('Error');
+            $('#modelcategoryLevel').modal('hide');
             console.log(error);
         }
     });
@@ -616,26 +886,56 @@ function updateCategory1() {
 
 function btnCategorylevel1Delete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteLevel1(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteLevel1(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deletelevel1/" + id,
+            url: '/deletelevel1/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 $('#categoryLevel1Search').val('');
                 Category1AllData();
-
+                showSuccessMessage('Deleted')
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
 
 
 //##############################....Category Level 2.......######################################
@@ -695,7 +995,9 @@ const DatatableFixedColumnsll = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-bothll').DataTable({
+
+            var table =  $('.datatable-fixed-bothll').DataTable({
+
             columnDefs: [
                 {
                     orderable: false,
@@ -736,7 +1038,7 @@ const DatatableFixedColumnsll = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -851,13 +1153,16 @@ function saveCategoryLevel2() {
         success: function (response) {
             Category2AllData();
             $('#modelcategoryLeve2').modal('hide');
-            $("#categoryLevel2Search").val('');
+
+            showSuccessMessage('Save');
             console.log(response);
 
 
         },
         error: function (error) {
-            $('.category2').text('This field is required.');
+showErrorMessage('Error');
+$('#modelcategoryLeve2').modal('hide');
+
             console.log(error);
 
 
@@ -930,37 +1235,69 @@ function updateCategory2() {
             Category2AllData();
             $('#categoryLevel2Search').val('');
             $('#modelcategoryLeve2').modal('hide');
+            showSuccessMessage('Updated');
 
 
         }, error: function (error) {
+            showErrorMessage('Error');
+            $('#modelcategoryLeve2').modal('hide');
             console.log(error);
         }
     });
 }
 
-
 function btnCategorylevel2Delete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteLevel2(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteLevel2(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deletelevel2/" + id,
+            url: '/deletelevel2/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 Category2AllData();
                 $('#categoryLevel2Search').val('');
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
 
 
 //############## Level 3   ###############################
@@ -1025,7 +1362,8 @@ const DatatableFixedColumnsls = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-l3').DataTable({
+
+            var table =  $('.datatable-fixed-both-l3').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1066,7 +1404,7 @@ const DatatableFixedColumnsls = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -1182,12 +1520,14 @@ function saveCategoryLevel3() {
             Category3AllData();
             $('#modelcategoryLeve3').modal('hide');
             $("#txtCategorylevel3").val('');
+            showSuccessMessage('save');
             console.log(response);
 
 
         },
         error: function (error) {
-            $('.category3').text('This field is required.');
+showErrorMessage('Error');
+$('#modelcategoryLeve3').modal('hide');
             console.log(error);
 
         },
@@ -1259,9 +1599,12 @@ function updateCategory3() {
             Category3AllData();
             $('#categoryLevel3Search').val('');
             $('#modelcategoryLeve3').modal('hide');
+            showSuccessMessage('Updated');
 
 
         }, error: function (error) {
+            showErrorMessage('Error');
+            $('#modelcategoryLeve3').modal('hide');
             console.log(error);
         }
     });
@@ -1344,30 +1687,59 @@ function cbxCategorylevel3Status(Item_category_level_3_id) {
 
 //...............delete......
 
-
-
 function btnCategorylevel3Delete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteLevel3(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteLevel3(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deletelevel3/" + id,
+            url: '/deletelevel3/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 Category3AllData();
                 $('#categoryLevel3Search').val('');
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                showWarningMessage('Not Deleted');
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
 
 //#####################..Disgination...........
 
@@ -1404,7 +1776,7 @@ const DatatableFixedColumnslsl = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-des').DataTable({
+            var table =  $('.datatable-fixed-both-des').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1444,7 +1816,7 @@ const DatatableFixedColumnslsl = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -1487,7 +1859,7 @@ function allDesgination() {
                 var dt = response.data;
                 console.log(dt);
                 var data = [];
-                for (var i = 0; i < dt.length; i++) {
+                for (var i = 1; i < dt.length; i++) {
                     var isChecked = dt[i].is_active ? "checked" : "";
                     data.push({
                         "employee_designation_id ": dt[i].employee_designation_id ,
@@ -1555,13 +1927,15 @@ function saveDesgination() {
 
             $('#modelDesgination').modal('hide');
             $("#desginationSearch").val('');
+            showSuccessMessage('Save');
             allDesgination();
             console.log(response);
 
 
         },
         error: function (error) {
-            $('.desgination').text('This field is required.');
+
+showErrorMessage('Error');
             console.log(error);
 
 
@@ -1632,9 +2006,11 @@ function updateDesgination() {
             $('#modelDesgination').modal('hide');
             allDesgination();
             $('#desginationSearch').val('');
+            showSuccessMessage('updated');
 
             console.log(data);
         }, error: function (error) {
+            showErrorMessage('Error');
             console.log(error);
         }
     });
@@ -1666,32 +2042,57 @@ function cbxDesgination(employee_designation_id) {
 
 // desgination Delete
 
-
-
 function btnDesginationDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteDesgination(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteDesgination(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deletedesgination/" + id,
+            url: '/deletedesgination/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 allDesgination();
                 $('#desginationSearch').val('');
-
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
-
 
 
 
@@ -1731,7 +2132,8 @@ const DatatableFixedColumnslsll = function () {
 
 
         // Left and right fixed columns
-        $('.datatable-fixed-both-st').DataTable({
+
+            var table =  $('.datatable-fixed-both-st').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1771,7 +2173,7 @@ const DatatableFixedColumnslsll = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -1881,12 +2283,14 @@ function saveStatus() {
             $('#modelStatus1').modal('hide');
             $("#txtStatus").val('');
             allempStatus();
+            showSuccessMessage('Save');
             console.log(response);
 
 
         },
         error: function (error) {
-            $('.status').text('This field is required.');
+            showErrorMessage('Error');
+
             console.log(error);
 
 
@@ -1921,8 +2325,15 @@ $(document).on('click', '.editEmpStatus', function (e) {
 
             $('#id').val(response.employee_status_id);
             $("#txtStatus").val(response.employee_status);
+            showSuccessMessage('Save');
+        },
+        error: function (error) {
+            showErrorMessage('Error');
 
-        }
+            console.log(error);
+
+
+        },
     });
 });
 
@@ -1957,11 +2368,16 @@ function updateStatus() {
             $('#modelStatus1').modal('hide');
             allempStatus();
             $('#status1Search').val('');
-
+showSuccessMessage('Updated');
             console.log(data);
-        }, error: function (error) {
+        },
+        error: function (error) {
+            showErrorMessage('Error');
+
             console.log(error);
-        }
+
+
+        },
     });
 }
 
@@ -1991,30 +2407,58 @@ function cbxEmpStatus(employee_status_id) {
 
 // desgination Delete
 
-
-
 function btnEmpStatusDelete(id) {
 
-    if (confirm("Do you want to delete this record?")) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+           console.log(result);
+           if(result){
+            deleteStatus(id);
+           }else{
+
+           }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+    }
+
+    function deleteStatus(id) {
+
         $.ajax({
             type: 'DELETE',
-            url: "/deleteempStatus/" + id,
+            url: '/deleteempStatus/' + id,
+            data: {
+                _token: $('input[name=_token]').val()
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                _token: $("input[name=_token]").val()
-            },
+            beforeSend: function () {
 
-            success: function (response) {
+            },success:function(response){
+                console.log(response);
                 allempStatus();
                 $('#status1Search').val('');
-
+                showSuccessMessage('Deleted');
+            },error:function(xhr,status,error){
+                console.log(xhr.responseText);
             }
         });
-
     }
-}
+
 
 
 

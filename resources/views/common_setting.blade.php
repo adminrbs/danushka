@@ -141,7 +141,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-bs-toggle="collapse" href="#group" role="button"
                                     aria-expanded="false" aria-controls="collapseExample" onclick="groupTableRefresh()">
-                                    <i class="bi bi-gear" style="margin-right: 5px"></i> Group
+                                    <i class="bi bi-gear" style="margin-right: 5px"></i>Customer Group
                                 </button>
                             </h5>
                         </div>
@@ -163,7 +163,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="id">ID#</th>
-                                                <th>Name</th>
+                                                <th>Customer Group</th>
                                                 <th class="edit edit_bank">Edit</th>
                                                 <th class="edit edit_bank btn-danger">Delete</th>
                                                 <th class="disable disable_bank">Status</th>
@@ -199,7 +199,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-bs-toggle="collapse" href="#grade" role="button"
                                     aria-expanded="false" aria-controls="collapseExample" onclick="gradeTableRefresh()">
-                                    <i class="bi bi-gear" style="margin-right: 5px"></i> Grade
+                                    <i class="bi bi-gear" style="margin-right: 5px"></i>Customer Grade
                                 </button>
                             </h5>
                         </div>
@@ -224,7 +224,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>
-                                                <th>Grade</th>
+                                                <th>Customer Grade</th>
                                                 <th class="edit edit_bank">Edit</th>
                                                 <th class="edit edit_bank btn-danger">Delete</th>
                                                 <th class="disable disable_bank">Status</th>
@@ -431,7 +431,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-bs-toggle="collapse" href="#desgination"
                                     role="button" aria-expanded="false" aria-controls="collapseExample" onclick="desginationTableRefresh()">
-                                    <i class="bi bi-gear" style="margin-right: 5px"></i> Desgination
+                                    <i class="bi bi-gear" style="margin-right: 5px"></i>Employee Desgination
                                 </button>
                             </h5>
                         </div>
@@ -454,7 +454,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>
-                                                <th>Desgination</th>
+                                                <th>Employee Desgination</th>
                                                 <th class="edit edit_bank">Edit</th>
                                                 <th class="edit edit_bank btn-danger">Delete</th>
                                                 <th class="disable disable_bank">Status</th>
@@ -486,7 +486,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-bs-toggle="collapse" href="#status1M" role="button"
                                     aria-expanded="false" aria-controls="collapseExample" onclick="employeestatusTableRefresh()">
-                                    <i class="bi bi-gear" style="margin-right: 5px"></i> Status
+                                    <i class="bi bi-gear" style="margin-right: 5px"></i>Employee Status
                                 </button>
                             </h5>
                         </div>
@@ -510,7 +510,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="id">ID</th>
-                                                <th>Status</th>
+                                                <th>Employee Status</th>
 
                                                 <th class="edit edit_bank">Edit</th>
                                                 <th class="edit edit_bank btn-danger">Delete</th>
@@ -564,6 +564,10 @@
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
+<script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
+<script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
+
     <script src="{{ URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js') }}"></script>
 
 

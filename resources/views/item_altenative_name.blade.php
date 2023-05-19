@@ -126,6 +126,9 @@
     <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
     <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
     <script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
+    <script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
 <script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>
 
 
