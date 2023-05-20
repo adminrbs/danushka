@@ -2,26 +2,26 @@ var formData = new FormData();
 $(document).ready(function () {
 
 
-        function townDistrict() {
-            $.ajax({
-                type: "get",
-                dataType: 'json',
-                url: "/towndistrict",
-                success: function (response) {
-                    var data = response.data;
+    function townDistrict() {
+        $.ajax({
+            type: "get",
+            dataType: 'json',
+            url: "/towndistrict",
+            success: function (response) {
+                var data = response.data;
 
 
-                    var options = '';
-                    $.each(data, function (key, value) {
-                        options += "<option value='" + value.district_id + "'>" + value.district_name + "</option>";
-                    });
+                var options = '';
+                $.each(data, function (key, value) {
+                    options += "<option value='" + value.district_id + "'>" + value.district_name + "</option>";
+                });
 
-                    $('#cmbDistrict').html(options);
-                }
-            });
-        }
+                $('#cmbDistrict').html(options);
+            }
+        });
+    }
 
-        townDistrict();
+    townDistrict();
 
 
 
@@ -159,322 +159,118 @@ $(document).ready(function () {
 
     ////////////////////////////////////////////
 
+    $('#btnSaveDistric').on('click', function (e) {
+        e.preventDefault();
 
-$('#btnSaveDistric').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                saveDistric();
-                }
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            alert("asd");
+            return;
         }
+
+        saveDistric();
+    });
+    $('#btnUpdateDistrict').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+
+            return;
+        }
+
+        updateDistrict();
+    });
+    $('#btnUpdateDistrict').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        updateDistrict();
     });
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
 
-
-});
-
-
-$('#btnUpdateDistrict').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                updateDistrict();
-                }
-
-
-
-
-
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
-        }
-    });
-
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
     //...Town
 
 
+    $('#btnSaveTown').on('click', function (e) {
+        e.preventDefault();
 
-$('#btnSaveTown').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                saveTown();
-                }
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        saveTown();
     });
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+    $('#btnUpdateTown').on('click', function (e) {
+        e.preventDefault();
 
-
-
-});
-
-
-$('#btnUpdateTown').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                updateTown();
-                }
-
-
-
-
-
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        updateTown();
     });
-
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
 
 
     //...Group
 
 
-$('#btnSaveGroup').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
+    $('#btnSaveGroup').on('click', function (e) {
+        e.preventDefault();
 
-                saveGroup();
-                }
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        saveGroup();
     });
+    $('#btnUpdateGroup').on('click', function (e) {
+        e.preventDefault();
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
-
-
-$('#btnUpdateGroup').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                updateGroup();
-                }
-
-
-
-
-
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        updateGroup();
     });
-
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
-
-
 
 
     //...Grade
 
-$('#btnSavegrade').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
 
-                saveGrade();
-                }
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+    $('#btnSavegrade').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        saveGrade();
     });
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
 
+    $('#btnUpdateGrade').on('click', function (e) {
+        e.preventDefault();
 
-
-});
-
-
-$('#btnUpdateGrade').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                updateGrade();
-                }
-
-
-
-
-
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        updateGrade();
     });
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
 
 
 
@@ -511,9 +307,11 @@ function cbxStatus(district_id) {
         },
         success: function (response) {
             console.log("data save");
+            showSuccessMessage('saved')
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
+            showErrorMessage('Not save')
         }
     });
 }
@@ -570,12 +368,13 @@ function updateDistrict() {
         success: function (response) {
 
             allData();
-            $('#modelDistric').modal('hide');
+
             $('#distSearch').val('');
-            showSuccessMessage('save');
+            $('#modelDistric').modal('hide');
+            showSuccessMessage('Successfully updatet');
             console.log(data);
         }, error: function (error) {
-            showErrorMessage('Error')
+            showErrorMessage('Something went wrong')
             $('#modelDistric').modal('hide');
             console.log(error);
         }
@@ -621,7 +420,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        var table =  $('.datatable-fixed-both').DataTable({
+        var table = $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -661,7 +460,7 @@ const DatatableFixedColumns = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });table.column(0).visible(false);
+        }); table.column(0).visible(false);
 
 
         //
@@ -779,10 +578,10 @@ function saveDistric() {
         success: function (response) {
             console.log(response.district_id);
             allData();
-            $('#modelDistric').modal('hide');
-            $("#distSearch").val('');
 
-            showSuccessMessage('save');
+
+            $('#modelDistric').modal('hide');
+            showSuccessMessage('Successfully saved');
 
 
         },
@@ -790,7 +589,7 @@ function saveDistric() {
             // $('.district').text(error.responseJSON.message);
             console.log(error);
             $('#modelDistric').modal('hide');
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
 
 
         },
@@ -818,40 +617,41 @@ function btndistrictDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteDistrict(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteDistrict(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteDistrict(id) {
+function deleteDistrict(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteDistrict/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteDistrict/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                allData();
-                $('#distSearch').val('');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            allData();
+            showSuccessMessage('Successfully deleted')
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+            showErrorMessage('Not deleted')
+        }
+    });
+}
 
 
 
@@ -896,7 +696,7 @@ const DatatableFixedColumnsTown = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-both-town').DataTable({
+        var table = $('.datatable-fixed-both-town').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -937,7 +737,7 @@ const DatatableFixedColumnsTown = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });table.column(0).visible(false);
+        }); table.column(0).visible(false);
 
 
         //
@@ -1002,10 +802,12 @@ function cbxTownStatus(town_id) {
             'status': status
         },
         success: function (response) {
+            showSuccessMessage('saved')
             console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
+            showErrorMessage('Not saved')
         }
     });
 }
@@ -1017,23 +819,23 @@ function allDataTown() {
         url: "/twonAlldata",
         cache: false,
         timeout: 800000,
-        beforeSend: function () {},
+        beforeSend: function () { },
         success: function (response) {
             var dt = response.data;
             var data = [];
 
-            for (var i = 0; i < dt.length; i++) {
+            for (var i = 1; i < dt.length; i++) {
 
-                    var isChecked = dt[i].is_active ? "checked" : "";
+                var isChecked = dt[i].is_active ? "checked" : "";
 
-                    data.push({
-                        "town_id": dt[i].town_id,
-                        "district_id": dt[i].district_name,
-                        "town_name": dt[i].town_name,
-                        "edit": '<button class="btn btn-primary editTwon" data-bs-toggle="modal" data-bs-target="#modelTown" id="' + dt[i].town_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                        "delete": '&#160<button class="btn btn-danger" id="btnTown" value="Delete" onclick="btnTownDelete(' + dt[i].town_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + dt[i].town_id + ')" required ' + isChecked + '></lable>',
-                    });
+                data.push({
+                    "town_id": dt[i].town_id,
+                    "district_id": dt[i].district_name,
+                    "town_name": dt[i].town_name,
+                    "edit": '<button class="btn btn-primary editTwon" data-bs-toggle="modal" data-bs-target="#modelTown" id="' + dt[i].town_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger" id="btnTown" value="Delete" onclick="btnTownDelete(' + dt[i].town_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                    "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxTownStatus" value="1" onclick="cbxTownStatus(' + dt[i].town_id + ')" required ' + isChecked + '></lable>',
+                });
 
             }
 
@@ -1045,7 +847,7 @@ function allDataTown() {
         error: function (error) {
             console.log(error);
         },
-        complete: function () {}
+        complete: function () { }
     })
 }
 allDataTown();
@@ -1088,17 +890,18 @@ function saveTown() {
         success: function (response) {
             console.log(response.district_id);
             allDataTown();
-            $('#modelTown').modal('hide');
+
             $("#townSearch").val('');
-            showSuccessMessage('save');
+            showSuccessMessage('Successfully save');
+            $('#modelTown').modal('hide');
 
 
 
         },
         error: function (error) {
 
-showErrorMessage('Error');
-$('#modelTown').modal('hide');
+            showErrorMessage('Error');
+            $('#modelTown').modal('Something went wrong');
 
             console.log(error);
 
@@ -1163,16 +966,16 @@ function updateTown() {
         success: function (response) {
 
             allDataTown();
-            $('#modelTown').modal('hide');
-            $('#townSearch').val('');
-            showSuccessMessage('Updated');
 
+
+            showSuccessMessage('Successfully updated');
+            $('#modelTown').modal('hide');
             console.log(data);
         }, error: function (error) {
             console.log(error);
 
-showErrorMessage('Error');
-$('#modelTown').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modelTown').modal('hide');
         }
     });
 }
@@ -1196,41 +999,41 @@ function btnTownDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteTown(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteTown(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteTown(id) {
+function deleteTown(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteTown/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteTown/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                allDataTown();
-                $('#townSearch').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            allDataTown();
+
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 //############################...Group.......#######################################################
@@ -1250,6 +1053,7 @@ function cbxGroupStatus(customer_group_id) {
         },
         success: function (response) {
             console.log("data save");
+            showSuccessMessage('saved');
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -1295,7 +1099,7 @@ const DatatableFixedColumnsgroup = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-both-group').DataTable({
+        var table = $('.datatable-fixed-both-group').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1335,7 +1139,7 @@ const DatatableFixedColumnsgroup = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });table.column(0).visible(false);
+        }); table.column(0).visible(false);
 
 
         //
@@ -1380,7 +1184,7 @@ function allDataGroup() {
                 var dt = response.data;
                 console.log(dt);
                 var data = [];
-                for (var i = 0; i < dt.length; i++) {
+                for (var i = 1; i < dt.length; i++) {
                     var isChecked = dt[i].is_active ? "checked" : "";
                     data.push({
                         "customer_group_id": dt[i].customer_group_id,
@@ -1456,15 +1260,16 @@ function saveGroup() {
         success: function (response) {
             console.log(response.district_id);
             allDataGroup();
-            $('#modalGroup').modal('hide');
+
             $("#groupSearch").val('');
-            showSuccessMessage('save');
+            $('#modalGroup').modal('hide');
+            showSuccessMessage('Successfully save');
 
 
         },
         error: function (error) {
-showErrorMessage('Error');
-$('#modalGroup').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modalGroup').modal('hide');
             console.log(error);
 
         },
@@ -1524,13 +1329,14 @@ function updateGroup() {
         success: function (response) {
 
             allDataGroup();
-            $('#modalGroup').modal('hide');
+
             $('#groupSearch').val('');
-            showSuccessMessage('updated');
+            $('#modalGroup').modal('hide');
+            showSuccessMessage('Successfully updated');
 
             console.log(data);
         }, error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modalGroup').modal('hide');
             console.log(error);
         }
@@ -1554,41 +1360,41 @@ function btnGroupDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteGroup(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteGroup(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteGroup(id) {
+function deleteGroup(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteGroup/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteGroup/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                allDataGroup();
-                $('#groupSearch').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            allDataGroup();
+            $('#groupSearch').val('');
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -1627,9 +1433,11 @@ function cbxGradeStatus(customer_grade_id) {
             'status': status
         },
         success: function (response) {
+            showSuccessMessage('saved');
             console.log("data save");
         },
         error: function (xhr, status, error) {
+            showErrorMessage('Something went wrong');
             console.log(xhr.responseText);
         }
     });
@@ -1674,7 +1482,7 @@ const DatatableFixedColumnsgrade = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-both-grade').DataTable({
+        var table = $('.datatable-fixed-both-grade').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -1714,7 +1522,7 @@ const DatatableFixedColumnsgrade = function () {
 
 
             ], "stripeClasses": ['odd-row', 'even-row'],
-        });table.column(0).visible(false);
+        }); table.column(0).visible(false);
 
 
         //
@@ -1761,7 +1569,7 @@ function allDataGrade() {
 
 
             var data = [];
-            for (var i = 0; i < dt.length; i++) {
+            for (var i = 1; i < dt.length; i++) {
 
                 var isChecked = dt[i].is_active ? "checked" : "";
 
@@ -1832,16 +1640,16 @@ function saveGrade() {
         success: function (response) {
             console.log(response.district_id);
             allDataGrade();
+
             $('#modalGrade').modal('hide');
-            $("#gradeSearch").val('');
-            showSuccessMessage('save');
+            showSuccessMessage('Successfully save');
 
 
         },
         error: function (error) {
 
-showErrorMessage('Error');
-$('#modalGrade').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modalGrade').modal('hide');
             console.log(error);
 
         },
@@ -1901,13 +1709,13 @@ function updateGrade() {
         success: function (response) {
 
             allDataGrade();
+
             $('#modalGrade').modal('hide');
-            $('#gradeSearch').val('');
-            showSuccessMessage('updated');
+            showSuccessMessage('Successfully updated');
 
             console.log(data);
         }, error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modalGrade').modal('hide');
             console.log(error);
         }
@@ -1931,41 +1739,41 @@ function btnGradeDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteGrade(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteGrade(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteGrade(id) {
+function deleteGrade(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteGrade/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteGrade/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                allDataGrade();
-                $('#gradeSearch').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            allDataGrade();
+
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 

@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label for="txtEmailcustomer">Email<span class="text-danger">*</span></label>
-                                            <input type="text" id="txtEmailcustomer" class="form-control validate"
+                                            <input type="email" id="txtEmailcustomer" class="form-control validate"
                                                 required>
                                             <span class="text-danger font-weight-bold "></span>
                                         </div>
@@ -128,7 +128,7 @@
                                         <div class="col-md-12">
                                             <label for="txtMobilphonecustomer">Mobile Phone<span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" id="txtMobilphonecustomer" class="form-control validate"
+                                            <input type="tel" id="txtMobilphonecustomer" class="form-control validate"
                                                 required>
                                             <span class="text-danger font-weight-bold "></span>
                                         </div>

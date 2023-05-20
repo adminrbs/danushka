@@ -79,7 +79,7 @@
                                                             aria-hidden="true">&#160</i>Office mobile No </label>
 
                                                     <div class="mt-1">
-                                                        <input class="form-control form-control-sm validate" type="text"
+                                                        <input class="form-control form-control-sm validate" type="tel"
                                                             id="txtOfficemobileno" name="numbers" required maxlength="15">
 
                                                     </div>
@@ -99,7 +99,7 @@
                                                             class="fa fa-address-card-o fa-lg text-info"
                                                             aria-hidden="true">&#160</i>Persional mobile No </label>
                                                     <div>
-                                                        <input class="form-control form-control-sm validate  mt-1" type="text"
+                                                        <input class="form-control form-control-sm validate  mt-1" type="tel"
                                                             id="txtPersionalmobile" name="numbers" required maxlength="15">
 
                                                     </div >

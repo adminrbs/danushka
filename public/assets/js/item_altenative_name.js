@@ -37,88 +37,29 @@ $(document).ready(function () {
 
 
 
+      $('#btnNonproprietary').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        saveNonproprietary();
+    });
+
+    $('#btnUpdateNonproprietary').on('click', function (e) {
+        e.preventDefault();
+
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
+
+        updateNonproprietary();
+    });
     $('#btnNonproprietary').show();
     $('#btnUpdateNonproprietary').hide();
-
-    $('#btnNonproprietary').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
-
-                    saveNonproprietary();
-                    }
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-    });
-
-
-    $('#btnUpdateNonproprietary').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
-
-                    updateNonproprietary();
-                    }
-
-
-
-
-
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-    });
-
-
-
-
 
 
 });
@@ -139,7 +80,7 @@ function nonproprietaryAllData() {
 
 
             var data = [];
-            for (var i = 0; i < dt.length; i++) {
+            for (var i = 1; i < dt.length; i++) {
 
                 var isChecked = dt[i].status_id ? "checked" : "";
 
@@ -204,14 +145,14 @@ function saveNonproprietary(){
         success: function (response) {
             nonproprietaryAllData();
             $('#modalNonproprietary').modal('hide');
-            $("#nonproprietarySearch").val('');
-            showSuccessMessage('Save');
+
+            showSuccessMessage('Successfully saved');
            console.log(response);
 
 
         },
         error: function (error) {
-showErrorMessage('Error');
+showErrorMessage('Something went wrong');
 $('#modalNonproprietary').modal('hide');
             console.log(error);
 
@@ -278,13 +219,13 @@ function updateNonproprietary(){
 
             nonproprietaryAllData();
             $('#modalNonproprietary').modal('hide');
-            $('#nonproprietarySearch').val('');
-            showSuccessMessage('Updated');
+
+            showSuccessMessage('Successfully updated');
 
 
         }, error: function (error) {
             console.log(error);
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modalNonproprietary').modal('hide');
         }
     });
@@ -336,8 +277,8 @@ function btnNonproprietaryDelete(id) {
             },success:function(response){
                 console.log(response);
                 nonproprietaryAllData();
-                $('#nonproprietarySearch').val('');
-                showSuccessMessage('Deleted');
+
+                showSuccessMessage('Successfully deleted');
             },error:function(xhr,status,error){
                 console.log(xhr.responseText);
             }
@@ -362,6 +303,7 @@ function cbxNonproprietaryStatus(item_altenative_name_id) {
             'status': status
         },
         success: function (response) {
+            showSuccessMessage('saved');
          console.log("data save");
         },
         error: function (xhr, status, error) {

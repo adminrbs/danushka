@@ -172,82 +172,29 @@ $(document).ready(function () {
 
 
 
-    $('#btnSaveCategorylevel1').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btnSaveCategorylevel1').on('click', function (e) {
+        e.preventDefault();
 
-                    saveCategoryLevel1();
-                    }
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        saveCategoryLevel1();
     });
 
+    //...level 1 Update
 
-    $('#btnUpdateCategorylevel1').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btnUpdateCategorylevel1').on('click', function (e) {
+        e.preventDefault();
 
-                    updateCategory1();
-                    }
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-
-
-
-
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        updateCategory1();
     });
-
 
     $('#btnSaveCategorylevel1').show();
     $('#btnUpdateCategorylevel1').hide();
@@ -258,82 +205,29 @@ $(document).ready(function () {
 
 
 
-$('#btnSaveCategorylevel2').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
+    $('#btnSaveCategorylevel2').on('click', function (e) {
+        e.preventDefault();
 
-                saveCategoryLevel2();
-                }
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        saveCategoryLevel2();
     });
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+    //...level 1 Update
 
+    $('#btnUpdateCategorylevel2').on('click', function (e) {
+        e.preventDefault();
 
-
-});
-
-
-$('#btnUpdateCategorylevel2').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                updateCategory2();
-                }
-
-
-
-
-
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        updateCategory2();
     });
-
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
-
 
     $('#btnSaveCategorylevel2').show();
     $('#btnUpdateCategorylevel2').hide();
@@ -344,166 +238,60 @@ $('#btnUpdateCategorylevel2').on('click', function (event) {
 
 
 
-    $('#btnSaveCategorylevel3').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btnSaveCategorylevel3').on('click', function (e) {
+        e.preventDefault();
 
-                    saveCategoryLevel3();
-                    }
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        saveCategoryLevel3();
     });
 
+    //...level 1 Update
 
-    $('#btnUpdateCategorylevel3').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btnUpdateCategorylevel3').on('click', function (e) {
+        e.preventDefault();
 
-                    updateCategory3();
-                    }
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-
-
-
-
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        updateCategory3();
     });
-
 
     $('#btnSaveCategorylevel3').show();
     $('#btnUpdateCategorylevel3').hide();
 
 
+
     //##.......Distination..........
 
+    $('#btnSaveDesgination').on('click', function (e) {
+        e.preventDefault();
 
-    $('#btnSaveDesgination').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-                    saveDesgination();
-                    }
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        saveDesgination();
     });
 
+    //...Distination Update
 
-    $('#btnUpdateDesgination').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btnUpdateDesgination').on('click', function (e) {
+        e.preventDefault();
 
-                    updateDesgination();
-                    }
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-
-
-
-
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        updateDesgination();
     });
-
 
     $('#btnSaveDesgination').show();
     $('#btnUpdateDesgination').hide();
@@ -512,89 +300,34 @@ $('#btnUpdateCategorylevel2').on('click', function (event) {
 
     //##.......Status..........
 
+    $('#btnSaveStatus').on('click', function (e) {
+        e.preventDefault();
 
-$('#btnSaveStatus').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                saveStatus();
-                }
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        saveStatus();
     });
 
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
+    //...level 1 Update
 
+    $('#btnUpdateStatus').on('click', function (e) {
+        e.preventDefault();
 
-
-});
-
-
-$('#btnUpdateStatus').on('click', function (event) {
-    bootbox.confirm({
-        title: 'Save confirmation',
-        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-        buttons: {
-            confirm: {
-                label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                className: 'btn-warning'
-            },
-            cancel: {
-                label: '<i class="fa fa-times"></i>&nbsp;No',
-                className: 'btn-link'
-            }
-        },
-        callback: function (result) {
-            console.log(result);
-            if (result) {
-
-                updateStatus();
-                }
-
-
-
-
-
-        },
-        onShow: function () {
-            $('#question-icon').addClass('swipe-question');
-        },
-        onHide: function () {
-            $('#question-icon').removeClass('swipe-question');
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
         }
+
+        updateStatus();
     });
-
-    $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
-});
-
 
 
 
     $('#btnSaveStatus').show();
     $('#btnUpdateStatus').hide();
-
 
 
 
@@ -637,14 +370,14 @@ const DatatableFixedColumnsl = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-both-lsa').DataTable({
+        var table = $('.datatable-fixed-both-lsa').DataTable({
             columnDefs: [
                 {
                     orderable: false,
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -668,16 +401,16 @@ const DatatableFixedColumnsl = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data": "item_category_level_1_id"},
-                { "data": "category_level_1"},
+                { "data": "item_category_level_1_id" },
+                { "data": "category_level_1" },
                 { "data": "edit" },
                 { "data": "delete" },
                 { "data": "status" },
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //
@@ -794,15 +527,15 @@ function saveCategoryLevel1() {
         success: function (response) {
             Category1AllData();
             $('#modelcategoryLevel').modal('hide');
-            $("#categoryLevel3Search").val('');
-            showSuccessMessage('Save');
+
+            showSuccessMessage('Successfully saved');
             console.log(response);
 
 
         },
         error: function (error) {
-showErrorMessage('Error');
-$('#modelcategoryLevel').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modelcategoryLevel').modal('hide');
 
             console.log(error);
 
@@ -870,13 +603,13 @@ function updateCategory1() {
         success: function (response) {
 
             Category1AllData();
+
             $('#modelcategoryLevel').modal('hide');
-            $('#categoryLevel1Search').val('');
-            showSuccessMessage('Updated');
+            showSuccessMessage('Successfully updated');
 
 
         }, error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modelcategoryLevel').modal('hide');
             console.log(error);
         }
@@ -900,41 +633,41 @@ function btnCategorylevel1Delete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteLevel1(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteLevel1(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteLevel1(id) {
+function deleteLevel1(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deletelevel1/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deletelevel1/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                $('#categoryLevel1Search').val('');
-                Category1AllData();
-                showSuccessMessage('Deleted')
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+
+            Category1AllData();
+            showSuccessMessage('Delete successfully')
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -996,7 +729,7 @@ const DatatableFixedColumnsll = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-bothll').DataTable({
+        var table = $('.datatable-fixed-bothll').DataTable({
 
             columnDefs: [
                 {
@@ -1004,7 +737,7 @@ const DatatableFixedColumnsll = function () {
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -1028,17 +761,17 @@ const DatatableFixedColumnsll = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data":"Item_category_level_2_id"},
-                { "data":"Item_category_level_1_id" },
-                { "data":"category_level_2" },
-                { "data":"edit" },
-                { "data":"delete" },
-                { "data":"status" },
+                { "data": "Item_category_level_2_id" },
+                { "data": "Item_category_level_1_id" },
+                { "data": "category_level_2" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //
@@ -1073,7 +806,7 @@ function Category2AllData() {
         url: '/categoryLevel2Data',
         cache: false,
         timeout: 800000,
-        beforeSend: function () {},
+        beforeSend: function () { },
         success: function (response) {
             if (response.hasOwnProperty('data')) {
                 var dt = response.data;
@@ -1106,7 +839,7 @@ function Category2AllData() {
         error: function (error) {
             console.log(error);
         },
-        complete: function () {}
+        complete: function () { }
     });
 }
 
@@ -1152,16 +885,16 @@ function saveCategoryLevel2() {
         },
         success: function (response) {
             Category2AllData();
-            $('#modelcategoryLeve2').modal('hide');
 
-            showSuccessMessage('Save');
+            $('#modelcategoryLeve2').modal('hide');
+            showSuccessMessage('Succeessfully saved');
             console.log(response);
 
 
         },
         error: function (error) {
-showErrorMessage('Error');
-$('#modelcategoryLeve2').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modelcategoryLeve2').modal('hide');
 
             console.log(error);
 
@@ -1233,13 +966,13 @@ function updateCategory2() {
         success: function (response) {
 
             Category2AllData();
-            $('#categoryLevel2Search').val('');
+
             $('#modelcategoryLeve2').modal('hide');
-            showSuccessMessage('Updated');
+            showSuccessMessage('Successfully updated');
 
 
         }, error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modelcategoryLeve2').modal('hide');
             console.log(error);
         }
@@ -1262,41 +995,41 @@ function btnCategorylevel2Delete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteLevel2(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteLevel2(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteLevel2(id) {
+function deleteLevel2(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deletelevel2/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deletelevel2/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                Category2AllData();
-                $('#categoryLevel2Search').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            Category2AllData();
+
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -1363,14 +1096,14 @@ const DatatableFixedColumnsls = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-both-l3').DataTable({
+        var table = $('.datatable-fixed-both-l3').DataTable({
             columnDefs: [
                 {
                     orderable: false,
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -1394,17 +1127,17 @@ const DatatableFixedColumnsls = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data":"Item_category_level_3_id"},
-                { "data":"category_level_2" },
-                { "data":"category_level_3" },
-                { "data":"edit" },
-                { "data":"delete" },
-                { "data":"status" },
+                { "data": "Item_category_level_3_id" },
+                { "data": "category_level_2" },
+                { "data": "category_level_3" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //
@@ -1453,15 +1186,15 @@ function Category3AllData() {
                     if (dt[i].Item_category_level_3_id !== 1) {
                         var isChecked = dt[i].is_active ? "checked" : "";
                         data.push({
-                        "Item_category_level_3_id": dt[i].Item_category_level_3_id,
-                        "category_level_2": dt[i].category_level_2,
-                        "category_level_3": dt[i].category_level_3,
-                        "edit": '<button class="btn btn-primary categorylevel3" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3" id="' + dt[i].Item_category_level_3_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                        "delete": '&#160<button class="btn btn-danger" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + dt[i].Item_category_level_3_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                        "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + dt[i].Item_category_level_3_id + ')" required ' + isChecked + '></label>'
-                    });
+                            "Item_category_level_3_id": dt[i].Item_category_level_3_id,
+                            "category_level_2": dt[i].category_level_2,
+                            "category_level_3": dt[i].category_level_3,
+                            "edit": '<button class="btn btn-primary categorylevel3" data-bs-toggle="modal" data-bs-target="#modelcategoryLeve3" id="' + dt[i].Item_category_level_3_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                            "delete": '&#160<button class="btn btn-danger" id="btnCategorylevel3" value="Delete" onclick="btnCategorylevel3Delete(' + dt[i].Item_category_level_3_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                            "status": '<label class="form-check form-switch"><input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel3" value="1" onclick="cbxCategorylevel3Status(' + dt[i].Item_category_level_3_id + ')" required ' + isChecked + '></label>'
+                        });
+                    }
                 }
-            }
 
                 var table = $('#tabalCategoryLevel3').DataTable();
                 table.clear();
@@ -1518,16 +1251,16 @@ function saveCategoryLevel3() {
         },
         success: function (response) {
             Category3AllData();
+
             $('#modelcategoryLeve3').modal('hide');
-            $("#txtCategorylevel3").val('');
-            showSuccessMessage('save');
+            showSuccessMessage('Successfully saved');
             console.log(response);
 
 
         },
         error: function (error) {
-showErrorMessage('Error');
-$('#modelcategoryLeve3').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modelcategoryLeve3').modal('hide');
             console.log(error);
 
         },
@@ -1597,13 +1330,13 @@ function updateCategory3() {
         success: function (response) {
 
             Category3AllData();
-            $('#categoryLevel3Search').val('');
+
             $('#modelcategoryLeve3').modal('hide');
-            showSuccessMessage('Updated');
+            showSuccessMessage('Successfully updated');
 
 
         }, error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modelcategoryLeve3').modal('hide');
             console.log(error);
         }
@@ -1628,9 +1361,11 @@ function cbxCategorylevel1Status(item_category_level_1_id) {
         },
         success: function (response) {
             console.log("data save");
+            showSuccessMessage('saved')
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
+            showErrorMessage('Error')
         }
     });
 }
@@ -1645,16 +1380,18 @@ function cbxCategorylevel2Status(Item_category_level_2_id) {
 
 
     $.ajax({
-        url: '/updateCatLevel2tStatus/'+ Item_category_level_2_id,
+        url: '/updateCatLevel2tStatus/' + Item_category_level_2_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
+            showSuccessMessage('saved')
             console.log("data save");
         },
         error: function (xhr, status, error) {
+            showErrorMessage('Error')
             console.log(xhr.responseText);
         }
     });
@@ -1677,9 +1414,11 @@ function cbxCategorylevel3Status(Item_category_level_3_id) {
             'status': status
         },
         success: function (response) {
+            showSuccessMessage('saved')
             console.log("data save");
         },
         error: function (xhr, status, error) {
+            showErrorMessage('Error')
             console.log(xhr.responseText);
         }
     });
@@ -1703,42 +1442,42 @@ function btnCategorylevel3Delete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteLevel3(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteLevel3(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteLevel3(id) {
+function deleteLevel3(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deletelevel3/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deletelevel3/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                Category3AllData();
-                $('#categoryLevel3Search').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                showWarningMessage('Not Deleted');
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            Category3AllData();
+            $('#categoryLevel3Search').val('');
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            showWarningMessage('Not Deleted');
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 //#####################..Disgination...........
@@ -1776,14 +1515,14 @@ const DatatableFixedColumnslsl = function () {
 
 
         // Left and right fixed columns
-            var table =  $('.datatable-fixed-both-des').DataTable({
+        var table = $('.datatable-fixed-both-des').DataTable({
             columnDefs: [
                 {
                     orderable: false,
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -1807,16 +1546,16 @@ const DatatableFixedColumnslsl = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data":"employee_designation_id "},
-                { "data":"employee_designation" },
-                { "data":"edit" },
-                { "data":"delete" },
-                { "data":"status" },
+                { "data": "employee_designation_id " },
+                { "data": "employee_designation" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //
@@ -1862,7 +1601,7 @@ function allDesgination() {
                 for (var i = 1; i < dt.length; i++) {
                     var isChecked = dt[i].is_active ? "checked" : "";
                     data.push({
-                        "employee_designation_id ": dt[i].employee_designation_id ,
+                        "employee_designation_id ": dt[i].employee_designation_id,
                         "employee_designation": dt[i].employee_designation,
                         "edit": '<button class="btn btn-primary editDesgination" data-bs-toggle="modal" data-bs-target="#modelDesgination" id="' + dt[i].employee_designation_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
                         "delete": '&#160<button class="btn btn-danger" id="btnDesgination" value="Delete" onclick="btnDesginationDelete(' + dt[i].employee_designation_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
@@ -1925,17 +1664,18 @@ function saveDesgination() {
         },
         success: function (response) {
 
-            $('#modelDesgination').modal('hide');
-            $("#desginationSearch").val('');
-            showSuccessMessage('Save');
+
+
+            showSuccessMessage('Successfully saved');
             allDesgination();
+            $('#modelDesgination').modal('hide');
             console.log(response);
 
 
         },
         error: function (error) {
 
-showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             console.log(error);
 
 
@@ -2003,14 +1743,15 @@ function updateDesgination() {
         },
         success: function (response) {
 
-            $('#modelDesgination').modal('hide');
+
             allDesgination();
-            $('#desginationSearch').val('');
-            showSuccessMessage('updated');
+            $('#modelDesgination').modal('hide');
+            showSuccessMessage('Successfully Updated');
 
             console.log(data);
         }, error: function (error) {
-            showErrorMessage('Error');
+            $('#modelDesgination').modal('hide');
+            showErrorMessage('Something went wrong');
             console.log(error);
         }
     });
@@ -2033,6 +1774,7 @@ function cbxDesgination(employee_designation_id) {
         },
         success: function (response) {
             console.log("data save");
+            showSuccessMessage('saved');
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -2058,41 +1800,41 @@ function btnDesginationDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteDesgination(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteDesgination(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteDesgination(id) {
+function deleteDesgination(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deletedesgination/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deletedesgination/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                allDesgination();
-                $('#desginationSearch').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            allDesgination();
+
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -2133,14 +1875,14 @@ const DatatableFixedColumnslsll = function () {
 
         // Left and right fixed columns
 
-            var table =  $('.datatable-fixed-both-st').DataTable({
+        var table = $('.datatable-fixed-both-st').DataTable({
             columnDefs: [
                 {
                     orderable: false,
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -2164,16 +1906,16 @@ const DatatableFixedColumnslsll = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data":"employee_status_id"},
-                { "data":"employee_status" },
-                { "data":"edit" },
-                { "data":"delete" },
-                { "data":"status" },
+                { "data": "employee_status_id" },
+                { "data": "employee_status" },
+                { "data": "edit" },
+                { "data": "delete" },
+                { "data": "status" },
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //
@@ -2216,7 +1958,7 @@ function allempStatus() {
                 var dt = response.data;
                 console.log(dt);
                 var data = [];
-                for (var i = 0; i < dt.length; i++) {
+                for (var i = 1; i < dt.length; i++) {
                     var isChecked = dt[i].is_active ? "checked" : "";
                     data.push({
                         "employee_status_id": dt[i].employee_status_id,
@@ -2280,17 +2022,17 @@ function saveStatus() {
         },
         success: function (response) {
 
+
             $('#modelStatus1').modal('hide');
-            $("#txtStatus").val('');
             allempStatus();
-            showSuccessMessage('Save');
+            showSuccessMessage('Successfully saved');
             console.log(response);
 
 
         },
         error: function (error) {
             showErrorMessage('Error');
-
+            $('#modelStatus1').modal('hide');
             console.log(error);
 
 
@@ -2325,10 +2067,10 @@ $(document).on('click', '.editEmpStatus', function (e) {
 
             $('#id').val(response.employee_status_id);
             $("#txtStatus").val(response.employee_status);
-            showSuccessMessage('Save');
+
         },
         error: function (error) {
-            showErrorMessage('Error');
+
 
             console.log(error);
 
@@ -2365,15 +2107,15 @@ function updateStatus() {
         },
         success: function (response) {
 
-            $('#modelStatus1').modal('hide');
             allempStatus();
-            $('#status1Search').val('');
-showSuccessMessage('Updated');
+            $('#modelStatus1').modal('hide');
+            showSuccessMessage('Successfully updated');
             console.log(data);
         },
         error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
 
+            $('#modelStatus1').modal('hide');
             console.log(error);
 
 
@@ -2398,6 +2140,7 @@ function cbxEmpStatus(employee_status_id) {
         },
         success: function (response) {
             console.log("data save");
+            showSuccessMessage('saved')
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -2423,41 +2166,41 @@ function btnEmpStatusDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteStatus(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteStatus(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteStatus(id) {
+function deleteStatus(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteempStatus/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteempStatus/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                allempStatus();
-                $('#status1Search').val('');
-                showSuccessMessage('Deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            allempStatus();
+
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -2479,7 +2222,7 @@ function category2() {
                 if (value.status_id) {
                     isChecked = "checked";
                 }
-                data = data + "<option id='' value="+ value.item_category_level_1_id   + ">" + value.category_level_1 + "</option>"
+                data = data + "<option id='' value=" + value.item_category_level_1_id + ">" + value.category_level_1 + "</option>"
             })
             $('#cmbLeve1').html(data);
         }
@@ -2500,7 +2243,7 @@ function category3() {
                 if (value.status_id) {
                     isChecked = "checked";
                 }
-                data = data + "<option id='' value="+ value.Item_category_level_2_id   + ">" + value.category_level_2 + "</option>"
+                data = data + "<option id='' value=" + value.Item_category_level_2_id + ">" + value.category_level_2 + "</option>"
             })
             $('#cmbLeve2').html(data);
         }

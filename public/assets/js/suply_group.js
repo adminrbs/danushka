@@ -33,84 +33,29 @@ $(document).ready(function () {
       });
 
 
+      $('#btnSupplygroup').on('click', function (e) {
+        e.preventDefault();
 
-    $('#btnSupplygroup').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-                    saveSuplyGroup();
-                    }
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        saveSuplyGroup();
     });
 
+    $('#btnUpdateSupplygroup').on('click', function (e) {
+        e.preventDefault();
 
-    $('#btnUpdateSupplygroup').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-                    updateSuplyGroup();
-                    }
-
-
-
-
-
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        updateSuplyGroup();
     });
-
-
+    $('#btnSupplygroup').show();
+    $('#btnUpdateSupplygroup').hide();
 
 
 
@@ -134,7 +79,7 @@ function suplyGroupAllData() {
 
 
             var data = [];
-            for (var i = 0; i < dt.length; i++) {
+            for (var i = 1; i < dt.length; i++) {
 
                 var isChecked = dt[i].status_id ? "checked" : "";
 
@@ -198,14 +143,14 @@ function saveSuplyGroup(){
         success: function (response) {
             suplyGroupAllData();
             $('#modalSuplyGroup').modal('hide');
-            $("#suplyGroupSearch").val('');
-            showSuccessMessage('Save');
+
+            showSuccessMessage('Successfully saved');
            console.log(response);
 
 
         },
         error: function (error) {
-showErrorMessage('Error');
+showErrorMessage('Something went wrong');
 $('#modalSuplyGroup').modal('hide');
             console.log(error);
 
@@ -272,12 +217,12 @@ function updateSuplyGroup(){
 
             suplyGroupAllData();
             $('#modalSuplyGroup').modal('hide');
-            $('#suplyGroupSearch').val('');
-            showSuccessMessage('Updated')
+
+            showSuccessMessage('Successfully updated')
 
         }, error: function (error) {
             console.log(error);
-            showErrorMessage('Error')
+            showErrorMessage('Something went wrong')
             $('#modalSuplyGroup').modal('hide');
         }
     });
@@ -328,7 +273,7 @@ function btnSuplyGroupDelete(id) {
                 console.log(response);
                   suplyGroupAllData();
                 $('#suplyGroupSearch').val('');
-                showSuccessMessage('Deleted')
+                showSuccessMessage('Successfully deleted')
             },error:function(xhr,status,error){
                 console.log(xhr.responseText);
             }
@@ -352,6 +297,7 @@ function cbxSuplyGroupStatus(supply_group_id) {
             'status': status
         },
         success: function (response) {
+            showSuccessMessage('saved')
          console.log("data save");
         },
         error: function (xhr, status, error) {

@@ -202,7 +202,7 @@ function deleteEmployee(id) {
         },success:function(response){
             console.log(response);
             getCustomerDetails()
-            showSuccessMessage('Deleted');
+            showSuccessMessage('Successfully deleted');
         },error:function(xhr,status,error){
             console.log(xhr.responseText);
         }

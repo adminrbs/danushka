@@ -53,86 +53,33 @@ $(document).ready(function () {
 
     // Customer user App
 
-   
+
     $('#btncustomeruserApp').show();
     $('#btnUpdatecustomeruserApp').hide();
 
-    $('#btncustomeruserApp').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btncustomeruserApp').on('click', function (e) {
+        e.preventDefault();
 
-                    saveCustomeerUserapp();
-                    }
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        saveCustomeerUserapp();
     });
 
+    //...Customer user App Update
 
-    $('#btnUpdatecustomeruserApp').on('click', function (event) {
-        bootbox.confirm({
-            title: 'Save confirmation',
-            message: '<div class="d-flex justify-content-center align-items-center mb-3"><i id="question-icon" class="fa fa-question fa-5x text-warning animate-question"></i></div><div class="d-flex justify-content-center align-items-center"><p class="h2">Are you sure?</p></div>',
-            buttons: {
-                confirm: {
-                    label: '<i class="fa fa-check"></i>&nbsp;Yes',
-                    className: 'btn-warning'
-                },
-                cancel: {
-                    label: '<i class="fa fa-times"></i>&nbsp;No',
-                    className: 'btn-link'
-                }
-            },
-            callback: function (result) {
-                console.log(result);
-                if (result) {
+    $('#btnUpdatecustomeruserApp').on('click', function (e) {
+        e.preventDefault();
 
-                    updateCustomeerUserapp();
-                    }
+        // check if the input is valid using a 'valid' property
+        if (!$(this).valid) {
+            return;
+        }
 
-
-
-
-
-            },
-            onShow: function () {
-                $('#question-icon').addClass('swipe-question');
-            },
-            onHide: function () {
-                $('#question-icon').removeClass('swipe-question');
-            }
-        });
-
-        $('.bootbox').find('.modal-header').addClass('bg-warning text-white');
-
-
-
+        updateCustomeerUserapp();
     });
-
 
 
 
@@ -227,14 +174,14 @@ function saveCustomeerUserapp() {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
             $('#customerAppSearch').val('');
-            showSuccessMessage('Save');
+            showSuccessMessage('Successfully saved');
             console.log(response);
 
 
         },
         error: function (error) {
 
-showErrorMessage('Error');
+showErrorMessage('Something went wrong');
 $('#modalCustomerApp').modal('hide');
             console.log(error);
 
@@ -317,13 +264,13 @@ function updateCustomeerUserapp() {
 
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
-            $('#customerAppSearch').val('');
-            showSuccessMessage('Updated');
+
+            showSuccessMessage('Successfully updated');
 
 
 
         }, error: function (error) {
-            showErrorMessage('Error');
+            showErrorMessage('Something went wrong');
             $('#modalCustomerApp').modal('hide');
             console.log(error);
         }
@@ -375,7 +322,7 @@ function btnCustommerAppDelete(id) {
                 console.log(response);
                 customeerUserappAllData();
                 $('#customerAppSearch').val('');
-                showSuccessMessage('Deleted');
+                showSuccessMessage('Successfully deleted');
             },error:function(xhr,status,error){
                 console.log(xhr.responseText);
             }
@@ -398,6 +345,7 @@ function cbxCustomerappStatus(customer_app_user_id) {
         },
         success: function (response) {
          console.log("data save");
+         showSuccessMessage('saved');
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
