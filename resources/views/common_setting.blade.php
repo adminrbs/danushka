@@ -575,8 +575,8 @@
 @section('scripts')
 
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/commonSetting.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/categoryLevel.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/commonSetting.js') }}?random=<?php echo uniqid(); ?>"></script>
+    <script src="{{ URL::asset('assets/js/categoryLevel.js') }}?random=<?php echo uniqid(); ?>"></script>
 
     <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">

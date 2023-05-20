@@ -130,14 +130,17 @@ public function twonAlldata(){
 
 
     try {
-        $customerDetails = DB::table('towns')
+        /*$customerDetails = DB::table('towns')
         ->join('districts', 'towns.district_id', '=', 'districts.district_id')
         ->select('towns.town_id  as town_id', 'towns.town_name as town_name', 'districts.district_name as district_name','towns.is_active')
         ->orderBy('districts.district_id', 'DESC')
         ->distinct()
-        ->get();
+        ->get();*/
+        $query = "SELECT towns.*,districts.district_name FROM
+        towns INNER JOIN districts ON towns.district_id = districts.district_id WHERE TOWNS.town_id != '1'";
+        $customerDetails = DB::select($query);
 
-        if ($customerDetails->isNotEmpty()) {
+        if (count($customerDetails) > 0) {
             return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
         } else {
             return response()->json(['error' => 'Data is not loaded']);
