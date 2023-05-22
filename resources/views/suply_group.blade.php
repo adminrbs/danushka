@@ -132,7 +132,7 @@
     <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
     <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
     <script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
-    
+
     <script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>
 
 
@@ -141,7 +141,7 @@
 @section('scripts')
 
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
-  <script src="{{ URL::asset('assets/js/suply_group.js') }}"></script>
+  <script src="{{ URL::asset('assets/js/suply_group.js') }}?random=<?php echo uniqid(); ?>"></script>
   <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 

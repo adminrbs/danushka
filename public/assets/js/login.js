@@ -14,7 +14,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 // Redirect the user to the login page
-                location.href = '/Login_Page';
+                location.href = '/';
             },
             error: function (error) {
                 console.log(error);

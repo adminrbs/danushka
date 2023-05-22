@@ -27,7 +27,7 @@ class CommonsettingController extends Controller
     public function districtData(){
 
         try {
-            $customerDteails = District::all();
+            $customerDteails = District::where('district_id', '!=', 1)->get();
             if ($customerDteails) {
                 return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
             } else {
@@ -137,7 +137,7 @@ public function twonAlldata(){
         ->distinct()
         ->get();*/
         $query = "SELECT towns.*,districts.district_name FROM
-        towns INNER JOIN districts ON towns.district_id = districts.district_id WHERE TOWNS.town_id != '1'";
+        towns INNER JOIN districts ON towns.district_id = districts.district_id WHERE towns.town_id != '1'";
         $customerDetails = DB::select($query);
 
         if (count($customerDetails) > 0) {

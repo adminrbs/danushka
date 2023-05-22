@@ -57,7 +57,7 @@
                             <div class="col-lg">
                                 <label for="fname">Item Category level 1<span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" id="cmbLeve1">
-                                   
+
 
 
                                 </select>
@@ -232,5 +232,3 @@
 
 
 
-<script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
-<script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>

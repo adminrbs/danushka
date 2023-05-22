@@ -18,11 +18,6 @@ class EmployeeController extends Controller
 
     public function saveEmployee(Request $request){
 
-        $request->validate([
-
-            'txtOfficemobileno' => 'max:15',
-            'txtPersionalmobile' => 'max:15',
-        ]);
 
         try {
             $employee = new employee();
@@ -57,7 +52,7 @@ class EmployeeController extends Controller
 
     public function getEmployeeDetails(){
         try {
-            $customerDteails = employee::all();
+            $customerDteails = employee::where('employee_id', '!=', 1)->get();
             if ($customerDteails) {
                 return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
             } else {

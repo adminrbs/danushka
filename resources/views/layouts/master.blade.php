@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="{{URL::asset('assets/images/logo_icon.svg')}}">
     <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/master.css">
-    <script src="{{URL::asset('assets/js/toast.min.js')}}"></script>
+    <script src="{{URL::asset('assets/js/toast.min.js')}}?random=<?php echo uniqid(); ?>"></script>
 
 
     @include('layouts.head-css')
@@ -18,7 +18,7 @@
 
 
     </style>
-    
+
 </head>
 
 <body>

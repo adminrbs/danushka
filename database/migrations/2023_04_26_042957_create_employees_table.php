@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id('employee_id');
             $table->string('employee_name',200);
-            $table->string('office_mobile',15)->nulabal();
+            $table->string('office_mobile',15)->nullable();
             $table->string('Office_email',250)->nullable();
             $table->string('persional_mobile',15)->nullable();
             $table->string('persional_fixed',15)->nullable();

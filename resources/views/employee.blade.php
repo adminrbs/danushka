@@ -79,8 +79,8 @@
                                                             aria-hidden="true">&#160</i>Office mobile No </label>
 
                                                     <div class="mt-1">
-                                                        <input class="form-control form-control-sm validate" type="tel"
-                                                            id="txtOfficemobileno" name="numbers" required maxlength="15">
+                                                        <input class="form-control form-control-sm" type="tel"
+                                                            id="txtOfficemobileno" name="officeMobile" >
 
                                                     </div>
                                                 </div>
@@ -92,7 +92,7 @@
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="email"
-                                                            id="txtOfficeemail" name="txtOfficeemail" required>
+                                                            id="txtOfficeemail" name="txtOfficeemail">
 
                                                     </div>
                                                     <label class="col-form-label mb-0 mt-1"><i
@@ -100,7 +100,7 @@
                                                             aria-hidden="true">&#160</i>Persional mobile No </label>
                                                     <div>
                                                         <input class="form-control form-control-sm validate  mt-1" type="tel"
-                                                            id="txtPersionalmobile" name="numbers" required maxlength="15">
+                                                            id="txtPersionalmobile" name="numbers" >
 
                                                     </div >
 
@@ -114,7 +114,7 @@
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="text"
-                                                            id="txtPersionalfixedno" name="numbers" required>
+                                                            id="txtPersionalfixedno" name="numbers" >
 
                                                     </div>
                                                     <label class="col-form-label mb-0"><i
@@ -123,7 +123,7 @@
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="email"
-                                                            id="txtPersionalemail" name="persionalEmail" required>
+                                                            id="txtPersionalemail" name="persionalEmail" >
 
                                                     </div>
 
@@ -138,7 +138,7 @@
                                                             class="fa fa-address-card-o fa-lg text-info"
                                                             aria-hidden="true">&#160</i>Address</label>
                                                     <div>
-                                                        <input type="text" class="form-control validate" id="txtAddress" name="address" required>
+                                                        <input type="text" class="form-control validate" id="txtAddress" name="address" >
                                                     </div>
 
                                                 </div>
@@ -187,7 +187,7 @@
                                                     <div>
                                                         <input class="form-control form-control-sm validate "
                                                             type="date" id="txtDateofresign" name="dateofresign"
-                                                            required>
+                                                            >
 
                                                     </div>
                                                 </div>
@@ -281,8 +281,8 @@
                             <div class="row mb-1">
                                 <div class="col-md-4 mb-2">
                                     <input type="hidden" id="id">
-                                    <button type="submit" id="btnupdate" class="btn btn-primary form-btn btn-sm">Update</button>
-                                    <button type="submit" id="btnSave"  class="btn btn-primary form-btn btn-sm">Save</button>
+                                    <button type="button" id="btnupdate" class="btn btn-primary form-btn btn-sm">Update</button>
+                                    <button type="button" id="btnSave"  class="btn btn-primary form-btn btn-sm">Save</button>
                                     <button type="button" id="btnReset" class="btn btn-warning form-btn btn-sm">Reset</button>
                                 </div>
                             </div>
@@ -344,8 +344,8 @@
 @endsection
 @section('scripts')
     <script src="{{ URL::asset('assets/demo/pages/form_validation_library.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/employee.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/employeeList.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/employee.js') }}?random=<?php echo uniqid(); ?>"></script>
+    <script src="{{ URL::asset('assets/js/employeeList.js') }}?random=<?php echo uniqid(); ?>"></script>
 
     <script src="{{ URL::asset('assets/js/web-rd-fromValidation.js') }}"></script>
 

@@ -442,19 +442,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //...Category load Data
 function Category1AllData() {
-
+    
     $.ajax({
         type: "GET",
-        url: '/categoryLeveldata',
+        url: '/getCategorylevelOne',
         cache: false,
         timeout: 800000,
         beforeSend: function () { },
         success: function (response) {
-            if (response.hasOwnProperty('data')) {
+            if (true) {
                 var dt = response.data;
 
                 var data = [];
-
+              
                 for (var i = 1; i < dt.length; i++) {
                     var isChecked = dt[i].is_active ? "checked" : "";
 
@@ -469,6 +469,7 @@ function Category1AllData() {
                     });
 
                 }
+               
 
                 var table = $('#categoryLevell').DataTable();
                 table.clear();
@@ -481,6 +482,7 @@ function Category1AllData() {
         },
         error: function (error) {
             console.log(error);
+           
         },
         complete: function () { }
     });
@@ -808,7 +810,9 @@ function Category2AllData() {
         timeout: 800000,
         beforeSend: function () { },
         success: function (response) {
-            if (response.hasOwnProperty('data')) {
+            console.log(response);
+            console.log('xxxxxxxx');
+            if (true) {
                 var dt = response.data;
                 console.log(dt);
 

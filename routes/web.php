@@ -1,16 +1,22 @@
 <?php
 
+use App\Http\Controllers\CategoryLevelController;
+use App\Http\Controllers\customerAppuseController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\dataController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\International_nonproprietaryController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LimitlessController;
-use App\Http\Controllers\CategoryLevelController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\locationController;
 use App\Http\Controllers\Suply_groupController;
-use App\Http\Controllers\International_nonproprietaryController;
-use App\Http\Controllers\customerAppuseController;
 use App\Models\User;
 use App\Notifications\UserNotification;
+use App\Http\Controllers\CommonsettingController;
+use App\Http\Controllers\salesOrderController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,22 +29,27 @@ use App\Notifications\UserNotification;
 |
 */
 
-/* Route::get('/', function () {
+/*Route::get('/', function () {
     Auth::attempt(['email' => 'admin@themesbrand.com', 'password' => '12345678'], true);
 
     $notificationData = [
         'data' => "This is Notification",
         'link' => "/"
     ];
-    //User::find(1)->notify(new UserNotification($notificationData));
+    User::find(1)->notify(new UserNotification($notificationData));
     return view('dashboard');
 });
  */
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
-Route::get('/', function () {
+
+Route::get('/customer', function () {
     return view('customer');
 });
 
+//old
 Route::get('/customer_list', function () {
     return view('customer_list');
 });
@@ -54,6 +65,11 @@ Route::get('/customer2', function () {
 Route::get('/customer_form', function () {
     return view('form');
 });
+
+Route::get('/purchaseorder', function () {
+    return view('purchase_order_sample');
+});
+
 
 
 Route::get('/readNotification/{id}', function ($id) {
@@ -72,35 +88,99 @@ Route::get('/save', [LimitlessController::class, 'save']);
 Route::get('/update/{id}', [LimitlessController::class, 'update']);
 Route::post('/CustomerController/saveCustomer',[CustomerController::class,'saveCustomer']);
 Route::post('/FormController/saveCustomer',[FormController::class,'saveCustomer']);
-
-
-//Model Close
-Route::post('/close', [International_nonproprietaryController::class, 'close']);
-//...............................Employeee............
-
-Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index']);
-Route::post('/saveEmployee', [App\Http\Controllers\EmployeeController::class, 'saveEmployee']);
-
-//.....................Employee view update delete
-Route::get('/employeeList',function(){
-    return view('employeeList');
+Route::GET('/getDistrictId',[CustomerController::class,'getDistrict']);
+Route::GET('/getTownId/{id}',[CustomerController::class,'getTown']);
+Route::get('/getCustomerGroupid',[CustomerController::class,'getCustomerGroup']);
+Route::get('/getCustomerGradeId',[CustomerController::class,'getCustomerGrade']);
+Route::post('/saveContact/{id}',[CustomerController::class,'addContactDetails']);
+Route::get('/customerList',function(){
+    return view('customerList');
 });
-Route::get('/getEmployeeDetails',[App\Http\Controllers\EmployeeController::class,'getEmployeeDetails']);
-Route::get('/getEmployeedata/{id}', [App\Http\Controllers\EmployeeController::class, 'getEmployeedata']);
-Route::post('/Employee/update/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeUpdate']);
-Route::get('/getEmployeeview/{id}',[App\Http\Controllers\EmployeeController::class,'getEmployview']);
-Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeDelete']);
+
+Route::post('/addDeliveryPoint/{id}',[CustomerController::class,'addcustomerDeliveryPoints']);
+Route::get('/getCustomerDetails',[CustomerController::class,'getCsutomerDetails']);
+Route::get('/ViewCustomer',function(){
+    return view('customerUpdate');
+});
+
+Route::get('/getCustomer/{id}',[CustomerController::class,'getEachCustomer']);
+Route::post('/upload',[CustomerController::class,'uploadFile']);
+Route::post('/updateCustomer/{id}',[CustomerController::class,'updateCustomer']);
+Route::delete('/deleteCustomer/{id}',[CustomerController::class,'deleteCustomer']);
+Route::get('/getEachContactData/{id}',[CustomerController::class,'getEachCustomerContact']);
+Route::get('/getEachDeliveryPoint/{id}',[CustomerController::class,'getEachDeliveryPoint']);
+Route::get('/searchNames',[CustomerController::class,'loadNames']);
+Route::delete('/deleteCustomerContact/{id}',[CustomerController::class,'deleteCustomerContact']);
+Route::delete('/deleteDeliveryPoint/{id}',[CustomerController::class,'deleteDeliveryPoint']);
+
+//Item routes
+Route::get('/item',function(){
+    return view('item');
+});
+
+ROute::get('/itemList',function(){
+    return view('itemList');
+});
+
+Route::post('/addItem',[ItemController::class,'addItem']);
+Route::get('/getSupplyGroup',[ItemController::class,'getSupplyGroup']);
+Route::get('/getCategoryLevelOne',[ItemController::class,'getCategoryLevelOne']);
+Route::get('/getCategoryLevelTwo/{Cat_lvl_1_id}',[ItemController::class,'getCategoryLevelTwo']);
+Route::get('/getCategoryLevelThree/{cat_lvl_2_id}',[ItemController::class,'getCategoryLevelThree']);
+Route::get('/getItemDetails',[ItemController::class,'getItemDetails']);
+Route::delete('/deleteItem/{id}',[ItemController::class,'deleteItem']);
+Route::get('/geteachItem/{id}',[ItemController::class,'geteachItem']);
+Route::post('/updateItem/{id}',[ItemController::class,'updateItem']);
+Route::get('/searchItemNames',[ItemController::class,'searchItemNames']);
 
 
+//location routes
+Route::get('/location',function(){
+    return view('location');
+});
+
+Route::get('/locationList',function(){
+    return view('locationList');
+});
+
+Route::post('/addLocation',[locationController::class,'addLocation']);
+Route::get('/getLocationTypes',[locationController::class,'getLocationTypes']);
+Route::get('/getLocationDetails',[locationController::class,'getLocationDetails']);
+Route::get('/getEachLocationDetails/{id}',[locationController::class,'getEachLocationDetails']);
+Route::post('/updateLocation/{id}',[locationController::class,'updateLocation']);
+Route::delete('/deleteLocation/{id}',[locationController::class,'deleteLocation']);
+
+//customer location (list box)
+Route::get('/assignCustomertoLocation',function(){
+    return view('assignCustomertoLocation');
+});
+Route::get('/getCustomerDataTOlistbox/{id}',[dataController::class,'getFilterData']); // same for employee cystomer
+
+Route::get('/getLocations',[dataController::class,'getLocations']);
+Route::post('/addCustomerLocations',[dataController::class,'addCustomerLocation']);
+Route::get('/getCustomerlocationDteails',[dataController::class,'getCustomerlocationDteails']);
+Route::delete('/deleteCustomerLocation',[dataController::class,'deleteCustomerLocation']);
+
+// employee customer (list box)
+Route::get('/employeeCustomerView',function(){
+    return view('employee_customer');
+});
+Route::get('/getEmployee',[dataController::class,'getEmployees']);
+Route::get('/getEmployeeCustomerDetails',[dataController::class,'getEmployeeCustomerDetails']);
+Route::post('/addEmployeeCustomer',[dataController::class,'addEmployeeCustomer']);
+Route::delete('/deleteEmployeeCustomer',[dataController::class,'deleteEmployeeCustomer']);
 Route::get('/empdesgnation',[App\Http\Controllers\EmployeeController::class,'empdesgnation']);
 Route::get('/empreport',[App\Http\Controllers\EmployeeController::class,'empreport']);
 
+
+//deleteEmployeeCustomer
+
+
+
+
 //.......common_setting..........
 
-
-Route::get('/commonSetting', [App\Http\Controllers\CommonsettingController::class, 'index'])->middleware('is.logged');
-
-
+Route::get('/commonSetting', [App\Http\Controllers\CommonsettingController::class, 'index']);
 
 //..district
 Route::get('/districtData', [App\Http\Controllers\CommonsettingController::class,'districtData']);
@@ -127,7 +207,6 @@ Route::post('/townUpdateStatus/{id}', [App\Http\Controllers\CommonsettingControl
 Route::get('/updateStatusTown/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusTown']);
 Route::delete('/deleteTown/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteTown']);
 Route::get('loadDistrict',[App\Http\Controllers\CommonsettingController::class,'loadDistrict']);
-
 Route::get('/towndistrict', [App\Http\Controllers\CommonsettingController::class, 'towndistrict']);
 //..Group
 Route::get('/groupAlldata', [App\Http\Controllers\CommonsettingController::class,'groupAlldata']);
@@ -149,10 +228,9 @@ Route::post('/gradeUpdateStatus/{id}', [App\Http\Controllers\CommonsettingContro
 Route::get('/updateStatusGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGrade']);
 Route::delete('/deleteGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteGrade']);
 
-////////////////////////// Category lavel ///////////
-
 // level 1
-Route::get('/categoryLeveldata', [CategoryLevelController::class,'categoryLevel1Data']);
+Route::get('/getCategorylevelOne', [CategoryLevelController::class,'categoryLevel1Data']);
+
 Route::post('/saveCategoryLevel1', [CategoryLevelController::class,'saveCategoryLevel1']);
 Route::get('/categorylevel1Edite/{id}', [CategoryLevelController::class,'categorylevel1Edite']);
 Route::post('/txtCategorylevel1Update/{id}', [CategoryLevelController::class, 'txtCategorylevel1Update']);
@@ -160,8 +238,8 @@ Route::post('/updateCatLevel1tStatus/{id}', [CategoryLevelController::class, 'ca
 Route::get('/catLevel1_search', [CategoryLevelController::class,'categoryLevel1search']);
 Route::delete('/deletelevel1/{id}', [CategoryLevelController::class,'deletelevel1']);
 
-
 // Level 2
+Route::get('/test', [CategoryLevelController::class,'categoryLevel2Data']);
 Route::get('/categoryLevel2Data', [CategoryLevelController::class,'categoryLevel2Data']);
 Route::post('/saveCategoryLevel2', [CategoryLevelController::class,'saveCategoryLevel2']);
 Route::get('/categorylevel2Edite/{id}', [CategoryLevelController::class,'categorylevel2Edite']);
@@ -171,7 +249,6 @@ Route::get('/catLevel2_search', [CategoryLevelController::class,'categoryLevel2s
 Route::delete('/deletelevel2/{id}', [CategoryLevelController::class,'deletelevel2']);
 Route::get('loadcategory2',[CategoryLevelController::class,'loadCategory2']);
 
-Route::get('/category2', [CategoryLevelController::class, 'category2']);
 // Level 3
 Route::get('/categoryLevel3Data', [CategoryLevelController::class,'categoryLevel3Data']);
 Route::post('/saveCategoryLevel3', [CategoryLevelController::class,'saveCategoryLevel3']);
@@ -182,7 +259,6 @@ Route::get('/catLevel3_search', [CategoryLevelController::class,'categoryLevel3s
 Route::delete('/deletelevel3/{id}', [CategoryLevelController::class,'deletelevel3']);
 Route::get('loadcategory3',[CategoryLevelController::class,'loadCaegory3']);
 
-Route::get('/category3', [CategoryLevelController::class, 'category3']);
 // Distination
 
 Route::post('/saveDesgination', [CategoryLevelController::class,'saveDesgination']);
@@ -205,18 +281,23 @@ Route::get('/empStatussearch', [CategoryLevelController::class,'empStatussearch'
 Route::delete('/deleteempStatus/{id}', [CategoryLevelController::class,'deleteempStatus']);
 
 
-//Login Page
-Route::get('/Login_Page', function () {
-    return view('login.login');
+//...............................Employeee............
+
+Route::get('/employee', [App\Http\Controllers\EmployeeController::class, 'index']);
+Route::post('/saveEmployee', [App\Http\Controllers\EmployeeController::class, 'saveEmployee']);
+
+//.....................Employee view update delete
+Route::get('/employeeList',function(){
+    return view('employeeList');
 });
+Route::get('/getEmployeeDetails',[App\Http\Controllers\EmployeeController::class,'getEmployeeDetails']);
+Route::get('/getEmployeedata/{id}', [App\Http\Controllers\EmployeeController::class, 'getEmployeedata']);
+Route::post('/Employee/update/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeUpdate']);
+Route::get('/getEmployeeview/{id}',[App\Http\Controllers\EmployeeController::class,'getEmployview']);
+Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeDelete']);
 
-Route::post('/submitForm', [LoginController::class,'loginForm']);
-
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-
-//Suply Group
 Route::get('/suply_group', function () {
     return view('suply_group');
 });
@@ -227,8 +308,6 @@ Route::post('/supltGroupUpdate/{id}', [Suply_groupController::class, 'supltGroup
 Route::post('/suplyGroupStatus/{id}', [Suply_groupController::class, 'suplyGroupStatus']);
 Route::get('/suplyGroupsearch', [Suply_groupController::class,'suplyGroupsearch']);
 Route::delete('/deleteSuplygroup/{id}', [Suply_groupController::class,'deleteSuplygroup']);
-
-
 
 //nonproprietary
 Route::get('/item_altenative_name', function () {
@@ -241,7 +320,7 @@ Route::post('/nonproprietaryUpdate/{id}', [International_nonproprietaryControlle
 Route::post('/nonproprietaryStatus/{id}', [International_nonproprietaryController::class, 'nonproprietaryStatus']);
 Route::get('/nonproprietarysearch', [International_nonproprietaryController::class,'nonproprietarysearch']);
 Route::delete('/deleteNonproprietary/{id}', [International_nonproprietaryController::class,'deleteNonproprietary']);
-
+Route::post('/close', [International_nonproprietaryController::class,'close']);
 
 //customer Appuser
 
@@ -256,4 +335,26 @@ Route::post('/customerAppStatus/{id}', [customerAppuseController::class,'custome
 Route::delete('/deletecustomerApp/{id}', [customerAppuseController::class,'deletecustomerApp']);
 Route::get('/customername', [customerAppuseController::class, 'customername']);
 
-Route::get('/autocomplete', [customerAppuseController::class, 'autoComplete']);
+
+//sales_order_list
+Route::get('/getSalesOrderList',function(){
+    return view('sales_oder_list');
+});
+Route::get('/getSalesOrderDetails',[salesOrderController::class,'getSalesOrderDetails']);
+
+//Login Page
+Route::get('/', function () {
+    return view('login.login');
+});
+
+Route::post('/submitForm', [LoginController::class,'loginForm']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+
+
+//test duallist box
+Route::get('/testDual',function(){
+    return view('testingduallistbox');
+});

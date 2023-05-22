@@ -10,8 +10,9 @@ use App\Models\employee_Status;
 use Dotenv\Exception\ValidationException;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use DB;
+
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CategoryLevelController extends Controller
@@ -145,7 +146,7 @@ return response()->json( $data );
 public function categoryLevel2Data()
 {
     try {
-        $customerDetails = DB::table('item_category_level_2s')
+        /*$customerDetails = DB::table('item_category_level_2s')
             ->join('item_category_level_1s', 'item_category_level_2s.Item_category_level_1_id', '=', 'item_category_level_1s.item_category_level_1_id')
             ->select('item_category_level_2s.Item_category_level_2_id', 'item_category_level_2s.category_level_2', 'item_category_level_1s.category_level_1', 'item_category_level_2s.is_active')
             ->orderBy('item_category_level_1s.item_category_level_1_id', 'DESC')
@@ -154,7 +155,11 @@ public function categoryLevel2Data()
 
         if ($customerDetails->isEmpty()) {
             return response()->json(['error' => 'Data is not loaded']);
-        }
+        }*/
+        $query = "SELECT item_category_level_2s.*,item_category_level_1s.category_level_1 FROM item_category_level_2s
+        INNER JOIN item_category_level_1s ON item_category_level_2s.Item_category_level_1_id = item_category_level_1s.item_category_level_1_id WHERE item_category_level_1s.item_category_level_1_id != '1'";
+
+        $customerDetails = DB::select($query);
 
         return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
     } catch (\Exception $ex) {

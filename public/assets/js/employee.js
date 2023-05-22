@@ -20,10 +20,10 @@ $(document).ready(function () {
         }
 
         saveEmployee();
-    });*/
+    });
 //..........update employee.....
 
-/*$('#btnupdate').on('click',function (e) {
+$('#btnupdate').on('click',function (e) {
     e.preventDefault();
 
     // check if the input is valid using a 'valid' property
@@ -150,6 +150,7 @@ $(document).ready(function () {
 //........... employee save..........
 function saveEmployee() {
 
+
     formData.append('txtName', $('#txtName').val());
     formData.append('txtOfficemobileno', $('#txtOfficemobileno').val());
     formData.append('txtOfficeemail', $('#txtOfficeemail').val());
@@ -189,12 +190,13 @@ function saveEmployee() {
 
                 resetForm();
                 showSuccessMessage('Successfully saved');
-
             } else {
+                showErrorMessage('Something went wrong');
             }
 
         },
         error: function (error) {
+
             showErrorMessage('Something went wrong');
             console.log(error);
 
@@ -245,10 +247,6 @@ function getEmployeedata(id) {
         },
         error: function (error) {
             console.log(error);
-
-
-
-
 
         },
         complete: function () {
