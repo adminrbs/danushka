@@ -220,9 +220,9 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="submit" id="btnClose5" class="btn btn-secondary" >Close</button>
-                <button type="submit" id="btnSaveStatus" class="btn btn-primary btnSaveCategorylevel3">Save</button>
-                <button type="submit" id="btnUpdateStatus" class="btn btn-primary categorylevel3">Update</button>
+                <button type="button" id="btnClose5" class="btn btn-secondary" >Close</button>
+                <button type="button" id="btnSaveStatus" class="btn btn-primary btnSaveCategorylevel3">Save</button>
+                <button type="button" id="btnUpdateStatus" class="btn btn-primary categorylevel3">Update</button>
             </div>
             </form>
         </div>

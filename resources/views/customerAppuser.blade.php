@@ -104,16 +104,16 @@
 
 
                     <div class="modal-body p-4 bg-light">
-                        <form id="" class="needs-validation" novalidate>
+                        <form id="formCustomer" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-lg">
                                     <div class="row mb-1">
                                         <div class="col-md-12">
                                             <label for="cmbcustomer">Customer Name<span
                                                     class="text-danger">*</span></label>
-                                            <select id="cmbcustomerApp" class="form-control form-control-sm select"
-                                                style="width: 100%" data-placeholder="Select Here...." required>
-                                                <option value="" disabled selected></option>
+                                            <select id="cmbcustomerApp" class="form-control form-control-sm select2"
+                                                style="width: 100%" data-placeholder="Select Here....">
+
                                             </select>
                                             <span class="text-danger font-weight-bold "></span>
                                         </div>
@@ -151,9 +151,9 @@
                             <div class="modal-footer">
                                 <input type="hidden" id="id">
 
-                                <button type="submit" id="btnCloseCustomerApp" class="btn btn-secondary">Close</button>
-                                <button type="submit" id="btncustomeruserApp" class="btn btn-primary ">Save</button>
-                                <button type="submit" id="btnUpdatecustomeruserApp"
+                                <button type="button" id="btnCloseCustomerApp" class="btn btn-secondary">Close</button>
+                                <button type="button" id="btncustomeruserApp" class="btn btn-primary ">Save</button>
+                                <button type="button" id="btnUpdatecustomeruserApp"
                                     class="btn btn-primary updategroup">Update</button>
                             </div>
                         </form>

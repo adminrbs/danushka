@@ -100,7 +100,7 @@ class commonsetting extends Seeder
        DB::table('employees')->insert([
             'employee_name' => 'Not Applicable',
             'office_mobile' => '1',
-            'Office_email' => '1',
+            'office_email' => '1',
             'persional_mobile' => '1',
             'persional_fixed' => '1',
             'persional_email' => '1',

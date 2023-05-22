@@ -57,18 +57,24 @@ public function autoComplete(Request $request){
     public function customeruserApp()
 {
     try {
-        $customerDetails = DB::table('customer_app_users')
+        /*$customerDetails = DB::table('customer_app_users')
             ->join('customers', 'customer_app_users.customer_id', '=', 'customers.customer_id')
             ->select('customer_app_users.customer_app_user_id', 'customers.customer_name', 'customers.primary_address', 'customer_app_users.email', 'customer_app_users.mobile', 'customer_app_users.password', 'customer_app_users.status_id')
             ->orderBy('customers.customer_id', 'DESC')
             ->distinct()
-            ->get();
+            ->get();*/
 
-        if ($customerDetails->isNotEmpty()) {
+            $query = "SELECT customer_app_users.*,customers.* FROM customer_app_users
+            INNER JOIN customers ON customer_app_users.customer_id = customers.customer_id ORDER BY customer_app_users.customer_app_user_id DESC";
+
+            $customerDetails = DB::select($query);
+
+       /* if ($customerDetails->isNotEmpty()) {
             return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
         } else {
             return response()->json(['error' => 'Data is not loaded']);
-        }
+        }*/
+        return response()->json(['success' => 'Data loaded', 'data' => $customerDetails]);
     } catch (Exception $ex) {
         if ($ex instanceof ValidationException) {
             return response()->json([
@@ -86,18 +92,15 @@ public function autoComplete(Request $request){
 
     public function savecustomerUserApp(Request $request){
 
-        $validatedData = $request->validate([
-            'txtEmailcustomer' => 'required',
-            'txtMobilphonecustomer' => 'required',
-            'txtPasswordcustomer' => 'required',
-        ]);
         try {
+            $random_number = Hash::make(uniqid());
 
             $customerUserApp= new customer_app_user();
             $customerUserApp->customer_id= $request->get('cmbcustomerApp');
             $customerUserApp->email= $request->get('txtEmailcustomer');
             $customerUserApp->mobile = $request->get('txtMobilphonecustomer');
-            $customerUserApp->password = password_hash($request->get('txtPasswordcustomer'), PASSWORD_DEFAULT);
+            $customerUserApp->password = Hash::make($request->get('txtPasswordcustomer'));
+            $customerUserApp->session_key = $random_number;
 
 
 
@@ -121,14 +124,13 @@ public function customerEdit($id){
 
 public function customerAppUpdate(Request $request,$id){
     $customer = customer_app_user::findOrFail($id);
-
+    $session_key = Hash::make(uniqid());
     $customer->customer_id = $request->input('cmbcustomerApp');
     $customer->email = $request->input('txtEmailcustomer');
     $customer->mobile = $request->input('txtMobilphonecustomer');
-
+    $customer->session_key = $session_key;
     if($request->input('txtPasswordcustomer')){
         $customer->password = Hash::make($request->input('txtPasswordcustomer'));
-
 
     }
 

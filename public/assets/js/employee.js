@@ -1,5 +1,26 @@
 
 var formData = new FormData();
+function reportEmployee() {
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/reportEmployee",
+        success: function (response) {
+            var data = response.data;
+
+
+            var options = '';
+            $.each(data, function (key, value) {
+                options += "<option  value='" + value.employee_id  + "'>" + value.employee_name + "</option>";
+            });
+
+            $('#cmbReport').html(options);
+        }
+    });
+}
+
+reportEmployee();
+
 $(document).ready(function () {
     $('#txtNote').on('input', function() {
         this.style.height = 'auto';
@@ -230,7 +251,7 @@ function getEmployeedata(id) {
             $('#id').val(employee.employee_id );
             $('#txtName').val(employee.employee_name);
             $('#txtOfficemobileno').val(employee.office_mobile);
-            $('#txtOfficeemail').val(employee.Office_email);
+            $('#txtOfficeemail').val(employee.office_email);
             $('#txtPersionalmobile').val(employee.persional_mobile);
             $('#txtPersionalfixedno').val(employee.persional_fixed);
             $('#txtPersionalemail').val(employee.persional_email);
@@ -328,7 +349,7 @@ function getEmployeeview(id){
             $('#id').val(employee.employee_id );
             $('#txtName').val(employee.employee_name);
             $('#txtOfficemobileno').val(employee.office_mobile);
-            $('#txtOfficeemail').val(employee.Office_email);
+            $('#txtOfficeemail').val(employee.office_email);
             $('#txtPersionalmobile').val(employee.persional_mobile);
             $('#txtPersionalfixedno').val(employee.persional_fixed);
             $('#txtPersionalemail').val(employee.persional_email);

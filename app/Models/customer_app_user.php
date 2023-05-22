@@ -18,9 +18,10 @@ class customer_app_user extends Model
         'mobile',
         'password',
         'status_id',
+        'session_key',
     ];
 
 
 
-   
+
 }

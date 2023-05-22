@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('employee_id');
             $table->string('employee_name',200);
             $table->string('office_mobile',15)->nullable();
-            $table->string('Office_email',250)->nullable();
+            $table->string('office_email',250)->nullable();
             $table->string('persional_mobile',15)->nullable();
             $table->string('persional_fixed',15)->nullable();
             $table->string('persional_email',250)->nullable();

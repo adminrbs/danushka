@@ -102,9 +102,9 @@
       <div class="modal-footer">
           <input type="hidden" id="id">
 
-        <button type="submit" id="btnCloseupdate" class="btn btn-secondary">Close</button>
-        <button type="submit" id="btnNonproprietary" class="btn btn-primary ">Save</button>
-        <button type="submit" id="btnUpdateNonproprietary" class="btn btn-primary updategroup">Update</button>
+        <button type="button" id="btnCloseupdate" class="btn btn-secondary">Close</button>
+        <button type="button" id="btnNonproprietary" class="btn btn-primary ">Save</button>
+        <button type="button" id="btnUpdateNonproprietary" class="btn btn-primary updategroup">Update</button>
       </div>
   </form>
     </div>

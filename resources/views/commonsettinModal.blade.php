@@ -57,7 +57,7 @@
                         <div class="col-lg">
                             <label for="fname">District</label>
                             <select class="form-select" aria-label="Default select example" id="cmbDistrict">
-                               
+
 
 
                               </select>
@@ -161,9 +161,9 @@
         </div>
         <div class="modal-footer">
              <input type="hidden" id="id">
-             <button type="submit" id="btnCloseGrade" class="btn btn-secondary">Close</button>
-          <button type="submit" id="btnSavegrade" class="btn btn-primary ">Save</button>
-          <button type="submit" id="btnUpdateGrade" class="btn btn-primary updateGrade">Update</button>
+             <button type="button" id="btnCloseGrade" class="btn btn-secondary">Close</button>
+          <button type="button" id="btnSavegrade" class="btn btn-primary ">Save</button>
+          <button type="button" id="btnUpdateGrade" class="btn btn-primary updateGrade">Update</button>
         </div>
     </form>
       </div>

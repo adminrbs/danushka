@@ -10,7 +10,6 @@ $(document).ready(function () {
         $('#btnUpdatecustomeruserApp').hide();
         $('#passName').html("Password<span class='text-danger'>*</span>");
         $('#id').val('');
-        $("#cmbcustomerApp").val('');
         $("#txtEmailcustomer").val('');
         $("#txtMobilphonecustomer").val('');
         $("#txtPasswordcustomer").val('');
@@ -21,8 +20,9 @@ $(document).ready(function () {
     });
     // Default initialization
     //$('.select').select2();
-    $(".select").select2({
+    $(".select2").select2({
         dropdownParent: $("#modalCustomerApp")
+
     });
     // End of Default initialization
     ///////////////////////////close//////////
@@ -44,6 +44,7 @@ $(document).ready(function () {
             success: function (response) {
                 $("#modalCustomerApp").modal("hide"); // This will close the modal
                 var urlWithoutQuery = window.location.href.split('?')[0];
+
             },
             error: function (xhr, status, error) {
 
@@ -100,30 +101,29 @@ function customeerUserappAllData() {
         success: function (response) {
 
             var dt = response.data;
-           
-
 
             var data = [];
             for (var i = 0; i < dt.length; i++) {
 
                 var isChecked = dt[i].status_id ? "checked" : "";
 
-               data.push({
+                data.push({
 
-                   "customer_app_user_id": dt[i].customer_app_user_id,
-                   "customer_id": dt[i].customer_name,
-                   "email": dt[i].email,
-                   "mobile": dt[i].mobile,
-                   "edit":'<button class="btn btn-primary customerEdit" data-bs-toggle="modal" data-bs-target="#modalCustomerApp" id="' + dt[i].customer_app_user_id   + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                   "delete":'&#160<button class="btn btn-danger" onclick="btnCustommerAppDelete(' + dt[i].customer_app_user_id  + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                   "status":'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus('+ dt[i].customer_app_user_id  + ')" required '+isChecked+'></lable>',
-               });
+                    "customer_app_user_id": dt[i].customer_app_user_id,
+                    "customer_id": dt[i].customer_name,
+                    "email": dt[i].email,
+                    "mobile": dt[i].mobile,
+                    "edit": '<button class="btn btn-primary customerEdit" data-bs-toggle="modal" data-bs-target="#modalCustomerApp" id="' + dt[i].customer_app_user_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger" onclick="btnCustommerAppDelete(' + dt[i].customer_app_user_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                    "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' + dt[i].customer_app_user_id + ')" required ' + isChecked + '></lable>',
+                });
             }
 
 
             var table = $('#customerAppTable').DataTable();
-                table.clear();
-                table.rows.add(data).draw();
+            table.clear();
+            table.rows.add(data).draw();
+
 
         },
         error: function (error) {
@@ -139,19 +139,12 @@ customeerUserappAllData();
 
 
 //.....saveCategoryLevel2 Save.....
-
 function saveCustomeerUserapp() {
+
     formData.append('cmbcustomerApp', $('#cmbcustomerApp').val());
     formData.append('txtEmailcustomer', $('#txtEmailcustomer').val());
     formData.append('txtMobilphonecustomer', $('#txtMobilphonecustomer').val());
     formData.append('txtPasswordcustomer', $('#txtPasswordcustomer').val());
-
-
-
-    if (formData.txtEmailcustomer == '' && formData.txtMobilphonecustomer == '' && formData.txtPasswordcustomer == '') {
-        //alert('Please enter item category level 1');
-        return false;
-    }
 
     console.log(formData);
 
@@ -167,36 +160,24 @@ function saveCustomeerUserapp() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        timeout: 800000,
         beforeSend: function () {
-
+            // Perform any tasks before sending the request
         },
         success: function (response) {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
-            $('#customerAppSearch').val('');
+
             showSuccessMessage('Successfully saved');
+
             console.log(response);
-
-
         },
         error: function (error) {
-
-showErrorMessage('Something went wrong');
-$('#modalCustomerApp').modal('hide');
+            showErrorMessage('Something went wrong');
             console.log(error);
-
-
-
-        },
-        complete: function () {
-
         }
-
     });
 
 }
-
 
 //.......edit......
 
@@ -205,7 +186,7 @@ $(document).on('click', '.customerEdit', function (e) {
     e.preventDefault();
     let customer_app_user_id = $(this).attr('id');
     $.ajax({
-        url: '/customerEdit/'+ customer_app_user_id,
+        url: '/customerEdit/' + customer_app_user_id,
         method: 'get',
         data: {
             //id: id,
@@ -218,7 +199,7 @@ $(document).on('click', '.customerEdit', function (e) {
 
 
             $('#id').val(response.customer_app_user_id);
-            $("#cmbcustomerApp").val(response.customer_id).trigger('change');
+            $("#cmbcustomerApp").val(response.customer_id).trigger('change');;
             $("#txtEmailcustomer").val(response.email);
             $("#txtMobilphonecustomer").val(response.mobile);
             $("#txtPasswordcustomer").val("");
@@ -247,7 +228,7 @@ function updateCustomeerUserapp() {
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/customerAppUpdate/'+ id,
+        url: '/customerAppUpdate/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -294,41 +275,41 @@ function btnCustommerAppDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteCustomApp(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteCustomApp(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteCustomApp(id) {
+function deleteCustomApp(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deletecustomerApp/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deletecustomerApp/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                customeerUserappAllData();
-                $('#customerAppSearch').val('');
-                showSuccessMessage('Successfully deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+        }, success: function (response) {
+            console.log(response);
+            customeerUserappAllData();
+            $('#customerAppSearch').val('');
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -338,15 +319,15 @@ function cbxCustomerappStatus(customer_app_user_id) {
 
 
     $.ajax({
-        url: '/customerAppStatus/'+customer_app_user_id,
+        url: '/customerAppStatus/' + customer_app_user_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
             'status': status
         },
         success: function (response) {
-         console.log("data save");
-         showSuccessMessage('saved');
+            console.log("data save");
+            showSuccessMessage('saved');
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -375,7 +356,7 @@ function customeername() {
                 }
 
 
-                data = data + "<option id='' value="+ value.customer_id  + ">" + value.customer_name + "</option>"
+                data = data + "<option  id='' value=" + value.customer_id + ">" + value.customer_name + "</option>"
 
 
             })
@@ -430,7 +411,7 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        var table =  $('.datatable-fixed-both').DataTable({
+        var table = $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
@@ -438,7 +419,7 @@ const DatatableFixedColumns = function () {
 
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0,
 
                 },
@@ -465,7 +446,7 @@ const DatatableFixedColumns = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data": "customer_app_user_id"},
+                { "data": "customer_app_user_id" },
                 { "data": "customer_id" },
                 { "data": "email" },
                 { "data": "mobile" },
@@ -475,8 +456,8 @@ const DatatableFixedColumns = function () {
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //
@@ -505,3 +486,4 @@ document.addEventListener('DOMContentLoaded', function () {
     DatatableFixedColumns.init();
 });
 //.............................Auto Complete.............
+

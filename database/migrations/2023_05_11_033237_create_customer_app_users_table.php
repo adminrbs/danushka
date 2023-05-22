@@ -20,6 +20,7 @@ return new class extends Migration
             $table->Text('mobile',50);
             $table->Text('password',100);
             $table->integer('status_id')->default("1");
+            $table->integer('session_key')->nullable();
             $table->timestamps();
         });
     }

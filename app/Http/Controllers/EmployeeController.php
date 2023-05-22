@@ -15,6 +15,13 @@ class EmployeeController extends Controller
 
     //...........save employee
 
+public function reportEmployee(){
+    $data = employee::orderBy('employee_id','ASC' )->get();
+    return response()->json( $data );
+
+}
+
+
 
     public function saveEmployee(Request $request){
 
@@ -23,7 +30,7 @@ class EmployeeController extends Controller
             $employee = new employee();
             $employee->employee_name = $request->get('txtName');
             $employee->office_mobile = $request->get('txtOfficemobileno');
-            $employee->Office_email = $request->get('txtOfficeemail');
+            $employee->office_email = $request->get('txtOfficeemail');
             $employee->persional_mobile = $request->get('txtPersionalmobile');
             $employee->persional_fixed = $request->get('txtPersionalfixedno');
             $employee->persional_email = $request->get('txtPersionalemail');
@@ -86,7 +93,7 @@ class EmployeeController extends Controller
 
             'employee_name' => $request->txtName,
             'office_mobile'=>$request->txtOfficemobileno,
-            'Office_email'=>$request->txtOfficeemail,
+            'office_email'=>$request->txtOfficeemail,
 
             'persional_mobile' => $request->txtPersionalmobile,
             'persional_fixed'=>$request->txtPersionalfixedno,
