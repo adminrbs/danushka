@@ -145,10 +145,13 @@ function saveNonproprietary(){
         success: function (response) {
             nonproprietaryAllData();
             $('#modalNonproprietary').modal('hide');
-
+            if (response.status) {
             showSuccessMessage('Successfully saved');
            console.log(response);
-
+            }else{
+                showErrorMessage('Something went wrong');
+$('#modalNonproprietary').modal('hide');
+            }
 
         },
         error: function (error) {

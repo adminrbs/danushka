@@ -27,10 +27,10 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="submit" id="btnClose1" class="btn btn-secondary" >Close</button>
-                <button type="submit" id="btnSaveCategorylevel1"
+                <button type="button" id="btnClose1" class="btn btn-secondary" >Close</button>
+                <button type="button" id="btnSaveCategorylevel1"
                     class="btn btn-primary btnSaveCategorylevel1">Save</button>
-                <button type="submit" id="btnUpdateCategorylevel1"
+                <button type="button" id="btnUpdateCategorylevel1"
                     class="btn btn-primary categorylevel1">Update</button>
             </div>
             </form>
@@ -76,10 +76,10 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="submit" id="btnClose2" class="btn btn-secondary" >Close</button>
-                <button type="submit" id="btnSaveCategorylevel2"
+                <button type="button" id="btnClose2" class="btn btn-secondary" >Close</button>
+                <button type="button" id="btnSaveCategorylevel2"
                     class="btn btn-primary btnSaveCategorylevel2">Save</button>
-                <button type="submit" id="btnUpdateCategorylevel2"
+                <button type="button" id="btnUpdateCategorylevel2"
                     class="btn btn-primary categorylevel2">Update</button>
             </div>
             </form>
@@ -126,10 +126,10 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="submit" id="btnClose3" class="btn btn-secondary" >Close</button>
-                <button type="submit" id="btnSaveCategorylevel3"
+                <button type="button" id="btnClose3" class="btn btn-secondary" >Close</button>
+                <button type="button" id="btnSaveCategorylevel3"
                     class="btn btn-primary btnSaveCategorylevel3">Save</button>
-                <button type="submit" id="btnUpdateCategorylevel3"
+                <button type="button" id="btnUpdateCategorylevel3"
                     class="btn btn-primary categorylevel3">Update</button>
             </div>
             </form>
@@ -174,10 +174,10 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" id="id">
-                <button type="submit" id="btnClose4" class="btn btn-secondary" >Close</button>
-                <button type="submit" id="btnSaveDesgination"
+                <button type="button" id="btnClose4" class="btn btn-secondary" >Close</button>
+                <button type="button" id="btnSaveDesgination"
                     class="btn btn-primary btnSaveCategorylevel3">Save</button>
-                <button type="submit" id="btnUpdateDesgination"
+                <button type="button" id="btnUpdateDesgination"
                     class="btn btn-primary categorylevel3">Update</button>
             </div>
             </form>
@@ -231,4 +231,48 @@
 <!-- Modal -->
 
 
+
+<!-- Modal Vehicaltype-->
+<div class="modal fade" id="modeVehicletype" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Vehicle type</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="modal-body p-4 bg-light">
+                    <form id="" class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-lg">
+
+                                <label for="fname">Vehicle type<span class="text-danger">*</span></label>
+                                <input type="text" name="vehicletype" id="txtVehicletype"
+                                    class="form-control validate" required>
+                                    <span class="text-danger font-weight-bold vehicletype"></span>
+
+                            </div>
+                        </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="id">
+                <button type="button" id="btnCloseV" class="btn btn-secondary" >Close</button>
+                <button type="button" id="btnSaveVehicletype"
+                    class="btn btn-primary btnVehicletype">Save</button>
+                <button type="button" id="btnUpdateVehicletype"
+                    class="btn btn-primary vehicletype">Update</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
 

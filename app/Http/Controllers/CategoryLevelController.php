@@ -9,6 +9,7 @@ use App\Models\employee_designation;
 use App\Models\employee_Status;
 use Dotenv\Exception\ValidationException;
 use App\Models\User;
+use App\Models\vehicle_type;
 use Illuminate\Support\Facades\Hash;
 
 use Exception;
@@ -86,45 +87,7 @@ class CategoryLevelController extends Controller
         return response()->json(' status updated successfully');
     }
 
-    // category level 1 Search......
-    public function categoryLevel1search(Request $request)
-    {
-        $output = "";
-        $level1 = category_level_1::where('item_category_level_1_id', 'Like', '%' . $request->search . '%')
-                                  ->orWhere('category_level_1', 'Like', '%' . $request->search . '%')
-                                  ->get();
-
-        $rowIndex = 0; // Initialize rowIndex to start from 0
-
-        foreach ($level1 as $level1) {
-            $status = $level1->is_active == 1 ? 'checked' : '';
-            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-
-            $output .= '
-                <tr class="' . $rowClass . '">
-                    <td>' . $level1->item_category_level_1_id . '</td>
-                    <td>' . $level1->category_level_1 . '</td>
-                    <td>
-                        <a href="" type="button" class="btn btn-primary categorylevel1" id="' . $level1->item_category_level_1_id . '" data-bs-toggle="modal" data-bs-target="#modelcategoryLevel">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <input type="button" class="btn btn-danger" name="switch_single" id="btnCategorylevel1" value="Delete" onclick="btnCategorylevel1Delete(' . $level1->item_category_level_1_id . ')">
-                    </td>
-                    <td>
-                        <label class="form-check form-switch">
-                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxCategorylevel1" value="1" onclick="cbxCategorylevel1Status(' . $level1->item_category_level_1_id . ')" required ' . $status . '>
-                        </label>
-                    </td>
-                </tr>';
-
-            $rowIndex++; // Increment rowIndex for each iteration
-        }
-
-        return response($output);
-    }
-
+    
         public function deletelevel1($id){
 
             $level1 = category_level_1::find($id);
@@ -546,7 +509,7 @@ public function Categorylevel3Update(Request $request,$id){
         return response($output);
     }
 
-    // desgination Delete
+    // employee status Delete
 
     public function deleteempStatus($id){
         $level1 = employee_Status::find($id);
@@ -554,7 +517,89 @@ public function Categorylevel3Update(Request $request,$id){
         return response()->json(['success'=>'Record has been Delete']);
     }
 
+//........vehicale Type........
 
+public function getVehicletype(){
+
+    try {
+        $customerDteails = vehicle_type::all();
+        if ($customerDteails) {
+            return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
+        } else {
+            return response()->json((['error' => 'Data is not loaded']));
+        }
+    } catch (Exception $ex) {
+        if ($ex instanceof ValidationException) {
+            return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);
+        }
+    }
+}
+
+//...........save data.....
+public function saveVehicleType(Request $request){
+
+
+
+    try {
+
+        $vehicletype= new vehicle_type();
+        $vehicletype->vehicle_type = $request->get('txtVehicletype');
+
+
+        if ($vehicletype->save()) {
+
+            return response()->json(['status' => true]);
+        } else {
+            Log::error('Error saving common setting: ' . print_r($vehicletype->getErrors(), true));
+            return response()->json(['status' => false]);
+        }
+    } catch (Exception $ex) {
+        return response()->json(['error' => $ex]);
+    }
+}
+
+//.... Edite.......
+
+public function vehicletypeEdite($id){
+    $level1 = vehicle_type::find($id);
+    return response()->json($level1);
+}
+
+//.......... update...
+public function vehicleTypeUpdate(Request $request,$id){
+    $vehicle = vehicle_type::findOrFail($id)->update([
+        'vehicle_type' => $request->txtVehicletype,
+    ]);
+    return response()->json($vehicle);
+
+}
+
+
+// .............Status update
+
+public function vehicletypeStatus(Request $request,$id){
+    $vehiclet = vehicle_type::findOrFail($id);
+    $vehiclet->is_active = $request->status;
+    $vehiclet->save();
+
+    return response()->json(' status updated successfully');
+}
+
+    public function deleteVehicle($id){
+
+        $vehiclet = vehicle_type::find($id);
+        if($vehiclet->vehicle_type_id  == 1){
+            return response()->json(['error' => 'Record has been Not Delete']);
+        }else{
+
+            $vehiclet->delete();
+        return response()->json(['success'=>'Record has been Delete']);
+        }
+    }
+
+
+
+//....End Vehicle Type......
 
     public function category2(){
         $data = category_level_1::orderBy('item_category_level_1_id','ASC' )->get();

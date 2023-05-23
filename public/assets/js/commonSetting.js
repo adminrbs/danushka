@@ -579,9 +579,13 @@ function saveDistric() {
             console.log(response.district_id);
             allData();
 
-
+            if (response.status) {
             $('#modelDistric').modal('hide');
             showSuccessMessage('Successfully saved');
+            }else{
+                $('#modelDistric').modal('hide');
+                showErrorMessage('Something went wrong');
+            }
 
 
         },
@@ -892,10 +896,14 @@ function saveTown() {
             console.log(response.district_id);
             allDataTown();
 
-            $("#townSearch").val('');
+
+            if (response.status) {
             showSuccessMessage('Successfully save');
             $('#modelTown').modal('hide');
-
+            }else{
+                showErrorMessage('Error');
+                $('#modelTown').modal('Something went wrong');
+            }
 
 
         },
@@ -1264,7 +1272,12 @@ function saveGroup() {
 
             $("#groupSearch").val('');
             $('#modalGroup').modal('hide');
+            if (response.status) {
             showSuccessMessage('Successfully save');
+            }else{
+                showErrorMessage('Something went wrong');
+                $('#modalGroup').modal('hide');
+            }
 
 
         },
@@ -1641,10 +1654,13 @@ function saveGrade() {
         success: function (response) {
             console.log(response.district_id);
             allDataGrade();
-
+            if (response.status) {
             $('#modalGrade').modal('hide');
             showSuccessMessage('Successfully save');
-
+            }else{
+                showErrorMessage('Something went wrong');
+                $('#modalGrade').modal('hide');
+            }
 
         },
         error: function (error) {

@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Notifications\UserNotification;
 use App\Http\Controllers\CommonsettingController;
 use App\Http\Controllers\salesOrderController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -189,8 +190,6 @@ Route::get('/districtEdite/{id}', [App\Http\Controllers\CommonsettingController:
 Route::post('/districtUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtUpdate']);
 Route::post('/updateDistrictStatus/{id}', [App\Http\Controllers\CommonsettingController::class, 'districtStatus']);
 
-Route::get('/dist_search', [App\Http\Controllers\CommonsettingController::class,'dist_search']);
-
 Route::get('/save_town_status', [App\Http\Controllers\CommonsettingController::class,'save_town_status']);
 Route::delete('/deleteDistrict/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteDistrict']);
 
@@ -202,7 +201,6 @@ Route::get('/twonAlldata', [App\Http\Controllers\CommonsettingController::class,
 Route::post('/saveTown', [App\Http\Controllers\CommonsettingController::class, 'saveTown']);
 Route::get('/townEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'townEdite']);
 Route::post('/townUpdate/{district_id}', [App\Http\Controllers\CommonsettingController::class, 'townUpdate']);
-Route::get('/town_search', [App\Http\Controllers\CommonsettingController::class,'town_search']);
 Route::post('/townUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'townUpdateStatus']);
 Route::get('/updateStatusTown/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusTown']);
 Route::delete('/deleteTown/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteTown']);
@@ -213,7 +211,6 @@ Route::get('/groupAlldata', [App\Http\Controllers\CommonsettingController::class
 Route::post('/saveGroup', [App\Http\Controllers\CommonsettingController::class, 'saveGroup']);
 Route::get('/groupEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'groupEdite']);
 Route::post('/groupUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'groupUpdate']);
-Route::get('/group_search', [App\Http\Controllers\CommonsettingController::class,'group_search']);
 Route::post('/groupUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'groupUpdateStatus']);
 Route::get('/updateStatusGroup/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGroup']);
 Route::delete('/deleteGroup/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteGroup']);
@@ -223,7 +220,6 @@ Route::get('/gradeAlldata', [App\Http\Controllers\CommonsettingController::class
 Route::post('/savegrade', [App\Http\Controllers\CommonsettingController::class, 'savegrade']);
 Route::get('/gradeEdite/{id}', [App\Http\Controllers\CommonsettingController::class,'gradeEdite']);
 Route::post('/gradeUpdate/{id}', [App\Http\Controllers\CommonsettingController::class, 'gradeUpdate']);
-Route::get('/grade_search', [App\Http\Controllers\CommonsettingController::class,'grade_search']);
 Route::post('/gradeUpdateStatus/{id}', [App\Http\Controllers\CommonsettingController::class,'gradeUpdateStatus']);
 Route::get('/updateStatusGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'updateStatusGrade']);
 Route::delete('/deleteGrade/{id}', [App\Http\Controllers\CommonsettingController::class,'deleteGrade']);
@@ -235,7 +231,6 @@ Route::post('/saveCategoryLevel1', [CategoryLevelController::class,'saveCategory
 Route::get('/categorylevel1Edite/{id}', [CategoryLevelController::class,'categorylevel1Edite']);
 Route::post('/txtCategorylevel1Update/{id}', [CategoryLevelController::class, 'txtCategorylevel1Update']);
 Route::post('/updateCatLevel1tStatus/{id}', [CategoryLevelController::class, 'catLevel1tStatus']);
-Route::get('/catLevel1_search', [CategoryLevelController::class,'categoryLevel1search']);
 Route::delete('/deletelevel1/{id}', [CategoryLevelController::class,'deletelevel1']);
 
 // Level 2
@@ -245,7 +240,6 @@ Route::post('/saveCategoryLevel2', [CategoryLevelController::class,'saveCategory
 Route::get('/categorylevel2Edite/{id}', [CategoryLevelController::class,'categorylevel2Edite']);
 Route::post('/txtCategorylevel2Update/{id}', [CategoryLevelController::class, 'txtCategorylevel2Update']);
 Route::post('/updateCatLevel2tStatus/{id}', [CategoryLevelController::class, 'catLevel2tStatus']);
-Route::get('/catLevel2_search', [CategoryLevelController::class,'categoryLevel2search']);
 Route::delete('/deletelevel2/{id}', [CategoryLevelController::class,'deletelevel2']);
 Route::get('loadcategory2',[CategoryLevelController::class,'loadCategory2']);
 
@@ -255,7 +249,6 @@ Route::post('/saveCategoryLevel3', [CategoryLevelController::class,'saveCategory
 Route::get('/categorylevel3Edite/{id}', [CategoryLevelController::class,'categorylevel3Edite']);
 Route::post('/Categorylevel3Update/{id}', [CategoryLevelController::class, 'Categorylevel3Update']);
 Route::post('/updateCatLevel3tStatus/{id}', [CategoryLevelController::class, 'catLevel3tStatus']);
-Route::get('/catLevel3_search', [CategoryLevelController::class,'categoryLevel3search']);
 Route::delete('/deletelevel3/{id}', [CategoryLevelController::class,'deletelevel3']);
 Route::get('loadcategory3',[CategoryLevelController::class,'loadCaegory3']);
 
@@ -266,7 +259,6 @@ Route::get('/disginationData', [CategoryLevelController::class,'disginationData'
 Route::get('/desginationEdite/{id}', [CategoryLevelController::class,'desginationEdite']);
 Route::post('/desginationtUpdate/{id}', [CategoryLevelController::class, 'desginationtUpdate']);
 Route::post('/updateDesginationStatus/{id}', [CategoryLevelController::class, 'updateDesginationStatus']);
-Route::get('/desginathionsearch', [CategoryLevelController::class,'desginathionsearch']);
 Route::delete('/deletedesgination/{id}', [CategoryLevelController::class,'deletedesgination']);
 
 
@@ -277,8 +269,17 @@ Route::get('/empStatusData', [CategoryLevelController::class,'empStatusData']);
 Route::get('/empStatusEdite/{id}', [CategoryLevelController::class,'empStatusEdite']);
 Route::post('/empStatusUpdate/{id}', [CategoryLevelController::class, 'empStatusUpdate']);
 Route::post('/updateempStatus/{id}', [CategoryLevelController::class, 'updateempStatus']);
-Route::get('/empStatussearch', [CategoryLevelController::class,'empStatussearch']);
 Route::delete('/deleteempStatus/{id}', [CategoryLevelController::class,'deleteempStatus']);
+
+// Vehicle Type
+
+Route::get('/getVehicletype', [CategoryLevelController::class,'getVehicletype']);
+
+Route::post('/saveVehicleType', [CategoryLevelController::class,'saveVehicleType']);
+Route::get('/vehicletypeEdite/{id}', [CategoryLevelController::class,'vehicletypeEdite']);
+Route::post('/vehicleTypeUpdate/{id}', [CategoryLevelController::class, 'vehicleTypeUpdate']);
+Route::post('/updateVehicletypeStatus/{id}', [CategoryLevelController::class, 'vehicletypeStatus']);
+Route::delete('/deleteVehicletype/{id}', [CategoryLevelController::class,'deleteVehicle']);
 
 
 //...............................Employeee............
@@ -335,12 +336,24 @@ Route::post('/customerAppStatus/{id}', [customerAppuseController::class,'custome
 Route::delete('/deletecustomerApp/{id}', [customerAppuseController::class,'deletecustomerApp']);
 Route::get('/customername', [customerAppuseController::class, 'customername']);
 
-
-//sales_order_list
-Route::get('/getSalesOrderList',function(){
-    return view('sales_oder_list');
+//...VEHICLE...
+Route::get('/vehicle', function () {
+    return view('vehicle');
 });
-Route::get('/getSalesOrderDetails',[salesOrderController::class,'getSalesOrderDetails']);
+
+Route::get('/vehicalTypename', [VehicleController::class, 'vehicaltypename']);
+Route::get('/getvehicaleAlldata', [VehicleController::class,'vehicaleAlldata']);
+Route::post('/savevehicle', [VehicleController::class,'savevehicle']);
+Route::get('/getVehicaleEdit/{id}', [VehicleController::class,'vehicaleEdit']);
+Route::post('/vehicaleupdate/{id}', [VehicleController::class, 'vehicaleUpdate']);
+Route::post('/vehicleStatus/{id}', [VehicleController::class,'vehicleStatus']);
+Route::delete('/deleteVehicale/{id}', [VehicleController::class,'deleteVehicale']);
+
+
+
+
+
+
 
 //Login Page
 Route::get('/', function () {

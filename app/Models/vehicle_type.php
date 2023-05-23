@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class vehicle_type extends Model
 {
     use HasFactory;
+    protected $table = "vehicle_types";
+    protected $primaryKey = "vehicle_type_id";
+    protected $fillable = [
+        'vehicle_type',
+        'is_active',
+    ];
 }

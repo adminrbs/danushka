@@ -203,7 +203,7 @@ $(document).on('click', '.customerEdit', function (e) {
 
 
             $('#id').val(response.customer_app_user_id);
-            $("#cmbcustomerApp").val(response.customer_id).trigger('change');;
+            $("#cmbcustomerApp").val(response.customer_id).trigger('change');
             $("#txtEmailcustomer").val(response.email);
             $("#txtMobilphonecustomer").val(response.mobile);
             $("#txtPasswordcustomer").val("");

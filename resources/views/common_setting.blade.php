@@ -561,10 +561,10 @@
                                 </div>
                                 <div class="table-responsive">
                                     <!-- Required for Responsive -->
-                                    <table class="table datatable-fixed-both-st table-striped" id="tabalVehicle">
+                                    <table class="table datatable-fixed-both-vehicle" id="tabalVehicle">
                                         <thead>
                                             <tr>
-                                                <th class="id">ID</th>
+
                                                 <th>Vehicle type</th>
 
                                                 <th class="edit edit_bank">Edit</th>

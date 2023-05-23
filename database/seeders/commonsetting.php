@@ -97,6 +97,12 @@ class commonsetting extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('vehicle_types')->insert([
+            'vehicle_type' => 'Not Applicable',
+            'is_active' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
        DB::table('employees')->insert([
             'employee_name' => 'Not Applicable',
             'office_mobile' => '1',

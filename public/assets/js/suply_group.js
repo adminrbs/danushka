@@ -143,10 +143,13 @@ function saveSuplyGroup(){
         success: function (response) {
             suplyGroupAllData();
             $('#modalSuplyGroup').modal('hide');
-
+            if (response.status) {
             showSuccessMessage('Successfully saved');
            console.log(response);
-
+            }else{
+                showErrorMessage('Something went wrong');
+$('#modalSuplyGroup').modal('hide');
+            }
 
         },
         error: function (error) {
