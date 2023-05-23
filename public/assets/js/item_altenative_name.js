@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('#btnitemaltenativ').on('click', function () {
         $('#btnNonproprietary').show();
         $('#btnUpdateNonproprietary').hide();
-        $('#id').val('' );
+        $('#id').val('');
         $("#txtNonproprietary").val('');
 
 
@@ -14,30 +14,30 @@ $(document).ready(function () {
 
     // close
 
-    $("#btnCloseupdate").on("click", function(e) {
+    $("#btnCloseupdate").on("click", function (e) {
         // Prevent the default form submission behavior
         e.preventDefault();
         var formData = $("form").serialize();
         $.ajax({
-          type: "POST",
-          url: '/close',
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-          data: formData,
-          success: function(response) {
-            $("#modalNonproprietary").modal("hide"); // This will close the modal
-            var urlWithoutQuery = window.location.href.split('?')[0];
-        },
-          error: function(xhr, status, error) {
+            type: "POST",
+            url: '/close',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            success: function (response) {
+                $("#modalNonproprietary").modal("hide"); // This will close the modal
+                var urlWithoutQuery = window.location.href.split('?')[0];
+            },
+            error: function (xhr, status, error) {
 
-          }
+            }
         });
-      });
+    });
 
 
 
-      $('#btnNonproprietary').on('click', function (e) {
+    $('#btnNonproprietary').on('click', function (e) {
         e.preventDefault();
 
         // check if the input is valid using a 'valid' property
@@ -84,20 +84,20 @@ function nonproprietaryAllData() {
 
                 var isChecked = dt[i].status_id ? "checked" : "";
 
-               data.push({
+                data.push({
 
-                   "item_altenative_name_id": dt[i].item_altenative_name_id,
-                   "item_altenative_name": dt[i].item_altenative_name,
-                   "edit":'<button class="btn btn-primary nonproprietaryupdate" data-bs-toggle="modal" data-bs-target="#modalNonproprietary" id="' + dt[i].item_altenative_name_id  + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                   "delete":'&#160<button class="btn btn-danger" onclick="btnNonproprietaryDelete(' + dt[i].item_altenative_name_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-                   "status":'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus('+ dt[i].item_altenative_name_id + ')" required '+isChecked+'></lable>',
-               });
+                    "item_altenative_name_id": dt[i].item_altenative_name_id,
+                    "item_altenative_name": dt[i].item_altenative_name,
+                    "edit": '<button class="btn btn-primary nonproprietaryupdate" data-bs-toggle="modal" data-bs-target="#modalNonproprietary" id="' + dt[i].item_altenative_name_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger" onclick="btnNonproprietaryDelete(' + dt[i].item_altenative_name_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+                    "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxNonproprietary" value="1" onclick="cbxNonproprietaryStatus(' + dt[i].item_altenative_name_id + ')" required ' + isChecked + '></lable>',
+                });
             }
 
 
             var table = $('#itemAlternativTable').DataTable();
-                table.clear();
-                table.rows.add(data).draw();
+            table.clear();
+            table.rows.add(data).draw();
 
         },
         error: function (error) {
@@ -116,7 +116,7 @@ nonproprietaryAllData();
 
 //.....Nonproprietary Save.....
 
-function saveNonproprietary(){
+function saveNonproprietary() {
 
     formData.append('txtNonproprietary', $('#txtNonproprietary').val());
 
@@ -146,17 +146,17 @@ function saveNonproprietary(){
             nonproprietaryAllData();
             $('#modalNonproprietary').modal('hide');
             if (response.status) {
-            showSuccessMessage('Successfully saved');
-           console.log(response);
-            }else{
+                showSuccessMessage('Successfully saved');
+                console.log(response);
+            } else {
                 showErrorMessage('Something went wrong');
-$('#modalNonproprietary').modal('hide');
+                $('#modalNonproprietary').modal('hide');
             }
 
         },
         error: function (error) {
-showErrorMessage('Something went wrong');
-$('#modalNonproprietary').modal('hide');
+            showErrorMessage('Something went wrong');
+            $('#modalNonproprietary').modal('hide');
             console.log(error);
 
         },
@@ -171,22 +171,22 @@ $('#modalNonproprietary').modal('hide');
 //edit suply group
 
 
-$(document).on('click', '.nonproprietaryupdate', function(e) {
+$(document).on('click', '.nonproprietaryupdate', function (e) {
     e.preventDefault();
-    let item_altenative_name_id  = $(this).attr('id');
+    let item_altenative_name_id = $(this).attr('id');
     $.ajax({
-        url: '/nonproprietaryEdite/'+item_altenative_name_id,
+        url: '/nonproprietaryEdite/' + item_altenative_name_id,
         method: 'get',
         data: {
             //id: id,
             _token: '{{ csrf_token() }}'
         },
-        success: function(response) {
+        success: function (response) {
             $('#btnNonproprietary').hide();
             $('#btnUpdateNonproprietary').show();
 
 
-            $('#id').val(response.item_altenative_name_id  );
+            $('#id').val(response.item_altenative_name_id);
             $("#txtNonproprietary").val(response.item_altenative_name);
 
 
@@ -196,7 +196,7 @@ $(document).on('click', '.nonproprietaryupdate', function(e) {
 
 // suply Group Update
 
-function updateNonproprietary(){
+function updateNonproprietary() {
 
     var id = $('#id').val();
     formData.append('txtNonproprietary', $('#txtNonproprietary').val());
@@ -205,7 +205,7 @@ function updateNonproprietary(){
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/nonproprietaryUpdate/'+id,
+        url: '/nonproprietaryUpdate/' + id,
         data: formData,
         processData: false,
         contentType: false,
@@ -252,41 +252,41 @@ function btnNonproprietaryDelete(id) {
             }
         },
         callback: function (result) {
-           console.log(result);
-           if(result){
-            deleteItem(id);
-           }else{
+            console.log(result);
+            if (result) {
+                deleteItem(id);
+            } else {
 
-           }
+            }
         }
     });
     $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
 
-    }
+}
 
-    function deleteItem(id) {
+function deleteItem(id) {
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/deleteNonproprietary/' + id,
-            data: {
-                _token: $('input[name=_token]').val()
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            beforeSend: function () {
+    $.ajax({
+        type: 'DELETE',
+        url: '/deleteNonproprietary/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
 
-            },success:function(response){
-                console.log(response);
-                nonproprietaryAllData();
+        }, success: function (response) {
+            console.log(response);
+            nonproprietaryAllData();
 
-                showSuccessMessage('Successfully deleted');
-            },error:function(xhr,status,error){
-                console.log(xhr.responseText);
-            }
-        });
-    }
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
 
 
 
@@ -299,7 +299,7 @@ function cbxNonproprietaryStatus(item_altenative_name_id) {
 
 
     $.ajax({
-        url: '/nonproprietaryStatus/'+item_altenative_name_id,
+        url: '/nonproprietaryStatus/' + item_altenative_name_id,
         type: 'POST',
         data: {
             '_token': $('meta[name="csrf-token"]').attr('content'),
@@ -307,7 +307,7 @@ function cbxNonproprietaryStatus(item_altenative_name_id) {
         },
         success: function (response) {
             showSuccessMessage('saved');
-         console.log("data save");
+            console.log("data save");
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);
@@ -354,14 +354,14 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        var table =  $('.datatable-fixed-both').DataTable({
+        var table = $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -384,7 +384,7 @@ const DatatableFixedColumns = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data": "item_altenative_name_id"},
+                { "data": "item_altenative_name_id" },
                 { "data": "item_altenative_name" },
                 { "data": "edit" },
                 { "data": "delete" },
@@ -392,8 +392,8 @@ const DatatableFixedColumns = function () {
 
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });table.column(0).visible(false);
+            ], "stripeClasses": ['odd-row', 'even-row'],
+        }); table.column(0).visible(false);
 
 
         //

@@ -44,7 +44,7 @@ class customerAppuseController extends Controller
 public function autoComplete(Request $request){
     $query = $request->input('query');
 
-    $customers = Customer::where('customer_name', 'LIKE', '%' . $query . '%')->limit(10)->get();
+    $customers = Customer::where('customer_name', 'LIKE', '%' . $query . '%')->get();
 
 
     return response()->json($customers);
