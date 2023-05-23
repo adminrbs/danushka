@@ -532,6 +532,60 @@
 
 
 
+                     {{-- .........vehicle_type.......... --}}
+
+
+
+                     <div class="card">
+                        <div class="card-header" id="headingVehicletype">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-bs-toggle="collapse" href="#vahiclt" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample" onclick="vehicletypeTableRefresh()">
+                                    <i class="bi bi-gear" style="margin-right: 5px"></i>Vehicle type
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="vahiclt" class="collapse" aria-labelledby="headingVehicletype"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div>
+
+                                    <button id="btnVehicle" type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#modeVehicletype">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+
+
+
+
+                                </div>
+                                <div class="table-responsive">
+                                    <!-- Required for Responsive -->
+                                    <table class="table datatable-fixed-both-st table-striped" id="tabalVehicle">
+                                        <thead>
+                                            <tr>
+                                                <th class="id">ID</th>
+                                                <th>Vehicle type</th>
+
+                                                <th class="edit edit_bank">Edit</th>
+                                                <th class="edit edit_bank btn-danger">Delete</th>
+                                                <th class="disable disable_bank">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
 
 
 

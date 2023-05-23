@@ -104,15 +104,16 @@ public function autoComplete(Request $request){
 
 
 
-            if ($customerUserApp->save()) {
+           if ($customerUserApp->save()) {
 
                 return response()->json(['status' => true]);
             } else {
                 Log::error('Error saving common setting: ' . print_r($customerUserApp->getErrors(), true));
                 return response()->json(['status' => false]);
             }
+
         } catch (Exception $ex) {
-            return response()->json(['error' => $ex]);
+            return response()->json(['status' => false,'error' => $ex]);
         }
     }
 

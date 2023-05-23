@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customer_app_users', function (Blueprint $table) {
-            $table->id('customer_app_user_id');
-            $table->integer('customer_id');
-            $table->Text('email',250);
-            $table->Text('mobile',50);
-            $table->Text('password',100);
-            $table->integer('status_id')->default("1");
-            $table->string('session_key',250);
+        Schema::create('vehicle_types', function (Blueprint $table) {
+            $table->id('vehicle_type_id');
+            $table->string('vehicle_type',100);
+            $table->boolean('is_active')->default("1");
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_app_users');
+        Schema::dropIfExists('vehicle_types');
     }
 };

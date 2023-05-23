@@ -167,7 +167,11 @@ function saveCustomeerUserapp() {
             customeerUserappAllData();
             $('#modalCustomerApp').modal('hide');
 
-            showSuccessMessage('Successfully saved');
+            if (response.status) {
+                showSuccessMessage('Successfully saved');
+            }else{
+                showErrorMessage("Something went worng");
+            }
 
             console.log(response);
         },
