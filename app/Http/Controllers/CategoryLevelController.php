@@ -87,7 +87,7 @@ class CategoryLevelController extends Controller
         return response()->json(' status updated successfully');
     }
 
-    
+
         public function deletelevel1($id){
 
             $level1 = category_level_1::find($id);
@@ -469,45 +469,7 @@ public function Categorylevel3Update(Request $request,$id){
 
     }
 
-    // desgination serch
-
-    public function empStatussearch(Request $request)
-    {
-        $output = "";
-        $rowIndex = 0; // Initialize rowIndex to start from 0
-
-        $level1 = employee_Status::where('employee_status_id', 'Like', '%' . $request->search . '%')
-                                ->orWhere('employee_status', 'Like', '%' . $request->search . '%')
-                                ->get();
-
-        foreach ($level1 as $level1) {
-            $status = $level1->is_active == 1 ? 'checked' : '';
-            $rowClass = $rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-
-            $output .= '
-                <tr class="' . $rowClass . '">
-                    <td>' . $level1->employee_status_id . '</td>
-                    <td>' . $level1->employee_status . '</td>
-                    <td>
-                        <a href="" type="button" class="btn btn-primary editEmpStatus" id="' . $level1->employee_status_id . '" data-bs-toggle="modal" data-bs-target="#modelStatus1">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <input type="button" class="btn btn-danger" name="switch_single" id="btnEmpStatus" value="Delete" onclick="btnEmpStatusDelete(' . $level1->employee_status_id . ')">
-                    </td>
-                    <td>
-                        <label class="form-check form-switch">
-                            <input type="checkbox" class="form-check-input" name="switch_single" id="cbxEmpStatus" value="1" onclick="cbxEmpStatus(' . $level1->employee_status_id . ')" required ' . $status . '>
-                        </label>
-                    </td>
-                </tr>';
-
-            $rowIndex++; // Increment rowIndex for each iteration
-        }
-
-        return response($output);
-    }
+    
 
     // employee status Delete
 
@@ -522,7 +484,7 @@ public function Categorylevel3Update(Request $request,$id){
 public function getVehicletype(){
 
     try {
-        $customerDteails = vehicle_type::all();
+        $customerDteails = vehicle_type::where('vehicle_type_id', '!=', 1)->get();
         if ($customerDteails) {
             return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
         } else {

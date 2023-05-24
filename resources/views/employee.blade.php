@@ -220,13 +220,8 @@
 
                                                     <div>
                                                         <select class="form-control  form-control-sm" required
-                                                            id="cmbStatus" name="status">
-                                                            <optgroup>
+                                                            id="cmbempStatus" name="status">
 
-                                                                <option value="0">No</option>
-                                                                <option value="1">yes</option>
-
-                                                            </optgroup>
 
                                                         </select>
                                                     </div>

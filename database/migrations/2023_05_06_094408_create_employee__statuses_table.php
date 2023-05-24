@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employee__statuses', function (Blueprint $table) {
+        Schema::create('employee_statuses', function (Blueprint $table) {
             $table->id('employee_status_id');
             $table->string('employee_status');
             $table->boolean('is_active')->default("1");
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee__statuses');
+        Schema::dropIfExists('employee_statuses');
     }
 };

@@ -30,7 +30,7 @@
 
                     <button id="btnvehicle" type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#modalVehicle">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add Vehicle
                     </button>
 
 
@@ -78,10 +78,9 @@
 
     {{-- .........Model....... --}}
 
-    <!-- suply Group -->
     <div class="modal fade" id="modalVehicle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-white">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">vehicle</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -89,7 +88,8 @@
                 <div class="modal-body">
 
 
-                    <div class="modal-body p-4 bg-light">
+
+                    <div class="modal-body p-4  bg-white">
                         <form id="" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-lg">
@@ -123,8 +123,8 @@
                                         <div class="col-md-12">
                                             <label class="col-form-label  mb-0">Licence Expire Date</label>
 
-                                                <input type="text" name="date_range" id="txtLicenceExpire"
-                                                    class="form-control daterange-single" required
+                                                <input type="date" name="date_range" id="txtLicenceExpire"
+                                                    class="form-control  bi bi-calendar3" required
                                                     value="01/01/2020 - 01/31/2020">
 
                                         </div>
@@ -132,8 +132,8 @@
                                         <div class="col-md-12">
                                             <label class="col-form-label mb-0">Insurance Expire Date</label>
 
-                                                <input type="text" name="date_range" id="txtInsuranceExpire"
-                                                    class="form-control daterange-single" required
+                                                <input type="date" name="date_range" id="txtInsuranceExpire"
+                                                    class="form-control bi bi-calendar3" required
                                                     value="01/01/2020 - 01/31/2020">
 
                                         </div>

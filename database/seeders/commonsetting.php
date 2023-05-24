@@ -77,7 +77,7 @@ class commonsetting extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-        DB::table('employee__statuses')->insert([
+        DB::table('employee_statuses')->insert([
             'employee_status' => 'Not Applicable',
             'is_active' => '1',
             'created_at' => Carbon::now(),

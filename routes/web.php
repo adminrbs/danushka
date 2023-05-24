@@ -297,7 +297,7 @@ Route::post('/Employee/update/{id}', [App\Http\Controllers\EmployeeController::c
 Route::get('/getEmployeeview/{id}',[App\Http\Controllers\EmployeeController::class,'getEmployview']);
 Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeDelete']);
 Route::delete('/reportEmployee', [App\Http\Controllers\EmployeeController::class, 'reportEmployee']);
-
+Route::get('/getemployeestatus',[App\Http\Controllers\EmployeeController::class,'employeestatus']);
 
 Route::get('/suply_group', function () {
     return view('suply_group');

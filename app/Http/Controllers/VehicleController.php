@@ -77,20 +77,20 @@ public function vehicaleEdit($id){
 }
 
 public function vehicaleUpdate(Request $request,$id){
-    $customer = vehicle::findOrFail($id);
-    $customer->vehicle_no = $request->input('txtvehicleNo');
-    $customer->vehicle_name = $request->input('txtVehicleName');
-    $customer->description = $request->input('txtDescription');
-    $customer->vehicle_type_id = $request->input('cmbVehicleType');
-    $customer->licence_expire_date = $request->input('txtLicenceExpire');
-    $customer->insurance_expire_date = $request->input('txtInsuranceExpire');
-    $customer->remarks = $request->input('txtRemarks');
+    $vehicle = vehicle::findOrFail($id);
+    $vehicle->vehicle_no = $request->input('txtvehicleNo');
+    $vehicle->vehicle_name = $request->input('txtVehicleName');
+    $vehicle->description = $request->input('txtDescription');
+    $vehicle->vehicle_type_id = $request->input('cmbVehicleType');
+    $vehicle->licence_expire_date = $request->input('txtLicenceExpire');
+    $vehicle->insurance_expire_date = $request->input('txtInsuranceExpire');
+    $vehicle->remarks = $request->input('txtRemarks');
 
 
 
 
-        $customer->update();
-        return response()->json($customer);
+        $vehicle->update();
+        return response()->json($vehicle);
 }
 
 

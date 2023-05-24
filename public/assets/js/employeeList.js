@@ -66,6 +66,9 @@ const DatatableFixedColumns = function () {
             "columns": [
                 { "data": "employee_id" },
                 { "data": "employee_name" },
+                { "data": "desgination_id" },
+                { "data": "office_mobile" },
+                { "data": "status_id" },
                 { "data": "action" },
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
@@ -139,9 +142,13 @@ function getCustomerDetails() {
 
             var data = [];
             for (var i = 0; i < dt.length; i++) {
+
                data.push({
                    "employee_id": dt[i].employee_id,
                    "employee_name": dt[i].employee_name,
+                   "desgination_id": dt[i].employee_designation,
+                   "office_mobile": dt[i].office_mobile,
+                   "status_id":dt[i].employee_status,
                    "action":'<button  class="btn btn-primary" onclick="edit(' + dt[i].employee_id + ')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&#160<button class="btn btn-success" onclick="view(' + dt[i].employee_id + ')"><i class="fa fa-eye" aria-hidden="true"></i></button>&#160<button class="btn btn-danger" onclick="_delete(' + dt[i].employee_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
                });
             }
@@ -211,3 +218,24 @@ function deleteEmployee(id) {
 
 
 
+
+
+function employeestatus() {
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: "/getemployeestatus",
+        success: function (data) {
+            $.each(data, function (key, value) {
+
+                var isChecked = "";
+                if (value.status_id) {
+                    isChecked = "checked";
+                }
+                data = data + "<option  id='' value=" + value.employee_status_id   + ">" + value.employee_status  + "</option>"
+            })
+           $('#cmbempStatus').html(data);
+        }
+    });
+}
+employeestatus();

@@ -7,12 +7,13 @@ use App\Models\employee;
 use App\Models\employee_designation;
 use Dotenv\Exception\ValidationException;
 use Exception;
+use DB;
 class EmployeeController extends Controller
 {
     public function index(){
         return view('employee');
     }
-
+//...employee
     //...........save employee
 
 public function reportEmployee(){
@@ -58,13 +59,17 @@ public function reportEmployee(){
     //................List employee..........
 
     public function getEmployeeDetails(){
+
         try {
-            $customerDteails = employee::where('employee_id', '!=', 1)->get();
-            if ($customerDteails) {
-                return response()->json((['success' => 'Data loaded', 'data' => $customerDteails]));
-            } else {
-                return response()->json((['error' => 'Data is not loaded']));
-            }
+
+            $query = "SELECT employees.*, employee_designations.* FROM employees
+            INNER JOIN employee_designations ON employees.desgination_id = employee_designations.employee_designation_id
+            WHERE employees.employee_id != 1
+            ORDER BY employees.employee_id DESC";
+
+            $employee = DB::select($query);
+            return response()->json(['success' => 'Data loaded', 'data' => $employee]);
+
         } catch (Exception $ex) {
             if ($ex instanceof ValidationException) {
                 return response()->json(["ValidationException" => ["id" => collect($ex->errors())->keys()[0], "message" => $ex->errors()[collect($ex->errors())->keys()[0]]]]);

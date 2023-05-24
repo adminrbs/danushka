@@ -29,7 +29,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Employee Name</th>
+                    <th>Designation</th>
+                    <th>Office mobile</th>
+                    <th>Status</th>
                     <th>Action</th>
+
                 </tr>
             </thead>
             <tbody >
