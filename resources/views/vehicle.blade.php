@@ -78,7 +78,7 @@
 
     {{-- .........Model....... --}}
 
-    <div class="modal fade" id="modalVehicle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade mt-5" id="modalVehicle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-white">
                 <div class="modal-header">

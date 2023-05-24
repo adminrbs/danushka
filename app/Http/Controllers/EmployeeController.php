@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\employee;
 use App\Models\employee_designation;
 use Dotenv\Exception\ValidationException;
+use App\Models\employee_Status;
 use Exception;
 use DB;
 class EmployeeController extends Controller
@@ -13,7 +14,13 @@ class EmployeeController extends Controller
     public function index(){
         return view('employee');
     }
-//...employee
+//...employee status loard
+
+public function employeestatus(){
+    $data = employee_Status::all();
+    return response()->json($data);
+
+}
     //...........save employee
 
 public function reportEmployee(){
@@ -40,7 +47,7 @@ public function reportEmployee(){
             $employee->report_to = $request->get('cmbReport');
             $employee->date_of_joined = $request->get('txtDateofjoined');
             $employee->date_of_resign = $request->get('txtDateofresign');
-            $employee->status_id = $request->get('cmbStatus');
+            $employee->status_id = $request->get('cmbempStatus');
             $employee->note = $request->get('txtNote');
 
 
@@ -62,10 +69,14 @@ public function reportEmployee(){
 
         try {
 
-            $query = "SELECT employees.*, employee_designations.* FROM employees
+            $query = "SELECT employees.*, employee_designations.*, employee_statuses.*
+            FROM employees
             INNER JOIN employee_designations ON employees.desgination_id = employee_designations.employee_designation_id
+            INNER JOIN employee_statuses ON employees.status_id = employee_statuses.employee_status_id
             WHERE employees.employee_id != 1
             ORDER BY employees.employee_id DESC";
+
+
 
             $employee = DB::select($query);
             return response()->json(['success' => 'Data loaded', 'data' => $employee]);
@@ -110,7 +121,7 @@ public function reportEmployee(){
 
             'date_of_joined' => $request->txtDateofjoined,
             'date_of_resign'=>$request->txtDateofresign,
-            'status_id'=>$request->cmbStatus,
+            'status_id'=>$request->cmbempStatus,
             'note' => $request->txtNote,
 
 

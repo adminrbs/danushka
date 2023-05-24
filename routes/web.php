@@ -296,7 +296,7 @@ Route::get('/getEmployeedata/{id}', [App\Http\Controllers\EmployeeController::cl
 Route::post('/Employee/update/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeUpdate']);
 Route::get('/getEmployeeview/{id}',[App\Http\Controllers\EmployeeController::class,'getEmployview']);
 Route::delete('/deleteEmployee/{id}', [App\Http\Controllers\EmployeeController::class, 'employeeDelete']);
-Route::delete('/reportEmployee', [App\Http\Controllers\EmployeeController::class, 'reportEmployee']);
+Route::get('/reportEmployee', [App\Http\Controllers\EmployeeController::class, 'reportEmployee']);
 Route::get('/getemployeestatus',[App\Http\Controllers\EmployeeController::class,'employeestatus']);
 
 Route::get('/suply_group', function () {

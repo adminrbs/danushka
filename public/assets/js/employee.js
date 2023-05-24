@@ -183,7 +183,7 @@ function saveEmployee() {
     formData.append('cmbReport', $('#cmbReport').val());
     formData.append('txtDateofjoined', $('#txtDateofjoined').val());
     formData.append('txtDateofresign', $('#txtDateofresign').val());
-    formData.append('cmbStatus', $('#cmbStatus').val());
+    formData.append('cmbempStatus', $('#cmbempStatus').val());
     formData.append('txtNote', $('#txtNote').val());
 
     console.log(formData);
@@ -260,7 +260,7 @@ function getEmployeedata(id) {
             $('#cmbReport').val(employee.report_to);
             $('#txtDateofjoined').val(employee.date_of_joined);
             $('#txtDateofresign').val(employee.date_of_resign);
-            $('#cmbStatus').val(employee.status_id);
+            $('#cmbempStatus').val(employee.status_id);
             $('#txtNote').val(employee.note);
 
 
@@ -294,7 +294,7 @@ function getEmployeeupdate() {
     formData.append('cmbReport', $('#cmbReport').val());
     formData.append('txtDateofjoined', $('#txtDateofjoined').val());
     formData.append('txtDateofresign', $('#txtDateofresign').val());
-    formData.append('cmbStatus', $('#cmbStatus').val());
+    formData.append('cmbempStatus', $('#cmbempStatus').val());
     formData.append('txtNote', $('#txtNote').val());
 
     console.log(formData);
@@ -358,7 +358,7 @@ function getEmployeeview(id){
             $('#cmbReport').val(employee.report_to);
             $('#txtDateofjoined').val(employee.date_of_joined);
             $('#txtDateofresign').val(employee.date_of_resign);
-            $('#cmbStatus').val(employee.status_id);
+            $('#cmbempStatus').val(employee.status_id);
             $('#txtNote').val(employee.note);
 
         },
