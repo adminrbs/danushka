@@ -17,6 +17,7 @@ use App\Notifications\UserNotification;
 use App\Http\Controllers\CommonsettingController;
 use App\Http\Controllers\salesOrderController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\BankController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -371,3 +372,25 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/testDual',function(){
     return view('testingduallistbox');
 });
+
+
+//...bank
+
+Route::get('/bank', function () {
+    return view('bank');
+});
+Route::get('/getBankAlldata', [BankController::class,'getBankalldata']);
+Route::get('/searchBank', [BankController::class,'searchBank']);
+Route::post('/savebank', [BankController::class,'banksave']);
+Route::get('/getbannkEdit/{id}', [BankController::class,'getbannkEdit']);
+Route::post('/bankupdate/{id}', [BankController::class, 'bankupdate']);
+Route::post('/bankStatus/{id}', [BankController::class, 'bankStatus']);
+Route::delete('/deletebank/{id}', [BankController::class,'deletebank']);
+
+//branchers
+
+Route::get('/getBranchAlldata', [BankController::class,'getBranchAlldata']);
+Route::get('/searchBranch', [BankController::class,'searchbranch']);
+Route::post('/saveBranch', [BankController::class,'savebranch']);
+Route::get('/getbranchkEdit/{id}', [BankController::class,'getbranchkEdit']);
+
