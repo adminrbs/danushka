@@ -1,5 +1,21 @@
 var formData = new FormData();
+var BANK_ID = undefined;
 $(document).ready(function () {
+
+
+    $('#bankTable').on('click', 'tr', function (e) {
+
+
+        var hiddenValue = $(this).find('td:eq(0)');
+        var childElements = hiddenValue.children(); // or hiddenValue.find('*');
+        childElements.each(function () {
+
+            BANK_ID = $(this).attr('data-id');
+            branchlData(BANK_ID);
+
+
+        });
+    });
 
 
     $('#btnbankModel').on('click', function () {
@@ -204,7 +220,7 @@ function bankllData() {
                 data.push({
 
                     "bank_id": dt[i].bank_id,
-                    "bank_code": dt[i].bank_code,
+                    "bank_code":'<div data-id = "' + dt[i].bank_id + '">' + dt[i].bank_code + '</div>',
                     "bank_name": dt[i].bank_name,
                     "active": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxBank" value="1" onclick="cbxBankStatus(' + dt[i].bank_id + ')" required ' + isChecked + '></lable>',
                     "edit": '<button class="btn btn-primary bankEdit" data-bs-toggle="modal" data-bs-target="#bankModel" id="' + dt[i].bank_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
@@ -347,7 +363,7 @@ function updateBank() {
 
         }, error: function (error) {
             showErrorMessage('Something went wrong');
-            $('#modalVehicle').modal('hide');
+            $('#bankModel').modal('hide');
             console.log(error);
         }
     });
@@ -567,3 +583,53 @@ document.addEventListener('DOMContentLoaded', function () {
         return result;
 
     }
+//............................
+
+function branchlData(id) {
+
+    $.ajax({
+        type: "GET",
+        url: "/getBranchAlldata/" + id,
+        cache: false,
+        timeout: 800000,
+        beforeSend: function () { },
+        success: function (response) {
+
+            console.log(response);
+
+            var dt = response.data;
+
+            var data = [];
+            for (var i = 0; i < dt.length; i++) {
+
+                var isChecked = dt[i].is_active ? "checked" : "";
+
+                data.push({
+
+                    "bank_branch_id": dt[i].bank_branch_id,
+                    "bank_branch_code": dt[i].bank_branch_code,
+                    "bank_branch_name": dt[i].bank_branch_name,
+                    "active": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxBranch" value="1" onclick="cbxBranchStatus(' + dt[i].bank_branch_id + ')" required ' + isChecked + '></lable>',
+                    "edit": '<button class="btn btn-primary branchEdit" data-bs-toggle="modal" data-bs-target="#bankBranchmodal" id="' + dt[i].bank_branch_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "delete": '&#160<button class="btn btn-danger" onclick="btnBranchDelete(' + dt[i].bank_branch_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
+
+                });
+            }
+
+
+            var table = $('#bankbranchTable').DataTable();
+            table.clear();
+            table.rows.add(data).draw();
+
+
+        },
+        error: function (error) {
+            console.log(error);
+        },
+        complete: function () { }
+    })
+
+}
+
+
+

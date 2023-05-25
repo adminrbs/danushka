@@ -95,10 +95,10 @@ public function bankupdate(Request $request,$id){
     //...................Branchers........................
 
 
-    public function getBranchAlldata()
+    public function getBranchAlldata($id)
 {
     try {
-        $data = bank_branch::all();
+        $data = bank_branch::where('bank_id',$id)->get();
         return response()->json(['success' => 'Data loaded', 'data' => $data]);
     } catch (Exception $ex) {
         if ($ex instanceof ValidationException) {
@@ -117,6 +117,7 @@ public function savebranch(Request $request){
 
 
         $bank= new bank_branch();
+        $bank->bank_id=$request->get('bank_id');
         $bank->bank_branch_code= $request->get('txtbranchCode');
         $bank->bank_branch_name= $request->get('txtbranchSearch');
 
@@ -137,4 +138,29 @@ public function getbranchkEdit($id){
 $data = bank_branch::find($id);
 return response()->json($data);
 }
+
+public function branchupdate(Request $request,$id){
+    $bank = bank_branch::findOrFail($id);
+    $bank->bank_id=$request->input('bank_id');
+    $bank->bank_branch_code = $request->input('txtbranchCode');
+    $bank->bank_branch_name = $request->input('txtbranchSearch');
+
+        $bank->update();
+        return response()->json($bank);
 }
+
+    public function branchStatus(Request $request,$id){
+        $bank = bank_branch::findOrFail($id);
+        $bank->is_active = $request->status;
+        $bank->save();
+
+        return response()->json(' status updated successfully');
+    }
+
+    public function deleteBranch($id){
+        $bank = bank_branch::find($id);
+            $bank->delete();
+        return response()->json(['success'=>'Record has been Delete']);
+    }
+}
+

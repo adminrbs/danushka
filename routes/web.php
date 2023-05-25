@@ -389,8 +389,11 @@ Route::delete('/deletebank/{id}', [BankController::class,'deletebank']);
 
 //branchers
 
-Route::get('/getBranchAlldata', [BankController::class,'getBranchAlldata']);
+Route::get('/getBranchAlldata/{id}', [BankController::class,'getBranchAlldata']);
 Route::get('/searchBranch', [BankController::class,'searchbranch']);
 Route::post('/saveBranch', [BankController::class,'savebranch']);
 Route::get('/getbranchkEdit/{id}', [BankController::class,'getbranchkEdit']);
+Route::post('/branchupdate/{id}', [BankController::class, 'branchupdate']);
+Route::post('/branchstatus/{id}', [BankController::class, 'branchStatus']);
+Route::delete('/deletebranch/{id}', [BankController::class,'deleteBranch']);
 

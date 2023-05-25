@@ -182,62 +182,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-function branchlData() {
-
-
-    $.ajax({
-        type: "GET",
-        url: "/getBranchAlldata",
-        cache: false,
-        timeout: 800000,
-        beforeSend: function () { },
-        success: function (response) {
-
-            var dt = response.data;
-
-            var data = [];
-            for (var i = 0; i < dt.length; i++) {
-
-                var isChecked = dt[i].is_active ? "checked" : "";
-
-                data.push({
-
-                    "bank_branch_id": dt[i].bank_branch_id,
-                    "bank_branch_code": dt[i].bank_branch_code,
-                    "bank_branch_name": dt[i].bank_branch_name,
-                    "active": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxBranch" value="1" onclick="cbxBranchStatus(' + dt[i].bank_branch_id + ')" required ' + isChecked + '></lable>',
-                    "edit": '<button class="btn btn-primary branchEdit" data-bs-toggle="modal" data-bs-target="#bankBranchmodal" id="' + dt[i].bank_branch_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
-                    "delete": '&#160<button class="btn btn-danger" onclick="btnBranchDelete(' + dt[i].bank_branch_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
-
-                });
-            }
-
-
-            var table = $('#bankbranchTable').DataTable();
-            table.clear();
-            table.rows.add(data).draw();
-
-
-        },
-        error: function (error) {
-            console.log(error);
-        },
-        complete: function () { }
-    })
-
-}
-
-branchlData();
-
-
 
 
 
 //..... Save.....
 function saveBranch() {
 
+    if(BANK_ID == undefined){
+        $('#bankBranchmodal').modal('hide');
+        showWarningMessage('Please select bank.');
+        return;
+    }
+
+    formData.append('bank_id',BANK_ID);
     formData.append('txtbranchCode', $('#txtbranchCode').val());
-    formData.append('txtbranchName', $('#txtbranchName').val());
+    formData.append('txtbranchSearch', $('#txtbranchSearch').val());
 
 
     console.log(formData);
@@ -258,7 +217,8 @@ function saveBranch() {
             // Perform any tasks before sending the request
         },
         success: function (response) {
-            bankllData();
+            branchlData(BANK_ID);
+            BANK_ID = undefined;
             $('#bankBranchmodal').modal('hide');
 
             if (response.status) {
@@ -299,7 +259,7 @@ $(document).on('click', '.branchEdit', function (e) {
 
             $('#id').val(response.bank_branch_id);
             $("#txtbranchCode").val(response.bank_branch_code);
-            $("#txtbranchName").val(response.bank_branch_name);
+            $("#txtbranchSearch").val(response.bank_branch_name);
 
 
 
@@ -309,11 +269,134 @@ $(document).on('click', '.branchEdit', function (e) {
     });
 });
 
+//....Update
+
+
+function updateBranch() {
+    if(BANK_ID == undefined){
+        $('#bankBranchmodal').modal('hide');
+        showWarningMessage('Please select bank.');
+        return;
+    }
+
+    formData.append('bank_id',BANK_ID);
+
+    var id = $('#id').val();
+
+    formData.append('txtbranchCode', $('#txtbranchCode').val());
+    formData.append('txtbranchSearch', $('#txtbranchSearch').val());
+
+    console.log(formData);
+    $.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        url: '/branchupdate/' + id,
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 800000,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        timeout: 800000,
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+            console.log(response);
+
+            branchlData(BANK_ID);
+            $('#bankBranchmodal').modal('hide');
+
+            showSuccessMessage('Successfully updated');
+
+
+
+        }, error: function (error) {
+            showErrorMessage('Something went wrong');
+            $('#bankBranchmodal').modal('hide');
+            console.log(error);
+        }
+    });
+}
+
+function btnBranchDelete(id) {
+    bootbox.confirm({
+        title: 'Delete confirmation',
+        message: '<div class="d-flex justify-content-center align-items-center mb-3"><i class="fa fa-times fa-5x text-danger" ></i></div><div class="d-flex justify-content-center align-items-center "><p class="h2">Are you sure?</p></div>',
+        buttons: {
+            confirm: {
+                label: '<i class="fa fa-check"></i>&nbsp;Yes',
+                className: 'btn-Danger'
+            },
+            cancel: {
+                label: '<i class="fa fa-times"></i>&nbsp;No',
+                className: 'btn-info'
+            }
+        },
+        callback: function (result) {
+            console.log(result);
+            if (result) {
+                deleteBranch(id);
+            } else {
+
+            }
+        }
+    });
+    $('.bootbox').find('.modal-header').addClass('bg-danger text-white');
+
+}
+
+function deleteBranch(id) {
+
+    $.ajax({
+        type: 'DELETE',
+        url: '/deletebranch/' + id,
+        data: {
+            _token: $('input[name=_token]').val()
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        beforeSend: function () {
+
+        }, success: function (response) {
+            console.log(response);
+            branchlData(BANK_ID);
+
+            showSuccessMessage('Successfully deleted');
+        }, error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+
+function cbxBranchStatus(bank_branch_id) {
+    var status = $('#cbxBranch').is(':checked') ? 1 : 0;
+    $.ajax({
+        url: '/branchstatus/' + bank_branch_id,
+        type: 'POST',
+        data: {
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+            'status': status
+        },
+        success: function (response) {
+            console.log("data save");
+            showSuccessMessage('saved');
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
 
 ////..................baranch name  auto compleet..................
 
 
-const AutocompleteInputs = function () {
+const AutocompleteInputsbranch = function () {
 
 
     //
@@ -423,7 +506,7 @@ const AutocompleteInputs = function () {
 // Initialize module
 
 document.addEventListener('DOMContentLoaded', function () {
-    AutocompleteInputs.init();
+    AutocompleteInputsbranch.init();
 });
 
 $('#txtbranchSearch').on('onclick', function () {
