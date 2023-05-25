@@ -122,39 +122,35 @@ const DatatableFixedColumns = function () {
         // Left and right fixed columns
         var table = $('.datatable-fixed-both-bank').DataTable({
             columnDefs: [
-                {
-                    orderable: false,
-                    targets: 2,
 
+                    {
+                        orderable: false,
+                        targets: 2
+                    },
+                    {
+                        width: 200,
+                        targets: 0
+                    },
+                    {
+                        width: '100%',
+                        targets: 1
+                    },
+                    {
+                        width: 200,
+                        targets: [2]
+                    },
+
+                ],
+                scrollX: true,
+                scrollY: 350,
+                scrollCollapse: true,
+                fixedColumns: {
+                    leftColumns: 0,
+                    rightColumns: 1
                 },
-                {
-                    width: 200,
-                    targets: 0,
-
-                },
-                {
-                    width: '100%',
-                    targets: 1,
-
-
-                },
-                {
-                    width: 200,
-                    targets: [2]
-                },
-
-            ],
-
-            scrollX: true,
-            scrollY: 350,
-            scrollCollapse: true,
-            fixedColumns: {
-                leftColumns: 0,
-                rightColumns: 1
-            },
-            autoWidth: false,
-            "pageLength": 100,
-            "order": [],
+               
+                "pageLength": 100,
+                "order": [],
             "columns": [
                 { "data": "bank_id" },
                 { "data": "bank_code" },
