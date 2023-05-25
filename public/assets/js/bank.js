@@ -152,6 +152,7 @@ const DatatableFixedColumns = function () {
                 leftColumns: 0,
                 rightColumns: 1
             },
+            autoWidth: false,
             "pageLength": 100,
             "order": [],
             "columns": [
