@@ -1,7 +1,7 @@
 <!-- Modal Dstric-->
 <div class="modal fade" id="modelDistric" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content bg-white">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">District</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,7 +9,7 @@
         <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
@@ -43,7 +43,7 @@
   <!-- Modal Town-->
 <div class="modal fade" id="modelTown" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content bg-white">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Town</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -51,7 +51,7 @@
         <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
@@ -94,7 +94,7 @@
   <!-- Modal Group -->
 <div class="modal fade" id="modalGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content bg-white">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Group</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,7 +102,7 @@
         <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">
@@ -135,7 +135,7 @@
   <!-- Modal grade-->
 <div class="modal fade" id="modalGrade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content bg-white">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Grade</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -143,7 +143,7 @@
         <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-lg">

@@ -39,7 +39,7 @@
                                         <div class="card">
                                             <div class="card-header" id="headingDesignation">
                                                 <h5 class="mb-0">
-                                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#bank" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#bank" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="bankTable()">
                                                         <i class="bi bi-gear" style="margin-right: 5px"></i> Bank
                                                     </button>
                                                 </h5>
@@ -79,7 +79,7 @@
                                         <div class="card">
                                             <div class="card-header" id="headingDesignation">
                                                 <h5 class="mb-0">
-                                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#bankbranch" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="">
+                                                    <button class="btn btn-link" data-bs-toggle="collapse" href="#bankbranch" role="button" aria-expanded="false" aria-controls="collapseExample" onclick="bankbranchTable()">
                                                         <i class="bi bi-gear" style="margin-right: 5px"></i> Bank Branch
                                                     </button>
                                                 </h5>

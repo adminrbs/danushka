@@ -80,7 +80,7 @@ function nonproprietaryAllData() {
 
 
             var data = [];
-            for (var i = 0; i < dt.length; i++) {
+            for (var i = 1; i < dt.length; i++) {
 
                 var isChecked = dt[i].status_id ? "checked" : "";
 

@@ -87,7 +87,7 @@
       <div class="modal-body">
 
 
-              <div class="modal-body p-4 bg-light">
+              <div class="modal-body p-4 bg-white">
                   <form id="" class="needs-validation" novalidate>
                   <div class="row">
                       <div class="col-lg">

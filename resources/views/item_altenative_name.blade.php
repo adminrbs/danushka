@@ -75,7 +75,7 @@
 <!-- suply Group -->
 <div class="modal fade" id="modalNonproprietary" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content bg-white">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">International nonproprietary name (INN)</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -83,7 +83,7 @@
       <div class="modal-body">
 
 
-              <div class="modal-body p-4 bg-light">
+              <div class="modal-body p-4 bg-white">
                   <form id="" class="needs-validation" novalidate>
                   <div class="row">
                       <div class="col-lg">

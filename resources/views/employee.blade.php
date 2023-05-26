@@ -97,7 +97,7 @@
                                                     </div>
                                                     <label class="col-form-label mb-0 mt-1"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Persional mobile No </label>
+                                                            aria-hidden="true">&#160</i>personal mobile No </label>
                                                     <div>
                                                         <input class="form-control form-control-sm validate  mt-1" type="tel"
                                                             id="txtPersionalmobile" name="numbers" >
@@ -110,7 +110,7 @@
 
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Persional fixed No </label>
+                                                            aria-hidden="true">&#160</i>personal fixed No </label>
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="text"
@@ -119,7 +119,7 @@
                                                     </div>
                                                     <label class="col-form-label mb-0"><i
                                                             class="fa fa-address-card-o fa-lg text-info"
-                                                            aria-hidden="true">&#160</i>Persional email</label>
+                                                            aria-hidden="true">&#160</i>personal email</label>
 
                                                     <div>
                                                         <input class="form-control form-control-sm validate" type="email"

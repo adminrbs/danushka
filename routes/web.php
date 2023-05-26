@@ -18,6 +18,8 @@ use App\Http\Controllers\CommonsettingController;
 use App\Http\Controllers\salesOrderController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\supplierItemCodeController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -396,4 +398,16 @@ Route::get('/getbranchkEdit/{id}', [BankController::class,'getbranchkEdit']);
 Route::post('/branchupdate/{id}', [BankController::class, 'branchupdate']);
 Route::post('/branchstatus/{id}', [BankController::class, 'branchStatus']);
 Route::delete('/deletebranch/{id}', [BankController::class,'deleteBranch']);
+
+
+
+//...supplier item code
+
+Route::get('/supplier_item_code', function () {
+    return view('supplier_item_code');
+});
+Route::get('/suppliersname', [supplierItemCodeController::class, 'suppliersname']);
+Route::get('/getItemdata', [supplierItemCodeController::class,'getitemdata']);
+Route::post('/savesavesuppliers', [supplierItemCodeController::class,'savesavesuppliers']);
+
 

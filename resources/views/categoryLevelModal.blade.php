@@ -1,7 +1,7 @@
 <!-- Modal categoryLevel 1-->
 <div class="modal fade" id="modelcategoryLevel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Item Category Level 1 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,7 +9,7 @@
             <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
@@ -43,7 +43,7 @@
 <!-- Modal categoryLevel 2-->
 <div class="modal fade" id="modelcategoryLeve2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Item Category Level 2</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -51,7 +51,7 @@
             <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
@@ -93,7 +93,7 @@
 <!-- Modal categoryLevel 3-->
 <div class="modal fade" id="modelcategoryLeve3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Item Category Level 3</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -101,7 +101,7 @@
             <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
@@ -146,7 +146,7 @@
 <div class="modal fade" id="modelDesgination" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Desgination</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -154,7 +154,7 @@
             <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
@@ -193,7 +193,7 @@
 <!-- Modal Status -->
 <div class="modal fade" id="modelStatus1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Status</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -201,7 +201,7 @@
             <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">
@@ -236,7 +236,7 @@
 <div class="modal fade" id="modeVehicletype" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Vehicle type</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -244,7 +244,7 @@
             <div class="modal-body">
 
 
-                <div class="modal-body p-4 bg-light">
+                <div class="modal-body p-4 bg-white">
                     <form id="" class="needs-validation" novalidate>
                         <div class="row">
                             <div class="col-lg">

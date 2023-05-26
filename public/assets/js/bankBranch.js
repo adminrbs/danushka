@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#btnUpdateBranch').hide();
         $('#id').val('');
         $("#txtbranchCode").val('');
-        $("#txtbranchName").val('');
+        $("#txtbranchSearch").val('');
     });
 
     // close
@@ -135,8 +135,7 @@ const DatatableFixedColumnsbranch = function () {
                 leftColumns: 0,
                 rightColumns: 1
             },
-            autoWidth: false,
-            
+
             "pageLength": 100,
             "order": [],
             "columns": [
@@ -538,3 +537,7 @@ function loadbaranch() {
 
 }
 
+function bankbranchTable() {
+    var table = $('#bankbranchTable').DataTable();
+    table.columns.adjust().draw();
+}
