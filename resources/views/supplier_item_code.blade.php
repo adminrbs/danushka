@@ -26,7 +26,7 @@
             <div class="col-xl-12 mt-2">
                 <div class="card">
                     <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
-                        <h5 class="mb-0"></h5>
+                        <h5 class="mb-0">Supplier's Item code</h5>
                         <div class="d-inline-flex ms-auto"></div>
                     </div>
 
@@ -61,7 +61,7 @@
                                     </div>
                                     <div>
 
-                                        <table class="table datatable-fixed-both mt-3" id="supplieritemCodeTable">
+                                        <table class="table datatable-fixed-both mt-3 table-striped" id="supplieritemCodeTable">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
@@ -79,7 +79,7 @@
                                             </tbody>
                                         </table>
 
-<button type="button" id="btnCloseupdate" class="btn btn-secondary" onclick="savesuppliers()">Close</button>
+
                                         <!-- End of general tab -->
 
 

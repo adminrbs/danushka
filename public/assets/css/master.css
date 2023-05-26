@@ -110,4 +110,19 @@ input[type=number] {
 .toast-body {
     color: #fff;
 }
+
+.selected {
+    background-color: hwb(357 3% 54%);
+    /* Add any other styles to visually highlight the selected row */
+  }
+
+
+  /* center model in screen */
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
   

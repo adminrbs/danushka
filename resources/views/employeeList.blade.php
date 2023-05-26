@@ -24,7 +24,7 @@
             <div class="d-inline-flex ms-auto"></div>
         </div>
 
-        <table class="table datatable-fixed-both" id="employeeListTable">
+        <table class="table datatable-fixed-both table-striped" id="employeeListTable">
             <thead>
                 <tr>
                     <th>ID</th>

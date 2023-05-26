@@ -63,14 +63,14 @@ const DatatableFixedColumns = function () {
 
 
         // Left and right fixed columns
-        var table =  $('.datatable-fixed-both').DataTable({
+        var table = $('.datatable-fixed-both').DataTable({
             columnDefs: [
                 {
                     orderable: false,
                     targets: 2
                 },
                 {
-                    width:200,
+                    width: 200,
                     targets: 0
                 },
                 {
@@ -93,13 +93,13 @@ const DatatableFixedColumns = function () {
             "pageLength": 100,
             "order": [],
             "columns": [
-                { "data": "item_id"},
-                { "data": "Item_code"},
-                { "data": "item_Name"},
-               { "data": "textbox" },
+                { "data": "item_id" },
+                { "data": "Item_code" },
+                { "data": "item_Name" },
+                { "data": "textbox" },
 
 
-            ],"stripeClasses": [ 'odd-row', 'even-row' ],
+            ], "stripeClasses": ['odd-row', 'even-row'],
         }); table.column(0).visible(false);
 
 
@@ -143,12 +143,14 @@ function itemAllData() {
             var data = [];
             for (var i = 0; i < dt.length; i++) {
 
+                var input_id = 'textsupplieritem' + i;
+                //var str_input_id = "'"+input_id+"'";
                 data.push({
 
                     "item_id": dt[i].item_id,
-                    "Item_code":'<div data-id = "' + dt[i].item_id + '">' + dt[i].Item_code  + '</div>',
+                    "Item_code": '<div data-id = "' + dt[i].item_id + '">' + dt[i].Item_code + '</div>',
                     "item_Name": dt[i].item_Name,
-                    "textbox": '<input type="text"  class="form form-control" name="supplieritem" id="textsupplieritem" >',
+                    "textbox": '<input type="text" value="'+dt[i].supplier_item_code+'"  class="form form-control" name="supplieritem" id="' + input_id + '" onclick="supplierItemForcusOut(this)" required>',
                 });
             }
 
@@ -185,7 +187,7 @@ function suppliers() {
             $.each(data, function (key, value) {
 
 
-                data = data + "<option  id='' value=" + value.supplier_id  + ">" + value.supplier_name + "</option>"
+                data = data + "<option  id='' value=" + value.supplier_id + ">" + value.supplier_name + "</option>"
 
 
             })
@@ -202,10 +204,11 @@ suppliers();
 
 
 //.....saveCategoryLevel2 Save.....
-function savesuppliers() {
+function savesuppliers(supplier_item_code) {
 
 
-    formData.append('item_id',ITEM_ID);
+    formData.append('item_id', ITEM_ID);
+    formData.append('supplier_item_code', supplier_item_code);
     formData.append('cmbSupplieritemCode', $('#cmbSupplieritemCode').val());
     formData.append('textsupplieritem', $('#textsupplieritem').val());
 
@@ -216,6 +219,7 @@ function savesuppliers() {
         type: "POST",
         enctype: 'multipart/form-data',
         url: '/savesavesuppliers',
+        async:false,
         data: formData,
         processData: false,
         contentType: false,
@@ -230,11 +234,11 @@ function savesuppliers() {
         success: function (response) {
             console.log(response);
             itemAllData();
-
+          
 
             if (response.status) {
                 showSuccessMessage('Successfully saved');
-            }else{
+            } else {
                 showErrorMessage("Something went worng");
             }
 
@@ -248,3 +252,14 @@ function savesuppliers() {
 
 }
 
+
+function supplierItemForcusOut(event) {
+
+
+   $(event).focusout(function(evt){
+    evt.preventDefault();
+    if($(this).val())
+    savesuppliers($(this).val());
+   });
+
+}
