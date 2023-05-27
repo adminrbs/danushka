@@ -77,7 +77,7 @@
 {{--.........Model.......--}}
 
 <!-- suply Group -->
-<div class="modal fade mt-5" id="modalSuplyGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade mt-1" id="modalSuplyGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content  bg-white">
       <div class="modal-header">

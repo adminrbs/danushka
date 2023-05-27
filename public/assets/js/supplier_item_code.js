@@ -150,7 +150,7 @@ function itemAllData() {
                     "item_id": dt[i].item_id,
                     "Item_code": '<div data-id = "' + dt[i].item_id + '">' + dt[i].Item_code + '</div>',
                     "item_Name": dt[i].item_Name,
-                    "textbox": '<input type="text" value="'+dt[i].supplier_item_code+'"  class="form form-control" name="supplieritem" id="' + input_id + '" onclick="supplierItemForcusOut(this)" required>',
+                    "textbox": '<input type="text"   class="form form-control" name="supplieritem" id="' + input_id + '" onclick="supplierItemForcusOut(this)" required>',
                 });
             }
 
@@ -234,7 +234,7 @@ function savesuppliers(supplier_item_code) {
         success: function (response) {
             console.log(response);
             itemAllData();
-          
+
 
             if (response.status) {
                 showSuccessMessage('Successfully saved');

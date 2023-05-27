@@ -4,8 +4,9 @@ $(document).ready(function () {
 
 
     $('#bankTable').on('click', 'tr', function (e) {
+        $('#bankTable tr').removeClass('selected');
 
-
+        $(this).addClass('selected');
         var hiddenValue = $(this).find('td:eq(0)');
         var childElements = hiddenValue.children(); // or hiddenValue.find('*');
         childElements.each(function () {

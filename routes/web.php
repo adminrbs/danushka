@@ -70,10 +70,11 @@ Route::get('/customer_form', function () {
     return view('form');
 });
 
+
+
 Route::get('/purchaseorder', function () {
     return view('purchase_order_sample');
 });
-
 
 
 Route::get('/readNotification/{id}', function ($id) {
