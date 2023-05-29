@@ -9,7 +9,7 @@ $(document).ready(function () {
         { "hidden_id": "5", "id": "005", "value": "Kaduwela" },
     ]);
 
-    var select_option = [{ "value": 1, "text": "Abc" }, { "value": 2, "text": "xx" }];
+    var select_option = [{ "value": 1, "text": "Abc" }, { "value": 2, "text": "xx" },{ "value": 3, "text": "xwx" }];
     tableData = $('#tblData').transactionTable({
         "columns": [
             { "type": "label", "value": "", "style": "max-height:30px;", "event": "clickx(1)", "width": "*" },

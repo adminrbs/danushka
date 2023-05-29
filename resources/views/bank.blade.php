@@ -91,7 +91,7 @@
                                                       Add Bank Branch
                                                     </button>
 
-                                                    <table class="table datatable-fixed-both-branch" id="bankbranchTable">
+                                                    <table class="table datatable-fixed-both-branch  table-striped" id="bankbranchTable">
                                                         <thead>
                                                             <tr>
                                                                 <th>Bank Branch Id</th>
