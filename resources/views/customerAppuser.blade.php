@@ -17,46 +17,34 @@
 @section('content')
 
 
+
     <!-- Content area -->
     <div class="content">
         <div class="card">
-            <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
-                <h5 class="mb-0">Customer App</h5>
-                <div class="d-inline-flex ms-auto"></div>
-            </div>
-
-            <div class="card-body">
-                <div>
-
-                    <button id="btnCustomApp" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#modalCustomerApp">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
+       <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+           <h5 class="mb-0">Customer App</h5>
+           <div class="d-inline-flex ms-auto"></div>
+       </div>
 
 
+               <div class="card-body">
+                   <div>
 
-                </div>
-                {{-- <div class="row mb-1">
-                        <div class="mb-3 row mb">
-                            <label class="col-form-label col-md-2 mb-0">Select with search <span class="text-danger">*</span></label>
-                            <div class="col-md-4">
-                                <select  class="form-control  form-control-sm select2" data-placeholder="Select Here...." required>
-@foreach ($data as $data)
-
-<option>{{$data->customer_name}}</option>
-
-@endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div> --}}
+                       <button id="btnCustomApp" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                           data-bs-target="#modalCustomerApp">
+                           <i class="fa fa-plus" aria-hidden="true"></i>
+                       </button>
 
 
-                <div class="table-responsive">
-                    <!--Required for Responsive-->
-                    <table id="customerAppTable" class="datatable-fixed-both mt-3 table-striped">
-                        <thead>
-                            <tr>
+
+
+                   </div>
+                   <div class="table-responsive">
+                       <!-- Required for Responsive -->
+                       <table id="customerAppTable"
+                           class="table datatable-fixed-both table-striped">
+                           <thead>
+                               <tr>
                                 <th class="id">ID</th>
                                 <th>Customer Name</th>
                                 <th>Email</th>
@@ -66,33 +54,34 @@
                                 <th class="edit edit_bank">Edit</th>
                                 <th class="edit edit_bank btn-danger">Delete</th>
                                 <th class="disable disable_bank">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                               </tr>
+                           </thead>
+                           <tbody >
 
 
-                        </tbody>
+                           </tbody>
 
-                    </table>
-                </div>
-            </div>
-        </div>
+                       </table>
+                   </div>
+               </div>
+           </div>
 
-    </div>
+       </div>
 
-    <!-- Dashboard content -->
+       <!-- Dashboard content -->
 
 
-    </div>
-    <!-- /dashboard content -->
+       </div>
+       <!-- /dashboard content -->
 
-    </div>
-    <!-- /content area -->
+   </div>
+   <!-- /content area -->
+
+
 
 
     {{-- .........Model....... --}}
 
-    <!-- suply Group -->
     <div class="modal fade" id="modalCustomerApp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -170,27 +159,22 @@
         @endsection
         @section('center-scripts')
             <!-- Javascript -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <!-- Theme JS files -->
-            <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
             <script src="{{ URL::asset('assets/js/jquery/jquery.min.js') }}"></script>
-            <!-- Theme JS files -->
-            <script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js') }}"></script>
 
 
-
-            <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/forms/selects/select2.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/ui/moment/moment.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/pickers/daterangepicker.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/pickers/datepicker.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/uploaders/dropzone.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/vendor/forms/inputs/autocomplete.min.js') }}"></script>
+    <!-- Theme JS files -->
+    <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/ui/moment/moment.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/pickers/daterangepicker.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/pickers/datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/uploaders/dropzone.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
+    <script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
 
             <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
 <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>

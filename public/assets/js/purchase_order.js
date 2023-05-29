@@ -14,7 +14,7 @@ $(document).ready(function () {
         "columns": [
             { "type": "label", "value": "", "style": "max-height:30px;", "event": "clickx(1)", "width": "*" },
             { "type": "text", "class": "form-control form-control-sm", "value": "", "style": "max-height:30px;", "event": "DataChooser.showChooser(this)" },
-            { "type": "select", "class": "form-control form-control-sm", "value": select_option, "style": "max-height:30px;", "width": "*" },
+            { "type": "select", "class": "form-control form-control-sm", "value": select_option, "style": "max-height:50px;", "width": "*" },
             { "type": "button", "class": "btn btn-danger", "value": "Remove", "style": "max-height:30px;", "event": "removeRow(this)", "width": 30 }
         ],
         "auto_focus": 1,

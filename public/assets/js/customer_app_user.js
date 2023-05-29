@@ -113,7 +113,7 @@ function customeerUserappAllData() {
                     "customer_id": dt[i].customer_name,
                     "email": dt[i].email,
                     "mobile": dt[i].mobile,
-                    "edit": '<button class="btn btn-primary customerEdit" data-bs-toggle="modal" data-bs-target="#modalCustomerApp" id="' + dt[i].customer_app_user_id + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
+                    "edit": '<button class="btn btn-primary customerEdit" data-bs-toggle="modal" data-bs-target="#modalCustomerApp" id="' + dt[i].customer_app_user_id + '"><i class="fa fa-pencil-square-o"  aria-hidden="true"></i></button>',
                     "delete": '&#160<button class="btn btn-danger" onclick="btnCustommerAppDelete(' + dt[i].customer_app_user_id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
                     "status": '<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxCustomerApp" value="1" onclick="cbxCustomerappStatus(' + dt[i].customer_app_user_id + ')" required ' + isChecked + '></lable>',
                 });
@@ -400,6 +400,7 @@ const DatatableFixedColumns = function () {
         $.extend($.fn.dataTable.defaults, {
             columnDefs: [{
                 orderable: false,
+
                 width: 100,
                 targets: [2]
             }],
@@ -420,6 +421,7 @@ const DatatableFixedColumns = function () {
                 {
                     orderable: false,
                     targets: 2,
+
 
                 },
                 {
