@@ -19,7 +19,8 @@ use App\Http\Controllers\salesOrderController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\supplierItemCodeController;
-
+use App\Http\Controllers\roleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -410,5 +411,31 @@ Route::get('/supplier_item_code', function () {
 Route::get('/suppliersname', [supplierItemCodeController::class, 'suppliersname']);
 Route::get('/getItemdata', [supplierItemCodeController::class,'getitemdata']);
 Route::post('/savesavesuppliers', [supplierItemCodeController::class,'savesavesuppliers']);
+
+
+//........role.......
+
+
+Route::get('/Role', function () {
+    return view('role');
+});
+
+
+Route::get('/useroleAllData', [roleController::class,'getuserrole']);
+Route::post('/saveUserrole', [roleController::class,'saveuserrole']);
+Route::get('/useroleEdite/{id}', [roleController::class,'useroleEdite']);
+Route::post('/userroleUpdate/{id}', [roleController::class, 'userroleUpdate']);
+Route::post('/updateUserRoleStatus/{id}', [roleController::class, 'userRoleStatus']);
+Route::delete('/deleteUserole/{id}', [roleController::class,'deleteUserole']);
+
+//.........users
+
+
+Route::get('/user', function () {
+    return view('users');
+});
+Route::get('/userrole', [UserController::class,'userrole']);
+//Route::get('/getemployee', [UserController::class,'getEmployee']);
+Route::post('/savenewUser', [UserController::class,'saveuser']);
 
 
