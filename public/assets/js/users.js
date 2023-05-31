@@ -2,18 +2,20 @@ var formData = new FormData();
 $(document).ready(function () {
     $('#btnusersave').show();
     $('#btnupdate').hide();
+    $('#btnupdateuser').hide();
+
     $('#empshow').hide();
 
 
 
     if ($('#cmbuserTypeRole').val() === '1') {
         $('#empshow').show();
-    }else{
+    } else {
 
     }
 
     // Listen for changes on the "User Type" dropdown
-    $('#cmbuserTypeRole').change(function() {
+    $('#cmbuserTypeRole').change(function () {
         if ($(this).val() === '1') {
             $('#empshow').show();
         } else {
@@ -67,19 +69,20 @@ $(document).ready(function () {
 
 
                 if (response.status) {
-                showSuccessMessage('Successfully saved');
-                   resetForm();
-                   employee();
-                   userRole();
-               console.log(response);
-                }else{
+                    showSuccessMessage('Successfully saved');
+                    resetForm();
+                    employee();
+                    userRole();
+                    $('#cmbuserTypeRole').val('0').trigger('change');
+                    console.log(response);
+                } else {
                     showErrorMessage('Password does not match');
 
                 }
 
             },
             error: function (error) {
-    showErrorMessage('Something went wrong');
+                showErrorMessage('Something went wrong');
 
                 console.log(error);
 
@@ -92,91 +95,89 @@ $(document).ready(function () {
 
     });
 
-if (window.location.search.length > 0) {
-    var sPageURL = window.location.search.substring(1);
-    var param = sPageURL.split('?');
-    var id = param[0].split('=')[1].split('&')[0];
-    action = param[0].split('=')[2].split('&')[0];
+    if (window.location.search.length > 0) {
+        var sPageURL = window.location.search.substring(1);
+        var param = sPageURL.split('?');
+        var id = param[0].split('=')[1].split('&')[0];
+        action = param[0].split('=')[2].split('&')[0];
 
-    if (action == 'edit') {
+        if (action == 'edit') {
 
-        getusereditedata(id);
-
-
-    }
-
-
-}
-$('#btnupdate').on('click', function (e) {
-    var Password = $('#txtPassword').val();
-    var confirmPassword = $('#txtConformPassword').val();
-if(Password == confirmPassword){
-
-
-    var id = $('#id').val();
-    formData.append('txtname', $('#txtname').val());
-    formData.append('txtEmail', $('#txtEmail').val());
-    formData.append('txtPassword', $('#txtPassword').val());
-    formData.append('cmbuserRole', $('#cmbuserRole').val());
-    formData.append('cmbuserTypeRole', $('#cmbuserTypeRole').val());
-    formData.append('cmbuEmployee', $('#cmbuEmployee').val());
-
-
-    console.log(formData);
-
-}else{
-    showErrorMessage('Password does not match');
-}
-
-
-
-
-    $.ajax({
-        type: "POST",
-        enctype: 'multipart/form-data',
-        url: '/updateUser/' + id,
-        data: formData,
-        processData: false,
-        contentType: false,
-        cache: false,
-        timeout: 800000,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        timeout: 800000,
-        beforeSend: function () {
-
-        },
-        success: function (response) {
-
-
-            if (response.status) {
-                showSuccessMessage('Successfully saved');
-            window.location.href = '/userlist';
-
-
-           console.log(response);
-            }else{
-                showErrorMessage('Ennter Password');
-
-
-            }
-
-        },
-        error: function (error) {
-showErrorMessage('Password does not match');
-
-            console.log(error);
-
-        },
-        complete: function () {
+            getusereditedata(id);
 
         }
 
+    }
+    $('#btnupdate').on('click', function (e) {
+        var Password = $('#txtPassword').val();
+        var confirmPassword = $('#txtConformPassword').val();
+        if (Password == confirmPassword) {
+
+
+            var id = $('#id').val();
+            formData.append('txtname', $('#txtname').val());
+            formData.append('txtEmail', $('#txtEmail').val());
+            formData.append('txtPassword', $('#txtPassword').val());
+            formData.append('cmbuserRole', $('#cmbuserRole').val());
+            formData.append('cmbuserTypeRole', $('#cmbuserTypeRole').val());
+            formData.append('cmbuEmployee', $('#cmbuEmployee').val());
+
+
+            console.log(formData);
+
+        } else {
+            showErrorMessage('Password does not match');
+        }
+
+
+
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: '/updateUser/' + id,
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 800000,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            timeout: 800000,
+            beforeSend: function () {
+
+            },
+            success: function (response) {
+
+
+                if (response.status) {
+                    showSuccessMessage('Successfully saved');
+                    window.location.href = '/userlist';
+
+
+                    console.log(response);
+                } else {
+                    showErrorMessage('Ennter Password');
+
+
+                }
+
+            },
+            error: function (error) {
+                showErrorMessage('Password does not match');
+
+                console.log(error);
+
+            },
+            complete: function () {
+
+            }
+
+        });
+
+
     });
-
-
-});
 
 });
 
@@ -247,7 +248,7 @@ function userRole() {
 
             $.each(data, function (key, value) {
 
-                data = data + "<option  id='' value=" + value.id  + ">" + value.name + "</option>"
+                data = data + "<option  id='' value=" + value.id + ">" + value.name + "</option>"
             })
 
             $('#cmbuserRole').html(data);
@@ -293,8 +294,7 @@ function resetForm() {
 
     $('#cmbuEmployee').html(options);
 
-     $('#empshow').hide();
-
+    $('#empshow').hide();
 
 
 }

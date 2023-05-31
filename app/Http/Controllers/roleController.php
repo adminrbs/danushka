@@ -85,5 +85,97 @@ class roleController extends Controller
         return response()->json(' status updated successfully');
     }
 
+//............role list..........
+
+public function getuserData($id){
+
+        try {
+            $query = "SELECT users.*, user_roles.*, roles.id AS role_id, roles.name AS role_name
+            FROM users
+            INNER JOIN user_roles ON users.id = user_roles.user_id
+            INNER JOIN roles ON user_roles.role_id = roles.id
+            WHERE roles.id = :id
+            ORDER BY users.id DESC";
+
+  $customerDetails = DB::select($query, ['id' => $id]);
+
+  return response()->json(['status' => true, 'data' => $customerDetails]);
+    } catch (Exception $ex) {
+        if ($ex instanceof ValidationException) {
+            return response()->json([
+                'ValidationException' => [
+                    'id' => collect($ex->errors())->keys()[0],
+                    'message' => $ex->errors()[collect($ex->errors())->keys()[0]]
+                ]
+            ]);
+        }
+    }
+
+
+}
+
+
+public function usersallEdite($id){
+    try {
+
+
+         $query = "SELECT users.*, user_roles.*, employees.*
+       FROM users
+       INNER JOIN user_roles ON users.id = user_roles.user_id
+       LEFT JOIN employees ON users.user_id = employees.employee_id
+       WHERE users.id = :id";
+
+        $user = DB::select($query, ['id' => $id]);
+        return response()->json(["user" => $user]);
+
+    /*$user = User::find($id);
+        return response()->json(["user" => $user]);*/
+    } catch (Exception $ex) {
+        return response()->json(["error" => $ex->getMessage()]);
+    }
+
+
+    }
+    public function updateAllUser(Request $request, $id)
+    {
+        try {
+            $user = User::findOrFail($id);
+
+            $inputPassword = $request->get('txtPassword');
+            if ($inputPassword) {
+                if ($user) {
+                    $user->name = $request->input('txtname');
+                    $user->email = $request->input('txtEmail');
+                    $user->user_id = $request->input('cmbuEmployee');
+                    $user_type = $request->input('cmbuserTypeRole');
+                    $user->user_type = ($user_type == 0) ? 'Guest' : 'Employee';
+                    $user->save();
+
+
+
+                    $userRoleId = $request->input('cmbuserRole');
+                    $userRole = user_role::where('user_id', $user->id)->firstOrFail();
+
+                    if ($userRoleId !== 'null') {
+                        $userRole->role_id = $userRoleId;
+                        $userRole->save();
+
+
+                    }
+
+                    return response()->json(['status' => true]);
+                } else {
+                    return response()->json(['error' => 'User not found']);
+                }
+
+            } else {
+                return response()->json(['status' => false]);
+            }
+
+
+        } catch (Exception $ex) {
+            return response()->json(['error' => $ex->getMessage()]);
+        }
+    }
 
 }

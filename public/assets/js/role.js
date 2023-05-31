@@ -84,8 +84,8 @@ function userRoleAllData() {
 
                data.push({
 
-                   "id": dt[i].id,
-                   "name": dt[i].name,
+                   "id":dt[i].id,
+                   "name":'<div data-id = "' + dt[i].id + '">' + dt[i].name + '</div>',
                    "edit":'<button class="btn btn-primary userRole" data-bs-toggle="modal" data-bs-target="#modalUserrole" id="' + dt[i].id  + '"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>',
                    "delete":'&#160<button class="btn btn-danger" onclick="userroleDelete(' + dt[i].id + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>',
                    "status":'<label class="form-check form-switch"><input type="checkbox"  class="form-check-input" name="switch_single" id="cbxUserRole" value="1" onclick="userrole('+ dt[i].id + ')" required '+isChecked+'></lable>',
@@ -334,7 +334,7 @@ const DatatableFixedColumns = function () {
             dom: '<"datatable-header"fl><"datatable-scroll datatable-scroll-wrap"t><"datatable-footer"ip>',
             language: {
                 search: '<span class="me-3">Search:</span> <div class="form-control-feedback form-control-feedback-end flex-fill">_INPUT_<div class="form-control-feedback-icon"><i class="ph-magnifying-glass opacity-50"></i></div></div>',
-                
+
                 lengthMenu: '<span class="me-3">Show:</span> _MENU_',
                 paginate: { 'first': 'First', 'last': 'Last', 'next': document.dir == "rtl" ? '&larr;' : '&rarr;', 'previous': document.dir == "rtl" ? '&rarr;' : '&larr;' }
             }
@@ -382,7 +382,7 @@ const DatatableFixedColumns = function () {
 
 
             ],"stripeClasses": [ 'odd-row', 'even-row' ],
-        });
+        });table.column(0).visible(false);
 
 
         //
@@ -412,3 +412,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function roleTable() {
+    var table = $('#userRoleTable').DataTable();
+    table.columns.adjust().draw();
+}
+
+function rolListTable() {
+    var table = $('#roleListTable').DataTable();
+    table.columns.adjust().draw();
+}

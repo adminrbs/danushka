@@ -430,6 +430,9 @@ Route::post('/userroleUpdate/{id}', [roleController::class, 'userroleUpdate']);
 Route::post('/updateUserRoleStatus/{id}', [roleController::class, 'userRoleStatus']);
 Route::delete('/deleteUserole/{id}', [roleController::class,'deleteUserole']);
 
+//Role list
+Route::get('/getuserData/{id}', [roleController::class,'getuserData']);
+
 //.........users
 
 

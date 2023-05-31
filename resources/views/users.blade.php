@@ -53,7 +53,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="role">User Type </label>
-                                <select id="cmbuserTypeRole" class="form-control form-control-sm">
+                                <select id="cmbuserTypeRole" class="form-control select2 select2-hidden-accessible" data-minimum-results-for-search="Infinity" data-select2-id="1" tabindex="-1" aria-hidden="true">
+
                                     <option value="0">Guest</option>
                                     <option value="1">Employee</option>
 
@@ -70,6 +71,7 @@
                                 <input type="hidden" id="id">
                                 <button type="button" id="btnusersave" class="btn btn-primary">Save</button>
                                 <button type="button" id="btnupdate" class="btn btn-primary">Update</button>
+                               
                             </div>
 
                         </form>
