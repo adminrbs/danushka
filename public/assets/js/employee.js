@@ -68,6 +68,7 @@ $('#btnupdate').on('click',function (e) {
         action = param[0].split('=')[2].split('&')[0];
 
         if (action == 'edit') {
+           
 
             getEmployeedata(id);
 

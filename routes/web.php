@@ -21,6 +21,8 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\supplierItemCodeController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChangePasswordController;
+
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -435,7 +437,23 @@ Route::get('/user', function () {
     return view('users');
 });
 Route::get('/userrole', [UserController::class,'userrole']);
-//Route::get('/getemployee', [UserController::class,'getEmployee']);
+Route::get('/getemployee', [UserController::class,'getEmployee']);
 Route::post('/savenewUser', [UserController::class,'saveuser']);
 
 
+//....USER LIST
+
+Route::get('/userlist', function () {
+    return view('userList');
+});
+Route::get('/getuserAllData', [UserController::class,'getuserAlldata']);
+Route::get('/usersEdite/{id}', [UserController::class,'usersEdite']);
+Route::post('/updateUser/{id}', [UserController::class,'updateUser']);
+Route::delete('/deleteusers/{id}', [UserController::class,'deleteusers']);
+
+
+//.....Changee Password
+Route::get('/changePassword', function () {
+    return view('changPassword');
+});
+Route::post('/changePassword', [ChangePasswordController::class,'changePassword']);

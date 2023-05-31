@@ -28,7 +28,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>User Name</th>
+                    <th>USER NAME</th>
                     <th>EMAIL</th>
                     <th>USER ROLE</th>
                     <th>USER TYPE</th>
@@ -52,8 +52,16 @@
 <!-- Javascript -->
 <script src="{{URL::asset('assets/js/jquery/jquery.min.js')}}"></script>
 <!-- Theme JS files -->
-<script src="{{URL::asset('assets/js/vendor/tables/datatables/datatables.min.js')}}"></script>
-<script src="{{URL::asset('assets/js/vendor/tables/datatables/extensions/fixed_columns.min.js')}}"></script>
+
+<script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/forms/selects/select2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/ui/moment/moment.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/pickers/daterangepicker.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/pickers/datepicker.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/uploaders/dropzone.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
 <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
 <script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
@@ -62,5 +70,5 @@
 @endsection
 @section('scripts')
 <script src="{{URL::asset('assets/demo/pages/form_validation_library.js')}}"></script>
-<script src="{{URL::asset('assets/js/employeeList.js')}}?random=<?php echo uniqid(); ?>"></script>
+<script src="{{URL::asset('assets/js/userList.js')}}?random=<?php echo uniqid(); ?>"></script>
 @endsection

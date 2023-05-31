@@ -21,30 +21,29 @@
     <!-- Content area -->
     <div class="content">
         <div class="card">
-       <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
-           <h5 class="mb-0">Customer App</h5>
-           <div class="d-inline-flex ms-auto"></div>
-       </div>
+            <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+                <h5 class="mb-0">Customer App</h5>
+                <div class="d-inline-flex ms-auto"></div>
+            </div>
 
 
-               <div class="card-body">
-                   <div>
+            <div class="card-body">
+                <div>
 
-                       <button id="btnCustomApp" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                           data-bs-target="#modalCustomerApp">
-                           <i class="fa fa-plus" aria-hidden="true"></i>
-                       </button>
-
-
+                    <button id="btnCustomApp" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modalCustomerApp">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
 
 
-                   </div>
-                   <div class="table-responsive">
-                       <!-- Required for Responsive -->
-                       <table id="customerAppTable"
-                           class="table datatable-fixed-both table-striped">
-                           <thead>
-                               <tr>
+
+
+                </div>
+                <div class="table-responsive">
+                    <!-- Required for Responsive -->
+                    <table id="customerAppTable" class="table datatable-fixed-both table-striped">
+                        <thead>
+                            <tr>
                                 <th class="id">ID</th>
                                 <th>Customer Name</th>
                                 <th>Email</th>
@@ -54,28 +53,28 @@
                                 <th class="edit edit_bank">Edit</th>
                                 <th class="edit edit_bank btn-danger">Delete</th>
                                 <th class="disable disable_bank">Status</th>
-                               </tr>
-                           </thead>
-                           <tbody >
+                            </tr>
+                        </thead>
+                        <tbody>
 
 
-                           </tbody>
+                        </tbody>
 
-                       </table>
-                   </div>
-               </div>
-           </div>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-       </div>
+    </div>
 
-       <!-- Dashboard content -->
+    <!-- Dashboard content -->
 
 
-       </div>
-       <!-- /dashboard content -->
+    </div>
+    <!-- /dashboard content -->
 
-   </div>
-   <!-- /content area -->
+    </div>
+    <!-- /content area -->
 
 
 
@@ -84,7 +83,7 @@
 
     <div class="modal fade" id="modalCustomerApp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-white">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Customer App</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -92,14 +91,13 @@
                 <div class="modal-body">
 
 
-                    <div class="modal-body p-4 bg-light">
+                    <div class="modal-body p-4 bg-white">
                         <form id="formCustomer" class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-lg">
                                     <div class="row mb-1">
                                         <div class="col-md-12">
-                                            <label for="cmbcustomer">Customer Name<span
-                                                    class="text-danger">*</span></label>
+                                            <label for="cmbcustomer">Customer Name<span class="text-danger">*</span></label>
                                             <select id="cmbcustomerApp" class="form-control form-control-sm select2"
                                                 style="width: 100%" data-placeholder="Select Here....">
 
@@ -162,23 +160,23 @@
             <script src="{{ URL::asset('assets/js/jquery/jquery.min.js') }}"></script>
 
 
-    <!-- Theme JS files -->
-    <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/forms/selects/select2.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/pickers/daterangepicker.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/pickers/datepicker.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/uploaders/dropzone.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
-    <script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
+            <!-- Theme JS files -->
+            <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/forms/validation/validate.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/forms/selects/select2.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/ui/moment/moment.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/pickers/daterangepicker.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/pickers/datepicker.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/uploaders/dropzone.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
+            <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
+            <script src="{{ URL::asset('assets/demo/pages/components_modals.js') }}"></script>
 
             <script src="{{ URL::asset('assets/js/vendor/notifications/bootbox.min.js') }}"></script>
-<script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
-<script src="{{URL::asset('assets/demo/pages/components_modals.js')}}"></script>
+            <script src="{{ URL::asset('assets/demo/pages/components_buttons.js') }}"></script>
+            <script src="{{ URL::asset('assets/demo/pages/components_modals.js') }}"></script>
 
 
 

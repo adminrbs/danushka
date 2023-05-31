@@ -37,7 +37,7 @@
         <!-- Main content -->
         <div class="content-wrapper" style="background-color: #4b98cf;">
 
-            <div class="toast fade position-fixed" data-bs-delay="800" role="alert" aria-live="assertive" aria-atomic="true" style="margin: auto;">
+            <div class="toast fade position-fixed" data-bs-delay="2000" role="alert" aria-live="assertive" aria-atomic="true" style="margin: auto;">
                 <div class="toast-body d-flex">
                     <div class="flex-fill toast-msg">
                         Hello, world! This is a toast message.

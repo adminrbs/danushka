@@ -15,64 +15,54 @@
 @endsection
 
 @section('content')
-
-
-    <!-- Content area -->
-    <div class="content">
-        <div class="card">
-            <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
-                <h5 class="mb-0">vehicle</h5>
-                <div class="d-inline-flex ms-auto"></div>
-            </div>
-
-            <div class="card-body">
-                <div>
-
-                    <button id="btnvehicle" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#modalVehicle">
-                        Add Vehicle
-                    </button>
-
-
-
-                </div>
-
-
-                <div class="table-responsive">
-                    <!--Required for Responsive-->
-                    <table id="vehicleTable" class="tabale datatable-fixed-both-vehicle mt-3 table-striped">
-                        <thead>
-                            <tr>
-                                <th class="id">ID</th>
-                                <th>Vehicle No</th>
-                                <th>Vehicle Name</th>
-                                <th>Description</th>
-
-
-                                <th class="edit edit_bank">Edit</th>
-                                <th class="edit edit_bank btn-danger">Delete</th>
-                                <th class="disable disable_bank">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
+<div class="content">
+    <div class="card">
+        <div class="card-header bg-dark text d-flex align-items-center" style="color: white;">
+            <h5 class="mb-0">vehicle</h5>
+            <div class="d-inline-flex ms-auto"></div>
         </div>
 
+
+        <div class="card-body">
+            <div>
+
+                <button id="btnvehicle" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#modalVehicle">
+                    Add Vehicle
+                </button>
+
+
+
+
+            </div>
+            <div class="table-responsive">
+                <!-- Required for Responsive -->
+                <table id="vehicleTable" class="table datatable-fixed-both-vehicle table-striped">
+                    <thead>
+                        <tr>
+                            <th class="id">ID</th>
+                            <th>Vehicle No</th>
+                            <th>Vehicle Name</th>
+                            <th>Description</th>
+
+
+                            <th class="edit edit_bank">Edit</th>
+                            <th class="edit edit_bank btn-danger">Delete</th>
+                            <th class="disable disable_bank">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
     </div>
 
-    <!-- Dashboard content -->
+</div>
 
-
-    </div>
-    <!-- /dashboard content -->
-
-    </div>
     <!-- /content area -->
 
 
